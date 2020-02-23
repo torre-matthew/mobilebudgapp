@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, ScrollView } from 'react-native';
+import { Platform, StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native';
 import { Container, Button, Content, Form, Item, Input} from 'native-base';
 import SummaryWrapper from './Components/summaryWrapper';
 import UnplannedBillWrapper from './Components/unplannedBillWrapper';
@@ -7,6 +7,7 @@ import PlannedBillWrapper from './Components/plannedBillWrapper';
 import { thisExpression } from '@babel/types';
 import AppHeader from './Components/appheader';
 import ApiMethods from './utilities/apiMethods';
+
 
 
 const style = require("./Styles/Styles");
@@ -25,12 +26,20 @@ const afterSpendingData = [
   },
 ]
 
+function wait(timeout) {
+  return new Promise(resolve => {
+    setTimeout(resolve, timeout);
+  });
+}
 
 export default class App extends Component {
   state = {
     due_date: '',
+    edited_bill_due_date: '',
     bill_name: '',
+    edited_bill_name: '',
     amount_due: '',
+    edited_bill_amount: '',
     currentExpensesFromDB: [],
     income_name: '',
     income_date: '',
@@ -40,13 +49,26 @@ export default class App extends Component {
     currentTotalIncome: 0,
     afterSpendingIncomeTotal: 0,
     recentlyAdded: false,
-    afterSpendingClicked: false
+    afterSpendingClicked: false,
+    refreshing: false
   };
 
   componentDidMount(){
+    this.fetchData();
+  }
+
+  fetchData = () => {
     this.getTotalIncome();
     this.getIncomeDataFromDB();
     this.getExpenseDataFromDB();
+  }
+
+  onRefresh = () => {
+    this.setState({refreshing: true});
+    wait(200).then(() => {
+      this.fetchData();
+      this.setState({refreshing: false});
+    });
   }
 
   getIncomeDataFromDB = () => {
@@ -91,7 +113,8 @@ export default class App extends Component {
   handleDueDate = text => {
     
     this.setState({
-      due_date: text
+      due_date: text,
+      edited_bill_due_date: text,
     });
   };
   
@@ -99,14 +122,16 @@ export default class App extends Component {
   handleBillName = text => {
     
     this.setState({
-      bill_name: text
+      bill_name: text,
+      edited_bill_name: text,
     });
   };
 
   handleBillAmount = text => {
     
     this.setState({
-      amount_due: text
+      amount_due: text,
+      edited_bill_amount: text,
     });
   };
 
@@ -140,6 +165,12 @@ export default class App extends Component {
     ApiMethods.addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due );
   };
 
+  handleExpenseEditFormSubmit = (event, id) => {
+    // Preventing the default behavior of the form submit (which is to refresh the page)
+    event.preventDefault();
+    ApiMethods.editExpense(id, this.state.edited_bill_name, this.state.edited_bill_due_date, this.state.edited_bill_amount);
+  };
+
   handleAddIncomeFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
@@ -167,7 +198,13 @@ export default class App extends Component {
     return (
       <Container  style={style.container}>
         <AppHeader />
-        <ScrollView>
+        <ScrollView
+        refreshControl={
+          <RefreshControl 
+            refreshing={this.state.refreshing} 
+            onRefresh={this.onRefresh}/>
+        }
+        >
           <View>
             <SummaryWrapper 
               incomeDataFromDB={!this.state.afterSpendingClicked ? this.state.currentIncomeFromDB : this.state.afterSpendingData}
@@ -187,6 +224,8 @@ export default class App extends Component {
               handleDueDate={this.handleDueDate}
               handleBillName={this.handleBillName} 
               handleFormSubmit={this.handleFormSubmit}
+              fetchData={this.fetchData}
+              handleExpenseEditFormSubmit={this.handleExpenseEditFormSubmit}
             />
             <PlannedBillWrapper />
           </View>

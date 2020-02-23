@@ -4,11 +4,11 @@ import axios from "axios";
 /////////////Get Methods////////////////////
 
 let getIncome = () => {
-    return axios.get('http://192.168.1.23:3001/api/allIncome');
+    return axios.get("http://192.168.1.23:3001/api/allIncome");
 }
 
 let getExpenses = () => {
-    return axios.get('http://192.168.1.23:3001/api/allExpenses');
+    return axios.get("http://192.168.1.23:3001/api/allExpenses");
 }
 
 /////////////Post Methods////////////////////
@@ -33,7 +33,16 @@ let addExpense = (name, date, amount) => {
 
 let deleteExpense = (id) => {
     return axios.delete('http://192.168.1.23:3001/api/deleteExpense', {
-        _id: id,
+       data: {_id: id,}
+    });
+}
+
+let editExpense = (id, name, date, amount) => {
+    return axios.put('http://192.168.1.23:3001/api/updateExpense', {
+       data: {_id: id,
+        nameOfExpense: name,
+        dateOfExpense: date,
+        amountOfExpense: amount}
     });
 }
 
@@ -43,5 +52,6 @@ export default {
     getExpenses: getExpenses,
     addIncome: addIncome,
     addExpense: addExpense,
-    deleteExpense: deleteExpense
+    deleteExpense: deleteExpense,
+    editExpense: editExpense
 }

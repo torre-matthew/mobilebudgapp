@@ -17,11 +17,11 @@ const styles = StyleSheet.create({
       },
 
     summary_section: {
-        backgroundColor: '#8C8B99',
+        backgroundColor: 'white',
         borderStyle: 'solid',
         borderTopWidth: 0, 
         borderWidth: 5,
-        borderColor: 'white'
+        borderColor: '#8C8B99'
     },
 
     summary_section_header: {
@@ -60,12 +60,12 @@ const styles = StyleSheet.create({
 
 
     unplanned_section: {
-        backgroundColor: '#8C8B99',
+        backgroundColor: 'white',
         minHeight: 100, 
         height: 'auto',
         borderStyle: 'solid', 
         borderWidth: 5,
-        borderColor: 'white',
+        borderColor: '#8C8B99',
     },
 
     planned_section: {
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         height: 'auto',
         borderStyle: 'solid', 
         borderWidth: 5,
-        borderColor: 'white',
+        borderColor: '#8C8B99',
     },
 
     welcome: {
