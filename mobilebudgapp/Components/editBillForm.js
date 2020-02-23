@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, Dimensions } from 'react-native';
+import { View, Dimensions, TouchableOpacity } from 'react-native';
 import { Container, Content, Form, Item, Input, Text } from 'native-base';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import style from "../Styles/Styles";
 
 function EditBillFormDisplay (props) {
@@ -10,7 +9,7 @@ function EditBillFormDisplay (props) {
                 <View style={{marginTop: 55}}>
                     <Form id="billForm">
                         <Item>
-                            <Input defaultValue={props.dueDate} placeholder='Due Date' onChangeText={props.handleDueDate} />
+                            <Input defaultValue={props.dueDate} placeholder='Due Date' onChange={props.handleDueDate} />
                         </Item>
                         <Item>
                             <Input defaultValue={props.billName} placeholder='Bill/Expense' onChangeText={props.handleBillName} />
@@ -20,7 +19,7 @@ function EditBillFormDisplay (props) {
                         </Item>
                         <View style={{ alignItems: 'center' }}>
                         <TouchableOpacity
-                            onPressIn={props.handleFormSubmit} 
+                            onPressIn={props.handleExpenseEditFormSubmit} 
                             onPress={props.closeModalOnSubmit}
                             style={style.button_style_form}>
                             <Text> Submit </Text>

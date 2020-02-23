@@ -33,11 +33,12 @@ class AddBillModal extends Component {
             handleBillName={this.props.handleBillName}
             handleFormSubmit={this.props.handleFormSubmit}
             closeModalOnSubmit={this.closeModal}
+            fetchData={this.props.fetchData}
           />
           </Modal>
           <TouchableOpacity
-          onPress={() => {this.setModalVisible(true)}}
-          style={style.button_style}
+            onPress={() => {this.setModalVisible(true)}}
+            style={style.button_style}
           >
           <Text> Add Bill/Expense </Text>
         </TouchableOpacity>

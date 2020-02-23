@@ -8,6 +8,8 @@ import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 
 
+
+
 class UnplannedBillDisplay extends Component {
   state = {
     modalVisible: false,
@@ -24,11 +26,11 @@ class UnplannedBillDisplay extends Component {
   showConfirmationAlert = (idToDelete) => {
 
   Alert.alert(
-    'Delete Expense',
+    'Delete Expense ' + idToDelete,
     'Are you sure you?',
     [
       {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-      {text: 'OK', onPress: () => {ApiMethods.deleteExpense(idToDelete); console.log(idToDelete);}},
+      {text: 'OK', onPress: () => {ApiMethods.deleteExpense(idToDelete);}},
     ],
     {cancelable: false},
   );
@@ -48,6 +50,11 @@ class UnplannedBillDisplay extends Component {
                   dueDate={this.props.dueDate}
                   billName={this.props.billName}
                   billAmount={this.props.billAmount}
+                  handleBillAmount={this.props.handleBillAmount}
+                  handleDueDate={this.props.handleDueDate}
+                  handleBillName={this.props.handleBillName}
+                  handleExpenseEditFormSubmit={this.props.handleExpenseEditFormSubmit}
+                  closeModalOnSubmit={this.closeModal}
                 />
                 <View style={{ flex: 1, alignSelf: 'flex-start', paddingLeft: 5, paddingTop: 15, paddingBottom: 15 }}> 
                   <Text style={{fontSize: 18 }}> Select Funding Source </Text>
@@ -61,9 +68,18 @@ class UnplannedBillDisplay extends Component {
                 />
                 )}
                 <TouchableOpacity
-                  onPress={() => {this.showConfirmationAlert(this.props.billID)}}
+                  onPress={() => {ApiMethods.deleteExpense(this.props.billID).then(res => {
+                    
+                    if (res.data.deletedCount === 0) {
+                      alert('Sorry, ' + this.props.billName + ' could not be deleted');
+                    } else {
+                      alert('You have successfully deleted ' + this.props.billName);
+                    }
+                  }); 
+                    }}
+                  // onPress={() => {this.showConfirmationAlert(this.props.billID);}}
                   style={style.button_style_form}>
-                    <Text style={{fontSize: 10 }}> Delete Expense </Text>
+                    <Text style={{fontSize: 12 }}> Delete Expense </Text>
                 </TouchableOpacity>
                 </ScrollView>
             </Modal>
@@ -79,6 +95,9 @@ class UnplannedBillDisplay extends Component {
               <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#CECECE', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 12 }}> Due: {this.props.dueDate} </Text>
+                </View>
+                <View style={{ flex: 1, alignItems:'center', backgroundColor: '#F6F6EE', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
+                  <Text style={{fontSize: 18 }}> Edit </Text>
                 </View>
               </View>
             </View>
