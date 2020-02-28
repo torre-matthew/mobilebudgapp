@@ -55,6 +55,7 @@ class UnplannedBillDisplay extends Component {
                   handleBillName={this.props.handleBillName}
                   handleExpenseEditFormSubmit={this.props.handleExpenseEditFormSubmit}
                   closeModalOnSubmit={this.closeModal}
+                  incomeDataFromDB={this.props.incomeDataFromDB}
                 />
                 <View style={{ flex: 1, alignSelf: 'flex-start', paddingLeft: 5, paddingTop: 15, paddingBottom: 15 }}> 
                   <Text style={{fontSize: 18 }}> Select Funding Source </Text>
@@ -95,9 +96,6 @@ class UnplannedBillDisplay extends Component {
               <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#CECECE', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 12 }}> Due: {this.props.dueDate} </Text>
-                </View>
-                <View style={{ flex: 1, alignItems:'center', backgroundColor: '#F6F6EE', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
-                  <Text style={{fontSize: 18 }}> Edit </Text>
                 </View>
               </View>
             </View>
