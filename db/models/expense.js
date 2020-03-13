@@ -15,7 +15,16 @@ let ExpenseSchema = new Schema({
     type: String,
     required: true
 },
-  isPlanned: Boolean,
+  isPlanned: {
+    type: Boolean,
+    required: true
+},
+
+  fundingSource: {
+    type: String,
+    required: false
+  },
+
 });
 
 // This creates our model from the above schema, using mongoose's model method

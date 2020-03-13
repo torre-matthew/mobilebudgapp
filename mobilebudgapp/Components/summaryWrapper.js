@@ -21,20 +21,17 @@ function SummaryWrapper (props) {
                 <TotalCashFlowDisplay 
                     currentTotalIncome={props.currentTotalIncome}
                 />
-                {/* {props.incomeData.map(income => 
-                <IncomeDisplay
-                key={income.income_name + "-" + income.income_amount + "-" + Math.floor((Math.random() * 100000) + 1)}
-                incomeName={income.income_name}
-                incomeDate={income.income_date}
-                incomeAmount={income.income_amount}
-                />
-                )} */}
                 {props.incomeDataFromDB.map(income => 
                 <IncomeDisplay
-                key={income.name + "-" + income.amount + "-" + Math.floor((Math.random() * 100000) + 1)}
-                incomeName={income.name}
-                incomeDate={income.date}
-                incomeAmount={income.amount}
+                    key={income.name + "-" + income.amount + "-" + Math.floor((Math.random() * 100000) + 1)}
+                    incomeName={income.name}
+                    incomeDate={income.date}
+                    incomeAmount={income.amount}
+                    incomeID={income._id}
+                    handleIncomeAmount={props.handleIncomeAmount}
+                    handleIncomeDate={props.handleIncomeDate}
+                    handleIncomeName={props.handleIncomeName}
+                    incomeDataFromDB={props.currentIncomeFromDB}
                 />
                 )}
 
