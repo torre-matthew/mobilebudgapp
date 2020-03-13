@@ -40,7 +40,8 @@ export default class App extends Component {
     edited_bill_name: '',
     amount_due: '',
     edited_bill_amount: '',
-    currentExpensesFromDB: [],
+    currentUnPlannedExpensesFromDB: [],
+    currentPlannedExpensesFromDB: [],
     income_name: '',
     income_date: '',
     income_amount: '',
@@ -60,7 +61,8 @@ export default class App extends Component {
   fetchData = () => {
     this.getTotalIncome();
     this.getIncomeDataFromDB();
-    this.getExpenseDataFromDB();
+    this.getUnPlannedExpenseDataFromDB();
+    this.getPlannedExpenseDataFromDB();
   }
 
   onRefresh = () => {
@@ -80,10 +82,18 @@ export default class App extends Component {
     this.getTotalIncome();
   }
 
-  getExpenseDataFromDB = () => {
-    ApiMethods.getExpenses().then(expenses => {
+  getUnPlannedExpenseDataFromDB = () => {
+    ApiMethods.getAllUnPlannedExpenses().then(expenses => {
       this.setState({
-        currentExpensesFromDB: expenses.data
+        currentUnPlannedExpensesFromDB: expenses.data
+      });
+    });
+  }
+
+  getPlannedExpenseDataFromDB = () => {
+    ApiMethods.getAllPlannedExpenses().then(expenses => {
+      this.setState({
+        currentPlannedExpensesFromDB: expenses.data
       });
     });
   }
@@ -216,9 +226,10 @@ export default class App extends Component {
               currentTotalIncome={!this.state.afterSpendingClicked ? this.state.currentTotalIncome : this.state.afterSpendingIncomeTotal}
               switcherClicked={this.switcherClicked}
               switcherStyle={this.state.switcherClickedStyle}
+              incomeDataFromDB={this.state.currentIncomeFromDB}
             />
             <UnplannedBillWrapper
-              expenseDataFromDB={this.state.currentExpensesFromDB}
+              expenseDataFromDB={this.state.currentUnPlannedExpensesFromDB}
               incomeDataFromDB={this.state.currentIncomeFromDB}
               handleBillAmount={this.handleBillAmount}
               handleDueDate={this.handleDueDate}
@@ -227,7 +238,16 @@ export default class App extends Component {
               fetchData={this.fetchData}
               handleExpenseEditFormSubmit={this.handleExpenseEditFormSubmit}
             />
-            <PlannedBillWrapper />
+            <PlannedBillWrapper
+              expenseDataFromDB={this.state.currentPlannedExpensesFromDB}
+              incomeDataFromDB={this.state.currentIncomeFromDB}
+              handleBillAmount={this.handleBillAmount}
+              handleDueDate={this.handleDueDate}
+              handleBillName={this.handleBillName} 
+              handleFormSubmit={this.handleFormSubmit}
+              fetchData={this.fetchData}
+              handleExpenseEditFormSubmit={this.handleExpenseEditFormSubmit} 
+            />
           </View>
         </ScrollView>
       </Container>

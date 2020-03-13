@@ -36,10 +36,40 @@ let getAllExpenses = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let getAllPlannedExpenses = (req, res) => {
+    db.Expenses.find({isPlanned: true})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
+let getAllUnPlannedExpenses = (req, res) => {
+    db.Expenses.find({isPlanned: false})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
 ////////////// Update/Delete Data ///////////////////////
 
 let deleteExpenseByID = (req, res) => {
-    db.Expenses.remove( { _id: req.body._id } )
+    db.Expenses.deleteOne( { _id: req.body._id } )
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
+let deleteIncomeByID = (req, res) => {
+    db.Income.deleteOne( { _id: req.body._id } )
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
+let editExpenseByID = (req, res) => {
+    db.Expenses.updateOne({_id: req.body._id},
+        {$set: {
+                dateOfExpense: req.body.dateOfExpense, 
+                nameOfExpense: req.body.nameOfExpense,
+                amountOfExpense: req.body.amountOfExpense
+                }
+        })
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
@@ -49,5 +79,9 @@ module.exports = {
     addExpense: addExpenseToDb,
     getAllIncome: getAllIncome,
     getAllExpenses: getAllExpenses,
-    deleteExpense: deleteExpenseByID
+    getAllPlannedExpenses: getAllPlannedExpenses,
+    getAllUnPlannedExpenses: getAllUnPlannedExpenses,
+    deleteExpense: deleteExpenseByID,
+    deleteIncome: deleteIncomeByID,
+    editExpense: editExpenseByID
 }

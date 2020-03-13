@@ -3,7 +3,6 @@ import { View, Modal, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import EditBillFormDisplay from "./editBillForm";
 import IncomeDisplay from "./incomeDisplay";
-import FundingSourceDisplay from "./fundingSourceDisplay";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 
@@ -13,15 +12,20 @@ import ApiMethods from '../utilities/apiMethods';
 class UnplannedBillDisplay extends Component {
   state = {
     modalVisible: false,
+    whatsBeingEdited: ""
   };
 
   setModalVisible = (visible) => {
-    this.setState({modalVisible: visible});
+    this.setState({
+      modalVisible: visible,
+      whatsBeingEdited: "bill"
+    });
   }
 
   closeModal = () => {
     this.setModalVisible(!this.state.modalVisible);
   }
+
 
   showConfirmationAlert = (idToDelete) => {
 
@@ -56,18 +60,8 @@ class UnplannedBillDisplay extends Component {
                   handleExpenseEditFormSubmit={this.props.handleExpenseEditFormSubmit}
                   closeModalOnSubmit={this.closeModal}
                   incomeDataFromDB={this.props.incomeDataFromDB}
+                  whatsBeingEdited={this.state.whatsBeingEdited}
                 />
-                <View style={{ flex: 1, alignSelf: 'flex-start', paddingLeft: 5, paddingTop: 15, paddingBottom: 15 }}> 
-                  <Text style={{fontSize: 18 }}> Select Funding Source </Text>
-                </View>
-                {this.props.incomeDataFromDB.map(income => 
-                <FundingSourceDisplay
-                key={income.name + "-" + income.amount + "-" + Math.floor((Math.random() * 100000) + 1)}
-                incomeName={income.name}
-                incomeDate={income.date}
-                incomeAmount={income.amount}
-                />
-                )}
                 <TouchableOpacity
                   onPress={() => {ApiMethods.deleteExpense(this.props.billID).then(res => {
                     

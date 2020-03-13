@@ -45,21 +45,24 @@ const expenseData = [
     },
 ];
 
-let seedIncomeData = () => {
+let seedIncomeData = (callback) => {
     db.Income
-    .remove({})
+    .deleteMany({})
     .then(() => db.Income.insertMany(incomeData))
     .then(data => {
         console.log(data.length + " income records added to DB!!!");
+        callback();
     })
     .catch(err => {
         console.error(err);
     });
+
+
 }
 
 let seedExpenseData = () => {
     db.Expenses
-    .remove({})
+    .deleteMany({})
     .then(() => db.Expenses.insertMany(expenseData))
     .then(data => {
         console.log(data.length + " expense records added to DB!!!");
@@ -69,5 +72,33 @@ let seedExpenseData = () => {
     });
 }
 
+let getFundingSourceID = () => {
+    db.Income
+    .findOne({name:"Paycheck 1 from DB"})
+    .then(data => {
+        console.log(data._id);
+        associateFundingSource(String(data._id))
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}
+
+let associateFundingSource = (id) => {
+    db.Expenses
+    .findOneAndUpdate(
+        {nameOfExpense: "Mortgage from DB"},
+        {$set: {fundingSource: id, isPlanned: true}},
+        {new: true}
+    )
+    .then(data => {
+        console.log(data);
+    })
+    .then()
+    .catch(err => {
+        console.error(err);
+    });
+}
+
+seedIncomeData(getFundingSourceID);
 seedExpenseData();
-seedIncomeData();

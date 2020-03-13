@@ -11,6 +11,14 @@ let getExpenses = () => {
     return axios.get("http://192.168.1.23:3001/api/allExpenses");
 }
 
+let getAllPlannedExpenses = () => {
+    return axios.get("http://192.168.1.23:3001/api/allPlannedExpenses");
+}
+
+let getAllUnPlannedExpenses = () => {
+    return axios.get("http://192.168.1.23:3001/api/allUnPlannedExpenses");
+}
+
 /////////////Post Methods////////////////////
 
 let addIncome = (name, date, amount) => {
@@ -37,6 +45,12 @@ let deleteExpense = (id) => {
     });
 }
 
+let deleteIncome = (id) => {
+    return axios.delete('http://192.168.1.23:3001/api/deleteIncome', {
+       data: {_id: id,}
+    });
+}
+
 let editExpense = (id, name, date, amount) => {
     return axios.put('http://192.168.1.23:3001/api/updateExpense', {
        data: {_id: id,
@@ -50,8 +64,11 @@ let editExpense = (id, name, date, amount) => {
 export default {
     getIncome: getIncome,
     getExpenses: getExpenses,
+    getAllPlannedExpenses: getAllPlannedExpenses,
+    getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     addIncome: addIncome,
     addExpense: addExpense,
     deleteExpense: deleteExpense,
+    deleteIncome: deleteIncome,
     editExpense: editExpense
 }
