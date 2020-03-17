@@ -7,8 +7,6 @@ import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 
 
-
-
 class UnplannedBillDisplay extends Component {
   state = {
     modalVisible: false,
@@ -31,21 +29,29 @@ class UnplannedBillDisplay extends Component {
 
   Alert.alert(
     'Delete Expense ' + idToDelete,
-    'Are you sure you?',
-    [
-      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-      {text: 'OK', onPress: () => {ApiMethods.deleteExpense(idToDelete);}},
-    ],
+    'Are you sure?',
+    [ 
+      {text: 'Nevermind', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+      {text: 'Yes, I am', onPress: () => {
+          ApiMethods.deleteExpense(idToDelete).then(res => {
+            if (res.data.deletedCount === 0) {
+              alert('Sorry, ' + idToDelete + ' could not be deleted');
+            } else {
+              alert('You have successfully deleted ' + this.props.billName);
+            }
+          });
+        }
+      },
+      ],
     {cancelable: false},
   );
-
 }
 
   render () {
       return (
         <View>
             <Modal
-              animationType="slide"
+              animationType="fade"
               transparent={false}
               visible={this.state.modalVisible}
               onRequestClose={this.closeModal}>
@@ -54,25 +60,18 @@ class UnplannedBillDisplay extends Component {
                   dueDate={this.props.dueDate}
                   billName={this.props.billName}
                   billAmount={this.props.billAmount}
+                  billID={this.props.billID}
+                  billIsPlanned={this.props.billIsPlanned}
+                  billFundingSourceID={this.props.billFundingSourceID}
                   handleBillAmount={this.props.handleBillAmount}
                   handleDueDate={this.props.handleDueDate}
                   handleBillName={this.props.handleBillName}
-                  handleExpenseEditFormSubmit={this.props.handleExpenseEditFormSubmit}
                   closeModalOnSubmit={this.closeModal}
                   incomeDataFromDB={this.props.incomeDataFromDB}
                   whatsBeingEdited={this.state.whatsBeingEdited}
                 />
                 <TouchableOpacity
-                  onPress={() => {ApiMethods.deleteExpense(this.props.billID).then(res => {
-                    
-                    if (res.data.deletedCount === 0) {
-                      alert('Sorry, ' + this.props.billName + ' could not be deleted');
-                    } else {
-                      alert('You have successfully deleted ' + this.props.billName);
-                    }
-                  }); 
-                    }}
-                  // onPress={() => {this.showConfirmationAlert(this.props.billID);}}
+                  onPress={() => {this.showConfirmationAlert(this.props.billID);}}
                   style={style.button_style_form}>
                     <Text style={{fontSize: 12 }}> Delete Expense </Text>
                 </TouchableOpacity>
@@ -90,6 +89,9 @@ class UnplannedBillDisplay extends Component {
               <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#CECECE', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 12 }}> Due: {this.props.dueDate} </Text>
+                </View>
+                <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
+                  <Text style={{fontSize: 12 }}> Due: {this.props.billName} </Text>
                 </View>
               </View>
             </View>

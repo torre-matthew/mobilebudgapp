@@ -35,11 +35,8 @@ function wait(timeout) {
 export default class App extends Component {
   state = {
     due_date: '',
-    edited_bill_due_date: '',
     bill_name: '',
-    edited_bill_name: '',
     amount_due: '',
-    edited_bill_amount: '',
     currentUnPlannedExpensesFromDB: [],
     currentPlannedExpensesFromDB: [],
     income_name: '',
@@ -79,6 +76,7 @@ export default class App extends Component {
         currentIncomeFromDB: income.data
       });
     });
+
     this.getTotalIncome();
   }
 
@@ -119,12 +117,10 @@ export default class App extends Component {
     });
   };
   
-  
   handleDueDate = text => {
     
     this.setState({
       due_date: text,
-      edited_bill_due_date: text,
     });
   };
   
@@ -133,7 +129,6 @@ export default class App extends Component {
     
     this.setState({
       bill_name: text,
-      edited_bill_name: text,
     });
   };
 
@@ -141,31 +136,43 @@ export default class App extends Component {
     
     this.setState({
       amount_due: text,
-      edited_bill_amount: text,
     });
   };
 
   getTotalIncome = () => {
-
     if (!this.state.afterSpendingClicked) {
-      let total = 0;
+      let totalIncome = 0;
       this.state.currentIncomeFromDB.forEach(element => {
-      total += parseFloat(element.amount);
+      totalIncome += parseFloat(element.amount);
       });
 
       this.setState({
-        currentTotalIncome: total 
+        currentTotalIncome: totalIncome
       });
+
+      return totalIncome;
+
     } else {
-      let total = 0;
-      this.state.afterSpendingData.forEach(element => {
-      total += parseFloat(element.amount);
+      let totalIncome = 0;
+      let totalSpent = 0;
+      let afterSpendingIncomeTotal = 0;
+      
+      this.state.currentIncomeFromDB.forEach(element => {
+        totalIncome += parseFloat(element.amount);
+        });
+      
+      
+      this.state.currentPlannedExpensesFromDB.forEach(element => {
+      totalSpent += parseFloat(element.amountOfExpense);
       });
+
+      afterSpendingIncomeTotal = totalIncome - totalSpent;
 
       this.setState({
-        afterSpendingIncomeTotal: total 
+        afterSpendingIncomeTotal: afterSpendingIncomeTotal 
       });
 
+      return afterSpendingIncomeTotal;
     }
   }
 
@@ -173,12 +180,6 @@ export default class App extends Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     ApiMethods.addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due );
-  };
-
-  handleExpenseEditFormSubmit = (event, id) => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault();
-    ApiMethods.editExpense(id, this.state.edited_bill_name, this.state.edited_bill_due_date, this.state.edited_bill_amount);
   };
 
   handleAddIncomeFormSubmit = event => {
@@ -233,10 +234,10 @@ export default class App extends Component {
               incomeDataFromDB={this.state.currentIncomeFromDB}
               handleBillAmount={this.handleBillAmount}
               handleDueDate={this.handleDueDate}
+              // editDueDate={this.editDueDate}
               handleBillName={this.handleBillName} 
               handleFormSubmit={this.handleFormSubmit}
               fetchData={this.fetchData}
-              handleExpenseEditFormSubmit={this.handleExpenseEditFormSubmit}
             />
             <PlannedBillWrapper
               expenseDataFromDB={this.state.currentPlannedExpensesFromDB}
@@ -246,7 +247,6 @@ export default class App extends Component {
               handleBillName={this.handleBillName} 
               handleFormSubmit={this.handleFormSubmit}
               fetchData={this.fetchData}
-              handleExpenseEditFormSubmit={this.handleExpenseEditFormSubmit} 
             />
           </View>
         </ScrollView>

@@ -51,12 +51,20 @@ let deleteIncome = (id) => {
     });
 }
 
-let editExpense = (id, name, date, amount) => {
+let editExpense = (id, name, date, amount, isPlanned, fundingSource) => {
+    console.log(id);
+    console.log(name);
+    console.log(date);
+    console.log(amount);
+    console.log(isPlanned);
+    console.log(fundingSource);
     return axios.put('http://192.168.1.23:3001/api/updateExpense', {
        data: {_id: id,
         nameOfExpense: name,
         dateOfExpense: date,
-        amountOfExpense: amount}
+        amountOfExpense: amount,
+        isPlanned: isPlanned,
+        fundingSource: fundingSource}
     });
 }
 
