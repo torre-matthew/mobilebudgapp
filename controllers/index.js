@@ -16,7 +16,8 @@ let addExpenseToDb = (req, res) => {
     db.Expenses.create({
         dateOfExpense: req.body.dateOfExpense,
         nameOfExpense: req.body.nameOfExpense,
-        amountOfExpense: req.body.amountOfExpense
+        amountOfExpense: req.body.amountOfExpense,
+        isPlanned: false
     })
     .then(data => res.json(data))
     .catch(err => console.log(err));
@@ -63,11 +64,13 @@ let deleteIncomeByID = (req, res) => {
 }
 
 let editExpenseByID = (req, res) => {
-    db.Expenses.updateOne({_id: req.body._id},
+    db.Expenses.updateOne({_id: req.body.data._id},
         {$set: {
-                dateOfExpense: req.body.dateOfExpense, 
-                nameOfExpense: req.body.nameOfExpense,
-                amountOfExpense: req.body.amountOfExpense
+                nameOfExpense: req.body.data.nameOfExpense,    
+                dateOfExpense: req.body.data.dateOfExpense, 
+                amountOfExpense: req.body.data.amountOfExpense,
+                isPlanned: req.body.data.isPlanned,
+                fundingSource: req.body.data.fundingSource
                 }
         })
     .then(data => res.json(data))

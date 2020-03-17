@@ -2,8 +2,8 @@
   "name": "mobilebudgapp",
   "displayName": "mobilebudgapp",
   "expo": {
-    "name": "mobilebudgapp",
-    "slug": "expo-template-bare",
+    "name": "tpkmmobilebudgapp",
+    "slug": "tpkmmobilebudgapp",
     "privacy": "unlisted",
     "sdkVersion": "35.0.0",
     "version": "1.0.0",
@@ -12,6 +12,15 @@
       "ios",
       "android",
       "web"
-    ]
+    ],
+    "description": "",
+    "ios": {
+      "bundleIdentifier": "com.tpkmmobilebudgetapp.tpkmmobilebudgetapp",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.tpkmmobilebudgetapp.tpkmmobilebudgetapp",
+      "versionCode": 1
+    }
   }
 }

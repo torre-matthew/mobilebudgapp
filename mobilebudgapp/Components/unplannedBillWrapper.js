@@ -19,16 +19,17 @@ class UnplannedBillWrapper extends Component {
             </View>
             {this.props.expenseDataFromDB.map(expense => 
             <UnplannedBillDisplay
-              key={expense.nameOfExpense + "-" + expense.amountOfExpense + "-" + Math.floor((Math.random() * 100000) + 1)}
+              key={expense._id}
               dueDate={expense.dateOfExpense}
               billName={expense.nameOfExpense}
               billAmount={expense.amountOfExpense}
               billID={expense._id}
+              billIsPlanned={expense.isPlanned}
+              billFundingSourceID={expense.fundingSource}
               incomeDataFromDB={this.props.incomeDataFromDB}
               handleBillAmount={this.props.handleBillAmount}
               handleDueDate={this.props.handleDueDate}
               handleBillName={this.props.handleBillName}
-              handleExpenseEditFormSubmit={this.props.handleExpenseEditFormSubmit}
             />
             )}
 
