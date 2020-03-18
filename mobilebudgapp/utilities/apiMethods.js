@@ -12,17 +12,17 @@ let getExpenses = () => {
 }
 
 let getAllPlannedExpenses = () => {
-    return axios.get("http://192.168.1.23:3001/api/allPlannedExpenses");
+    return axios.get("https://gentle-beyond-46108.herokuapp.com/allPlannedExpenses");
 }
 
 let getAllUnPlannedExpenses = () => {
-    return axios.get("http://192.168.1.23:3001/api/allUnPlannedExpenses");
+    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/allUnPlannedExpenses");
 }
 
 /////////////Post Methods////////////////////
 
 let addIncome = (name, date, amount) => {
-    return axios.post('http://192.168.1.23:3001/api/addingIncome', {
+    return axios.post('https://gentle-beyond-46108.herokuapp.com/api/addingIncome', {
         name: name,
         date: date,
         amount: amount,
@@ -30,7 +30,7 @@ let addIncome = (name, date, amount) => {
 }
 
 let addExpense = (name, date, amount) => {
-    return axios.post('http://192.168.1.23:3001/api/addingExpense', {
+    return axios.post('https://gentle-beyond-46108.herokuapp.com/api/addingExpense', {
         nameOfExpense: name,
         dateOfExpense: date,
         amountOfExpense: amount,
@@ -40,13 +40,13 @@ let addExpense = (name, date, amount) => {
 /////////////Delete Methods////////////////////
 
 let deleteExpense = (id) => {
-    return axios.delete('http://192.168.1.23:3001/api/deleteExpense', {
+    return axios.delete('https://gentle-beyond-46108.herokuapp.com/api/deleteExpense', {
        data: {_id: id,}
     });
 }
 
 let deleteIncome = (id) => {
-    return axios.delete('http://192.168.1.23:3001/api/deleteIncome', {
+    return axios.delete('https://gentle-beyond-46108.herokuapp.com/api/deleteIncome', {
        data: {_id: id,}
     });
 }
@@ -58,7 +58,7 @@ let editExpense = (id, name, date, amount, isPlanned, fundingSource) => {
     console.log(amount);
     console.log(isPlanned);
     console.log(fundingSource);
-    return axios.put('http://192.168.1.23:3001/api/updateExpense', {
+    return axios.put('https://gentle-beyond-46108.herokuapp.com/api/updateExpense', {
        data: {_id: id,
         nameOfExpense: name,
         dateOfExpense: date,
