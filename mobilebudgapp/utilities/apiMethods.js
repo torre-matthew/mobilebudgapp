@@ -4,11 +4,11 @@ import axios from "axios";
 /////////////Get Methods////////////////////
 
 let getIncome = () => {
-    return axios.get("http://192.168.1.23:3001/api/allIncome");
+    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/allIncome");
 }
 
 let getExpenses = () => {
-    return axios.get("http://192.168.1.23:3001/api/allExpenses");
+    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/allExpenses");
 }
 
 let getAllPlannedExpenses = () => {
