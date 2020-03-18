@@ -44,6 +44,6 @@ app.use((req, res, next) => {
 
 app.use(routes);
 
-app.get('/', (req, res) => res.send(`Is this what the fuck I'm talking about???`));
+app.get('/', (req, res) => res.send(`If you see this, then things are working!!! Good job!`));
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
