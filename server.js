@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const path = require("path");
 const axios = require("axios");
 const app = express();
-const port = 3001;
+// const port = 3001;
+const PORT = process.env.PORT || 3001;
 const routes = require("./routes");
 
 let databaseUri = "mongodb://localhost/budgetAppDB"; 
@@ -45,4 +46,4 @@ app.use(routes);
 
 app.get('/', (req, res) => res.send(`Is this what the fuck I'm talking about???`));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
