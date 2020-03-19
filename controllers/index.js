@@ -49,6 +49,12 @@ let getAllUnPlannedExpenses = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let getExpenseByID = (req, res) => {
+    db.Expenses.find({_id: req.body._id})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
 ////////////// Update/Delete Data ///////////////////////
 
 let deleteExpenseByID = (req, res) => {
@@ -82,6 +88,7 @@ module.exports = {
     addExpense: addExpenseToDb,
     getAllIncome: getAllIncome,
     getAllExpenses: getAllExpenses,
+    getExpenseByID: getExpenseByID,
     getAllPlannedExpenses: getAllPlannedExpenses,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     deleteExpense: deleteExpenseByID,

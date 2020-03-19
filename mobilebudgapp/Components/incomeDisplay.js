@@ -20,6 +20,7 @@ class IncomeDisplay extends Component {
 
   closeModal = () => {
     this.setModalVisible(!this.state.modalVisible);
+    this.props.updateComponent();
   }
   render () {  
     return (

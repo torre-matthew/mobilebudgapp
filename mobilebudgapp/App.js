@@ -60,6 +60,14 @@ export default class App extends Component {
     this.getIncomeDataFromDB();
     this.getUnPlannedExpenseDataFromDB();
     this.getPlannedExpenseDataFromDB();
+
+   return {
+     getTotalIncome: this.getTotalIncome(),
+     getIncomeDataFromDB: this.getIncomeDataFromDB(),
+     getUnPlannedExpenseDataFromDB: this.getUnPlannedExpenseDataFromDB(),
+     getPlannedExpenseDataFromDB: this.getPlannedExpenseDataFromDB()
+   }
+
   }
 
   onRefresh = () => {
@@ -68,6 +76,10 @@ export default class App extends Component {
       this.fetchData();
       this.setState({refreshing: false});
     });
+  }
+
+  updateComponent = () => {
+    this.setState({state: this.state});
   }
 
   getIncomeDataFromDB = () => {
@@ -232,9 +244,10 @@ export default class App extends Component {
             <UnplannedBillWrapper
               expenseDataFromDB={this.state.currentUnPlannedExpensesFromDB}
               incomeDataFromDB={this.state.currentIncomeFromDB}
+              getUnPlannedExpenseDataFromDB={this.getUnPlannedExpenseDataFromDB}
               handleBillAmount={this.handleBillAmount}
               handleDueDate={this.handleDueDate}
-              // editDueDate={this.editDueDate}
+              updateComponent={this.updateComponent}
               handleBillName={this.handleBillName} 
               handleFormSubmit={this.handleFormSubmit}
               fetchData={this.fetchData}

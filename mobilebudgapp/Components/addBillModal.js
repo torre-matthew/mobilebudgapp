@@ -19,6 +19,11 @@ class AddBillModal extends Component {
       this.setModalVisible(!this.state.modalVisible);
     }
 
+    getUnPlannedExpenseDataFromDBAndCloseModal = () => {
+      this.closeModal();
+      this.props.updateWrapperComponent();
+    }
+
     render() {
       return (
         <View style={{marginTop: 10}}>
@@ -33,6 +38,7 @@ class AddBillModal extends Component {
             handleBillName={this.props.handleBillName}
             handleFormSubmit={this.props.handleFormSubmit}
             closeModalOnSubmit={this.closeModal}
+            getUnPlannedExpenseDataFromDBAndCloseModal={this.getUnPlannedExpenseDataFromDBAndCloseModal}
             fetchData={this.props.fetchData}
           />
           </Modal>
