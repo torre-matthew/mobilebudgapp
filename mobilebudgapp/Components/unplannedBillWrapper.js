@@ -9,6 +9,11 @@ class UnplannedBillWrapper extends Component {
 
   componentDidMount() {
     this.props.fetchData();
+    
+  }
+
+  updateUnplannedBillWrapperComponent = () => {
+    this.componentDidMount();
   }
 
   render(){
@@ -30,6 +35,7 @@ class UnplannedBillWrapper extends Component {
               handleBillAmount={this.props.handleBillAmount}
               handleDueDate={this.props.handleDueDate}
               handleBillName={this.props.handleBillName}
+              updateWrapperComponent={this.updateUnplannedBillWrapperComponent}
             />
             )}
 
@@ -39,6 +45,8 @@ class UnplannedBillWrapper extends Component {
               handleBillName={this.props.handleBillName}
               handleFormSubmit={this.props.handleFormSubmit}
               fetchData={this.props.fetchData}
+              getUnPlannedExpenseDataFromDB={this.props.getUnPlannedExpenseDataFromDB}
+              updateWrapperComponent={this.updateUnplannedBillWrapperComponent}
             />
           </Content>
       );

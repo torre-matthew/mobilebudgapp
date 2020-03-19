@@ -24,6 +24,18 @@ class UnplannedBillDisplay extends Component {
     this.setModalVisible(!this.state.modalVisible);
   }
 
+  deleteExpense = (idToDelete) => {
+    ApiMethods.deleteExpense(idToDelete).then(res => {
+      if (res.data.deletedCount === 0) {
+        alert('Sorry, ' + idToDelete + ' could not be deleted');
+      } else {
+        alert('You have successfully deleted ' + this.props.billName);
+        this.props.updateWrapperComponent();
+        this.closeModal();
+      }
+    });
+  }
+
 
   showConfirmationAlert = (idToDelete) => {
 
@@ -32,15 +44,7 @@ class UnplannedBillDisplay extends Component {
     'Are you sure?',
     [ 
       {text: 'Nevermind', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-      {text: 'Yes, I am', onPress: () => {
-          ApiMethods.deleteExpense(idToDelete).then(res => {
-            if (res.data.deletedCount === 0) {
-              alert('Sorry, ' + idToDelete + ' could not be deleted');
-            } else {
-              alert('You have successfully deleted ' + this.props.billName);
-            }
-          });
-        }
+      {text: 'Yes, I am', onPress: () => {this.deleteExpense(idToDelete)},
       },
       ],
     {cancelable: false},
@@ -69,6 +73,7 @@ class UnplannedBillDisplay extends Component {
                   closeModalOnSubmit={this.closeModal}
                   incomeDataFromDB={this.props.incomeDataFromDB}
                   whatsBeingEdited={this.state.whatsBeingEdited}
+                  updateWrapperComponent={this.props.updateWrapperComponent}
                 />
                 <TouchableOpacity
                   onPress={() => {this.showConfirmationAlert(this.props.billID);}}

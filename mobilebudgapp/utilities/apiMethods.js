@@ -19,6 +19,10 @@ let getAllUnPlannedExpenses = () => {
     return axios.get("https://gentle-beyond-46108.herokuapp.com/api/allUnPlannedExpenses");
 }
 
+let getExpenseByID = () => {
+    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/expense");
+}
+
 /////////////Post Methods////////////////////
 
 let addIncome = (name, date, amount) => {
@@ -74,6 +78,7 @@ export default {
     getExpenses: getExpenses,
     getAllPlannedExpenses: getAllPlannedExpenses,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
+    getExpenseByID: getExpenseByID,
     addIncome: addIncome,
     addExpense: addExpense,
     deleteExpense: deleteExpense,

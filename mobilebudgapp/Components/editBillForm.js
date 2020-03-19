@@ -35,7 +35,9 @@ showConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource) => {
               if (res.data.nModified === 0) {
                 alert('Sorry, there was a problem. Please try again');
               } else {
-                alert('Success!!');
+                  this.props.closeModalOnSubmit();
+                  this.props.updateWrapperComponent();
+                Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
               }
             });
             }
@@ -167,7 +169,7 @@ editLogic = () => {
                             style={{height: 50, width: 400}}
                             onValueChange={(itemValue, itemIndex) => this.chooseFundingSource(itemValue, itemIndex)}
                             >
-                             <Picker.Item label="None" value="none" key="none" onPress={() => this.chooseFundingSource("none")}/>
+                             <Picker.Item label="Select Funding Source" value="none" key="none" onPress={() => this.chooseFundingSource("none")}/>
                                 {this.state.incomeDataFromDB.map(income => 
                                     <Picker.Item
                                         label={income.name + ": " + "$" + income.amount + " available"} 

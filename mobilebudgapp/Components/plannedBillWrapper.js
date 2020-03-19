@@ -10,6 +10,10 @@ class PlannedBillWrapper extends Component {
   componentDidMount() {
     this.props.fetchData();
   }
+
+  updatePlannedBillWrapperComponent = () => {
+    this.componentDidMount();
+  }
   render() {
       return (
           <Content padder style={style.unplanned_section}>
@@ -29,6 +33,7 @@ class PlannedBillWrapper extends Component {
                   handleBillAmount={this.props.handleBillAmount}
                   handleDueDate={this.props.handleDueDate}
                   handleBillName={this.props.handleBillName}
+                  updateWrapperComponent={this.updatePlannedBillWrapperComponent}
                 />
                 )}
           </Content>
