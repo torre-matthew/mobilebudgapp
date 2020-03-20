@@ -5,13 +5,20 @@ import EditBillFormDisplay from "./editBillForm";
 import IncomeDisplay from "./incomeDisplay";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
+import apiMethods from "../utilities/apiMethods";
 
 
 class UnplannedBillDisplay extends Component {
   state = {
     modalVisible: false,
-    whatsBeingEdited: ""
+    whatsBeingEdited: "",
+    fundingSourceName: "",
+    fundingSourceAmount: ""
   };
+
+  componentDidMount() {
+    // this.getFundingSourceInfo();
+  }
 
   setModalVisible = (visible) => {
     this.setState({
@@ -34,6 +41,15 @@ class UnplannedBillDisplay extends Component {
         this.closeModal();
       }
     });
+  }
+
+  getFundingSourceInfo = () => {
+    ApiMethods.getFundingSourceDataByExpenseID().then(data => {
+      this.setState({
+        fundingSourceName: data[0].name,
+        fundingSourceAmount: data[0].amount
+      });
+    })
   }
 
 
@@ -96,7 +112,7 @@ class UnplannedBillDisplay extends Component {
                   <Text style={{fontSize: 12 }}> Due: {this.props.dueDate} </Text>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                  <Text style={{fontSize: 12 }}> Due: {this.props.billName} </Text>
+                  <Text style={{fontSize: 12 }}> Due: {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount} </Text>
                 </View>
               </View>
             </View>

@@ -49,9 +49,15 @@ let getAllUnPlannedExpenses = (req, res) => {
     .catch(err => console.log(err));
 }
 
-let getExpenseByID = (req, res) => {
+let getFundingSourceDataByExpenseID = (req, res) => {
     db.Expenses.find({_id: req.body._id})
-    .then(data => res.json(data))
+    .then(data => {getIncomeByID(data[0].fundingSource)})
+    .catch(err => console.log(err));
+}
+
+let getIncomeByID = (fundingSourceID) => {
+    db.Income.find({_id: fundingSourceID})
+    .then(data => {console.log(data); return data})
     .catch(err => console.log(err));
 }
 
@@ -88,7 +94,7 @@ module.exports = {
     addExpense: addExpenseToDb,
     getAllIncome: getAllIncome,
     getAllExpenses: getAllExpenses,
-    getExpenseByID: getExpenseByID,
+    getFundingSourceDataByExpenseID: getFundingSourceDataByExpenseID,
     getAllPlannedExpenses: getAllPlannedExpenses,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     deleteExpense: deleteExpenseByID,
