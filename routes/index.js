@@ -9,7 +9,7 @@ router.route("/allExpenses").get(contollers.getAllExpenses);
 router.route("/allPlannedExpenses").get(contollers.getAllPlannedExpenses);
 router.route("/allUnPlannedExpenses").get(contollers.getAllUnPlannedExpenses);
 router.route("/getExpenseByID/:expenseID").get(contollers.getExpenseByID);
-router.route("/getIncomeByID").get(contollers.getIncomeByID);
+router.route("/getIncomeByID/:incomeID").get(contollers.getIncomeByID);
 
 
 

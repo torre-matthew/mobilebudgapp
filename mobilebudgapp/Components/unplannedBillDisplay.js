@@ -45,7 +45,9 @@ class UnplannedBillDisplay extends Component {
 
   getFundingSourceInfo = (expenseID) => {
     ApiMethods.getExpenseByID(expenseID)
-    .then(data => console.log(data))
+    .then(data => ApiMethods.getIncomeByID(data.data[0].fundingSource))
+                      .then(data => console.log(data.data[0]))
+                      .catch(err => console.log(err))
     .catch(err => console.log(err));
       
       // this.setState({

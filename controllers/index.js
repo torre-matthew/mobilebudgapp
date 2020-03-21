@@ -65,7 +65,7 @@ let getExpenseByID = (req, res) => {
 // }
 
 let getIncomeByID = (req, res) => {
-    db.Income.find({_id: req.body._id})
+    db.Income.find({_id: req.params.incomeID})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }

@@ -20,15 +20,14 @@ let getAllUnPlannedExpenses = () => {
 }
 
 let getExpenseByID = (expenseID) => {
-    console.log('ID from API Method ' + expenseID);
     return axios.get("https://gentle-beyond-46108.herokuapp.com/api/getExpenseByID/" + expenseID, {
         params: {expenseID: expenseID}
     });
 }
 
 let getIncomeByID = (incomeID) => {
-    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/getIncomeByID", {
-      params: {_id: incomeID}
+    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/getIncomeByID" + incomeID, {
+      params: {incomeID: incomeID}
     });
 }
 
