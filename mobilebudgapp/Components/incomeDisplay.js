@@ -11,6 +11,10 @@ class IncomeDisplay extends Component {
     whatsBeingEdited: ""
   };
 
+  updateIncomeDisplayComponent = () => {
+    this.componentDidMount();
+  }
+
   setModalVisible = (visible) => {
     this.setState({
       modalVisible: visible,
@@ -20,7 +24,6 @@ class IncomeDisplay extends Component {
 
   closeModal = () => {
     this.setModalVisible(!this.state.modalVisible);
-    this.props.updateComponent();
   }
   render () {  
     return (
@@ -43,6 +46,7 @@ class IncomeDisplay extends Component {
                   closeModalOnSubmit={this.closeModal}
                   incomeDataFromDB={this.props.currentIncomeFromDB}
                   whatsBeingEdited={this.state.whatsBeingEdited}
+                  updateDisplayComponent={this.updateIncomeDisplayComponent}
                 />
                 <TouchableOpacity
                   onPress={() => {ApiMethods.deleteIncome(this.props.incomeID).then(res => {

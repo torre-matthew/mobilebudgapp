@@ -37,6 +37,7 @@ showConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource) => {
               } else {
                   this.props.closeModalOnSubmit();
                   this.props.updateWrapperComponent();
+                  this.props.updateDisplayComponent();
                 Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
               }
             });
@@ -55,22 +56,12 @@ chooseFundingSource = (value, index) => {
             chosenPickerValue: value,
             isPlanned: false,
             fundingSourceID: ""
-            },
-            () => {
-                console.log(this.state.isPlanned);
-                console.log(this.state.fundingSourceID);
-                console.log(index);
             })        
     } else {
         this.setState({
             chosenPickerValue: value,
             fundingSourceID: value,
             isPlanned: true
-            },
-            () => {
-                console.log(this.state.isPlanned);
-                console.log(this.state.fundingSourceID);
-                console.log(index);
             })
     }
 }
@@ -161,7 +152,7 @@ editLogic = () => {
                             <Item>
                                 <Input defaultValue={this.state.currentAmount} keyboardType='numeric' placeholder="Amount" onChangeText={(text) => this.editField(text, "amount")} />
                             </Item>
-                            {this.state.editing = "bill" ?
+                            {this.props.whatsBeingEdited === "bill" ?
                             <Item>
                             <Picker
                             prompt="Select Funding Source"
@@ -169,7 +160,12 @@ editLogic = () => {
                             style={{height: 50, width: 400}}
                             onValueChange={(itemValue, itemIndex) => this.chooseFundingSource(itemValue, itemIndex)}
                             >
-                             <Picker.Item label="Select Funding Source" value="none" key="none" onPress={() => this.chooseFundingSource("none")}/>
+                             <Picker.Item 
+                                label="Select Funding Source" 
+                                value="none" 
+                                key="none" 
+                                onPress={() => this.chooseFundingSource("none")}
+                                />
                                 {this.state.incomeDataFromDB.map(income => 
                                     <Picker.Item
                                         label={income.name + ": " + "$" + income.amount + " available"} 
@@ -179,7 +175,7 @@ editLogic = () => {
                                     )}                        
                             </Picker>
                             </Item>
-                            : '' 
+                            :<Text></Text>
                             }
                             <View style={{ alignItems: 'center' }}>
                             <TouchableOpacity
