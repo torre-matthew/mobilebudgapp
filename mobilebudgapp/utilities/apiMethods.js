@@ -26,7 +26,7 @@ let getExpenseByID = (expenseID) => {
 }
 
 let getIncomeByID = (incomeID) => {
-    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/getIncomeByID" + incomeID, {
+    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/getIncomeByID/" + incomeID, {
       params: {incomeID: incomeID}
     });
 }
