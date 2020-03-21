@@ -19,6 +19,10 @@ class UnplannedBillDisplay extends Component {
     this.getFundingSourceInfo(this.props.billID);
   }
 
+  updateBillDisplayComponent = () => {
+    this.componentDidMount();
+  }
+
   setModalVisible = (visible) => {
     this.setState({
       modalVisible: visible,
@@ -45,16 +49,24 @@ class UnplannedBillDisplay extends Component {
   getFundingSourceInfo = (expenseID) => {
     ApiMethods.getExpenseByID(expenseID)
     .then(data => ApiMethods.getIncomeByID(data.data[0].fundingSource))
-                      .then(data => {
+                      .then(data => {  
                         this.setState({
                           fundingSourceName: data.data[0].name,
                           fundingSourceAmount: data.data[0].amount
-                        });
+                        });                      
                       })
-                      .catch(err => console.log(err))
+                      .catch(err => {console.log("Unplanned Expense - Income Collection being queried without _id")
+
+                        if (err) {
+                          this.setState({
+                            fundingSourceName: "Not planned",
+                            fundingSourceAmount: ""
+                          });
+                        }
+                      })
+                    
     .catch(err => console.log(err));
   }
-
 
   showConfirmationAlert = (idToDelete) => {
 
@@ -93,6 +105,7 @@ class UnplannedBillDisplay extends Component {
                   incomeDataFromDB={this.props.incomeDataFromDB}
                   whatsBeingEdited={this.state.whatsBeingEdited}
                   updateWrapperComponent={this.props.updateWrapperComponent}
+                  updateDisplayComponent={this.updateBillDisplayComponent}
                 />
                 <TouchableOpacity
                   onPress={() => {this.showConfirmationAlert(this.props.billID);}}

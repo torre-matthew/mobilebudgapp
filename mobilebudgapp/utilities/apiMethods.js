@@ -1,4 +1,6 @@
 import axios from "axios";
+const devURL = "http://localhost:3001/";
+const prodURL ="";
 
 
 /////////////Get Methods////////////////////
