@@ -5,7 +5,6 @@ import EditBillFormDisplay from "./editBillForm";
 import IncomeDisplay from "./incomeDisplay";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
-import apiMethods from "../utilities/apiMethods";
 
 
 class UnplannedBillDisplay extends Component {
@@ -17,7 +16,6 @@ class UnplannedBillDisplay extends Component {
   };
 
   componentDidMount() {
-    // this.getFundingSourceInfo();
   }
 
   setModalVisible = (visible) => {
@@ -25,6 +23,8 @@ class UnplannedBillDisplay extends Component {
       modalVisible: visible,
       whatsBeingEdited: "bill"
     });
+
+    this.getFundingSourceInfo(this.props.billID);
   }
 
   closeModal = () => {
@@ -43,13 +43,16 @@ class UnplannedBillDisplay extends Component {
     });
   }
 
-  getFundingSourceInfo = () => {
-    ApiMethods.getFundingSourceDataByExpenseID().then(data => {
-      this.setState({
-        fundingSourceName: data[0].name,
-        fundingSourceAmount: data[0].amount
-      });
-    })
+  getFundingSourceInfo = (expenseID) => {
+    ApiMethods.getExpenseByID(expenseID)
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+      
+      // this.setState({
+      //   fundingSourceName: data[0].name,
+      //   fundingSourceAmount: data[0].amount
+      // });
+    // })
   }
 
 
@@ -99,7 +102,7 @@ class UnplannedBillDisplay extends Component {
                 </ScrollView>
             </Modal>
             <View>
-              <View onTouchEnd={() => {this.setModalVisible(true);}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10 }}>
+              <View onTouchEnd={() => {this.setModalVisible(true)}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10 }}>
                 <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#F6F6EE', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 15 }}> 
                   <Text style={{fontSize: 18 }}> {this.props.billName} </Text>
                 </View>

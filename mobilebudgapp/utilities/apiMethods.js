@@ -19,8 +19,17 @@ let getAllUnPlannedExpenses = () => {
     return axios.get("https://gentle-beyond-46108.herokuapp.com/api/allUnPlannedExpenses");
 }
 
-let getFundingSourceDataByExpenseID = () => {
-    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/getFundingSourceDataByExpenseID");
+let getExpenseByID = (expenseID) => {
+    console.log('ID from API Method ' + expenseID);
+    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/getExpenseByID/" + expenseID, {
+        params: {expenseID: expenseID}
+    });
+}
+
+let getIncomeByID = (incomeID) => {
+    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/getIncomeByID", {
+      params: {_id: incomeID}
+    });
 }
 
 /////////////Post Methods////////////////////
@@ -78,7 +87,8 @@ export default {
     getExpenses: getExpenses,
     getAllPlannedExpenses: getAllPlannedExpenses,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
-    getFundingSourceDataByExpenseID: getFundingSourceDataByExpenseID,
+    getExpenseByID: getExpenseByID,
+    getIncomeByID: getIncomeByID,
     addIncome: addIncome,
     addExpense: addExpense,
     deleteExpense: deleteExpense,
