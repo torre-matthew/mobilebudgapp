@@ -98,9 +98,6 @@ class UnplannedBillDisplay extends Component {
                   billID={this.props.billID}
                   billIsPlanned={this.props.billIsPlanned}
                   billFundingSourceID={this.props.billFundingSourceID}
-                  handleBillAmount={this.props.handleBillAmount}
-                  handleDueDate={this.props.handleDueDate}
-                  handleBillName={this.props.handleBillName}
                   closeModalOnSubmit={this.closeModal}
                   incomeDataFromDB={this.props.incomeDataFromDB}
                   whatsBeingEdited={this.state.whatsBeingEdited}

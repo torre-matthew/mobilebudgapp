@@ -39,9 +39,6 @@ class IncomeDisplay extends Component {
                   incomeDate={this.props.incomeDate}
                   incomeAmount={this.props.incomeAmount}
                   incomeID={this.props.incomeID}
-                  handleIncomeAmount={this.props.handleIncomeAmount}
-                  handleIncomeDate={this.props.handleIncomeDate}
-                  handleIncomeName={this.props.handleIncomeName}
                   handleExpenseEditFormSubmit={this.props.handleExpenseEditFormSubmit}
                   closeModalOnSubmit={this.closeModal}
                   incomeDataFromDB={this.props.currentIncomeFromDB}

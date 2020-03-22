@@ -98,6 +98,18 @@ let editExpenseByID = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let editIncomeByID = (req, res) => {
+    db.Income.updateOne({_id: req.body.data._id},
+        {$set: {
+                name: req.body.data.name,    
+                date: req.body.data.date, 
+                amount: req.body.data.amount
+                }
+        })
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
 module.exports = {
     addIncome: addIncomeToDb,
     addExpense: addExpenseToDb,
@@ -109,5 +121,6 @@ module.exports = {
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     deleteExpense: deleteExpenseByID,
     deleteIncome: deleteIncomeByID,
-    editExpense: editExpenseByID
+    editExpense: editExpenseByID,
+    editIncome: editIncomeByID
 }
