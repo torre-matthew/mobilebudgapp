@@ -66,12 +66,6 @@ let deleteIncome = (id) => {
 }
 
 let editExpense = (id, name, date, amount, isPlanned, fundingSource) => {
-    console.log(id);
-    console.log(name);
-    console.log(date);
-    console.log(amount);
-    console.log(isPlanned);
-    console.log(fundingSource);
     return axios.put('https://gentle-beyond-46108.herokuapp.com/api/updateExpense', {
        data: {_id: id,
         nameOfExpense: name,
@@ -79,6 +73,16 @@ let editExpense = (id, name, date, amount, isPlanned, fundingSource) => {
         amountOfExpense: amount,
         isPlanned: isPlanned,
         fundingSource: fundingSource}
+    });
+}
+
+let editIncome = (id, name, date, amount) => {
+    return axios.put('https://gentle-beyond-46108.herokuapp.com/api/updateIncome', {
+       data: {_id: id,
+        name: name,
+        date: date,
+        amount: amount
+        }
     });
 }
 
@@ -94,5 +98,6 @@ export default {
     addExpense: addExpense,
     deleteExpense: deleteExpense,
     deleteIncome: deleteIncome,
-    editExpense: editExpense
+    editExpense: editExpense,
+    editIncome: editIncome
 }

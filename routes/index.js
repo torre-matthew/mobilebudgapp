@@ -16,6 +16,7 @@ router.route("/getIncomeByID/:incomeID").get(contollers.getIncomeByID);
 router.route("/deleteExpense").delete(contollers.deleteExpense);
 router.route("/deleteIncome").delete(contollers.deleteIncome);
 router.route("/updateExpense").put(contollers.editExpense);
+router.route("/updateIncome").put(contollers.editIncome);
 
 
 router.use("/api", router);

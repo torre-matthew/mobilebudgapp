@@ -23,7 +23,7 @@ componentDidMount() {
     this.editLogic();
 }
 
-showConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource) => {
+showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource) => {
 
     Alert.alert(
       'Edit Confirmation',
@@ -38,6 +38,29 @@ showConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource) => {
                   this.props.closeModalOnSubmit();
                   this.props.updateWrapperComponent();
                   this.props.updateDisplayComponent();
+                Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
+              }
+            });
+            }
+        },
+        ],
+      {cancelable: false},
+    );
+  }
+
+  showIncomeConfirmationAlert = (id, name, date, amount) => {
+
+    Alert.alert(
+      'Edit Confirmation',
+      'Name: ' + name + ' Date: ' + date + ' Amount: ' + amount,
+      [ 
+        {text: 'Nevermind', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: "Yes, that's correct", onPress: () => {
+            ApiMethods.editIncome(id, name, date, amount).then(res => {
+              if (res.data.nModified === 0) {
+                alert('Sorry, there was a problem. Please try again');
+              } else {
+                  this.props.closeModalOnSubmit();
                 Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
               }
             });
@@ -111,7 +134,36 @@ handleExpenseEditFormSubmit = (event, id, nameChecker, dateChecker, amountChecke
         amount = amountChecker
     }
  
-    this.showConfirmationAlert(id, name, date, amount, isPlanned, fundingSource);
+    this.showExpenseConfirmationAlert(id, name, date, amount, isPlanned, fundingSource);
+
+  };
+
+  handleIncomeEditFormSubmit = (event, id, nameChecker, dateChecker, amountChecker) => {
+    event.preventDefault();
+
+    let name;
+    let date;
+    let amount;
+
+    if (dateChecker === "") {
+        date = this.state.currentDate
+    } else {
+        date = dateChecker
+    }
+
+    if (nameChecker === "") {
+        name = this.state.currentName
+    } else {
+        name = nameChecker
+    }
+
+    if (amountChecker === "") {
+        amount = this.state.currentAmount
+    } else {
+        amount = amountChecker
+    }
+ 
+    this.showIncomeConfirmationAlert(id, name, date, amount);
 
   };
 
@@ -179,7 +231,12 @@ editLogic = () => {
                             }
                             <View style={{ alignItems: 'center' }}>
                             <TouchableOpacity
-                                onPress={(event) => this.handleExpenseEditFormSubmit(event, this.props.billID, this.state.newName, this.state.newDate, this.state.newAmount, this.state.isPlanned, this.state.fundingSourceID)}
+                                onPress={this.state.whatsBeingEdited === "bill" 
+                                ? 
+                                (event) => this.handleExpenseEditFormSubmit(event, this.props.billID, this.state.newName, this.state.newDate, this.state.newAmount, this.state.isPlanned, this.state.fundingSourceID)
+                                :
+                                (event) => this.handleIncomeEditFormSubmit(event, this.props.IncomeID, this.state.newName, this.state.newDate, this.state.newAmount)
+                                }
                                 style={style.button_style_form}>
                                 <Text> Submit </Text>
                             </TouchableOpacity>
