@@ -55,15 +55,6 @@ let getExpenseByID = (req, res) => {
     .catch(err => console.log(err));
 }
 
-// let getIncomeByID = (fundingSourceID) => {
-//     let fundingSourceInfo = {fundingSourceName:'', fundingSourceAmount: ''};
-
-//     db.Income.find({_id: fundingSourceID})
-//     .then(data => {fundingSourceInfo.fundingSourceName = data[0].name; fundingSourceInfo.fundingSourceAmount = data[0].amount; 
-//         return fundingSourceInfo})
-//     .catch(err => console.log(err));
-// }
-
 let getIncomeByID = (req, res) => {
     db.Income.find({_id: req.params.incomeID})
     .then(data => res.json(data))
@@ -110,6 +101,12 @@ let editIncomeByID = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let updateCheckAfterSpendingAmount = (req, res) => {
+    db.Expenses.find({fundingSource: req.params.incomeID})
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+}
+
 module.exports = {
     addIncome: addIncomeToDb,
     addExpense: addExpenseToDb,
@@ -122,5 +119,6 @@ module.exports = {
     deleteExpense: deleteExpenseByID,
     deleteIncome: deleteIncomeByID,
     editExpense: editExpenseByID,
-    editIncome: editIncomeByID
+    editIncome: editIncomeByID,
+    updateCheckAfterSpendingAmount: updateCheckAfterSpendingAmount
 }

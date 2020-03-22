@@ -17,6 +17,7 @@ router.route("/deleteExpense").delete(controllers.deleteExpense);
 router.route("/deleteIncome").delete(controllers.deleteIncome);
 router.route("/updateExpense").put(controllers.editExpense);
 router.route("/updateIncome").put(controllers.editIncome);
+router.route("/updateCheckAfterSpendingAmount/:incomeID").get(controllers.updateCheckAfterSpendingAmount);
 
 
 router.use("/api", router);
