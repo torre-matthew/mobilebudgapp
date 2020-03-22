@@ -33,6 +33,12 @@ let getIncomeByID = (incomeID) => {
     });
 }
 
+let getUpdatedCheckAfterSpendingAmount = (incomeID) => {
+    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/getUpdatedCheckAfterSpendingAmount/" + incomeID, {
+      params: {incomeID: incomeID}
+    });
+}
+
 /////////////Post Methods////////////////////
 
 let addIncome = (name, date, amount) => {
@@ -94,6 +100,7 @@ export default {
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     getExpenseByID: getExpenseByID,
     getIncomeByID: getIncomeByID,
+    getUpdatedCheckAfterSpendingAmount: getUpdatedCheckAfterSpendingAmount,
     addIncome: addIncome,
     addExpense: addExpense,
     deleteExpense: deleteExpense,
