@@ -43,6 +43,7 @@ class IncomeDisplay extends Component {
                   closeModalOnSubmit={this.closeModal}
                   incomeDataFromDB={this.props.currentIncomeFromDB}
                   whatsBeingEdited={this.state.whatsBeingEdited}
+                  updateWrapperComponent={this.props.updateWrapperComponent}
                   updateDisplayComponent={this.updateIncomeDisplayComponent}
                 />
                 <TouchableOpacity
@@ -52,6 +53,8 @@ class IncomeDisplay extends Component {
                       alert('Sorry, ' + this.props.incomeName + ' could not be deleted');
                     } else {
                       alert('You have successfully deleted ' + this.props.incomeName);
+                        this.props.updateWrapperComponent();
+                        this.closeModal();
                     }
                   }); 
                     }}
