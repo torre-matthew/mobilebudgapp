@@ -61,6 +61,7 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                 alert('Sorry, there was a problem. Please try again');
               } else {
                   this.props.closeModalOnSubmit();
+                  this.props.updateDisplayComponent();
                 Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
               }
             });
