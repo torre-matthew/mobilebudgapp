@@ -17,6 +17,11 @@ class AddEntryModal extends Component {
     this.setModalVisible(!this.state.modalVisible);
   }
 
+  getIncomeDataFromDBAndCloseModal = () => {
+    this.closeModal();
+    this.props.updateWrapperComponent();
+  }
+
   render() {
     return (
       <View style={{marginTop: 10}}>
@@ -31,6 +36,7 @@ class AddEntryModal extends Component {
           handleIncomeName={this.props.handleIncomeName}
           handleAddIncomeFormSubmit={this.props.handleAddIncomeFormSubmit}
           closeModalOnSubmit={this.closeModal}
+          getIncomeDataFromDBAndCloseModal={this.getIncomeDataFromDBAndCloseModal}
         />
         </Modal>
         <TouchableOpacity

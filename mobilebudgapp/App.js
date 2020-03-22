@@ -240,6 +240,7 @@ export default class App extends Component {
               switcherClicked={this.switcherClicked}
               switcherStyle={this.state.switcherClickedStyle}
               incomeDataFromDB={this.state.currentIncomeFromDB}
+              fetchData={this.fetchData}
             />
             <UnplannedBillWrapper
               expenseDataFromDB={this.state.currentUnPlannedExpensesFromDB}

@@ -61,6 +61,7 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                 alert('Sorry, there was a problem. Please try again');
               } else {
                   this.props.closeModalOnSubmit();
+                  this.props.updateWrapperComponent();
                   this.props.updateDisplayComponent();
                 Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
               }
@@ -232,11 +233,11 @@ editLogic = () => {
                             }
                             <View style={{ alignItems: 'center' }}>
                             <TouchableOpacity
-                                onPress={this.state.whatsBeingEdited === "bill" 
+                                onPress={this.props.whatsBeingEdited === "bill" 
                                 ? 
                                 (event) => this.handleExpenseEditFormSubmit(event, this.props.billID, this.state.newName, this.state.newDate, this.state.newAmount, this.state.isPlanned, this.state.fundingSourceID)
                                 :
-                                (event) => this.handleIncomeEditFormSubmit(event, this.props.IncomeID, this.state.newName, this.state.newDate, this.state.newAmount)
+                                (event) => this.handleIncomeEditFormSubmit(event, this.props.incomeID, this.state.newName, this.state.newDate, this.state.newAmount)
                                 }
                                 style={style.button_style_form}>
                                 <Text> Submit </Text>

@@ -19,7 +19,7 @@ function AddIncomeFormDisplay (props) {
                             <Input keyboardType='numeric' placeholder="Amount" onChangeText={props.handleIncomeAmount} />
                         </Item>
                         <View style={{ alignItems: 'center' }}>
-                            <Button style={style.button_display} onPressIn={props.handleAddIncomeFormSubmit} onPress={() => {props.closeModalOnSubmit();}} >
+                            <Button style={style.button_display} onPressIn={props.handleAddIncomeFormSubmit} onPress={() => {props.getIncomeDataFromDBAndCloseModal();}} >
                                 <Text>Submit</Text>
                             </Button>
                         </View>

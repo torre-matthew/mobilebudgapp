@@ -6,43 +6,56 @@ import AddEntryModal from "./addIncomeModal";
 import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import style from "../Styles/Styles";
 
-function SummaryWrapper (props) {
-    return (
-            <Content padder style={style.summary_section}>
-                <View> 
-                    <Text style={style.summary_section_header}> April </Text>
-                    <Text style={style.summary_section_header_secondary}> Income Summary </Text>
-                </View>
-                <IncomeSummarySwitcher 
-                    switcherClicked={props.switcherClicked}
-                    switcherStyle={props.switcherClickedStyle}
-                    displayAfterSpendingData={props.displayAfterSpendingData}
-                />
-                <TotalCashFlowDisplay 
-                    currentTotalIncome={props.currentTotalIncome}
-                />
-                {props.incomeDataFromDB.map(income => 
-                <IncomeDisplay
-                    key={income.name + "-" + income.amount + "-" + Math.floor((Math.random() * 100000) + 1)}
-                    incomeName={income.name}
-                    incomeDate={income.date}
-                    incomeAmount={income.amount}
-                    incomeID={income._id}
-                    handleIncomeAmount={props.handleIncomeAmount}
-                    handleIncomeDate={props.handleIncomeDate}
-                    handleIncomeName={props.handleIncomeName}
-                    incomeDataFromDB={props.currentIncomeFromDB}
-                />
-                )}
+class SummaryWrapper extends Component {
 
-                <AddEntryModal
-                handleIncomeAmount={props.handleIncomeAmount}
-                handleIncomeDate={props.handleIncomeDate}
-                handleIncomeName={props.handleIncomeName}
-                handleAddIncomeFormSubmit={props.handleAddIncomeFormSubmit}
-                />
-            </Content>
-    );
+    componentDidMount() {
+        this.props.fetchData();
+    }
+    
+    updateSummaryWrapperComponent = () => {
+        this.componentDidMount();
+      }
+
+    render() {
+        return (
+                <Content padder style={style.summary_section}>
+                    <View> 
+                        <Text style={style.summary_section_header}> April </Text>
+                        <Text style={style.summary_section_header_secondary}> Income Summary </Text>
+                    </View>
+                    <IncomeSummarySwitcher 
+                        switcherClicked={this.props.switcherClicked}
+                        switcherStyle={this.props.switcherClickedStyle}
+                        displayAfterSpendingData={this.props.displayAfterSpendingData}
+                    />
+                    <TotalCashFlowDisplay 
+                        currentTotalIncome={this.props.currentTotalIncome}
+                    />
+                    {this.props.incomeDataFromDB.map(income => 
+                    <IncomeDisplay
+                        key={income._id}
+                        incomeName={income.name}
+                        incomeDate={income.date}
+                        incomeAmount={income.amount}
+                        incomeID={income._id}
+                        handleIncomeAmount={this.props.handleIncomeAmount}
+                        handleIncomeDate={this.props.handleIncomeDate}
+                        handleIncomeName={this.props.handleIncomeName}
+                        incomeDataFromDB={this.props.currentIncomeFromDB}
+                        updateWrapperComponent={this.updateSummaryWrapperComponent}
+                    />
+                    )}
+
+                    <AddEntryModal
+                    handleIncomeAmount={this.props.handleIncomeAmount}
+                    handleIncomeDate={this.props.handleIncomeDate}
+                    handleIncomeName={this.props.handleIncomeName}
+                    handleAddIncomeFormSubmit={this.props.handleAddIncomeFormSubmit}
+                    updateWrapperComponent={this.updateSummaryWrapperComponent}
+                    />
+                </Content>
+        );
+    }
   }
 
   export default SummaryWrapper;
