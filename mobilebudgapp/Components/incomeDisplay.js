@@ -13,7 +13,9 @@ class IncomeDisplay extends Component {
   };
 
   componentDidMount() {
-    this.incomeAmountToDisplay();
+    // ApiMethods.getUpdatedCheckAfterSpendingAmount(this.props.incomeID)
+    //   .then(data => console.log(data))
+    //   .catch(err => console.log(err));
   }
 
   updateIncomeDisplayComponent = () => {
@@ -32,9 +34,7 @@ class IncomeDisplay extends Component {
   }
 
   incomeAmountToDisplay = () => {
-    ApiMethods.getUpdatedCheckAfterSpendingAmount(this.props.incomeID)
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+    
     // if (this.props.switcherClicked) {
     //   this.setState({
     //     incomeAmountToDisplay: ApiMethods.getUpdatedCheckAfterSpendingAmount(this.props.incomeID),
@@ -91,7 +91,7 @@ class IncomeDisplay extends Component {
                     <Text style={{fontSize: 18 }}> {this.props.incomeName} </Text>
                   </View>
                   <View style={{ flex: 1, alignItems:'center', backgroundColor: '#F6F6EE', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
-                    <Text style={{fontSize: 18 }}> ${this.state.incomeAmountToDisplay} </Text>
+                    <Text style={{fontSize: 18 }}> ${this.props.incomeAmount} </Text>
                   </View>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#CECECE', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
