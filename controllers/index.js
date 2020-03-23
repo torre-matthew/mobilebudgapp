@@ -104,6 +104,7 @@ let editIncomeByID = (req, res) => {
 let getUpdatedCheckAfterSpendingAmount = (req, res) => {
     let totalOfExpenses = 0;
     let availableIncomeAmount = 0;
+    console.log(req.params.incomeID);
     
     db.Expenses.find({fundingSource: req.params.incomeID})
     .then(data => {

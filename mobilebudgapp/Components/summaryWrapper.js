@@ -43,6 +43,7 @@ class SummaryWrapper extends Component {
                         handleIncomeName={this.props.handleIncomeName}
                         incomeDataFromDB={this.props.currentIncomeFromDB}
                         updateWrapperComponent={this.updateSummaryWrapperComponent}
+                        switcherClicked={this.props.switcherClicked}
                     />
                     )}
 
