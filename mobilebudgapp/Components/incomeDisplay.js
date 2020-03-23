@@ -8,8 +8,13 @@ import ApiMethods from '../utilities/apiMethods';
 class IncomeDisplay extends Component {
   state = {
     modalVisible: false,
-    whatsBeingEdited: ""
+    whatsBeingEdited: "",
+    incomeAmountToDisplay: 0
   };
+
+  componentDidMount() {
+    this.incomeAmountToDisplay();
+  }
 
   updateIncomeDisplayComponent = () => {
     this.componentDidMount();
@@ -25,6 +30,23 @@ class IncomeDisplay extends Component {
   closeModal = () => {
     this.setModalVisible(!this.state.modalVisible);
   }
+
+  incomeAmountToDisplay = () => {
+    ApiMethods.getUpdatedCheckAfterSpendingAmount(this.props.incomeID)
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
+    // if (this.props.switcherClicked) {
+    //   this.setState({
+    //     incomeAmountToDisplay: ApiMethods.getUpdatedCheckAfterSpendingAmount(this.props.incomeID),
+    //   });
+    // } else {
+    //   console.log('Switcher Has Not Been CLicked!');
+    //   this.setState({
+    //     incomeAmountToDisplay: this.props.incomeAmount,
+    //   });
+    // }
+  }
+
   render () {  
     return (
           <View>
@@ -69,7 +91,7 @@ class IncomeDisplay extends Component {
                     <Text style={{fontSize: 18 }}> {this.props.incomeName} </Text>
                   </View>
                   <View style={{ flex: 1, alignItems:'center', backgroundColor: '#F6F6EE', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
-                    <Text style={{fontSize: 18 }}> ${this.props.incomeAmount} </Text>
+                    <Text style={{fontSize: 18 }}> ${this.state.incomeAmountToDisplay} </Text>
                   </View>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#CECECE', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>

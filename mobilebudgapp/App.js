@@ -12,20 +12,6 @@ import ApiMethods from './utilities/apiMethods';
 
 const style = require("./Styles/Styles");
 
-
-const afterSpendingData = [
-  {
-    date: '10/1',
-    name: 'Paycheck 1',
-    amount: '50'
-  },
-  {
-    date: '10/15',
-    name: 'Paycheck 2',
-    amount: '250'
-  },
-]
-
 function wait(timeout) {
   return new Promise(resolve => {
     setTimeout(resolve, timeout);
@@ -43,7 +29,7 @@ export default class App extends Component {
     income_date: '',
     income_amount: '',
     currentIncomeFromDB: [],
-    afterSpendingData: afterSpendingData,
+    afterSpendingData: [],
     currentTotalIncome: 0,
     afterSpendingIncomeTotal: 0,
     recentlyAdded: false,
@@ -211,7 +197,6 @@ export default class App extends Component {
       this.setState({
         afterSpendingClicked: false
       });
-
     }
     
     this.getTotalIncome();

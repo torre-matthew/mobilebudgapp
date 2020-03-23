@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import style from "../Styles/Styles";
+import ApiMethods from '../utilities/apiMethods';
 
 class IncomeSummarySwitcher extends Component {
 
