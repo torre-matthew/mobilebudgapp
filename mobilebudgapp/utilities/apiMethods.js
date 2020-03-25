@@ -1,40 +1,41 @@
 import axios from "axios";
-const devURL = "http://localhost:3001/";
-const prodURL ="";
+const dev = "http://localhost:3001/";
+const prod ="https://gentle-beyond-46108.herokuapp.com/";
+const URL = dev;
 
 
 /////////////Get Methods////////////////////
 
 let getIncome = () => {
-    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/allIncome");
+    return axios.get(URL + "api/allIncome");
 }
 
 let getExpenses = () => {
-    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/allExpenses");
+    return axios.get(URL + "api/allExpenses");
 }
 
 let getAllPlannedExpenses = () => {
-    return axios.get("https://gentle-beyond-46108.herokuapp.com/allPlannedExpenses");
+    return axios.get(URL + "api/allPlannedExpenses");
 }
 
 let getAllUnPlannedExpenses = () => {
-    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/allUnPlannedExpenses");
+    return axios.get(URL + "api/allUnPlannedExpenses");
 }
 
 let getExpenseByID = (expenseID) => {
-    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/getExpenseByID/" + expenseID, {
+    return axios.get(URL + "api/getExpenseByID/" + expenseID, {
         params: {expenseID: expenseID}
     });
 }
 
 let getIncomeByID = (incomeID) => {
-    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/getIncomeByID/" + incomeID, {
+    return axios.get(URL + "api/getIncomeByID/" + incomeID, {
       params: {incomeID: incomeID}
     });
 }
 
 let getUpdatedCheckAfterSpendingAmount = (incomeID) => {
-    return axios.get("https://gentle-beyond-46108.herokuapp.com/api/getUpdatedCheckAfterSpendingAmount/" + incomeID, {
+    return axios.get(URL + "api/getUpdatedCheckAfterSpendingAmount/" + incomeID, {
       params: {incomeID: incomeID}
     });
 }
@@ -42,7 +43,7 @@ let getUpdatedCheckAfterSpendingAmount = (incomeID) => {
 /////////////Post Methods////////////////////
 
 let addIncome = (name, date, amount) => {
-    return axios.post('https://gentle-beyond-46108.herokuapp.com/api/addingIncome', {
+    return axios.post(URL + 'api/addingIncome', {
         name: name,
         date: date,
         amount: amount,
@@ -50,7 +51,7 @@ let addIncome = (name, date, amount) => {
 }
 
 let addExpense = (name, date, amount) => {
-    return axios.post('https://gentle-beyond-46108.herokuapp.com/api/addingExpense', {
+    return axios.post(URL + 'api/addingExpense', {
         nameOfExpense: name,
         dateOfExpense: date,
         amountOfExpense: amount,
@@ -60,19 +61,19 @@ let addExpense = (name, date, amount) => {
 /////////////Delete Methods////////////////////
 
 let deleteExpense = (id) => {
-    return axios.delete('https://gentle-beyond-46108.herokuapp.com/api/deleteExpense', {
+    return axios.delete(URL + "api/deleteExpense", {
        data: {_id: id,}
     });
 }
 
 let deleteIncome = (id) => {
-    return axios.delete('https://gentle-beyond-46108.herokuapp.com/api/deleteIncome', {
+    return axios.delete(URL + "api/deleteIncome", {
        data: {_id: id,}
     });
 }
 
 let editExpense = (id, name, date, amount, isPlanned, fundingSource) => {
-    return axios.put('https://gentle-beyond-46108.herokuapp.com/api/updateExpense', {
+    return axios.put(URL + "api/updateExpense", {
        data: {_id: id,
         nameOfExpense: name,
         dateOfExpense: date,
@@ -83,7 +84,7 @@ let editExpense = (id, name, date, amount, isPlanned, fundingSource) => {
 }
 
 let editIncome = (id, name, date, amount) => {
-    return axios.put('https://gentle-beyond-46108.herokuapp.com/api/updateIncome', {
+    return axios.put(URL + "api/updateIncome", {
        data: {_id: id,
         name: name,
         date: date,
