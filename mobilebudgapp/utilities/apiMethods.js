@@ -3,6 +3,7 @@ const dev = "http://localhost:3001/";
 const prod ="https://gentle-beyond-46108.herokuapp.com/";
 const URL = dev;
 
+// exp://192.168.1.23:19000
 
 /////////////Get Methods////////////////////
 
@@ -34,11 +35,11 @@ let getIncomeByID = (incomeID) => {
     });
 }
 
-let getUpdatedCheckAfterSpendingAmount = (incomeID) => {
-    return axios.get(URL + "api/getUpdatedCheckAfterSpendingAmount/" + incomeID, {
-      params: {incomeID: incomeID}
-    });
-}
+// let getUpdatedCheckAfterSpendingAmount = (incomeID) => {
+//     return axios.get(URL + "api/getUpdatedCheckAfterSpendingAmount/" + incomeID, {
+//       params: {incomeID: incomeID}
+//     });
+// }
 
 /////////////Post Methods////////////////////
 
@@ -51,7 +52,7 @@ let addIncome = (name, date, amount) => {
 }
 
 let addExpense = (name, date, amount) => {
-    return axios.post(URL + 'api/addingExpense', {
+    return axios.post(URL + "api/addingExpense", {
         nameOfExpense: name,
         dateOfExpense: date,
         amountOfExpense: amount,
@@ -101,7 +102,7 @@ export default {
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     getExpenseByID: getExpenseByID,
     getIncomeByID: getIncomeByID,
-    getUpdatedCheckAfterSpendingAmount: getUpdatedCheckAfterSpendingAmount,
+    // getUpdatedCheckAfterSpendingAmount: getUpdatedCheckAfterSpendingAmount,
     addIncome: addIncome,
     addExpense: addExpense,
     deleteExpense: deleteExpense,

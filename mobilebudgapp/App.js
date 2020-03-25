@@ -46,14 +46,6 @@ export default class App extends Component {
     this.getIncomeDataFromDB();
     this.getUnPlannedExpenseDataFromDB();
     this.getPlannedExpenseDataFromDB();
-
-   return {
-     getTotalIncome: this.getTotalIncome(),
-     getIncomeDataFromDB: this.getIncomeDataFromDB(),
-     getUnPlannedExpenseDataFromDB: this.getUnPlannedExpenseDataFromDB(),
-     getPlannedExpenseDataFromDB: this.getPlannedExpenseDataFromDB()
-   }
-
   }
 
   onRefresh = () => {
