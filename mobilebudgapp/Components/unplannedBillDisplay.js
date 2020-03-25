@@ -48,11 +48,11 @@ class UnplannedBillDisplay extends Component {
 
   getFundingSourceInfo = (expenseID) => {
     ApiMethods.getExpenseByID(expenseID)
-    .then(data => ApiMethods.getIncomeByID(data.data[0].fundingSource))
+    .then(data => ApiMethods.getIncomeByID(data[0].fundingSource))
                       .then(data => {  
                         this.setState({
-                          fundingSourceName: data.data[0].name,
-                          fundingSourceAmount: data.data[0].amount
+                          fundingSourceName: data[0].name,
+                          fundingSourceAmount: data[0].amount
                         });                      
                       })
                       .catch(err => {console.log("Unplanned Expense - Income Collection being queried without _id")
