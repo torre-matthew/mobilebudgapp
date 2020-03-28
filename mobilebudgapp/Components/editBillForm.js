@@ -31,16 +31,19 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
       [ 
         {text: 'Nevermind', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {text: "Yes, that's correct", onPress: () => {
-            ApiMethods.editExpense(id, name, date, amount, isPlanned, fundingSource).then(res => {
-              if (res.data.nModified === 0) {
-                alert('Sorry, there was a problem. Please try again');
-              } else {
-                  this.props.closeModalOnSubmit();
-                  this.props.updateWrapperComponent();
-                  this.props.updateDisplayComponent();
-                Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
-              }
-            });
+            ApiMethods.editExpense(id, name, date, amount, isPlanned, fundingSource)
+            .then(res => {
+                if (res.data.nModified === 0) {
+                    alert('Sorry, there was a problem. Please try again');
+                } else {
+                    this.props.closeModalOnSubmit();
+                    this.props.updateWrapperComponent();
+                    this.props.updateDisplayComponent();
+                    ApiMethods.updateAfterSpendingAmount(fundingSource).then(data => res.json(data)).catch(err => console.log(err));
+                    Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
+                }
+                })
+            .catch(err => console.log(err));
             }
         },
         ],
