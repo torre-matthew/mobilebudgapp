@@ -108,9 +108,14 @@ let updateAfterSpendingAmount = (req, res) => {
     console.log(req.params.incomeID);    
     db.Expenses.find({fundingSource: req.params.incomeID})
     .then(data => {
-        data.forEach(element => {
-            totalOfExpenses += parseFloat(element.amountOfExpense);
-        });
+
+        if (data === []) {
+            totalOfExpenses = 0;    
+        }else {
+            data.forEach(element => {
+                totalOfExpenses += parseFloat(element.amountOfExpense);
+            });
+        }        
             db.Income.find({_id: req.params.incomeID})
             .then(data => {
                     availableIncomeAmount = parseFloat(data[0].amount) - totalOfExpenses;
