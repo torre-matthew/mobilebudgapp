@@ -6,7 +6,8 @@ let addIncomeToDb = (req, res) => {
     db.Income.create({
         date: req.body.date,
         name: req.body.name,
-        amount: req.body.amount
+        amount: req.body.amount,
+        afterSpendingAmount: req.body.amount
     })
     .then(data => res.json(data))
     .catch(err => console.log(err));
