@@ -78,7 +78,8 @@ class IncomeDisplay extends Component {
                         this.props.updateWrapperComponent();
                         this.closeModal();
                     }
-                  }); 
+                  })
+                  .catch(err => console.log(err)); 
                     }}
                   style={style.button_style_form}>
                     <Text style={{fontSize: 12 }}> Delete Income </Text>

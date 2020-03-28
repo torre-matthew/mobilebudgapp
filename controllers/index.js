@@ -101,26 +101,29 @@ let editIncomeByID = (req, res) => {
     .catch(err => console.log(err));
 }
 
-// let getUpdatedCheckAfterSpendingAmount = (req, res) => {
-//     let totalOfExpenses = 0;
-//     let availableIncomeAmount = 0;
-//     console.log(req.params.incomeID);
+let getUpdatedCheckAfterSpendingAmount = (req, res) => {
+    let totalOfExpenses = 0;
+    let availableIncomeAmount = 0;
+    console.log(req.params.incomeID);
     
-//     db.Expenses.find({fundingSource: req.params.incomeID})
-//     .then(data => {
-//         data.forEach(element => {
-//             totalOfExpenses += parseFloat(element.amountOfExpense);
-//         });
-//             db.Income.find({_id: req.params.incomeID})
-//             .then(data => {
-//                     availableIncomeAmount = parseFloat(data[0].amount) - totalOfExpenses;
-//                     console.log(availableIncomeAmount);
-//                     return availableIncomeAmount;
-//                 })
-//             .catch(err => console.log(err));
-//         })
-//     .catch(err => console.log(err));
-// }
+    db.Expenses.find({fundingSource: req.params.incomeID})
+    .then(data => {
+        data.forEach(element => {
+            totalOfExpenses += parseFloat(element.amountOfExpense);
+        });
+            db.Income.find({_id: req.params.incomeID})
+            .then(data => {
+                    availableIncomeAmount = parseFloat(data[0].amount) - totalOfExpenses;
+                    console.log(availableIncomeAmount);
+                    return availableIncomeAmount;
+                })
+            .catch(err => console.log(err));
+        })
+    .catch(err => console.log(err));
+
+
+
+}
 
 module.exports = {
     addIncome: addIncomeToDb,
@@ -135,5 +138,5 @@ module.exports = {
     deleteIncome: deleteIncomeByID,
     editExpense: editExpenseByID,
     editIncome: editIncomeByID,
-    // getUpdatedCheckAfterSpendingAmount: getUpdatedCheckAfterSpendingAmount
+    getUpdatedCheckAfterSpendingAmount: getUpdatedCheckAfterSpendingAmount
 }
