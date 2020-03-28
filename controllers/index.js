@@ -113,8 +113,14 @@ let getUpdatedCheckAfterSpendingAmount = (req, res) => {
             db.Income.find({_id: req.params.incomeID})
             .then(data => {
                     availableIncomeAmount = parseFloat(data[0].amount) - totalOfExpenses;
-                    console.log(availableIncomeAmount);
-                    return availableIncomeAmount;
+                
+                    db.Income.updateOne({_id: req.params.incomeID},
+                        {$set: {
+                                afterSpendingAmount: availableIncomeAmount
+                                }
+                        })
+                    .then(data => res.json(data))
+                    .catch(err => console.log(err));
                 })
             .catch(err => console.log(err));
         })
