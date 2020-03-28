@@ -39,7 +39,7 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                     this.props.closeModalOnSubmit();
                     this.props.updateWrapperComponent();
                     this.props.updateDisplayComponent();
-                    ApiMethods.updateAfterSpendingAmount(fundingSource).then(data => res.json(data)).catch(err => console.log(err));
+                    ApiMethods.updateAfterSpendingAmount(fundingSource).then(data => {this.props.updateDisplayComponent(); this.props.updateWrapperComponent()}).catch(err => console.log(err));
                     Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
                 }
                 })
@@ -66,6 +66,7 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                   this.props.closeModalOnSubmit();
                   this.props.updateWrapperComponent();
                   this.props.updateDisplayComponent();
+                  ApiMethods.updateAfterSpendingAmount(id).then(data => {this.props.updateDisplayComponent(); this.props.updateWrapperComponent()}).catch(err => console.log(err));
                 Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
               }
             });
