@@ -35,8 +35,8 @@ let getIncomeByID = (incomeID) => {
     });
 }
 
-let getUpdatedCheckAfterSpendingAmount = (incomeID) => {
-    return axios.get(URL + "api/getUpdatedCheckAfterSpendingAmount/" + incomeID, {
+let updateAfterSpendingAmount = (incomeID) => {
+    return axios.get(URL + "api/updateAfterSpendingAmount/" + incomeID, {
       params: {incomeID: incomeID}
     });
 }
@@ -102,7 +102,7 @@ export default {
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     getExpenseByID: getExpenseByID,
     getIncomeByID: getIncomeByID,
-    getUpdatedCheckAfterSpendingAmount: getUpdatedCheckAfterSpendingAmount,
+    updateAfterSpendingAmount: updateAfterSpendingAmount,
     addIncome: addIncome,
     addExpense: addExpense,
     deleteExpense: deleteExpense,

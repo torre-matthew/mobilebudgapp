@@ -101,7 +101,7 @@ let editIncomeByID = (req, res) => {
     .catch(err => console.log(err));
 }
 
-let getUpdatedCheckAfterSpendingAmount = (req, res) => {
+let updateAfterSpendingAmount = (req, res) => {
     let totalOfExpenses = 0;
     let availableIncomeAmount = 0;
     console.log(req.params.incomeID);    
@@ -140,5 +140,5 @@ module.exports = {
     deleteIncome: deleteIncomeByID,
     editExpense: editExpenseByID,
     editIncome: editIncomeByID,
-    getUpdatedCheckAfterSpendingAmount: getUpdatedCheckAfterSpendingAmount
+    updateAfterSpendingAmount: updateAfterSpendingAmount
 }

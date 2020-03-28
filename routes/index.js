@@ -10,7 +10,7 @@ router.route("/allPlannedExpenses").get(controllers.getAllPlannedExpenses);
 router.route("/allUnPlannedExpenses").get(controllers.getAllUnPlannedExpenses);
 router.route("/getExpenseByID/:expenseID").get(controllers.getExpenseByID);
 router.route("/getIncomeByID/:incomeID").get(controllers.getIncomeByID);
-router.route("/getUpdatedCheckAfterSpendingAmount/:incomeID").get(controllers.getUpdatedCheckAfterSpendingAmount);
+router.route("/updateAfterSpendingAmount/:incomeID").get(controllers.updateAfterSpendingAmount);
 
 
 router.route("/deleteExpense").delete(controllers.deleteExpense);
