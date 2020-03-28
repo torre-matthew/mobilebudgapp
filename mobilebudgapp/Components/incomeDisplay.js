@@ -31,24 +31,10 @@ class IncomeDisplay extends Component {
     this.setModalVisible(!this.state.modalVisible);
   }
 
-  incomeAmountToDisplay = () => {
-    
-    if (this.props.switcherClicked) {
-      console.log('Switcher HAS BEEN CLicked!');
-      
-      // ApiMethods.getUpdatedCheckAfterSpendingAmount(this.props.incomeID)
-      // .then(data => {
-      //   this.setState({
-      //     incomeAmountToDisplay: data,
-      //   });
-      // })
-      // .catch(err => console.log(err))
-    } else {
-      console.log('Switcher Has Not Been CLicked!');
-      this.setState({
-        incomeAmountToDisplay: this.props.incomeAmount,
-      });
-    }
+  getUpdatedAfterSpendingAmounts = () => {
+      ApiMethods.updateAfterSpendingAmount(this.props.incomeID)
+      .then(data => res.json(data))
+      .catch(err => console.log(err));
   }
 
   render () {  
