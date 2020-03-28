@@ -214,7 +214,7 @@ export default class App extends Component {
               handleIncomeName={this.handleIncomeName}
               handleAddIncomeFormSubmit={this.handleAddIncomeFormSubmit}
               currentTotalIncome={!this.state.afterSpendingClicked ? this.state.currentTotalIncome : this.state.afterSpendingIncomeTotal}
-              switcherClicked={this.switcherClicked}
+              switcherClicked={this.state.afterSpendingClicked}
               switcherStyle={this.state.switcherClickedStyle}
               incomeDataFromDB={this.state.currentIncomeFromDB}
               fetchData={this.fetchData}

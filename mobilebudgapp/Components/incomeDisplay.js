@@ -9,13 +9,13 @@ class IncomeDisplay extends Component {
   state = {
     modalVisible: false,
     whatsBeingEdited: "",
-    incomeAmountToDisplay: 0
+    incomeAmountToDisplay: 0,
+    shouldIRemount: false,
   };
 
   componentDidMount() {
-    // ApiMethods.getUpdatedCheckAfterSpendingAmount(this.props.incomeID)
-    //   .then(data => console.log(data))
-    //   .catch(err => console.log(err));
+    this.incomeAmountToDisplay();
+    console.log(this.props.switcherClicked);
   }
 
   updateIncomeDisplayComponent = () => {
@@ -35,16 +35,22 @@ class IncomeDisplay extends Component {
 
   incomeAmountToDisplay = () => {
     
-    // if (this.props.switcherClicked) {
-    //   this.setState({
-    //     incomeAmountToDisplay: ApiMethods.getUpdatedCheckAfterSpendingAmount(this.props.incomeID),
-    //   });
-    // } else {
-    //   console.log('Switcher Has Not Been CLicked!');
-    //   this.setState({
-    //     incomeAmountToDisplay: this.props.incomeAmount,
-    //   });
-    // }
+    if (this.props.switcherClicked) {
+      console.log('Switcher HAS BEEN CLicked!');
+      
+      // ApiMethods.getUpdatedCheckAfterSpendingAmount(this.props.incomeID)
+      // .then(data => {
+      //   this.setState({
+      //     incomeAmountToDisplay: data,
+      //   });
+      // })
+      // .catch(err => console.log(err))
+    } else {
+      console.log('Switcher Has Not Been CLicked!');
+      this.setState({
+        incomeAmountToDisplay: this.props.incomeAmount,
+      });
+    }
   }
 
   render () {  
@@ -92,7 +98,7 @@ class IncomeDisplay extends Component {
                     <Text style={{fontSize: 18 }}> {this.props.incomeName} </Text>
                   </View>
                   <View style={{ flex: 1, alignItems:'center', backgroundColor: '#F6F6EE', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
-                    <Text style={{fontSize: 18 }}> ${this.props.incomeAmount} </Text>
+                    <Text style={{fontSize: 18 }}> ${this.state.incomeAmountToDisplay} </Text>
                   </View>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#CECECE', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>

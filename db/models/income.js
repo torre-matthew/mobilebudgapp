@@ -14,7 +14,11 @@ let IncomeSchema = new Schema({
   amount: {
       type: String,
       required: true
-  }
+  },
+  afterSpendingAmount: {
+    type: String,
+    required: false
+},
 });
 
 // This creates our model from the above schema, using mongoose's model method
