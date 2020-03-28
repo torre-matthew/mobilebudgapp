@@ -36,7 +36,7 @@ class SummaryWrapper extends Component {
                         key={income._id}
                         incomeName={income.name}
                         incomeDate={income.date}
-                        incomeAmount={income.amount}
+                        incomeAmount={this.props.switcherClicked ? income.afterSpendingAmount : income.amount}
                         incomeID={income._id}
                         handleIncomeAmount={this.props.handleIncomeAmount}
                         handleIncomeDate={this.props.handleIncomeDate}
