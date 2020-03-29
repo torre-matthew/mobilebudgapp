@@ -9,8 +9,6 @@ class IncomeDisplay extends Component {
   state = {
     modalVisible: false,
     whatsBeingEdited: "",
-    incomeAmountToDisplay: 0,
-    shouldIRemount: false,
   };
 
   componentDidMount() {
@@ -83,6 +81,7 @@ class IncomeDisplay extends Component {
                   </View>
                   <View style={{ flex: 1, alignItems:'center', backgroundColor: '#F6F6EE', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
                     <Text style={{fontSize: 18 }}> ${this.props.incomeAmount} </Text>
+                    <Text style={{fontSize: 6 }}> Remaining </Text>
                   </View>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#CECECE', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
