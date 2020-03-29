@@ -105,9 +105,9 @@ let editIncomeByID = (req, res) => {
 let updateAfterSpendingAmount = (req, res) => {
     let totalOfExpenses = 0;
     let availableIncomeAmount = 0;
-    console.log(req.params.incomeID);    
     db.Expenses.find({fundingSource: req.params.incomeID})
     .then(data => {
+        console.log("finding expense data" + data);
 
         if (data === []) {
             totalOfExpenses = 0;    
