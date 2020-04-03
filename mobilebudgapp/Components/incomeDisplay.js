@@ -12,6 +12,7 @@ class IncomeDisplay extends Component {
   };
 
   componentDidMount() {
+    this.getUpdatedAfterSpendingAmounts();
   }
 
   updateIncomeDisplayComponent = () => {
