@@ -109,6 +109,7 @@ let updateAfterSpendingAmount = (req, res) => {
     .then(data => {
         console.log("*******************************************")
         console.log(data);
+        console.log(data === []);
         console.log("*******************************************")
         if (data === []) {
             totalOfExpenses = 0;    
