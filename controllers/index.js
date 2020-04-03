@@ -108,11 +108,7 @@ let updateAfterSpendingAmount = (req, res) => {
     db.Expenses.find({fundingSource: req.params.incomeID})
     .then(data => {
         console.log("*******************************************")
-        console.log(data);
-        console.log(data === []);
-        console.log(data == []);
-        console.log(data === null);
-        console.log(typeof data);
+        console.log(data[0]);
         console.log("*******************************************")
         if (data === []) {
             totalOfExpenses = 0;    
