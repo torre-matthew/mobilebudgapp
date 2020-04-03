@@ -3,6 +3,6 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
-  "urlRandomness": "s7-biv",
+  "urlRandomness": "64-k5x",
   "https": false
 }
