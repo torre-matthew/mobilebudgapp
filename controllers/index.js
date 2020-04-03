@@ -112,7 +112,7 @@ let updateAfterSpendingAmount = (req, res) => {
         console.log(data[0] === undefined);
         console.log(data[0] == undefined);
         console.log("*******************************************")
-        if (data === []) {
+        if (data[0] === undefined) {
             totalOfExpenses = 0;    
         }else {
             data.forEach(element => {
