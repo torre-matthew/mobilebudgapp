@@ -5,6 +5,7 @@ import IncomeDisplay from './incomeDisplay';
 import AddEntryModal from "./addIncomeModal";
 import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import style from "../Styles/Styles";
+import ApiMethods from '../utilities/apiMethods';
 
 class SummaryWrapper extends Component {
 

@@ -14,13 +14,29 @@ class EditBillFormDisplay extends Component {
         newAmount:"",
         incomeDataFromDB: [],
         isPlanned: "",
-        fundingSourceID: "",
+        fundingSourceID:"",
+        newFundingSourceID:"",
         fundingSourceDisplay:"",
         chosenPickerValue:""
         }
 
 componentDidMount() {
     this.editLogic();
+}
+
+updateAfterSpendingAmountsForAllIncome = () => {
+    ApiMethods.getIncome()
+        .then(arrayOfIncome => {
+            arrayOfIncome.data.forEach(incomeObject => {
+                ApiMethods.updateAfterSpendingAmount(incomeObject._id)
+                .then(data => {
+                    this.props.updateWrapperComponent();
+                    this.props.updateDisplayComponent();
+                })
+                .catch(err => console.log(err))
+            })
+        })
+        .catch(err => console.log(err))
 }
 
 showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource) => {
@@ -36,10 +52,8 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                 if (res.data.nModified === 0) {
                     alert('Sorry, there was a problem. Please try again');
                 } else {
-                    this.props.updateWrapperComponent();
-                    this.props.updateDisplayComponent();
-                    ApiMethods.updateAfterSpendingAmount(fundingSource).then(data => {this.props.updateDisplayComponent(); this.props.updateWrapperComponent()}).catch(err => console.log(err));
                     this.props.closeModalOnSubmit();
+                    this.updateAfterSpendingAmountsForAllIncome();
                     Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
                 }
                 })
@@ -64,9 +78,7 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                 alert('Sorry, there was a problem. Please try again');
               } else {
                   this.props.closeModalOnSubmit();
-                  this.props.updateWrapperComponent();
-                  this.props.updateDisplayComponent();
-                  ApiMethods.updateAfterSpendingAmount(id).then(data => {this.props.updateDisplayComponent(); this.props.updateWrapperComponent()}).catch(err => console.log(err));
+                  this.updateAfterSpendingAmountsForAllIncome();
                 Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
               }
             });
@@ -79,12 +91,14 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
 
 
 chooseFundingSource = (value, index) => {
+
     if (value === "none") {
         this.setState(
             {
             chosenPickerValue: value,
             isPlanned: false,
-            fundingSourceID: ""
+            fundingSourceID: "",
+            newFundingSourceID: "",
             })        
     } else {
         this.setState({
@@ -139,7 +153,7 @@ handleExpenseEditFormSubmit = (event, id, nameChecker, dateChecker, amountChecke
     } else {
         amount = amountChecker
     }
- 
+    
     this.showExpenseConfirmationAlert(id, name, date, amount, isPlanned, fundingSource);
 
   };
