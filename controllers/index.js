@@ -62,6 +62,12 @@ let getIncomeByID = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let getAfterSpendingAmount = (req, res) => {
+    db.Income.find({_id: req.params.incomeID})
+    .then(data => res.json(data[0].afterSpendingAmount))
+    .catch(err => clog(err));
+}
+
 ////////////// Update/Delete Data ///////////////////////
 
 let deleteExpenseByID = (req, res) => {
@@ -143,6 +149,7 @@ module.exports = {
     getIncomeByID: getIncomeByID,
     getAllPlannedExpenses: getAllPlannedExpenses,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
+    getAfterSpendingAmount: getAfterSpendingAmount,
     deleteExpense: deleteExpenseByID,
     deleteIncome: deleteIncomeByID,
     editExpense: editExpenseByID,
