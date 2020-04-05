@@ -105,13 +105,13 @@ let editIncomeByID = (req, res) => {
 let updateAfterSpendingAmount = (req, res) => {
     let totalOfExpenses = 0;
     let availableIncomeAmount = 0;
-    db.Expenses.find({fundingSource: req.params.incomeID})
+    db.Expenses.find({fundingSource: req.params.incomeID}) //find expenses by funding source
     .then(data => {
-        if (data[0] === undefined) {
-            totalOfExpenses = 0;    
-        }else {
-            data.forEach(element => {
-                totalOfExpenses += parseFloat(element.amountOfExpense);
+        if (data[0] === undefined) { // if there are no expeses for a given funding source
+            totalOfExpenses = 0;    // set the total of expenses to 0
+        }else {                         //if there are expenses with that funding source id
+            data.forEach(element => { // add all the amounts of those expenses together then..
+                totalOfExpenses += parseFloat(element.amountOfExpense); // set set total of expenses to that number
             });
         }        
             db.Income.find({_id: req.params.incomeID})

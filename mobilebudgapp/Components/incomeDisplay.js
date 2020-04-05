@@ -12,7 +12,7 @@ class IncomeDisplay extends Component {
   };
 
   componentDidMount() {
-    this.getUpdatedAfterSpendingAmounts();
+    // ApiMethods.updateAfterSpendingAmount(this.props.incomeID).then(data => res.json(data)).catch(err => console.log(err));
   }
 
   updateIncomeDisplayComponent = () => {
@@ -28,12 +28,6 @@ class IncomeDisplay extends Component {
 
   closeModal = () => {
     this.setModalVisible(!this.state.modalVisible);
-  }
-
-  getUpdatedAfterSpendingAmounts = () => {
-      ApiMethods.updateAfterSpendingAmount(this.props.incomeID)
-      .then(data => res.json(data))
-      .catch(err => console.log(err));
   }
 
   render () {  

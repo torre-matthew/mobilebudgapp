@@ -37,9 +37,9 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                     alert('Sorry, there was a problem. Please try again');
                 } else {
                     this.props.closeModalOnSubmit();
-                    this.props.updateWrapperComponent();
                     this.props.updateDisplayComponent();
-                    ApiMethods.updateAfterSpendingAmount(fundingSource).then(data => {this.props.updateDisplayComponent(); this.props.updateWrapperComponent()}).catch(err => console.log(err));
+                    this.props.updateWrapperComponent();
+                    // ApiMethods.updateAfterSpendingAmount(fundingSource).then(data => {this.props.updateDisplayComponent(); this.props.updateWrapperComponent()}).catch(err => console.log(err));
                     Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
                 }
                 })
@@ -229,6 +229,7 @@ editLogic = () => {
                                         label={income.name + ": " + "$" + income.amount + " available"} 
                                         value={income._id} 
                                         key={income._id}
+                                        onPress={() => this.chooseFundingSource(income._id)}
                                         />
                                     )}                        
                             </Picker>
