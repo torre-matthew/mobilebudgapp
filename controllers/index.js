@@ -123,9 +123,6 @@ let updateAfterSpendingAmount = (req, res) => {
         }        
             db.Income.find({_id: req.params.incomeID})
             .then(data => {
-                    
-                    console.log(totalOfExpenses);
-                    
                     availableIncomeAmount = parseFloat(data[0].amount) - totalOfExpenses;
                 
                     db.Income.updateOne({_id: req.params.incomeID},
