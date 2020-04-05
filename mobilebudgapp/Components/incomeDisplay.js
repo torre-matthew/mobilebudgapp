@@ -9,10 +9,11 @@ class IncomeDisplay extends Component {
   state = {
     modalVisible: false,
     whatsBeingEdited: "",
+    amountToDisplay: 0
   };
 
   componentDidMount() {
-    ApiMethods.updateAfterSpendingAmount(this.props.incomeID).then(data => res.json(data)).catch(err => console.log(err));
+    this.props.fetchData();
   }
 
   updateIncomeDisplayComponent = () => {

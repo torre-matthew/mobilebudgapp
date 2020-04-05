@@ -44,6 +44,7 @@ class SummaryWrapper extends Component {
                         incomeDataFromDB={this.props.currentIncomeFromDB}
                         updateWrapperComponent={this.updateSummaryWrapperComponent}
                         switcherClicked={this.props.switcherClicked}
+                        fetchData={this.props.fetchData}
                     />
                     )}
 
