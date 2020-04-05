@@ -12,7 +12,7 @@ class IncomeDisplay extends Component {
   };
 
   componentDidMount() {
-    // ApiMethods.updateAfterSpendingAmount(this.props.incomeID).then(data => res.json(data)).catch(err => console.log(err));
+    ApiMethods.updateAfterSpendingAmount(this.props.incomeID).then(data => res.json(data)).catch(err => console.log(err));
   }
 
   updateIncomeDisplayComponent = () => {

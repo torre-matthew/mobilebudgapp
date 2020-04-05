@@ -35,11 +35,13 @@ let getIncomeByID = (incomeID) => {
     });
 }
 
-let updateAfterSpendingAmount = (incomeID) => {
-    return axios.get(URL + "api/updateAfterSpendingAmount/" + incomeID, {
+let getAfterSpendingAmount = (incomeID) => {
+    return axios.get(URL + "api/getAfterSpendingAmount/" + incomeID, {
       params: {incomeID: incomeID}
     });
 }
+
+
 
 /////////////Post Methods////////////////////
 
@@ -73,6 +75,8 @@ let deleteIncome = (id) => {
     });
 }
 
+/////////////Update Methods////////////////////
+
 let editExpense = (id, name, date, amount, isPlanned, fundingSource) => {
     return axios.put(URL + "api/updateExpense", {
        data: {_id: id,
@@ -94,6 +98,12 @@ let editIncome = (id, name, date, amount) => {
     });
 }
 
+let updateAfterSpendingAmount = (incomeID) => {
+    return axios.get(URL + "api/updateAfterSpendingAmount/" + incomeID, {
+      params: {incomeID: incomeID}
+    });
+}
+
 
 export default {
     getIncome: getIncome,
@@ -102,6 +112,7 @@ export default {
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     getExpenseByID: getExpenseByID,
     getIncomeByID: getIncomeByID,
+    getAfterSpendingAmount: getAfterSpendingAmount,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     addIncome: addIncome,
     addExpense: addExpense,
