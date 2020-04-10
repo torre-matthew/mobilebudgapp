@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { Dimensions, TouchableOpacity, Picker, Alert } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body, View } from "native-base";
 import TotalCashFlowDisplay from './totalCashFlowDisplay';
 import IncomeDisplay from './incomeDisplay';
@@ -20,7 +21,11 @@ class SummaryWrapper extends Component {
     render() {
         return (
                 <Content padder style={style.summary_section}>
-                    <View> 
+                    <View>
+                        {/* <Picker>
+                            <Picker.Item>
+                            </Picker.Item>
+                        </Picker>  */}
                         <Text style={style.summary_section_header}> April </Text>
                         <Text style={style.summary_section_header_secondary}> Income Summary </Text>
                     </View>
