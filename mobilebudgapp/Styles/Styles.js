@@ -2,20 +2,20 @@ import {Platform, StyleSheet} from 'react-native';
 import { getPlatformOrientationLockAsync } from 'expo/build/ScreenOrientation/ScreenOrientation';
 import { bold } from 'ansi-colors';
 
+const backgroundImage = require('./images/turquise indigo gradient.png');
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       paddingTop: 0,
       justifyContent: 'center',
-      backgroundColor: '#423D43'
+    //   backgroundColor: '#423D43'
     },
 
     header: {
-        paddingTop: 24,
-        minHeight: 70,
-        backgroundColor: '#ccf9fb',
-        // backgroundColor: '-webkit-gradient(linear, #40e0d0, #4B0082)'
-        // background: 'linear-gradient(to top right, #40e0d0, #4B0082)'
+        // paddingTop: 24,
+        // minHeight: 70,
+        // backgroundColor: '#40e0d0',
       },
 
     summary_section: {
