@@ -9,7 +9,7 @@ class AppHeader extends Component {
         <Header style={ style.header }>
           <Left/>
           <Body>
-            <Title>App Name Here</Title>
+            <Title>Lahri</Title>
           </Body>
           {/* <Right /> */}
         </Header>
