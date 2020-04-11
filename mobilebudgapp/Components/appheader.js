@@ -8,7 +8,7 @@ const backgroundImage = require('../Styles/images/turquise indigo gradient.png')
 class AppHeader extends Component {
   render() {
     return (
-      <Container style={{ minHeight: 70 }}>
+      <Container style={{ minHeight: '10%'}}>
           <Header style={ style.header }>
             <ImageBackground source={backgroundImage} style={{width: '100%', height: '100%'}}>
               <Left/>

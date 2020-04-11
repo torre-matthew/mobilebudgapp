@@ -7,15 +7,12 @@ const backgroundImage = require('./images/turquise indigo gradient.png');
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: 0,
       justifyContent: 'center',
-    //   backgroundColor: '#423D43'
     },
 
     header: {
-        // paddingTop: 24,
-        // minHeight: 70,
-        // backgroundColor: '#40e0d0',
+        paddingLeft: 0,
+        paddingRight: 0
       },
 
     summary_section: {
