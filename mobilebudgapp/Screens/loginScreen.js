@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { View, Button } from 'react-native';
+import { View, Button, ImageBackground } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import * as Google from 'expo-google-app-auth'
 
 const style = require("../Styles/Styles");
+const backgroundImage = require('../Styles/images/turquise indigo gradient.png');
 
 class LoginScreen extends Component {
 
@@ -40,6 +41,9 @@ class LoginScreen extends Component {
 
     return (
       <Container>
+          <ImageBackground
+            source={backgroundImage}
+            style={{width: '100%', height: '100%'}} >
         <View style={style.container}>
             {this.state.signedIn ? 
               <Text> {this.state.name + " " + this.state.photoUrl} </Text>
@@ -55,7 +59,9 @@ class LoginScreen extends Component {
           <Button title="Go To Main Page" 
           onPress={() => navigation.navigate('Main')} />
         </View>
+        </ImageBackground>  
       </Container>
+      
     );
   }
 }
