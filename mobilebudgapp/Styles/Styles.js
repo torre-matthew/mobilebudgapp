@@ -13,15 +13,17 @@ const styles = StyleSheet.create({
     header: {
         paddingTop: 24,
         minHeight: 70,
-        backgroundColor: '#615C63',
+        backgroundColor: '#ccf9fb',
+        // backgroundColor: '-webkit-gradient(linear, #40e0d0, #4B0082)'
+        // background: 'linear-gradient(to top right, #40e0d0, #4B0082)'
       },
 
     summary_section: {
-        backgroundColor: 'white',
-        borderStyle: 'solid',
-        borderTopWidth: 0, 
-        borderWidth: 5,
-        borderColor: '#8C8B99'
+        // backgroundColor: 'white',
+        // borderStyle: 'solid',
+        // borderTopWidth: 0, 
+        // borderWidth: 5,
+        // borderColor: '#ccf9fb'
     },
 
     summary_section_header: {
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid', 
         borderWidth: 1, 
         paddingVertical: 10,
-        backgroundColor: '#F65050',
+        backgroundColor: '#ccf9fb',
         borderRadius: 20,
         margin: 5
     },
@@ -63,18 +65,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         minHeight: 100, 
         height: 'auto',
-        borderStyle: 'solid', 
-        borderWidth: 5,
-        borderColor: '#8C8B99',
+        // borderStyle: 'solid', 
+        // borderWidth: 5,
+        // borderColor: '#8C8B99',
     },
 
     planned_section: {
-        backgroundColor: '#8C8B99',
+        backgroundColor: 'white',
         minHeight: 100, 
         height: 'auto',
-        borderStyle: 'solid', 
-        borderWidth: 5,
-        borderColor: '#8C8B99',
+        // borderStyle: 'solid', 
+        // borderWidth: 5,
+        // borderColor: '#8C8B99',
     },
 
     welcome: {
@@ -102,7 +104,7 @@ const styles = StyleSheet.create({
     },
 
     button_style: {
-        backgroundColor: '#F65050',
+        backgroundColor: '#ccf9fb',
         borderRadius: 20,
         width: '45%',
         alignSelf: 'center',
