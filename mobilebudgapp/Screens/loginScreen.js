@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Button, ImageBackground } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import * as Google from 'expo-google-app-auth'
+import LoginScreenStyles from "../Styles/loginSreenStyles";
 
 const style = require("../Styles/Styles");
 const backgroundImage = require('../Styles/images/turquise indigo gradient.png');
@@ -40,11 +41,22 @@ class LoginScreen extends Component {
    const {navigation} = this.props;
 
     return (
-      <Container>
+      <Container style={LoginScreenStyles.container}>
           <ImageBackground
             source={backgroundImage}
             style={{width: '100%', height: '100%'}} >
-        <View style={style.container}>
+          <View style={LoginScreenStyles.welcome}>
+            <Text>
+              Hi, I'm Lahri.
+            </Text>
+            <Text>
+              I can help you with your money plan
+            </Text>
+            <Text>
+              Let's get started.
+            </Text>
+          </View>
+          <View>
             {this.state.signedIn ? 
               <Text> {this.state.name + " " + this.state.photoUrl} </Text>
             : 
@@ -52,13 +64,13 @@ class LoginScreen extends Component {
             }
           </View>
           <View>
-          <Button title="Sign in with Google" 
-          onPress={() => this.signIn()} />
-        </View>
-        <View>
-          <Button title="Go To Main Page" 
-          onPress={() => navigation.navigate('Main')} />
-        </View>
+            <Button title="Sign in with Google" 
+            onPress={() => this.signIn()} />
+          </View>
+          <View>
+            <Button title="Go To Main Page" 
+            onPress={() => navigation.navigate('Main')} />
+          </View>
         </ImageBackground>  
       </Container>
       
