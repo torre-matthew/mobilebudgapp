@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignSelf: 'stretch', 
         borderStyle: 'solid', 
-        borderColor: '#4A0784',
+        borderColor: '#40DBCE',
         borderWidth: 1,
         paddingVertical: 10,
         borderRadius: 20,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         borderColor: '#4A0784',
         borderWidth: 1, 
         paddingVertical: 10,
-        backgroundColor: '#42B9C2',
+        backgroundColor: '#40DBCE',
         borderRadius: 20,
         margin: 5
     },
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     },
 
     button_style: {
-        backgroundColor: '#42B9C2',
+        backgroundColor: '#40DBCE',
         borderRadius: 20,
         borderStyle: 'solid', 
         borderColor: '#4A0784',
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     },
 
     button_style_form: {
-        backgroundColor: '#42B9C2',
+        backgroundColor: '#40DBCE',
         borderRadius: 20,
         borderStyle: 'solid', 
         borderColor: '#4A0784',
