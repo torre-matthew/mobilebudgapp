@@ -1,6 +1,7 @@
 import {Platform, StyleSheet} from 'react-native';
 import { getPlatformOrientationLockAsync } from 'expo/build/ScreenOrientation/ScreenOrientation';
 import { bold } from 'ansi-colors';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const backgroundImage = require('./images/turquise indigo gradient.png');
 
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignSelf: 'stretch', 
         borderStyle: 'solid', 
+        borderColor: '#4A0784',
         borderWidth: 1,
         paddingVertical: 10,
         borderRadius: 20,
@@ -50,9 +52,10 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignSelf: 'stretch', 
         borderStyle: 'solid', 
+        borderColor: '#4A0784',
         borderWidth: 1, 
         paddingVertical: 10,
-        backgroundColor: '#ccf9fb',
+        backgroundColor: '#42B9C2',
         borderRadius: 20,
         margin: 5
     },
@@ -63,8 +66,10 @@ const styles = StyleSheet.create({
         minHeight: 100, 
         height: 'auto',
         // borderStyle: 'solid', 
-        // borderWidth: 5,
-        // borderColor: '#8C8B99',
+        // borderWidth: 2,
+        // borderColor: '#42B9C2',
+        // borderRadius: 25,
+        // margin: 5
     },
 
     planned_section: {
@@ -101,30 +106,37 @@ const styles = StyleSheet.create({
     },
 
     button_style: {
-        backgroundColor: '#ccf9fb',
+        backgroundColor: '#42B9C2',
         borderRadius: 20,
+        borderStyle: 'solid', 
+        borderColor: '#4A0784',
+        borderWidth: 1,
         width: '45%',
         alignSelf: 'center',
         alignItems: 'center',
         paddingTop: 10,
         paddingBottom: 10,
         shadowOffset: {width: 0, height: 2},
-        shadowColor: 'red',
+        shadowColor: '#4A0784',
         shadowOpacity: 0.75,
-        shadowRadius: 6
+        shadowRadius: 6,
+        marginTop: 15
 
     },
 
     button_style_form: {
-        backgroundColor: '#F65050',
+        backgroundColor: '#42B9C2',
         borderRadius: 20,
+        borderStyle: 'solid', 
+        borderColor: '#4A0784',
+        borderWidth: 1,
         width: 112,
         alignSelf: 'center',
         alignItems: 'center',
         paddingTop: 10,
         paddingBottom: 10,
         shadowOffset: {width: 0, height: 2},
-        shadowColor: 'red',
+        shadowColor: '#4A0784',
         shadowOpacity: 0.75,
         shadowRadius: 6,
         marginTop: 15
