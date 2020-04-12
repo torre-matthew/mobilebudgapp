@@ -13,7 +13,7 @@ class AppHeader extends Component {
             <ImageBackground source={backgroundImage} style={{width: '100%', height: '100%'}}>
               <Left/>
               <Body>
-                <Title>Lahri</Title>
+                <Title style={{fontSize: 25}}>Lahri</Title>
               </Body>
               {/* <Right /> */}
             </ImageBackground>
