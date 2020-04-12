@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 
     header: {
         paddingLeft: 0,
-        paddingRight: 0
+        paddingRight: 0,
       },
 
     summary_section: {
