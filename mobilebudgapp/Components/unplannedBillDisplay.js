@@ -113,14 +113,14 @@ class UnplannedBillDisplay extends Component {
             </Modal>
             <View>
               <View onTouchEnd={() => {this.setModalVisible(true)}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10 }}>
-                <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#F6F6EE', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 15 }}> 
+                <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: 'white', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 15 }}> 
                   <Text style={{fontSize: 18 }}> {this.props.billName} </Text>
                 </View>
-                <View style={{ flex: 1, alignItems:'center', backgroundColor: '#F6F6EE', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
+                <View style={{ flex: 1, alignItems:'center', backgroundColor: 'white', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
                   <Text style={{fontSize: 18 }}> ${this.props.billAmount} </Text>
                 </View>
               </View>
-              <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#CECECE', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
+              <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#F0F0F0', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 12 }}> Due: {this.props.dueDate} </Text>
                 </View>
