@@ -2,8 +2,8 @@
   "name": "mobilebudgapp",
   "displayName": "mobilebudgapp",
   "expo": {
-    "name": "tpkmmobilebudgapp",
-    "slug": "tpkmmobilebudgapp",
+    "name": "LahriApp",
+    "slug": "lahriapp",
     "privacy": "unlisted",
     "sdkVersion": "35.0.0",
     "version": "1.0.0",
