@@ -70,17 +70,17 @@ class IncomeDisplay extends Component {
                 </TouchableOpacity>
                 </ScrollView>
             </Modal>
-              <View style={{ shadowOffset: {width: 10, height: 12}, shadowColor: '#4A0784', shadowOpacity: 30, shadowRadius: 16}}>
+              <View>
                 <View onTouchEnd={() => {this.setModalVisible(true);}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10 }}>
-                  <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#F5F5F5', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 25, borderTopLeftRadius: 15 }}> 
+                  <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#DEF1F2', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 25, borderTopLeftRadius: 15 }}> 
                     <Text style={{fontSize: 18 }}> {this.props.incomeName} </Text>
                   </View>
-                  <View style={{ flex: 1, alignItems:'center', backgroundColor: '#F5F5F5', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
+                  <View style={{ flex: 1, alignItems:'center', backgroundColor: '#DEF1F2', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
                     <Text style={{fontSize: 18 }}> ${this.props.incomeAmount} </Text>
                     <Text style={{fontSize: 6 }}> Remaining </Text>
                   </View>
                 </View>
-                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#DEF1F2', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
+                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#F5F5F5', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
                   <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                     <Text style={{fontSize: 12 }}> Date: {this.props.incomeDate} </Text>
                   </View>
