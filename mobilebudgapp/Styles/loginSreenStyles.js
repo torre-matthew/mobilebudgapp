@@ -5,12 +5,20 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const loginScreenStyles = StyleSheet.create({
     container: {
-        // display: 'flex',
+        // flex: 1,
         // justifyContent: 'center',
         // alignItems: 'center'
     },
     welcome: {
-          alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: 'white'
+        },
+    signIn: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center'
         },
   });
 
