@@ -46,14 +46,14 @@ class LoginScreen extends Component {
             source={backgroundImage}
             style={{width: '100%', height: '100%'}} >
           <View style={LoginScreenStyles.welcome}>
-            <Text>
-              Hi, I'm Lahri.
+            <Text style={{color: '#F5F5F5', fontSize: 35}}>
+              Hi! I'm Lahri.
             </Text>
             <Text>
-              I can help you with your money plan
+              I'll help you make a plan for your money.
             </Text>
             <Text>
-              Let's get started.
+              Shall we get started?
             </Text>
           </View>
           <View>
@@ -63,13 +63,9 @@ class LoginScreen extends Component {
               <Text></Text>
             }
           </View>
-          <View>
-            <Button title="Sign in with Google" 
-            onPress={() => this.signIn()} />
-          </View>
-          <View>
-            <Button title="Go To Main Page" 
-            onPress={() => navigation.navigate('Main')} />
+          <View style={LoginScreenStyles.signIn}>
+            <Button title="Sign in with Google" onPress={() => this.signIn()} />
+            <Button title="Go To Main Page" onPress={() => navigation.navigate('Main')} />
           </View>
         </ImageBackground>  
       </Container>
