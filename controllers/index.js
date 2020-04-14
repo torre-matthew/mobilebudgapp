@@ -24,6 +24,17 @@ let addExpenseToDb = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let addUserToDb = (req, res) => {
+    db.Users.create({
+        email: req.body.email,
+        profilePic: req.body.profilePic,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName
+    })
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
 ////////// Get Data Controllers //////////////////
 
 let getAllIncome = (req, res) => {
@@ -34,6 +45,12 @@ let getAllIncome = (req, res) => {
 
 let getAllExpenses = (req, res) => {
     db.Expenses.find({})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
+let getAllUsers = (req, res) => {
+    db.Users.find({})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
@@ -58,6 +75,12 @@ let getExpenseByID = (req, res) => {
 
 let getIncomeByID = (req, res) => {
     db.Income.find({_id: req.params.incomeID})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
+let getUserByID = (req, res) => {
+    db.User.find({_id: req.params.userID})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
@@ -140,10 +163,13 @@ let updateAfterSpendingAmount = (req, res) => {
 module.exports = {
     addIncome: addIncomeToDb,
     addExpense: addExpenseToDb,
+    addUser: addUserToDb,
     getAllIncome: getAllIncome,
     getAllExpenses: getAllExpenses,
+    getAllUsers: getAllUsers,
     getExpenseByID: getExpenseByID,
     getIncomeByID: getIncomeByID,
+    getUserByID: getUserByID,
     getAllPlannedExpenses: getAllPlannedExpenses,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     getAfterSpendingAmount: getAfterSpendingAmount,
