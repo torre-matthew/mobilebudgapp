@@ -3,6 +3,7 @@ import { View, Button, ImageBackground } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import * as Google from 'expo-google-app-auth'
 import LoginScreenStyles from "../Styles/loginSreenStyles";
+import ApiMethods from '../utilities/apiMethods';
 
 const style = require("../Styles/Styles");
 const backgroundImage = require('../Styles/images/turquise indigo gradient.png');
@@ -23,6 +24,11 @@ class LoginScreen extends Component {
       })
       if (result.type === "success") {
         console.log(result);
+  
+        ApiMethods.addUser(result.user.email, result.user.photoUrl, result.user.familyName, result.user.givenName)
+        .then(data => console.log(data)).catch(err => console.log(err));
+
+
         this.setState({
           signedIn: true,
           name: result.user.name,

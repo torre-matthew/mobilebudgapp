@@ -132,6 +132,7 @@ export default {
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     addIncome: addIncome,
     addExpense: addExpense,
+    addUser: addUser,
     deleteExpense: deleteExpense,
     deleteIncome: deleteIncome,
     editExpense: editExpense,
