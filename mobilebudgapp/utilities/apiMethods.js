@@ -35,6 +35,12 @@ let getIncomeByID = (incomeID) => {
     });
 }
 
+let getUserByID = (userID) => {
+    return axios.get(URL + "api/getUserByID/" + userID, {
+      params: {userID: userID}
+    });
+}
+
 let getAfterSpendingAmount = (incomeID) => {
     return axios.get(URL + "api/getAfterSpendingAmount/" + incomeID, {
       params: {incomeID: incomeID}
@@ -58,6 +64,15 @@ let addExpense = (name, date, amount) => {
         nameOfExpense: name,
         dateOfExpense: date,
         amountOfExpense: amount,
+    });
+}
+
+let addUser = (email, profilePic, lastName, firstName) => {
+    return axios.post(URL + "api/addingUser", {
+        email: email,
+        profilePic: profilePic,
+        lastName: lastName,
+        firstName: firstName
     });
 }
 
@@ -112,6 +127,7 @@ export default {
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     getExpenseByID: getExpenseByID,
     getIncomeByID: getIncomeByID,
+    getUserByID: getUserByID,
     getAfterSpendingAmount: getAfterSpendingAmount,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     addIncome: addIncome,
