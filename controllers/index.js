@@ -80,13 +80,13 @@ let getIncomeByID = (req, res) => {
 }
 
 let getUserByID = (req, res) => {
-    db.User.find({_id: req.params.userID})
+    db.Users.find({_id: req.params.userID})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let getUserByEmail = (req, res) => {
-    db.User.find({email: req.params.email})
+    db.Users.find({email: req.params.email})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
@@ -94,7 +94,7 @@ let getUserByEmail = (req, res) => {
 let getAfterSpendingAmount = (req, res) => {
     db.Income.find({_id: req.params.incomeID})
     .then(data => res.json(data[0].afterSpendingAmount))
-    .catch(err => clog(err));
+    .catch(err => console.log(err));
 }
 
 ////////////// Update/Delete Data ///////////////////////
