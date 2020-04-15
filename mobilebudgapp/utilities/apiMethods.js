@@ -134,6 +134,7 @@ export default {
     getExpenseByID: getExpenseByID,
     getIncomeByID: getIncomeByID,
     getUserByID: getUserByID,
+    getUserByEmail: getUserByEmail,
     getAfterSpendingAmount: getAfterSpendingAmount,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     addIncome: addIncome,

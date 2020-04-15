@@ -8,7 +8,7 @@ class MainScreen extends Component {
         const {navigation} = this.props;
     return (
       <MainPage 
-        tester={this.props.route.params.name}
+        loggedInUsersEmail={this.props.route.params.email}
       />
     );
   }
