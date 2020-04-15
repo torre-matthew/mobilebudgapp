@@ -85,6 +85,12 @@ let getUserByID = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let getUserByEmail = (req, res) => {
+    db.User.find({email: req.params.email})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
 let getAfterSpendingAmount = (req, res) => {
     db.Income.find({_id: req.params.incomeID})
     .then(data => res.json(data[0].afterSpendingAmount))
@@ -170,6 +176,7 @@ module.exports = {
     getExpenseByID: getExpenseByID,
     getIncomeByID: getIncomeByID,
     getUserByID: getUserByID,
+    getUserByEmail: getUserByEmail,
     getAllPlannedExpenses: getAllPlannedExpenses,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     getAfterSpendingAmount: getAfterSpendingAmount,
