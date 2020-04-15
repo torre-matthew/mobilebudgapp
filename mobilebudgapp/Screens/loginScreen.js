@@ -15,7 +15,8 @@ class LoginScreen extends Component {
   state = {
     signedIn: false,
     name: "",
-    photoUrl: ""
+    photoUrl: "",
+    email:""
   }
 
   signIn = async () => {
@@ -25,17 +26,30 @@ class LoginScreen extends Component {
         scopes: ["profile", "email"]
       })
       if (result.type === "success") {
-        console.log(result);
-  
-        // ApiMethods.addUser(result.user.email, result.user.photoUrl, result.user.familyName, result.user.givenName)
-        // .then(data => console.log(data)).catch(err => console.log(err));
+          ApiMethods.getUserByEmail(result.user.email)
+          .then(data => {
+            if (data.data[0] === undefined){
+              ApiMethods.addUser(result.user.email, result.user.photoUrl, result.user.familyName, result.user.givenName)
+              .then(data => console.log(data)).catch(err => console.log(err));
 
+              this.setState({
+                signedIn: true,
+                name: result.user.name,
+                photoUrl: result.user.photoUrl,
+                email: result.user.email 
+              })
+            }else {
+              
+              this.setState({
+                signedIn: true,
+                name: result.user.name,
+                photoUrl: result.user.photoUrl,
+                email: result.user.email 
+              })
+            }
+          })
+          .catch(err => console.log(err))
 
-        this.setState({
-          signedIn: true,
-          name: result.user.name,
-          photoUrl: result.user.photoUrl
-        })
       } else {
         console.log("cancelled")
       }
@@ -66,14 +80,17 @@ class LoginScreen extends Component {
           </View>
           <View>
             {this.state.signedIn ? 
-              <Text> {this.state.name + " " + this.state.photoUrl} </Text>
+              <Text> {'Hi, ' + this.state.name} </Text>
             : 
               <Text></Text>
             }
           </View>
           <View style={LoginScreenStyles.signIn}>
+          {this.state.signedIn ? 
+              <Button title="Go To Main Page" onPress={() => navigation.navigate('Main', {email: this.state.email})} />
+            : 
             <Button title="Sign in with Google" onPress={() => this.signIn()} />
-            <Button title="Go To Main Page" onPress={() => navigation.navigate('Main', {name: this.state.name})} />
+            }
           </View>
         </ImageBackground>  
       </Container>
