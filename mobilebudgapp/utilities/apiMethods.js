@@ -41,6 +41,12 @@ let getUserByID = (userID) => {
     });
 }
 
+let getUserByEmail = (email) => {
+    return axios.get(URL + "api/getUserByEmail/" + email, {
+      params: {email: email}
+    });
+}
+
 let getAfterSpendingAmount = (incomeID) => {
     return axios.get(URL + "api/getAfterSpendingAmount/" + incomeID, {
       params: {incomeID: incomeID}

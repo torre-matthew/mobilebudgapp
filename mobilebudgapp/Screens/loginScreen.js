@@ -3,7 +3,9 @@ import { View, Button, ImageBackground } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import * as Google from 'expo-google-app-auth'
 import LoginScreenStyles from "../Styles/loginSreenStyles";
+import MainPage from '../Components/mainPage';
 import ApiMethods from '../utilities/apiMethods';
+import MainScreen from "./mainScreen";
 
 const style = require("../Styles/Styles");
 const backgroundImage = require('../Styles/images/turquise indigo gradient.png');
@@ -25,8 +27,8 @@ class LoginScreen extends Component {
       if (result.type === "success") {
         console.log(result);
   
-        ApiMethods.addUser(result.user.email, result.user.photoUrl, result.user.familyName, result.user.givenName)
-        .then(data => console.log(data)).catch(err => console.log(err));
+        // ApiMethods.addUser(result.user.email, result.user.photoUrl, result.user.familyName, result.user.givenName)
+        // .then(data => console.log(data)).catch(err => console.log(err));
 
 
         this.setState({
@@ -71,7 +73,7 @@ class LoginScreen extends Component {
           </View>
           <View style={LoginScreenStyles.signIn}>
             <Button title="Sign in with Google" onPress={() => this.signIn()} />
-            <Button title="Go To Main Page" onPress={() => navigation.navigate('Main')} />
+            <Button title="Go To Main Page" onPress={() => navigation.navigate('Main', {name: this.state.name})} />
           </View>
         </ImageBackground>  
       </Container>

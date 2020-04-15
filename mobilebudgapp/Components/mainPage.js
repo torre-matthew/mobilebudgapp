@@ -35,12 +35,13 @@ export default class MainPage extends Component {
     afterSpendingClicked: false,
     refreshing: false,
     signedIn: false,
-    name: "",
+    name: this.props.tester,
     photoUrl: ""
   };
 
   componentDidMount(){
     this.fetchData();
+    console.log('Name From Login Screen ' + this.state.name);
   }
 
   fetchData = () => {

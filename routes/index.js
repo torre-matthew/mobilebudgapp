@@ -13,6 +13,7 @@ router.route("/allUnPlannedExpenses").get(controllers.getAllUnPlannedExpenses);
 router.route("/getExpenseByID/:expenseID").get(controllers.getExpenseByID);
 router.route("/getIncomeByID/:incomeID").get(controllers.getIncomeByID);
 router.route("/getUserByID/:userID").get(controllers.getUserByID);
+router.route("/getUserByEmail/:email").get(controllers.getUserByEmail);
 router.route("/getAfterSpendingAmount/:incomeID").get(controllers.getAfterSpendingAmount);
 
 
