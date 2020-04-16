@@ -72,9 +72,7 @@ export default class MainPage extends Component {
           }, 
           
           () => {
-            this.getTotalIncome();
-            this.getIncomeDataFromDB();
-            this.getUnPlannedExpenseDataFromDB();
+            this.fetchData();
           })
         )
     .catch(err => console.log(err))
@@ -99,7 +97,7 @@ export default class MainPage extends Component {
   }
 
   getPlannedExpenseDataFromDB = () => {
-    ApiMethods.getAllPlannedExpenses().then(expenses => {
+    ApiMethods.getAllPlannedExpenses(this.state.loggedInUsersEmail).then(expenses => {
       this.setState({
         currentPlannedExpensesFromDB: expenses.data
       });
