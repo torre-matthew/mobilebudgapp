@@ -41,15 +41,15 @@ export default class MainPage extends Component {
   };
 
   componentDidMount(){
-    this.fetchData()
     this.getLoggedInUserIdByEmail(this.state.loggedInUsersEmail);
   }
 
   fetchData = () => {
+    this.getPlannedExpenseDataFromDB();
     this.getTotalIncome();
     this.getIncomeDataFromDB();
     this.getUnPlannedExpenseDataFromDB();
-    this.getPlannedExpenseDataFromDB();
+    
   }
 
   onRefresh = () => {
@@ -69,6 +69,12 @@ export default class MainPage extends Component {
     .then(data => 
           this.setState({
             loggedInUserID: data.data[0]._id 
+          }, 
+          
+          () => {
+            this.getTotalIncome();
+            this.getIncomeDataFromDB();
+            this.getUnPlannedExpenseDataFromDB();
           })
         )
     .catch(err => console.log(err))
