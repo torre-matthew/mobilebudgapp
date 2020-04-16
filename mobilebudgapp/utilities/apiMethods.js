@@ -11,6 +11,10 @@ let getIncome = () => {
     return axios.get(URL + "api/allIncome");
 }
 
+let getIncomeByUserID = (userID) => {
+    return axios.get(URL + "api/allIncome/" + userID);
+}
+
 let getExpenses = () => {
     return axios.get(URL + "api/allExpenses");
 }
@@ -130,6 +134,7 @@ let updateAfterSpendingAmount = (incomeID) => {
 
 export default {
     getIncome: getIncome,
+    getIncomeByUserID: getIncomeByUserID,
     getExpenses: getExpenses,
     getAllPlannedExpenses: getAllPlannedExpenses,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,

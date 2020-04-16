@@ -75,7 +75,7 @@ export default class MainPage extends Component {
   }
 
   getIncomeDataFromDB = () => {
-    ApiMethods.getIncome().then(income => {
+    ApiMethods.getIncomeByUserID(this.state.loggedInUserID).then(income => {
       this.setState({
         currentIncomeFromDB: income.data
       });

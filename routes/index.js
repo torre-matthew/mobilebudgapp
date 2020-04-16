@@ -6,6 +6,7 @@ router.route("/addingExpense").post(controllers.addExpense);
 router.route("/addingUser").post(controllers.addUser);
 
 router.route("/allIncome").get(controllers.getAllIncome);
+router.route("/allIncome/:userID").get(controllers.getAllIncomeByUserID);
 router.route("/allExpenses").get(controllers.getAllExpenses);
 router.route("/allUsers").get(controllers.getAllUsers);
 router.route("/allPlannedExpenses").get(controllers.getAllPlannedExpenses);
