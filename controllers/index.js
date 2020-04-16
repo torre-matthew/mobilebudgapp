@@ -64,16 +64,13 @@ let getAllUsers = (req, res) => {
 }
 
 let getAllPlannedExpenses = (req, res) => {
-    db.Expenses.find({
-                    isPlanned: true,
-                    userID: req.params.userID})
+    db.Expenses.find({userID: req.params.userID, isPlanned: true})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let getAllUnPlannedExpenses = (req, res) => {
-    db.Expenses.find({isPlanned: false,
-                    userID: req.params.userID})
+    db.Expenses.find({userID: req.params.userID, isPlanned: false})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
