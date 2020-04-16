@@ -50,6 +50,7 @@ class SummaryWrapper extends Component {
                         incomeDataFromDB={this.props.currentIncomeFromDB}
                         updateWrapperComponent={this.updateSummaryWrapperComponent}
                         switcherClicked={this.props.switcherClicked}
+                        loggedInUserID={this.props.loggedInUserID}
                         fetchData={this.props.fetchData}
                     />
                     )}
@@ -60,6 +61,7 @@ class SummaryWrapper extends Component {
                     handleIncomeName={this.props.handleIncomeName}
                     handleAddIncomeFormSubmit={this.props.handleAddIncomeFormSubmit}
                     updateWrapperComponent={this.updateSummaryWrapperComponent}
+                    loggedInUserID={this.props.loggedInUserID}
                     />
                 </Content>
         );

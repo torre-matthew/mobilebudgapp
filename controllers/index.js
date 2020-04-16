@@ -7,6 +7,7 @@ let addIncomeToDb = (req, res) => {
         date: req.body.date,
         name: req.body.name,
         amount: req.body.amount,
+        userID: req.body.userID,
         afterSpendingAmount: req.body.amount
     })
     .then(data => res.json(data))
@@ -18,6 +19,7 @@ let addExpenseToDb = (req, res) => {
         dateOfExpense: req.body.dateOfExpense,
         nameOfExpense: req.body.nameOfExpense,
         amountOfExpense: req.body.amountOfExpense,
+        userID: req.body.userID, 
         isPlanned: false
     })
     .then(data => res.json(data))

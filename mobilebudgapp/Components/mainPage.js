@@ -36,12 +36,13 @@ export default class MainPage extends Component {
     refreshing: false,
     signedIn: false,
     loggedInUsersEmail: this.props.loggedInUsersEmail,
+    loggedInUserID: "",
     photoUrl: ""
   };
 
   componentDidMount(){
-    this.fetchData();
-    console.log('Email From Login Screen ' + this.state.loggedInUsersEmail);
+    this.fetchData()
+    this.getLoggedInUserIdByEmail(this.state.loggedInUsersEmail);
   }
 
   fetchData = () => {
@@ -61,6 +62,16 @@ export default class MainPage extends Component {
 
   updateComponent = () => {
     this.setState({state: this.state});
+  }
+
+  getLoggedInUserIdByEmail = (email) => {
+    ApiMethods.getUserByEmail(email)
+    .then(data => 
+          this.setState({
+            loggedInUserID: data.data[0]._id 
+          })
+        )
+    .catch(err => console.log(err))
   }
 
   getIncomeDataFromDB = () => {
@@ -173,12 +184,14 @@ export default class MainPage extends Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     ApiMethods.addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due );
+    // ApiMethods.addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.state.loggedInUserID);
   };
 
   handleAddIncomeFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount);
+    // ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount, this.state.loggedInUserID);
     this.getTotalIncome();
   };
 
@@ -220,6 +233,7 @@ export default class MainPage extends Component {
                 switcherClicked={this.state.afterSpendingClicked}
                 switcherStyle={this.state.switcherClickedStyle}
                 incomeDataFromDB={this.state.currentIncomeFromDB}
+                loggedInUserID={this.state.loggedInUserID}
                 fetchData={this.fetchData}
               />
               <UnplannedBillWrapper
@@ -231,6 +245,7 @@ export default class MainPage extends Component {
                 updateComponent={this.updateComponent}
                 handleBillName={this.handleBillName} 
                 handleFormSubmit={this.handleFormSubmit}
+                loggedInUserID={this.state.loggedInUserID}
                 fetchData={this.fetchData}
               />
               <PlannedBillWrapper
@@ -240,6 +255,7 @@ export default class MainPage extends Component {
                 handleDueDate={this.handleDueDate}
                 handleBillName={this.handleBillName} 
                 handleFormSubmit={this.handleFormSubmit}
+                loggedInUserID={this.state.loggedInUserID}
                 fetchData={this.fetchData}
               />
             </View>

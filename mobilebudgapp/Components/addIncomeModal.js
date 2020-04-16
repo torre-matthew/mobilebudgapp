@@ -37,6 +37,7 @@ class AddEntryModal extends Component {
           handleAddIncomeFormSubmit={this.props.handleAddIncomeFormSubmit}
           closeModalOnSubmit={this.closeModal}
           getIncomeDataFromDBAndCloseModal={this.getIncomeDataFromDBAndCloseModal}
+          loggedInUserID={this.props.loggedInUserID}
         />
         </Modal>
         <TouchableOpacity
