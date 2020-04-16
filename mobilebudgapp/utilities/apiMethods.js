@@ -19,8 +19,8 @@ let getAllPlannedExpenses = () => {
     return axios.get(URL + "api/allPlannedExpenses");
 }
 
-let getAllUnPlannedExpenses = () => {
-    return axios.get(URL + "api/allUnPlannedExpenses");
+let getAllUnPlannedExpenses = (userID) => {
+    return axios.get(URL + "api/allUnPlannedExpenses/" + userID);
 }
 
 let getExpenseByID = (expenseID) => {
