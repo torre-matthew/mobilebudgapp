@@ -64,7 +64,9 @@ let getAllUsers = (req, res) => {
 }
 
 let getAllPlannedExpenses = (req, res) => {
-    db.Expenses.find({isPlanned: true})
+    db.Expenses.find({
+                    isPlanned: true,
+                    userID: req.params.userID})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
