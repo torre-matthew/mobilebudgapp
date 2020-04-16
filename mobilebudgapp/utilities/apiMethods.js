@@ -57,19 +57,21 @@ let getAfterSpendingAmount = (incomeID) => {
 
 /////////////Post Methods////////////////////
 
-let addIncome = (name, date, amount) => {
+let addIncome = (name, date, amount, userID) => {
     return axios.post(URL + 'api/addingIncome', {
         name: name,
         date: date,
         amount: amount,
+        userID: userID
     });
 }
 
-let addExpense = (name, date, amount) => {
+let addExpense = (name, date, amount, userID) => {
     return axios.post(URL + "api/addingExpense", {
         nameOfExpense: name,
         dateOfExpense: date,
         amountOfExpense: amount,
+        userID: userID
     });
 }
 

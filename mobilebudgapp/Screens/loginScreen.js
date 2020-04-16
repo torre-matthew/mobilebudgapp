@@ -78,7 +78,7 @@ class LoginScreen extends Component {
               Shall we get started?
             </Text>
           </View>
-          <View>
+          <View style={LoginScreenStyles.welcome}>
             {this.state.signedIn ? 
               <Text> {'Hi, ' + this.state.name} </Text>
             : 
