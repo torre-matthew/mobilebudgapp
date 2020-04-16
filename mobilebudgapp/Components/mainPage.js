@@ -97,7 +97,7 @@ export default class MainPage extends Component {
   }
 
   getPlannedExpenseDataFromDB = () => {
-    ApiMethods.getAllPlannedExpenses(this.state.loggedInUsersEmail).then(expenses => {
+    ApiMethods.getAllPlannedExpenses(this.state.loggedInUserID).then(expenses => {
       this.setState({
         currentPlannedExpensesFromDB: expenses.data
       });
