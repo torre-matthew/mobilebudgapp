@@ -71,16 +71,16 @@ class LoginScreen extends Component {
             <Text style={{color: '#F5F5F5', fontSize: 35}}>
               Hi! I'm Lahri.
             </Text>
-            <Text>
+            <Text style={{color: '#F5F5F5', fontSize: 25}}>
               I'll help you make a plan for your money.
             </Text>
-            <Text>
+            <Text style={{color: '#F5F5F5', fontSize: 25}}>
               Shall we get started?
             </Text>
           </View>
           <View style={LoginScreenStyles.welcome}>
             {this.state.signedIn ? 
-              <Text> {'Hi, ' + this.state.name} </Text>
+              <Text style={{color: '#F5F5F5', fontSize: 25}}> {'Hi, ' + this.state.name} </Text>
             : 
               <Text></Text>
             }
