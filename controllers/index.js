@@ -56,7 +56,7 @@ let getAllIncomeByUserID = (req, res) => {
 
                         
                             db.Users.updateOne({_id: req.params.userID}, { $push: { income: userIncomeRecordObject._id } }, { new: true })
-                            .then(data => clog(data))
+                            .then(data => console.log(data))
                             .catch(err => console.log(err))
                         });
 
