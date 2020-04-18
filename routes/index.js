@@ -22,8 +22,9 @@ router.route("/deleteExpense").delete(controllers.deleteExpense);
 router.route("/deleteIncome").delete(controllers.deleteIncome);
 router.route("/updateExpense").put(controllers.editExpense);
 router.route("/updateIncome").put(controllers.editIncome);
-router.route("/updateAfterSpendingAmount/:incomeID").get(controllers.updateAfterSpendingAmount);
-
+router.route("/updateAfterSpendingAmount/:incomeID").put(controllers.updateAfterSpendingAmount);
+router.route("/updateIncomeOnUserRecord/:userID").put(controllers.updateIncomeOnUserRecord);
+router.route("/updateExpensesOnUserRecord/:userID").put(controllers.updateExpensesOnUserRecord);
 
 router.use("/api", router);
 
