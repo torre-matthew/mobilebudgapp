@@ -46,20 +46,21 @@ let getAllIncome = (req, res) => {
 }
 
 let getAllIncomeByUserID = (req, res) => {
-    let userIncomeData = [];
-    db.Income.find({userID: req.params.userID})
-    .then(data => {
-        
-        data.forEach(incomeRecord => {
-            console.log(incomeRecord._id);
-        });
 
-        })
-    .catch(err => console.log(err));
+        db.Income.find({userID: req.params.userID})
+        .then(data => {
+            
+            data.forEach(incomeRecord => {
 
-    db.Users.find({_id: req.params.userID})
-    .then(data => console.log(data[0].income))
-    .catch(err => console.log(err));
+                db.Users.findOneAndUpdate({_id: req.params.userID}, { $push: { income: incomeRecord._id } }, { new: true })
+                .then(data => console.log(data))
+                .catch(err => console.log(err))
+            });
+
+            })
+        .catch(err => console.log(err));
+    
+    
 }
 
 let getAllExpenses = (req, res) => {
