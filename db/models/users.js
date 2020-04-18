@@ -1,4 +1,5 @@
 let mongoose = require("mongoose");
+let Income = require("./income");
 
 let Schema = mongoose.Schema;
 
@@ -19,6 +20,14 @@ let UsersSchema = new Schema({
       type: String,
       required: false
   },
+  income: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Income'
+  }],
+  expenses: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Expenses'
+  }],
 });
 
 // This creates our model from the above schema, using mongoose's model method
