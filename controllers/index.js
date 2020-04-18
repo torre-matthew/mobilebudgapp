@@ -67,9 +67,15 @@ let getAllUsers = (req, res) => {
 }
 
 let getAllPlannedExpenses = (req, res) => {
-    db.Expenses.find({userID: req.params.userID, isPlanned: true})
-    .then(data => res.json(data))
+    
+    db.Users.find({_id: req.params.userID, expenses: {$elemMatch: { isPlanned: true }}})
+    .then(data => console.log(data))
     .catch(err => console.log(err));
+    
+    
+    // db.Expenses.find({userID: req.params.userID, isPlanned: true})
+    // .then(data => res.json(data))
+    // .catch(err => console.log(err));
 }
 
 let getAllUnPlannedExpenses = (req, res) => {
