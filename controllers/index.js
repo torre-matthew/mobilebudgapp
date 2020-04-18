@@ -47,7 +47,7 @@ let getAllIncome = (req, res) => {
 
 let getAllIncomeByUserID = (req, res) => {
     //first, empty the the income array for the user
-    db.Users.updateOne({_id: req.params.userID}, { $push: { income: [] } }, { new: true })
+    db.Users.updateOne({_id: req.params.userID}, { $set: { income: [] } }, { new: true })
         .then(data => {
 
             console.log(data);
