@@ -65,8 +65,8 @@ let getAllIncomeByUserID = (req, res) => {
     //         })
     //     .catch(err => console.log(err))
 
-    db.Users.find({userID: req.params.userID})
-    // .populate('income')
+    db.Users.find({_id: req.params.userID})
+    .populate('income')
     .then(data => console.log(data))
     .catch(err => console.log(err));
     
