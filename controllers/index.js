@@ -147,7 +147,7 @@ let editIncomeByID = (req, res) => {
     .catch(err => console.log(err));
 }
 
-let updateIncomeOnUserRecord = () => {
+let updateIncomeOnUserRecord = (req, res) => {
     //first, empty the the income array for the user
     db.Users.updateOne({_id: req.params.userID}, { $set: { income: [] } }, { new: true })
         .then(data => {
@@ -167,7 +167,7 @@ let updateIncomeOnUserRecord = () => {
         .catch(err => console.log(err))
 }
 
-let updateExpensesOnUserRecord = () => {
+let updateExpensesOnUserRecord = (req, res) => {
     //first, empty the the expense array for the user
     db.Users.updateOne({_id: req.params.userID}, { $set: { expenses: [] } }, { new: true })
         .then(data => {
