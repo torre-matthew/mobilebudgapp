@@ -47,23 +47,28 @@ let getAllIncome = (req, res) => {
 
 let getAllIncomeByUserID = (req, res) => {
     //first, empty the the income array for the user
-    db.Users.updateOne({_id: req.params.userID}, { $set: { income: [] } }, { new: true })
-        .then(data => {
+    // db.Users.updateOne({_id: req.params.userID}, { $set: { income: [] } }, { new: true })
+    //     .then(data => {
 
-                db.Income.find({userID: req.params.userID}) //find all income by userID
-                .then(userIncomeArrayFromDB => {
+    //             db.Income.find({userID: req.params.userID}) //find all income by userID
+    //             .then(userIncomeArrayFromDB => {
 
-                    userIncomeArrayFromDB.forEach(userIncomeRecordObject => {
-                            db.Users.updateOne({_id: req.params.userID}, { $push: { income: userIncomeRecordObject._id } }, { new: true })
-                            .then(data => console.log(data))
-                            .catch(err => console.log(err))
-                        });
+    //                 userIncomeArrayFromDB.forEach(userIncomeRecordObject => {
+    //                         db.Users.updateOne({_id: req.params.userID}, { $push: { income: userIncomeRecordObject._id } }, { new: true })
+    //                         .then(data => console.log(data))
+    //                         .catch(err => console.log(err))
+    //                     });
 
-                    })
-                .catch(err => console.log(err));
+    //                 })
+    //             .catch(err => console.log(err));
 
-            })
-        .catch(err => console.log(err))
+    //         })
+    //     .catch(err => console.log(err))
+
+    db.Users.find({userID: req.params.userID})
+    .populate('Income')
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
     
     
 }
