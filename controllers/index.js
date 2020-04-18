@@ -49,10 +49,10 @@ let getAllIncomeByUserID = (req, res) => {
 
         db.Income.find({userID: req.params.userID})
         .then(data => {
-            
+
             data.forEach(incomeRecord => {
 
-                db.Users.findOneAndUpdate({_id: req.params.userID}, { $push: { income: incomeRecord._id } }, { new: true })
+                db.Users.updateOne({_id: req.params.userID}, { $push: { income: incomeRecord._id } }, { new: true })
                 .then(data => console.log(data))
                 .catch(err => console.log(err))
             });
