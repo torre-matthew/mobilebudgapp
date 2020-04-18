@@ -69,6 +69,8 @@ let getAllUsers = (req, res) => {
 let getAllPlannedExpenses = (req, res) => {
     //expenses: {$elemMatch: { isPlanned: true }}
     db.Users.find({_id: req.params.userID})
+    .populate('income')
+    .populate('expenses')
     .then(data => res.json(data))
     .catch(err => console.log(err));
     
