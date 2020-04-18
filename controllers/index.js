@@ -47,7 +47,13 @@ let getAllIncome = (req, res) => {
 
 let getAllIncomeByUserID = (req, res) => {
     db.Income.find({userID: req.params.userID})
-    .then(data => console.log(data))
+    .then(data => {
+        
+        data.forEach(incomeRecord => {
+            console.log(incomeRecord._id);
+        });
+        
+        console.log(data)})
     .catch(err => console.log(err));
 }
 
