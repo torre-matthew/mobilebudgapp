@@ -53,7 +53,13 @@ let getAllIncomeByUserID = (req, res) => {
             console.log(incomeRecord._id);
         });
         
-        console.log(data)})
+        db.Users.find({_id: req.params.userID})
+        .then(data => res.json(data))
+        .catch(err => console.log(err));
+
+
+
+        })
     .catch(err => console.log(err));
 }
 

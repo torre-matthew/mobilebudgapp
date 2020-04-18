@@ -57,7 +57,6 @@ class LoginScreen extends Component {
       console.log("error", e)
     }
 }
-
  render() {
 
    const {navigation} = this.props;
@@ -68,19 +67,19 @@ class LoginScreen extends Component {
             source={backgroundImage}
             style={{width: '100%', height: '100%'}} >
           <View style={LoginScreenStyles.welcome}>
-            <Text style={{color: '#F5F5F5', fontSize: 35}}>
+            <Text style={{color: '#F5F5F5', fontSize: 30}}>
               Hi! I'm Lahri.
             </Text>
-            <Text style={{color: '#F5F5F5', fontSize: 25}}>
+            <Text style={{color: '#F5F5F5', fontSize: 18}}>
               I'll help you make a plan for your money.
             </Text>
-            <Text style={{color: '#F5F5F5', fontSize: 25}}>
-              Shall we get started?
+            <Text style={{color: '#F5F5F5', fontSize: 18}}>
+              Shall we get to it?
             </Text>
           </View>
           <View style={LoginScreenStyles.welcome}>
             {this.state.signedIn ? 
-              <Text style={{color: '#F5F5F5', fontSize: 25}}> {'Hi, ' + this.state.name} </Text>
+              <Text style={{color: '#F5F5F5', fontSize: 18}}> {'Welcome back, ' + this.state.name} </Text>
             : 
               <Text></Text>
             }
