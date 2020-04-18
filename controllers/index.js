@@ -61,6 +61,7 @@ let getAllExpenses = (req, res) => {
 let getAllUsers = (req, res) => {
     db.Users.find({})
     .populate('income')
+    .populate('expenses')
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
