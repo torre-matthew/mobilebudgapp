@@ -68,9 +68,13 @@ let getAllUsers = (req, res) => {
 
 let getAllPlannedExpenses = (req, res) => {
     //expenses: {$elemMatch: { isPlanned: true }}
-    db.Users.aggregate([{$match: {_id: req.params.userID}}])
+    db.Users.find({_id: req.params.userID})
     .populate('expenses')
-    .then(data => res.json(data[0].expenses))
+    .then(data => {
+        data[0].expenses.find({isPlanned: true})
+        .then(data => res.json(data))
+        .catch(err => console.log(err))
+        })
     .catch(err => console.log(err));
     
     
