@@ -213,7 +213,7 @@ let updateExpensesOnUserRecord = (req, res) => {
                             .then(arrayOfPlannedExpenses => 
                                 {
                                     arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
-                                                db.Users.updateOne({_id: req.params.userID}, { $push: { expesenses: {planned: userExpenseRecordObject._id } } }, { new: true })
+                                                db.Users.updateOne({_id: req.params.userID}, { $push: { expenses: {planned: userExpenseRecordObject._id } } }, { new: true })
                                                 .then(data => res.json(data))
                                                 .catch(err => console.log(err))
                                             });
