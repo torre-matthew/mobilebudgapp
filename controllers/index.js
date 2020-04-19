@@ -202,7 +202,8 @@ let updateIncomeOnUserRecord = (req, res) => {
 
 let updateExpensesOnUserRecord = (req, res) => {
 
-    let arrayOfExpensesToBeSetInDB = [];
+    let arrayOfPlannedExpensesToBeSetInDB = [];
+    let arrayOfUnPlannedExpensesToBeSetInDB = [];
     //first, empty the the expense array for the user
     db.Users
     .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
@@ -215,18 +216,32 @@ let updateExpensesOnUserRecord = (req, res) => {
                             .then(arrayOfPlannedExpenses => 
                                 { 
                                     arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
-                                        arrayOfExpensesToBeSetInDB.push(userExpenseRecordObject._id);
+                                        arrayOfPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
                                             });
-
-                                    db.Users
-                                    .updateOne({_id: req.params.userID}, { $set: { expenses: arrayOfExpensesToBeSetInDB} }, { new: true })
-                                    .then(data => res.json(data))
-                                    .catch(err => console.log(err))
                                 })
                             .catch(err => console.log(err))
 
+                        db.Expenses
+                        .find({userID: req.params.userID, isPlanned: false})
+                        .then(arrayOfUnPlannedExpenses => 
+                            { 
+                                arrayOfUnPlannedExpenses.forEach(userExpenseRecordObject => {
+                                    arrayOfUnPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
+                                        });
+
+                            console.log(arrayOfPlannedExpensesToBeSetInDB);
+                            console.log(arrayOfUnPlannedExpensesToBeSetInDB);           
+                            })
+                        .catch(err => console.log(err))
+
                     })
                 .catch(err => console.log(err));
+
+
+                // db.Users
+                // .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB}} }, { new: true })
+                // .then(data => res.json(data))
+                // .catch(err => console.log(err))
 }
 
 let updateAfterSpendingAmount = (req, res) => {
