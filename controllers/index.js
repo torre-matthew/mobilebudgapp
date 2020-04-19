@@ -209,7 +209,7 @@ let updateExpensesOnUserRecord = (req, res) => {
                     
                             
                         db.Expenses
-                            .find({userID: req.params.userID})
+                            .find({userID: req.params.userID, isPlanned: true})
                             .then(arrayOfPlannedExpenses => console.log(arrayOfPlannedExpenses))
                             .catch(err => console.log(err))
 
