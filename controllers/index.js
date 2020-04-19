@@ -124,7 +124,8 @@ let getUserByEmail = (req, res) => {
     db.Users
     .find({email: req.params.email})
     .populate('income')
-    .populate('expenses')
+    .populate('expenses.planned')
+    .populate('expenses.unPlanned')
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
