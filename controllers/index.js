@@ -203,7 +203,7 @@ let updateIncomeOnUserRecord = (req, res) => {
 let updateExpensesOnUserRecord = (req, res) => {
     //first, empty the the expense array for the user
     db.Users
-    .updateOne({_id: req.params.userID}, { $set: { expenses: [] } }, { new: true })
+    .updateOne({_id: req.params.userID}, { $set: { expenses: {} } }, { new: true })
         .then(data => {
     //then find all expenses with that userID
                 db.Expenses.find({userID: req.params.userID}) 
