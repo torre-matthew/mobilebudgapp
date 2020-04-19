@@ -210,16 +210,17 @@ let updateExpensesOnUserRecord = (req, res) => {
                             
                         db.Expenses
                             .find({userID: req.params.userID, isPlanned: true})
-                            .then(arrayOfPlannedExpenses => console.log(arrayOfPlannedExpenses))
+                            .then(arrayOfPlannedExpenses => 
+                                {
+                                    arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
+                                                db.Users.updateOne({_id: req.params.userID}, { $push: { expesenses: {planned: userExpenseRecordObject._id } } }, { new: true })
+                                                .then(data => res.json(data))
+                                                .catch(err => console.log(err))
+                                            });
+                                }
+                                )
                             .catch(err => console.log(err))
 
-
-
-                    // userExpensesArrayFromDB.forEach(userExpenseRecordObject => {
-                    //         db.Users.updateOne({_id: req.params.userID}, { $push: { expesenses: {planned: userExpenseRecordObject._id } } }, { new: true })
-                    //         .then(data => res.json(data))
-                    //         .catch(err => console.log(err))
-                    //     });
                     })
                 .catch(err => console.log(err));
 }
