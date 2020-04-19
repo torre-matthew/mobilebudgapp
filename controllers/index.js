@@ -203,14 +203,15 @@ let updateIncomeOnUserRecord = (req, res) => {
 let updateExpensesOnUserRecord = (req, res) => {
     //first, empty the the expense array for the user
     db.Users
-    .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: [], unPlanned: [] }}}) 
+    .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
                     .then(userExpensesArrayFromDB => {
     //then repopulate the expenses array on the user with the latest 
-                    userExpensesArrayFromDB.forEach(userExpenseRecordObject => {
-                            db.Users.updateOne({_id: req.params.userID}, { $push: { expesenses: {planned: userExpenseRecordObject._id } } }, { new: true })
-                            .then(data => res.json(data))
-                            .catch(err => console.log(err))
-                        });
+                    console.log(userIncomeArrayFromDB);
+                    // userExpensesArrayFromDB.forEach(userExpenseRecordObject => {
+                    //         db.Users.updateOne({_id: req.params.userID}, { $push: { expesenses: {planned: userExpenseRecordObject._id } } }, { new: true })
+                    //         .then(data => res.json(data))
+                    //         .catch(err => console.log(err))
+                    //     });
                     })
                 .catch(err => console.log(err));
 }
