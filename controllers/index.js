@@ -3,36 +3,39 @@ const db = require("../db/models");
 ////////// Add Data Controllers //////////////////
 
 let addIncomeToDb = (req, res) => {
-    db.Income.create({
+    db.Income
+    .create({
         date: req.body.date,
         name: req.body.name,
         amount: req.body.amount,
         userID: req.body.userID,
         afterSpendingAmount: req.body.amount
-    })
+        })
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let addExpenseToDb = (req, res) => {
-    db.Expenses.create({
+    db.Expenses
+    .create({
         dateOfExpense: req.body.dateOfExpense,
         nameOfExpense: req.body.nameOfExpense,
         amountOfExpense: req.body.amountOfExpense,
         userID: req.body.userID, 
         isPlanned: false
-    })
+        })
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let addUserToDb = (req, res) => {
-    db.Users.create({
+    db.Users
+    .create({
         email: req.body.email,
         profilePic: req.body.profilePic,
         firstName: req.body.firstName,
         lastName: req.body.lastName
-    })
+        })
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
@@ -40,26 +43,30 @@ let addUserToDb = (req, res) => {
 ////////// Get Data Controllers //////////////////
 
 let getAllIncome = (req, res) => {
-    db.Income.find({})
+    db.Income
+    .find({})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let getAllIncomeByUserID = (req, res) => {
-    db.Users.find({_id: req.params.userID})
+    db.Users
+    .find({_id: req.params.userID})
     .populate('income')
     .then(data => res.json(data[0].income))
     .catch(err => console.log(err));
 }
 
 let getAllExpenses = (req, res) => {
-    db.Expenses.find({})
+    db.Expenses
+    .find({})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let getAllUsers = (req, res) => {
-    db.Users.find({})
+    db.Users
+    .find({})
     .populate('income')
     .populate('expenses')
     .then(data => res.json(data))
@@ -68,14 +75,17 @@ let getAllUsers = (req, res) => {
 
 let getAllPlannedExpenses = (req, res) => {
     //expenses: {$elemMatch: { isPlanned: true }}
-    db.Users.find({_id: req.params.userID})
-    .populate('expenses')
-    .then(data => {
-        data[0].expenses.find({isPlanned: true})
-        .then(data => res.json(data))
-        .catch(err => console.log(err))
-        })
-    .catch(err => console.log(err));
+
+    db.Users
+        .aggregate([{_id: req.params.userID}])
+        .then(data => res.json(data[0].expenses))
+        .catch(err => console.log(err));
+
+    // db.Users
+    //     .find({_id: req.params.userID})
+    //     .populate('expenses')
+    //     .then(data => res.json(data[0].expenses))
+    //     .catch(err => console.log(err));
     
     
     // db.Expenses.find({userID: req.params.userID, isPlanned: true})
@@ -84,37 +94,43 @@ let getAllPlannedExpenses = (req, res) => {
 }
 
 let getAllUnPlannedExpenses = (req, res) => {
-    db.Expenses.find({userID: req.params.userID, isPlanned: false})
+    db.Expenses
+    .find({userID: req.params.userID, isPlanned: false})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let getExpenseByID = (req, res) => {
-    db.Expenses.find({_id: req.params.expenseID})
+    db.Expenses
+    .find({_id: req.params.expenseID})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let getIncomeByID = (req, res) => {
-    db.Income.find({_id: req.params.incomeID})
+    db.Income
+    .find({_id: req.params.incomeID})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let getUserByID = (req, res) => {
-    db.Users.find({_id: req.params.userID})
+    db.Users
+    .find({_id: req.params.userID})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let getUserByEmail = (req, res) => {
-    db.Users.find({email: req.params.email})
+    db.Users
+    .find({email: req.params.email})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let getAfterSpendingAmount = (req, res) => {
-    db.Income.find({_id: req.params.incomeID})
+    db.Income
+    .find({_id: req.params.incomeID})
     .then(data => res.json(data[0].afterSpendingAmount))
     .catch(err => console.log(err));
 }
@@ -122,19 +138,22 @@ let getAfterSpendingAmount = (req, res) => {
 ////////////// Update/Delete Data ///////////////////////
 
 let deleteExpenseByID = (req, res) => {
-    db.Expenses.deleteOne( { _id: req.body._id } )
+    db.Expenses
+    .deleteOne( { _id: req.body._id } )
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let deleteIncomeByID = (req, res) => {
-    db.Income.deleteOne( { _id: req.body._id } )
+    db.Income
+    .deleteOne( { _id: req.body._id } )
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
 
 let editExpenseByID = (req, res) => {
-    db.Expenses.updateOne({_id: req.body.data._id},
+    db.Expenses
+    .updateOne({_id: req.body.data._id},
         {$set: {
                 nameOfExpense: req.body.data.nameOfExpense,    
                 dateOfExpense: req.body.data.dateOfExpense, 
@@ -148,7 +167,8 @@ let editExpenseByID = (req, res) => {
 }
 
 let editIncomeByID = (req, res) => {
-    db.Income.updateOne({_id: req.body.data._id},
+    db.Income
+    .updateOne({_id: req.body.data._id},
         {$set: {
                 name: req.body.data.name,    
                 date: req.body.data.date, 
@@ -161,7 +181,8 @@ let editIncomeByID = (req, res) => {
 
 let updateIncomeOnUserRecord = (req, res) => {
     //first, empty the the income array for the user
-    db.Users.updateOne({_id: req.params.userID}, { $set: { income: [] } }, { new: true })
+    db.Users
+    .updateOne({_id: req.params.userID}, { $set: { income: [] } }, { new: true })
         .then(data => {
     //then find all income with that userID
                 db.Income.find({userID: req.params.userID}) 
@@ -181,7 +202,8 @@ let updateIncomeOnUserRecord = (req, res) => {
 
 let updateExpensesOnUserRecord = (req, res) => {
     //first, empty the the expense array for the user
-    db.Users.updateOne({_id: req.params.userID}, { $set: { expenses: [] } }, { new: true })
+    db.Users
+    .updateOne({_id: req.params.userID}, { $set: { expenses: [] } }, { new: true })
         .then(data => {
     //then find all expenses with that userID
                 db.Expenses.find({userID: req.params.userID}) 
@@ -202,7 +224,8 @@ let updateExpensesOnUserRecord = (req, res) => {
 let updateAfterSpendingAmount = (req, res) => {
     let totalOfExpenses = 0;
     let availableIncomeAmount = 0;
-    db.Expenses.find({fundingSource: req.params.incomeID}) //find expenses by funding source
+    db.Expenses
+    .find({fundingSource: req.params.incomeID}) //find expenses by funding source
     .then(data => {
         if (data[0] === undefined) { // if there are no expeses for a given funding source
             totalOfExpenses = 0;    // set the total of expenses to 0

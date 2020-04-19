@@ -25,8 +25,14 @@ let UsersSchema = new Schema({
     ref: 'Income'
   }],
   expenses: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Expenses'
+    planned: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Expenses'
+    }],
+    unPlanned: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Expenses'
+    }],
   }],
 });
 
