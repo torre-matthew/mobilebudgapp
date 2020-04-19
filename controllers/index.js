@@ -76,7 +76,7 @@ let getAllPlannedExpenses = (req, res) => {
     db.Users
         .find({_id: req.params.userID})
         .populate('expenses.planned')
-        .then(data => res.json(data))
+        .then(data => res.json(data[0].expenses.planned))
         .catch(err => console.log(err));
 }
 
