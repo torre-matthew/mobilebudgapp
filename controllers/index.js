@@ -73,23 +73,11 @@ let getAllUsers = (req, res) => {
 }
 
 let getAllPlannedExpenses = (req, res) => {
-    //expenses: {$elemMatch: { isPlanned: true }}
-
     db.Users
-        .aggregate([{_id: req.params.userID}])
-        .then(data => res.json(data[0].expenses))
+        .find({_id: req.params.userID})
+        .populate('expenses.planned')
+        .then(data => res.json(data))
         .catch(err => console.log(err));
-
-    // db.Users
-    //     .find({_id: req.params.userID})
-    //     .populate('expenses')
-    //     .then(data => res.json(data[0].expenses))
-    //     .catch(err => console.log(err));
-    
-    
-    // db.Expenses.find({userID: req.params.userID, isPlanned: true})
-    // .then(data => res.json(data))
-    // .catch(err => console.log(err));
 }
 
 let getAllUnPlannedExpenses = (req, res) => {
@@ -206,13 +194,11 @@ let updateExpensesOnUserRecord = (req, res) => {
 
     let arrayOfPlannedExpensesToBeSetInDB = [];
     let arrayOfUnPlannedExpensesToBeSetInDB = [];
-    //first, empty the the expense array for the user
+    //first, empty the the expense arrays for the user
     db.Users
     .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
                     .then(userExpensesArrayFromDB => {
-    //then repopulate the expenses array on the user with the latest 
-                    
-                            
+    //then find all the unplannend and planned expenses from the expense table and push them to the arrays above.
                         db.Expenses
                             .find({userID: req.params.userID, isPlanned: true})
                             .then(arrayOfPlannedExpenses => 
@@ -231,9 +217,7 @@ let updateExpensesOnUserRecord = (req, res) => {
                                     arrayOfUnPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
                                         });
 
-                                console.log(arrayOfPlannedExpensesToBeSetInDB);
-                                console.log(arrayOfUnPlannedExpensesToBeSetInDB); 
-                                        
+//then updated the planned and unplanned expense record for that use in the db.
                                 db.Users
                                 .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
                                 .then(data => res.json(data))
@@ -243,8 +227,6 @@ let updateExpensesOnUserRecord = (req, res) => {
                         .catch(err => console.log(err))
                     })
                 .catch(err => console.log(err));
-
-
 
 }
 
