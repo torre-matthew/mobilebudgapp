@@ -206,7 +206,14 @@ let updateExpensesOnUserRecord = (req, res) => {
     .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
                     .then(userExpensesArrayFromDB => {
     //then repopulate the expenses array on the user with the latest 
-                    console.log(userExpensesArrayFromDB);
+                    
+                            
+                        db.Expenses.find({_id: req.params.userID, isPlanned: true})
+                            .then(arrayOfPlannedExpenses => console.log(arrayOfPlannedExpenses))
+                            .catch(err => console.log(err))
+
+
+
                     // userExpensesArrayFromDB.forEach(userExpenseRecordObject => {
                     //         db.Users.updateOne({_id: req.params.userID}, { $push: { expesenses: {planned: userExpenseRecordObject._id } } }, { new: true })
                     //         .then(data => res.json(data))
