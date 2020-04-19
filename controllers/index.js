@@ -219,7 +219,7 @@ let updateExpensesOnUserRecord = (req, res) => {
                                             });
 
                                     db.Users
-                                    .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: arrayOfExpensesToBeSetInDB} } }, { new: true })
+                                    .updateOne({_id: req.params.userID}, { $set: { expenses: arrayOfExpensesToBeSetInDB} }, { new: true })
                                     .then(data => res.json(data))
                                     .catch(err => console.log(err))
                                 })
