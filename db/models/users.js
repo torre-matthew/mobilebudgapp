@@ -24,7 +24,7 @@ let UsersSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Income'
   }],
-  expenses: [{
+  expenses: {
     planned: [{
       type: Schema.Types.ObjectId,
       ref: 'Expenses'
@@ -33,7 +33,7 @@ let UsersSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Expenses'
     }],
-  }],
+  },
 });
 
 // This creates our model from the above schema, using mongoose's model method
