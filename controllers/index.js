@@ -229,19 +229,21 @@ let updateExpensesOnUserRecord = (req, res) => {
                                     arrayOfUnPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
                                         });
 
-                            console.log(arrayOfPlannedExpensesToBeSetInDB);
-                            console.log(arrayOfUnPlannedExpensesToBeSetInDB);           
+                                console.log(arrayOfPlannedExpensesToBeSetInDB);
+                                console.log(arrayOfUnPlannedExpensesToBeSetInDB); 
+                                        
+                                db.Users
+                                .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
+                                .then(data => res.json(data))
+                                .catch(err => console.log(err))
+                            
                             })
                         .catch(err => console.log(err))
-
                     })
                 .catch(err => console.log(err));
 
 
-                // db.Users
-                // .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB}} }, { new: true })
-                // .then(data => res.json(data))
-                // .catch(err => console.log(err))
+
 }
 
 let updateAfterSpendingAmount = (req, res) => {
