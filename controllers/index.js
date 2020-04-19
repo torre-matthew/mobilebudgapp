@@ -123,6 +123,8 @@ let getUserByID = (req, res) => {
 let getUserByEmail = (req, res) => {
     db.Users
     .find({email: req.params.email})
+    .populate('income')
+    .populate('expenses')
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
