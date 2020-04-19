@@ -208,7 +208,8 @@ let updateExpensesOnUserRecord = (req, res) => {
     //then repopulate the expenses array on the user with the latest 
                     
                             
-                        db.Expenses.find({_id: req.params.userID, isPlanned: true})
+                        db.Expenses
+                            .find({_id: req.params.userID})
                             .then(arrayOfPlannedExpenses => console.log(arrayOfPlannedExpenses))
                             .catch(err => console.log(err))
 
