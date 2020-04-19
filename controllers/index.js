@@ -211,12 +211,12 @@ let updateExpensesOnUserRecord = (req, res) => {
                         db.Expenses
                             .find({userID: req.params.userID, isPlanned: true})
                             .then(arrayOfPlannedExpenses => 
-                                {
-                                    arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
-                                                db.Users.updateOne({_id: req.params.userID}, { $set: { expenses: {planned: userExpenseRecordObject._id} } }, { new: true })
-                                                .then(data => res.json(data))
-                                                .catch(err => console.log(err))
-                                            });
+                                { console.log(arrayOfPlannedExpenses);
+                                    // arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
+                                    //             db.Users.updateOne({_id: req.params.userID}, { $set: { expenses: {planned: userExpenseRecordObject._id} } }, { new: true })
+                                    //             .then(data => res.json(data))
+                                    //             .catch(err => console.log(err))
+                                    //         });
                                 }
                                 )
                             .catch(err => console.log(err))
