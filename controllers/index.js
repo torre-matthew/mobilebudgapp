@@ -71,6 +71,8 @@ let getAllPlannedExpenses = (req, res) => {
     db.Users.find({_id: req.params.userID})
     .populate('expenses')
     .then(data => res.json(data[0].expenses))
+    .aggregate([{$match: {isPlanned: true}}])
+    .then(data => res.json(data))
     .catch(err => console.log(err));
     
     
