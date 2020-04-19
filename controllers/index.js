@@ -48,7 +48,7 @@ let getAllIncome = (req, res) => {
 let getAllIncomeByUserID = (req, res) => {
     db.Users.find({_id: req.params.userID})
     .populate('income')
-    .then(data => res.json(data))
+    .then(data => res.json(data[0].income))
     .catch(err => console.log(err));
 }
 
