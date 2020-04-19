@@ -81,10 +81,11 @@ let getAllPlannedExpenses = (req, res) => {
 }
 
 let getAllUnPlannedExpenses = (req, res) => {
-    db.Expenses
-    .find({userID: req.params.userID, isPlanned: false})
-    .then(data => res.json(data))
-    .catch(err => console.log(err));
+    db.Users
+        .find({_id: req.params.userID})
+        .populate('expenses.unPlanned')
+        .then(data => res.json(data[0].expenses.unPlanned))
+        .catch(err => console.log(err));
 }
 
 let getExpenseByID = (req, res) => {
