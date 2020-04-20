@@ -79,13 +79,19 @@ export default class MainPage extends Component {
   }
 
   getIncomeDataFromDB = () => {
-    ApiMethods.getIncomeByUserID(this.state.loggedInUserID).then(income => {
-      this.setState({
-        currentIncomeFromDB: income.data
-      });
-    });
+    ApiMethods
+    .getIncomeByUserID(this.state.loggedInUserID)
+    .then(income => {
+      
+        this.setState({
+          currentIncomeFromDB: income.data
+          },
+            () => {
+              this.getTotalIncome();
+          })
 
-    this.getTotalIncome();
+    .catch(err => console.log(err))
+    });
   }
 
   getUnPlannedExpenseDataFromDB = () => {
@@ -102,6 +108,10 @@ export default class MainPage extends Component {
         currentPlannedExpensesFromDB: expenses.data
       });
     });
+  }
+
+  updateExpensesOnUserRecord = () => {
+    return ApiMethods.updateExpensesOnUserRecord(this.state.loggedInUserID);
   }
 
   handleIncomeName = text => {
@@ -204,14 +214,18 @@ export default class MainPage extends Component {
     if (switcher === 'after') {
       this.setState({
         afterSpendingClicked: true
+      },
+      () => {
+        this.getTotalIncome();
       });
     } else {
       this.setState({
         afterSpendingClicked: false
+      },
+      () => {
+        this.getTotalIncome();
       });
     }
-    
-    this.getTotalIncome();
   };
 
   render() {
@@ -247,6 +261,7 @@ export default class MainPage extends Component {
                 handleBillAmount={this.handleBillAmount}
                 handleDueDate={this.handleDueDate}
                 updateComponent={this.updateComponent}
+                updateExpensesOnUserRecord={this.updateExpensesOnUserRecord}
                 handleBillName={this.handleBillName} 
                 handleFormSubmit={this.handleFormSubmit}
                 loggedInUserID={this.state.loggedInUserID}
@@ -261,6 +276,7 @@ export default class MainPage extends Component {
                 handleFormSubmit={this.handleFormSubmit}
                 loggedInUserID={this.state.loggedInUserID}
                 fetchData={this.fetchData}
+                updateExpensesOnUserRecord={this.updateExpensesOnUserRecord}
               />
             </View>
           </ScrollView>
