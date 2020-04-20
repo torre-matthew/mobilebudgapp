@@ -131,6 +131,12 @@ let updateAfterSpendingAmount = (incomeID) => {
     });
 }
 
+let updateExpensesOnUserRecord = (userID) => {
+    return axios.put(URL + "api/updateExpensesOnUserRecord/" + userID, {
+        params: {userID: userID}
+      });
+}
+
 
 export default {
     getIncome: getIncome,
@@ -144,6 +150,7 @@ export default {
     getUserByEmail: getUserByEmail,
     getAfterSpendingAmount: getAfterSpendingAmount,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
+    updateExpensesOnUserRecord, updateExpensesOnUserRecord,
     addIncome: addIncome,
     addExpense: addExpense,
     addUser: addUser,
