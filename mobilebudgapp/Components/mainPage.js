@@ -111,7 +111,7 @@ export default class MainPage extends Component {
   }
 
   updateExpensesOnUserRecord = () => {
-    return ApiMethods.updateExpensesOnUserRecord(this.state.loggedInUserID);
+    ApiMethods.updateExpensesOnUserRecord(this.state.loggedInUserID);
   }
 
   handleIncomeName = text => {
@@ -197,8 +197,10 @@ export default class MainPage extends Component {
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    // ApiMethods.addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due );
-    ApiMethods.addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.state.loggedInUserID);
+    ApiMethods
+    .addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.state.loggedInUserID)
+    .then(data => {ApiMethods.updateExpensesOnUserRecord();})
+    .catch(err => console.log(err))
   };
 
   handleAddIncomeFormSubmit = event => {

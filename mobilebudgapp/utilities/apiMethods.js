@@ -132,6 +132,7 @@ let updateAfterSpendingAmount = (incomeID) => {
 }
 
 let updateExpensesOnUserRecord = (userID) => {
+    console.log(userID);
     return axios.put(URL + "api/updateExpensesOnUserRecord/" + userID, {
         params: {userID: userID}
       });
