@@ -103,6 +103,7 @@ class UnplannedBillDisplay extends Component {
                   whatsBeingEdited={this.state.whatsBeingEdited}
                   updateWrapperComponent={this.props.updateWrapperComponent}
                   updateDisplayComponent={this.updateBillDisplayComponent}
+                  loggedInUserID={this.props.loggedInUserID}
                 />
                 <TouchableOpacity
                   onPress={() => {this.showConfirmationAlert(this.props.billID);}}

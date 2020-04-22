@@ -34,6 +34,7 @@ class PlannedBillWrapper extends Component {
                   handleBillAmount={this.props.handleBillAmount}
                   handleDueDate={this.props.handleDueDate}
                   handleBillName={this.props.handleBillName}
+                  loggedInUserID={this.props.loggedInUserID}
                   updateWrapperComponent={this.updatePlannedBillWrapperComponent}
                 />
                 )}

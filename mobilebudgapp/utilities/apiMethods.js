@@ -125,14 +125,19 @@ let editIncome = (id, name, date, amount) => {
     });
 }
 
-let updateAfterSpendingAmount = (incomeID) => {
-    return axios.get(URL + "api/updateAfterSpendingAmount/" + incomeID, {
+let updateAfterSpendingAmount = (incomeID, userID) => {
+    return axios.get(URL + "api/updateAfterSpendingAmount/" + incomeID + "/" + userID, {
       params: {incomeID: incomeID}
     });
 }
 
+let updateIncomeOnUserRecord = (userID) => {
+    return axios.put(URL + "api/updateIncomeOnUserRecord/" + userID, {
+        params: {userID: userID}
+      });
+}
+
 let updateExpensesOnUserRecord = (userID) => {
-    console.log(userID);
     return axios.put(URL + "api/updateExpensesOnUserRecord/" + userID, {
         params: {userID: userID}
       });
@@ -152,6 +157,7 @@ export default {
     getAfterSpendingAmount: getAfterSpendingAmount,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     updateExpensesOnUserRecord, updateExpensesOnUserRecord,
+    updateIncomeOnUserRecord: updateIncomeOnUserRecord,
     addIncome: addIncome,
     addExpense: addExpense,
     addUser: addUser,

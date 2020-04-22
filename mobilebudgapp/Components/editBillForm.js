@@ -25,12 +25,14 @@ componentDidMount() {
 }
 
 updateAfterSpendingAmountsForAllIncome = () => {
+    ApiMethods.updateExpensesOnUserRecord(this.props.loggedInUserID).catch(err => console.log(err));
+    this.props.updateWrapperComponent();
     ApiMethods.getIncome()
         .then(arrayOfIncome => {
             arrayOfIncome.data.forEach(incomeObject => {
-                ApiMethods.updateAfterSpendingAmount(incomeObject._id)
+                ApiMethods.updateAfterSpendingAmount(incomeObject._id, this.props.loggedInUserID)
                 .then(data => {
-                    this.props.updateWrapperComponent();
+                    // this.props.updateWrapperComponent();
                     this.props.updateDisplayComponent();
                 })
                 .catch(err => console.log(err))
