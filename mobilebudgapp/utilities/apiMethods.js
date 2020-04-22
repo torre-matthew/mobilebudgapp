@@ -127,7 +127,7 @@ let editIncome = (id, name, date, amount) => {
 
 let updateAfterSpendingAmount = (incomeID, userID) => {
     return axios.get(URL + "api/updateAfterSpendingAmount/" + incomeID + "/" + userID, {
-      params: {incomeID: incomeID}
+      params: {incomeID: incomeID, userID: userID}
     });
 }
 
