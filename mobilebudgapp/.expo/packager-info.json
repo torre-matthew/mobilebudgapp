@@ -1,10 +1,10 @@
 {
   "webpackServerPort": 19006,
   "packagerPort": 19001,
-  "packagerPid": 25760,
+  "packagerPid": 1096,
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://um-su7.torre-matthew.mobilebudgapp.exp.direct",
   "packagerNgrokUrl": "https://packager.um-su7.torre-matthew.mobilebudgapp.exp.direct",
-  "ngrokPid": 5932
+  "ngrokPid": 23992
 }
