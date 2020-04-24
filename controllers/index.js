@@ -254,7 +254,7 @@ let updateAfterSpendingAmount = (req, res) => {
                                 afterSpendingAmount: availableIncomeAmount
                                 }
                         })
-                    .then(data => {updateIncomeOnUserRecord(req.params.userID);})
+                    .then(data => {updateIncomeOnUserRecord(req.params.userID).then(data => res.json(data)).catch(err => console.log(err));})
                     .catch(err => console.log(err));
                 })
             .catch(err => console.log(err));
