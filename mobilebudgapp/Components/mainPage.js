@@ -98,19 +98,22 @@ export default class MainPage extends Component {
       this.setState({
         currentUnPlannedExpensesFromDB: expenses.data
       });
-    });
+    })
+    .catch(err => console.log(err));
   }
 
   getPlannedExpenseDataFromDB = () => {
-    ApiMethods.getAllPlannedExpenses(this.state.loggedInUserID).then(expenses => {
+    ApiMethods.getAllPlannedExpenses(this.state.loggedInUserID)
+    .then(expenses => {
       this.setState({
         currentPlannedExpensesFromDB: expenses.data
       });
-    });
+    })
+    .catch(err => console.log(err));
   }
 
   updateExpensesOnUserRecord = () => {
-    ApiMethods.updateExpensesOnUserRecord(this.state.loggedInUserID);
+    ApiMethods.updateExpensesOnUserRecord(this.state.loggedInUserID).then(data => res.json(data)).catch(err => console.log(err));
   }
 
   handleIncomeName = text => {
@@ -198,7 +201,7 @@ export default class MainPage extends Component {
     event.preventDefault();
     ApiMethods
     .addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.state.loggedInUserID)
-    .then(data => {ApiMethods.updateExpensesOnUserRecord();})
+    .then(data => {ApiMethods.updateExpensesOnUserRecord().then(data => res.json(data)).catch(err => console.log(err));})
     .catch(err => console.log(err))
   };
 
@@ -206,7 +209,11 @@ export default class MainPage extends Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     // ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount);
-    ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount, this.state.loggedInUserID);
+    ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount, this.state.loggedInUserID)
+    .then(data => {
+      ApiMethods.updateIncomeOnUserRecord(this.state.loggedInUserID).then(data => res.json(data)).catch(err => console.log(err));
+      })
+    .catch(err => console.log(err));
     this.getTotalIncome();
   };
 
