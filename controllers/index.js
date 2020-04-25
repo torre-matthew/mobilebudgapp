@@ -233,8 +233,6 @@ let updateExpensesOnUserRecord = (req, res) => {
 let updateAfterSpendingAmount = (req, res) => {
     let totalOfExpenses = 0;
     let availableIncomeAmount = 0;
-    console.log(req.params.incomeID);
-    console.log(req.params.userID);
     db.Expenses
     .find({fundingSource: req.params.incomeID}) //find expenses by funding source
     .then(data => {
@@ -254,12 +252,14 @@ let updateAfterSpendingAmount = (req, res) => {
                                 afterSpendingAmount: availableIncomeAmount
                                 }
                         })
-                    .then(data => {updateIncomeOnUserRecord(req.params.userID).then(data => res.json(data)).catch(err => console.log(err));})
+                    .then(data => {res.json(data)})
                     .catch(err => console.log(err));
                 })
             .catch(err => console.log(err));
         })
     .catch(err => console.log(err));
+
+    // updateIncomeOnUserRecord(req.params.userID).then(data => res.json(data)).catch(err => console.log(err));
 }
 
 module.exports = {
