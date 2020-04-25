@@ -30,7 +30,7 @@ updateAfterSpendingAmountsForAllIncome = () => {
     ApiMethods.getIncomeByUserID(this.props.loggedInUserID)
         .then(arrayOfIncome => {
             arrayOfIncome.data.forEach(incomeObject => {
-                ApiMethods.updateAfterSpendingAmount(incomeObject._id, this.props.loggedInUserID)
+                ApiMethods.updateAfterSpendingAmount(incomeObject._id)
                 .then(data => {
                     // this.props.updateWrapperComponent();
                     this.props.updateDisplayComponent();
