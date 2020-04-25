@@ -16,7 +16,7 @@ class UnplannedBillDisplay extends Component {
   };
 
   componentDidMount() {
-    this.getFundingSourceInfo(this.props.billID);
+    // this.getFundingSourceInfo(this.props.billID);
   }
 
   updateBillDisplayComponent = () => {
@@ -48,25 +48,25 @@ class UnplannedBillDisplay extends Component {
     .catch(err => console.log(err));
   }
 
-  getFundingSourceInfo = (expenseID) => {
-    ApiMethods.getExpenseByID(expenseID)
-    .then(data => ApiMethods.getIncomeByID(data.data[0].fundingSource))
-                      .then(data => {
-                        this.setState({
-                          fundingSourceName: data.data[0].name,
-                          fundingSourceAmount: data.data[0].amount
-                        });                      
-                      })
-                      .catch(err => {console.log("Unplanned Expense - Income Collection being queried without _id")
-                        if (err) {
-                          this.setState({
-                            fundingSourceName: "Not planned",
-                            fundingSourceAmount: ""
-                          });
-                        }
-                      })         
-    .catch(err => console.log(err));
-  }
+  // getFundingSourceInfo = (expenseID) => {
+  //   ApiMethods.getExpenseByID(expenseID)
+  //   .then(data => ApiMethods.getIncomeByID(data.data[0].fundingSource))
+  //                     .then(data => {
+  //                       this.setState({
+  //                         fundingSourceName: data.data[0].name,
+  //                         fundingSourceAmount: data.data[0].amount
+  //                       });                      
+  //                     })
+  //                     .catch(err => {console.log("Unplanned Expense - Income Collection being queried without _id")
+  //                       if (err) {
+  //                         this.setState({
+  //                           fundingSourceName: "Not planned",
+  //                           fundingSourceAmount: ""
+  //                         });
+  //                       }
+  //                     })         
+  //   .catch(err => console.log(err));
+  // }
 
   showConfirmationAlert = (idToDelete) => {
 

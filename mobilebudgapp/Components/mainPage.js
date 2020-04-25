@@ -89,9 +89,8 @@ export default class MainPage extends Component {
             () => {
               this.getTotalIncome();
           })
-
+      })
     .catch(err => console.log(err))
-    });
   }
 
   getUnPlannedExpenseDataFromDB = () => {
