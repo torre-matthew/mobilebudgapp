@@ -41,7 +41,12 @@ class UnplannedBillDisplay extends Component {
         alert('Sorry, ' + idToDelete + ' could not be deleted');
       } else {
         alert('You have successfully deleted ' + this.props.billName);
-        this.props.updateWrapperComponent();
+        
+        ApiMethods.updateIncomeOnUserRecord(this.props.loggedInUserID)
+        .then(data => {
+          this.props.updateWrapperComponent();
+        })
+        .catch(err => console.log(err));
         this.closeModal();
       }
     })
