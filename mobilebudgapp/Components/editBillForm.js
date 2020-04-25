@@ -31,16 +31,14 @@ updateAfterSpendingAmountsForAllIncome = () => {
             arrayOfIncome.data.forEach(incomeObject => {
                 ApiMethods
                 .updateAfterSpendingAmount(incomeObject._id)
-                .then(data => {
-                    // this.props.updateDisplayComponent();
-                })
+                .then(data => {res.json(data)})
                 .catch(err => console.log(err))
+                })
             })
-        })
         .catch(err => console.log(err))
 
     this.props.updateWrapperComponent();
-    this.props.updateDisplayComponent();
+    // this.props.updateDisplayComponent();
 }
 
 showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource) => {
