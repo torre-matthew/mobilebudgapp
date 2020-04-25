@@ -13,7 +13,6 @@ class PlannedBillWrapper extends Component {
 
   updatePlannedBillWrapperComponent = () => {
     this.componentDidMount();
-    this.props.updateExpensesOnUserRecord();
   }
   render() {
       return (

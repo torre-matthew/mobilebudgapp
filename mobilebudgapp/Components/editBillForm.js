@@ -25,20 +25,22 @@ componentDidMount() {
 }
 
 updateAfterSpendingAmountsForAllIncome = () => {
-    ApiMethods.updateExpensesOnUserRecord(this.props.loggedInUserID).catch(err => console.log(err));
-    this.props.updateWrapperComponent();
-    ApiMethods.getIncomeByUserID(this.props.loggedInUserID)
+    ApiMethods.updateExpensesOnUserRecord(this.props.loggedInUserID).then(data => res.json(data)).catch(err => console.log(err));
+    ApiMethods.getIncome()
         .then(arrayOfIncome => {
             arrayOfIncome.data.forEach(incomeObject => {
-                ApiMethods.updateAfterSpendingAmount(incomeObject._id)
+                ApiMethods
+                .updateAfterSpendingAmount(incomeObject._id)
                 .then(data => {
-                    // this.props.updateWrapperComponent();
-                    this.props.updateDisplayComponent();
+                    // this.props.updateDisplayComponent();
                 })
                 .catch(err => console.log(err))
             })
         })
         .catch(err => console.log(err))
+
+    this.props.updateWrapperComponent();
+    this.props.updateDisplayComponent();
 }
 
 showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource) => {
