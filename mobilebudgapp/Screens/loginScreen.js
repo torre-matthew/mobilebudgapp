@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Button, ImageBackground } from 'react-native';
+import { ActivityIndicator, View, Button, ImageBackground } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import * as Google from 'expo-google-app-auth'
 import LoginScreenStyles from "../Styles/loginSreenStyles";
@@ -16,10 +16,19 @@ class LoginScreen extends Component {
     signedIn: false,
     name: "",
     photoUrl: "",
-    email:""
+    email:"",
+    showSpinner: true,
+    spinnerOpacity: 0 //Because of this bug: https://github.com/facebook/react-native/issues/9023
   }
 
+  // handleSignIn = () => {
+  //   this.setState({spinnerOpacity: 1})
+    
+  //   setTimeout(this.signIn, 1000);
+  // }
+
   signIn = async () => {
+    this.setState({spinnerOpacity: 1})
     try {
       const result = await Google.logInAsync({
         androidClientId: "446220388364-jffs659t4t98fuur4srsstggq04mgd52.apps.googleusercontent.com",
@@ -36,15 +45,16 @@ class LoginScreen extends Component {
                 signedIn: true,
                 name: result.user.name,
                 photoUrl: result.user.photoUrl,
-                email: result.user.email 
+                email: result.user.email, 
+                spinnerOpacity: 0
               })
             }else {
-              
               this.setState({
                 signedIn: true,
                 name: result.user.name,
                 photoUrl: result.user.photoUrl,
-                email: result.user.email 
+                email: result.user.email, 
+                spinnerOpacity: 0
               })
             }
           })
@@ -52,6 +62,9 @@ class LoginScreen extends Component {
 
       } else {
         console.log("cancelled")
+        this.setState({ 
+          showSpinner: false
+        })
       }
 } catch (e) {
       console.log("error", e)
@@ -78,6 +91,9 @@ class LoginScreen extends Component {
             </Text>
           </View>
           <View style={LoginScreenStyles.welcome}>
+          <View>
+          <ActivityIndicator style={{ opacity: this.state.spinnerOpacity }} animating={this.state.showSpinner} size={50} color="#40DBCE" />
+          </View>
             {this.state.signedIn ? 
               <Text style={{color: '#F5F5F5', fontSize: 18}}> {'Welcome back, ' + this.state.name} </Text>
             : 
@@ -86,9 +102,9 @@ class LoginScreen extends Component {
           </View>
           <View style={LoginScreenStyles.signIn}>
           {this.state.signedIn ? 
-              <Button title="Go To Main Page" onPress={() => navigation.navigate('Main', {email: this.state.email})} />
-            : 
-            <Button title="Sign in with Google" onPress={() => this.signIn()} />
+            <Button title="Go To Main Page" onPress={() => navigation.navigate('Main', {email: this.state.email})} />
+            :  
+            <Button title="Sign in with Google" onPress={() => {this.signIn()}} /> 
             }
           </View>
         </ImageBackground>  
