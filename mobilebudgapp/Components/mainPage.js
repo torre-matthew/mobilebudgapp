@@ -58,6 +58,7 @@ export default class MainPage extends Component {
   onRefresh = () => {
     this.setState({refreshing: true});
     wait(200).then(() => {
+      this.setState({spinnerSize: 20, spinnerOpacity: 1, showSpinner: true})
       this.fetchData();
       this.setState({refreshing: false});
     });
