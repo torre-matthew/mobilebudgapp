@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import style from "../Styles/Styles";
 
@@ -10,8 +10,14 @@ function TotalCashFlowDisplay (props) {
                   <View style={{ flex: 1, alignSelf: 'stretch' }}> 
                     <Text style={style.total}> Total Income </Text>
                   </View>
-                  <View style={{ flex: 1, alignSelf: 'stretch' }}> 
-                    <Text style={style.total}> ${props.currentTotalIncome} </Text>
+                  <View style={{ flex: 1, alignSelf: 'stretch' }}>
+                  {
+                  props.showSpinner 
+                    ?
+                  <ActivityIndicator style={{ opacity: props.spinnerOpacity }} animating={props.showSpinner} size={props.spinnerSize} color="#40DBCE"/>
+                    : 
+                  <Text style={style.total}> ${props.currentTotalIncome} </Text>
+                  }
                   </View>
           </View>
         </Content>

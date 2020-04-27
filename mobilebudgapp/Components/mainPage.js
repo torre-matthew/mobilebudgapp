@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native';
+import { ActivityIndicator, Platform, StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native';
 import { Container, Button, Content, Form, Item, Input} from 'native-base';
 import SummaryWrapper from './summaryWrapper';
 import UnplannedBillWrapper from './unplannedBillWrapper';
@@ -37,7 +37,10 @@ export default class MainPage extends Component {
     signedIn: false,
     loggedInUsersEmail: this.props.loggedInUsersEmail,
     loggedInUserID: "",
-    photoUrl: ""
+    photoUrl: "",
+    spinnerSize: 20,
+    spinnerOpacity: 1,
+    showSpinner: true
   };
 
   componentDidMount(){
@@ -49,7 +52,7 @@ export default class MainPage extends Component {
     this.getTotalIncome();
     this.getIncomeDataFromDB();
     this.getUnPlannedExpenseDataFromDB();
-    
+    setTimeout(() => {this.setState({spinnerSize: 0, spinnerOpacity: 0, showSpinner: false})}, 4500);
   }
 
   onRefresh = () => {
@@ -261,6 +264,9 @@ export default class MainPage extends Component {
                 incomeDataFromDB={this.state.currentIncomeFromDB}
                 loggedInUserID={this.state.loggedInUserID}
                 fetchData={this.fetchData}
+                spinnerSize={this.state.spinnerSize}
+                spinnerOpacity={this.state.spinnerOpacity}
+                showSpinner={this.state.showSpinner}
               />
               <UnplannedBillWrapper
                 expenseDataFromDB={this.state.currentUnPlannedExpensesFromDB}
@@ -274,6 +280,9 @@ export default class MainPage extends Component {
                 handleFormSubmit={this.handleFormSubmit}
                 loggedInUserID={this.state.loggedInUserID}
                 fetchData={this.fetchData}
+                spinnerSize={this.state.spinnerSize}
+                spinnerOpacity={this.state.spinnerOpacity}
+                showSpinner={this.state.showSpinner}
               />
               <PlannedBillWrapper
                 expenseDataFromDB={this.state.currentPlannedExpensesFromDB}
@@ -285,6 +294,9 @@ export default class MainPage extends Component {
                 loggedInUserID={this.state.loggedInUserID}
                 fetchData={this.fetchData}
                 updateExpensesOnUserRecord={this.updateExpensesOnUserRecord}
+                spinnerSize={this.state.spinnerSize}
+                spinnerOpacity={this.state.spinnerOpacity}
+                showSpinner={this.state.showSpinner}
               />
             </View>
           </ScrollView>

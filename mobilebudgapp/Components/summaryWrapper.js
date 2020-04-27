@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Dimensions, TouchableOpacity, Picker, Alert } from 'react-native';
+import { ActivityIndicator, Dimensions, TouchableOpacity, Picker, Alert } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body, View } from "native-base";
 import TotalCashFlowDisplay from './totalCashFlowDisplay';
 import IncomeDisplay from './incomeDisplay';
@@ -36,8 +36,15 @@ class SummaryWrapper extends Component {
                     />
                     <TotalCashFlowDisplay 
                         currentTotalIncome={this.props.currentTotalIncome}
+                        spinnerSize={this.props.spinnerSize}
+                        spinnerOpacity={this.props.spinnerOpacity}
+                        showSpinner={this.props.showSpinner}
                     />
-                    {this.props.incomeDataFromDB.map(income => 
+                    {this.props.showSpinner 
+                        ?
+                        <ActivityIndicator style={{ opacity: this.props.spinnerOpacity }} animating={this.props.showSpinner} size={this.props.spinnerSize} color="#40DBCE"/>
+                        :
+                    this.props.incomeDataFromDB.map(income => 
                     <IncomeDisplay
                         key={income._id}
                         incomeName={income.name}
@@ -53,7 +60,8 @@ class SummaryWrapper extends Component {
                         loggedInUserID={this.props.loggedInUserID}
                         fetchData={this.props.fetchData}
                     />
-                    )}
+                    )
+                }
 
                     <AddEntryModal
                     handleIncomeAmount={this.props.handleIncomeAmount}
