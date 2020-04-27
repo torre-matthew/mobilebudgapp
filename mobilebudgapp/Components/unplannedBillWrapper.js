@@ -1,5 +1,5 @@
 import React, { Component} from "react";
-import { View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import UnplannedBillDisplay from './unplannedBillDisplay';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import AddBillModal from "./addBillModal";
@@ -22,7 +22,11 @@ class UnplannedBillWrapper extends Component {
             <View> 
               <Text style={style.secondary_header}> Unplanned Bills and Expenses </Text>
             </View>
-            {this.props.expenseDataFromDB.map(expense => 
+            {this.props.showSpinner 
+              ?
+              <ActivityIndicator style={{ opacity: this.props.spinnerOpacity }} animating={this.props.showSpinner} size={this.props.spinnerSize} color="#40DBCE"/>
+              :
+            this.props.expenseDataFromDB.map(expense => 
             <UnplannedBillDisplay
               key={expense._id}
               dueDate={expense.dateOfExpense}
@@ -38,7 +42,8 @@ class UnplannedBillWrapper extends Component {
               loggedInUserID={this.props.loggedInUserID}
               updateWrapperComponent={this.updateUnplannedBillWrapperComponent}
             />
-            )}
+            )
+          }
 
             <AddBillModal
               handleBillAmount={this.props.handleBillAmount}
