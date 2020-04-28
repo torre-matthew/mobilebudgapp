@@ -16,7 +16,7 @@ class UnplannedBillDisplay extends Component {
   };
 
   componentDidMount() {
-    // this.getFundingSourceInfo(this.props.billID);
+    this.getFundingSourceInfo(this.props.billID);
   }
 
   updateBillDisplayComponent = () => {
@@ -39,6 +39,23 @@ class UnplannedBillDisplay extends Component {
     .then(res => {
       if (res.data.deletedCount === 0) {
         alert('Sorry, ' + idToDelete + ' could not be deleted');
+
+      } else if (this.props.billIsPlanned) {
+        alert('You have successfully deleted ' + this.props.billName);
+
+          ApiMethods
+            .updateAfterSpendingAmount(this.props.billFundingSourceID)
+            .then(data => {
+              ApiMethods
+                .updateIncomeOnUserRecord(this.props.loggedInUserID)
+                .then(data => {
+                  this.props.updateWrapperComponent();
+                  })
+                .catch(err => console.log(err));
+              })
+            .catch(err => console.log(err))
+          
+          this.closeModal();
       } else {
         alert('You have successfully deleted ' + this.props.billName);
         
@@ -47,31 +64,35 @@ class UnplannedBillDisplay extends Component {
           this.props.updateWrapperComponent();
         })
         .catch(err => console.log(err));
+
         this.closeModal();
       }
     })
     .catch(err => console.log(err));
   }
 
-  // getFundingSourceInfo = (expenseID) => {
-  //   ApiMethods.getExpenseByID(expenseID)
-  //   .then(data => ApiMethods.getIncomeByID(data.data[0].fundingSource))
-  //                     .then(data => {
-  //                       this.setState({
-  //                         fundingSourceName: data.data[0].name,
-  //                         fundingSourceAmount: data.data[0].amount
-  //                       });                      
-  //                     })
-  //                     .catch(err => {console.log("Unplanned Expense - Income Collection being queried without _id")
-  //                       if (err) {
-  //                         this.setState({
-  //                           fundingSourceName: "Not planned",
-  //                           fundingSourceAmount: ""
-  //                         });
-  //                       }
-  //                     })         
-  //   .catch(err => console.log(err));
-  // }
+  getFundingSourceInfo = (expenseID) => {
+    if (this.props.billIsPlanned) {
+        ApiMethods.getExpenseByID(expenseID)
+          .then(data => {
+            ApiMethods.getIncomeByID(data.data[0].fundingSource)
+              .then(data => {
+                  this.setState({
+                    fundingSourceName: "Funded with: " + data.data[0].name,
+                    fundingSourceAmount: "$" + data.data[0].amount
+                    });                      
+                  })
+              .catch(err => console.log(err))
+            })
+          .catch(err => console.log(err));
+
+    } else {
+      this.setState({
+        fundingSourceName: "",
+        fundingSourceAmount: "Not yet planned"
+      });
+    }
+  }
 
   showConfirmationAlert = (idToDelete) => {
 
@@ -131,7 +152,7 @@ class UnplannedBillDisplay extends Component {
                   <Text style={{fontSize: 12 }}> Due: {this.props.dueDate} </Text>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                  <Text style={{fontSize: 12 }}> Paid With: {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount} </Text>
+                  <Text style={{fontSize: 12 }}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount} </Text>
                 </View>
               </View>
             </View>
