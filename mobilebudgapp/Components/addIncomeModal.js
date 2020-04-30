@@ -16,6 +16,7 @@ class AddEntryModal extends Component {
   closeModal = () => {
     this.setModalVisible(!this.state.modalVisible);
     this.props.updateWrapperComponent();
+    this.props.fetchData();
   }
 
   render() {

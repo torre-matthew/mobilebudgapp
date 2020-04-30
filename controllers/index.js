@@ -33,27 +33,6 @@ let addIncomeToDb = async (req, res) => {
                             });
                     })
                 .catch(err => console.log(err));
-
-
-
-    //     //first, empty the the income array for the user
-    //     db.Users
-    //     .updateOne({_id: req.params.userID}, { $set: { income: [] } }, { new: true })
-    //         .then(data => {
-    //     //then find all income with that userID
-    //             db.Income.find({userID: req.params.userID}) 
-    //             .then(userIncomeArrayFromDB => {
-    // //then repopulate the income array on the user with the latest 
-    //                 userIncomeArrayFromDB.forEach(userIncomeRecordObject => {
-    //                         db.Users.updateOne({_id: req.params.userID}, { $push: { income: userIncomeRecordObject._id } }, { new: true })
-    //                         .then(data => res.json(data))
-    //                         .catch(err => console.log(err))
-    //                     });
-
-    //                 })
-    //             .catch(err => console.log(err));
-    //             })
-    //         .catch(err => console.log(err))
 }
 
 let addExpenseToDb = async (req, res) => {

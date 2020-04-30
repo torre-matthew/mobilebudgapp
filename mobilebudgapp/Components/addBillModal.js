@@ -21,10 +21,6 @@ class AddBillModal extends Component {
       this.props.fetchData();
     }
 
-    getUnPlannedExpenseDataFromDBAndCloseModal = () => {
-      this.closeModal();
-    }
-
     render() {
       return (
         <View style={{marginTop: 10}}>
@@ -39,7 +35,6 @@ class AddBillModal extends Component {
             handleBillName={this.props.handleBillName}
             handleFormSubmit={this.props.handleFormSubmit}
             closeModalOnSubmit={this.closeModal}
-            getUnPlannedExpenseDataFromDBAndCloseModal={this.getUnPlannedExpenseDataFromDBAndCloseModal}
             fetchData={this.props.fetchData}
           />
           </Modal>

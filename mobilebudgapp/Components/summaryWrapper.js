@@ -70,6 +70,7 @@ class SummaryWrapper extends Component {
                     handleAddIncomeFormSubmit={this.props.handleAddIncomeFormSubmit}
                     updateWrapperComponent={this.updateSummaryWrapperComponent}
                     loggedInUserID={this.props.loggedInUserID}
+                    fetchData={this.props.fetchData}
                     />
                 </Content>
         );
