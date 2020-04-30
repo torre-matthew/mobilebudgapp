@@ -31,8 +31,7 @@ let addExpenseToDb = async (req, res) => {
                 })
             .then(data => res.json(data))
             .catch(err => console.log(err));
-
-
+            
 //then empty the the expense arrays for the user
     await db.Users
             .updateOne({_id: req.body.userID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
