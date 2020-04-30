@@ -15,17 +15,87 @@ let addIncomeToDb = (req, res) => {
     .catch(err => console.log(err));
 }
 
-let addExpenseToDb = (req, res) => {
-    db.Expenses
-    .create({
-        dateOfExpense: req.body.dateOfExpense,
-        nameOfExpense: req.body.nameOfExpense,
-        amountOfExpense: req.body.amountOfExpense,
-        userID: req.body.userID, 
-        isPlanned: false
-        })
-    .then(data => res.json(data))
-    .catch(err => console.log(err));
+let addExpenseToDb = async (req, res) => {
+    
+    let arrayOfPlannedExpensesToBeSetInDB = [];
+    let arrayOfUnPlannedExpensesToBeSetInDB = [];
+
+// Add Expense to the db
+    await db.Expenses
+            .create({
+                dateOfExpense: req.body.dateOfExpense,
+                nameOfExpense: req.body.nameOfExpense,
+                amountOfExpense: req.body.amountOfExpense,
+                userID: req.body.userID, 
+                isPlanned: false
+                })
+            .then(data => res.json(data))
+            .catch(err => console.log(err));
+
+
+//then empty the the expense arrays for the user
+    await db.Users
+            .updateOne({_id: req.body.userID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
+                    .then(data => res.json(data))
+                    .catch(err => console.log(err))
+
+//then find all the unplannend expenses from the expense table and push them to the arrays above.
+    await db.Expenses
+            .find({userID: req.body.userID, isPlanned: true})
+            .then(arrayOfPlannedExpenses => 
+                { 
+                    arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
+                        arrayOfPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
+                            });
+                })
+            .catch(err => console.log(err))
+
+//then find all the plannend expenses from the expense table and push them to the arrays above.
+    await db.Expenses
+            .find({userID: req.body.userID, isPlanned: false})
+            .then(data => res.json(data))
+            .catch(err => console.log(err))
+
+//then updated the planned and unplanned expense record for that user in the db.
+    await db.Users
+            .updateOne({_id: req.body.userID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
+            .then(data => res.json(data))
+            .catch(err => console.log(err))
+
+
+//     db.Users
+//     .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
+//                     .then(userExpensesArrayFromDB => {
+//     //then find all the unplannend and planned expenses from the expense table and push them to the arrays above.
+//                         db.Expenses
+//                             .find({userID: req.params.userID, isPlanned: true})
+//                             .then(arrayOfPlannedExpenses => 
+//                                 { 
+//                                     arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
+//                                         arrayOfPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
+//                                             });
+//                                 })
+//                             .catch(err => console.log(err))
+
+//                         db.Expenses
+//                         .find({userID: req.params.userID, isPlanned: false})
+//                         .then(arrayOfUnPlannedExpenses => { 
+//                                 arrayOfUnPlannedExpenses.forEach(userExpenseRecordObject => {
+//                                     arrayOfUnPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
+//                                         });
+
+// //then updated the planned and unplanned expense record for that user in the db.
+//                                 db.Users
+//                                 .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
+//                                 .then(data => res.json(data))
+//                                 .catch(err => console.log(err))
+                            
+//                             })
+//                         .catch(err => console.log(err))
+//                     })
+//                 .catch(err => console.log(err));
+
+    
 }
 
 let addUserToDb = (req, res) => {
