@@ -2,17 +2,58 @@ const db = require("../db/models");
 
 ////////// Add Data Controllers //////////////////
 
-let addIncomeToDb = (req, res) => {
-    db.Income
-    .create({
-        date: req.body.date,
-        name: req.body.name,
-        amount: req.body.amount,
-        userID: req.body.userID,
-        afterSpendingAmount: req.body.amount
-        })
-    .then(data => res.json(data))
-    .catch(err => console.log(err));
+let addIncomeToDb = async (req, res) => {
+    await db.Income
+            .create({
+                date: req.body.date,
+                name: req.body.name,
+                amount: req.body.amount,
+                userID: req.body.userID,
+                afterSpendingAmount: req.body.amount
+                })
+            .then(data => res.json(data))
+            .catch(err => console.log(err));
+
+//then, empty the the income array for the user
+      await db.Users
+                .updateOne({_id: req.body.userID}, { $set: { income: [] } }, { new: true })
+                .then(data => res.json(data))
+                .catch(err => console.log(err));
+
+//then find all income with that userID  
+      await db.Income
+                .find({userID: req.body.userID}) 
+                .then(userIncomeArrayFromDB => 
+                    {
+//then repopulate the income array on the user with the latest 
+                        userIncomeArrayFromDB.forEach(userIncomeRecordObject => {
+                            db.Users.updateOne({_id: req.body.userID}, { $push: { income: userIncomeRecordObject._id } }, { new: true })
+                            .then(data => res.json(data))
+                            .catch(err => console.log(err))
+                            });
+                    })
+                .catch(err => console.log(err));
+
+
+
+    //     //first, empty the the income array for the user
+    //     db.Users
+    //     .updateOne({_id: req.params.userID}, { $set: { income: [] } }, { new: true })
+    //         .then(data => {
+    //     //then find all income with that userID
+    //             db.Income.find({userID: req.params.userID}) 
+    //             .then(userIncomeArrayFromDB => {
+    // //then repopulate the income array on the user with the latest 
+    //                 userIncomeArrayFromDB.forEach(userIncomeRecordObject => {
+    //                         db.Users.updateOne({_id: req.params.userID}, { $push: { income: userIncomeRecordObject._id } }, { new: true })
+    //                         .then(data => res.json(data))
+    //                         .catch(err => console.log(err))
+    //                     });
+
+    //                 })
+    //             .catch(err => console.log(err));
+    //             })
+    //         .catch(err => console.log(err))
 }
 
 let addExpenseToDb = async (req, res) => {
@@ -65,41 +106,6 @@ let addExpenseToDb = async (req, res) => {
             .updateOne({_id: req.body.userID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
             .then(data => res.json(data))
             .catch(err => console.log(err))
-
-
-//     db.Users
-//     .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
-//                     .then(userExpensesArrayFromDB => {
-//     //then find all the unplannend and planned expenses from the expense table and push them to the arrays above.
-//                         db.Expenses
-//                             .find({userID: req.params.userID, isPlanned: true})
-//                             .then(arrayOfPlannedExpenses => 
-//                                 { 
-//                                     arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
-//                                         arrayOfPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
-//                                             });
-//                                 })
-//                             .catch(err => console.log(err))
-
-//                         db.Expenses
-//                         .find({userID: req.params.userID, isPlanned: false})
-//                         .then(arrayOfUnPlannedExpenses => { 
-//                                 arrayOfUnPlannedExpenses.forEach(userExpenseRecordObject => {
-//                                     arrayOfUnPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
-//                                         });
-
-// //then updated the planned and unplanned expense record for that user in the db.
-//                                 db.Users
-//                                 .updateOne({_id: req.params.userID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
-//                                 .then(data => res.json(data))
-//                                 .catch(err => console.log(err))
-                            
-//                             })
-//                         .catch(err => console.log(err))
-//                     })
-//                 .catch(err => console.log(err));
-
-    
 }
 
 let addUserToDb = (req, res) => {

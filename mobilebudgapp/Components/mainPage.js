@@ -205,21 +205,20 @@ export default class MainPage extends Component {
     event.preventDefault();
     ApiMethods
     .addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.state.loggedInUserID)
-    .then(data => {ApiMethods.updateExpensesOnUserRecord().then(data => res.json(data)).catch(err => console.log(err));})
+    .then(data => res.json(data))
     .catch(err => console.log(err))
   };
 
   handleAddIncomeFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    // ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount);
+
     ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount, this.state.loggedInUserID)
-    .then(data => {
-      ApiMethods.updateIncomeOnUserRecord(this.state.loggedInUserID).then(data => res.json(data)).catch(err => console.log(err));
-      })
+    .then(data => res.json(data))
     .catch(err => console.log(err));
+
     this.getTotalIncome();
-  };
+  }
 
   displayAfterSpendingData = (switcher) => {
 
