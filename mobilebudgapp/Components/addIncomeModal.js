@@ -15,10 +15,6 @@ class AddEntryModal extends Component {
 
   closeModal = () => {
     this.setModalVisible(!this.state.modalVisible);
-  }
-
-  getIncomeDataFromDBAndCloseModal = () => {
-    this.closeModal();
     this.props.updateWrapperComponent();
   }
 
@@ -36,7 +32,6 @@ class AddEntryModal extends Component {
           handleIncomeName={this.props.handleIncomeName}
           handleAddIncomeFormSubmit={this.props.handleAddIncomeFormSubmit}
           closeModalOnSubmit={this.closeModal}
-          getIncomeDataFromDBAndCloseModal={this.getIncomeDataFromDBAndCloseModal}
           loggedInUserID={this.props.loggedInUserID}
         />
         </Modal>

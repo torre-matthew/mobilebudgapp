@@ -17,12 +17,12 @@ class AddBillModal extends Component {
 
     closeModal = () => {
       this.setModalVisible(!this.state.modalVisible);
+      this.props.updateWrapperComponent();
+      this.props.fetchData();
     }
 
     getUnPlannedExpenseDataFromDBAndCloseModal = () => {
       this.closeModal();
-      this.props.updateWrapperComponent();
-      // this.props.updateExpensesOnUserRecord();
     }
 
     render() {
