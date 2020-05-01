@@ -25,7 +25,7 @@ componentDidMount() {
 }
 
 updateAfterSpendingAmountsForAllIncome = () => {
-    ApiMethods.updateExpensesOnUserRecord(this.props.loggedInUserID).then(data => res.json(data)).catch(err => console.log(err));
+    // ApiMethods.updateExpensesOnUserRecord(this.props.loggedInUserID).then(data => res.json(data)).catch(err => console.log(err));
     ApiMethods.getIncome()
         .then(arrayOfIncome => {
             arrayOfIncome.data.forEach(incomeObject => {
