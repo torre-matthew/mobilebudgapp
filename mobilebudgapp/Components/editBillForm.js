@@ -25,16 +25,16 @@ componentDidMount() {
 }
 
 updateAfterSpendingAmountsForAllIncome = () => {
-    ApiMethods.getIncome()
-        .then(arrayOfIncome => {
-            arrayOfIncome.data.forEach(incomeObject => {
-                ApiMethods
-                .updateAfterSpendingAmount(incomeObject._id)
-                .then(data => {console.log("updateAfterSpending promise returned after editing expense")})
-                .catch(err => console.log(err))
-                })
-            })
-        .catch(err => console.log(err))
+    // ApiMethods.getIncome()
+    //     .then(arrayOfIncome => {
+    //         arrayOfIncome.data.forEach(incomeObject => {
+    //             ApiMethods
+    //             .updateAfterSpendingAmount(incomeObject._id)
+    //             .then(data => {console.log("updateAfterSpending promise returned after editing expense")})
+    //             .catch(err => console.log(err))
+    //             })
+    //         })
+    //     .catch(err => console.log(err))
 
     this.props.updateWrapperComponent();
     // this.props.updateDisplayComponent();
