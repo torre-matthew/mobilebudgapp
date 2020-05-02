@@ -31,7 +31,7 @@ updateAfterSpendingAmountsForAllIncome = () => {
             arrayOfIncome.data.forEach(incomeObject => {
                 ApiMethods
                 .updateAfterSpendingAmount(incomeObject._id)
-                .then(data => {res.json(data)})
+                .then(data => {console.log("updateAfterSpending promise returned after editing expense")})
                 .catch(err => console.log(err))
                 })
             })
