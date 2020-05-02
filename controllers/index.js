@@ -397,7 +397,7 @@ let updateAfterSpendingAmountDuringExpenseEdit = (fundingSource) => {
                                 afterSpendingAmount: availableIncomeAmount
                                 }
                         })
-                    .then(data => {res.json(data)})
+                    .then(data => {})
                     .catch(err => console.log(err));
                 })
             .catch(err => console.log(err));
