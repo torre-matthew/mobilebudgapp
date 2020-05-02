@@ -223,13 +223,13 @@ let editExpenseByID = async (req, res) => {
 
     //then empty the the expense arrays for the user
     await db.Users
-            .updateOne({_id: req.body.userID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
+            .updateOne({_id: req.body.loggedInUserID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
                     .then(data => res.json(data))
                     .catch(err => console.log(err))
 
 //then find all the unplannend expenses from the expense table and push them to the arrays above.
     await db.Expenses
-            .find({userID: req.body.userID, isPlanned: true})
+            .find({userID: req.body.loggedInUserID, isPlanned: true})
             .then(arrayOfPlannedExpenses => 
                 { 
                     arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
@@ -240,7 +240,7 @@ let editExpenseByID = async (req, res) => {
 
 //then find all the plannend expenses from the expense table and push them to the arrays above.
     await db.Expenses
-            .find({userID: req.body.userID, isPlanned: false})
+            .find({userID: req.body.loggedInUserID, isPlanned: false})
             .then(arrayOfUnPlannedExpenses => 
                 {
                     arrayOfUnPlannedExpenses.forEach(userExpenseRecordObject => {
@@ -251,7 +251,7 @@ let editExpenseByID = async (req, res) => {
 
 //then updated the planned and unplanned expense record for that user in the db.
     await db.Users
-            .updateOne({_id: req.body.userID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
+            .updateOne({_id: req.body.loggedInUserID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
             .then(data => res.json(data))
             .catch(err => console.log(err)) 
 }
