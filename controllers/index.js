@@ -202,7 +202,7 @@ let deleteIncomeByID = (req, res) => {
 }
 
 let editExpenseByID = async (req, res) => {
-    console.log(req.body.loggedInUserID);
+    console.log('user ID ' + req.body.loggedInUserID);
 //editExpense
 //updateExpenseOnUserRecord
 //getIncome
