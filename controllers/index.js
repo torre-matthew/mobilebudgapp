@@ -208,6 +208,9 @@ let editExpenseByID = async (req, res) => {
 //getIncome
 //updateAfterSpendingAmount
 
+let arrayOfPlannedExpensesToBeSetInDB = [];
+let arrayOfUnPlannedExpensesToBeSetInDB = [];
+
     await db.Expenses
             .updateOne({_id: req.body.data._id},
                 {$set: {
