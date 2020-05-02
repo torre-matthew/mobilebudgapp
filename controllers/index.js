@@ -262,7 +262,10 @@ let arrayOfUnPlannedExpensesToBeSetInDB = [];
     await db.Income
             .find({userID: req.body.data.loggedInUserID})
             .then(incomeArray => {
-                console.log(incomeArray);
+                incomeArray.forEach(incomeObject => {
+                    updateAfterSpendingAmountDuringExpenseEdit(incomeObject._id)
+                    console.log("updateAfterSpending promise returned after editing expense")
+                });
             })
             .catch(err => console.log(err));
 }
