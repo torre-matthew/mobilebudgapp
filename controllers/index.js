@@ -231,7 +231,7 @@ let editExpenseByID = async (req, res) => {
     await db.Expenses
             .find({userID: req.body.loggedInUserID, isPlanned: true})
             .then(arrayOfPlannedExpenses => 
-                { 
+                {  console.log(arrayOfPlannedExpenses);
                     arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
                         arrayOfPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
                             });
@@ -242,7 +242,7 @@ let editExpenseByID = async (req, res) => {
     await db.Expenses
             .find({userID: req.body.loggedInUserID, isPlanned: false})
             .then(arrayOfUnPlannedExpenses => 
-                {
+                { console.log(arrayOfUnPlannedExpenses);
                     arrayOfUnPlannedExpenses.forEach(userExpenseRecordObject => {
                         arrayOfUnPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
                             });
