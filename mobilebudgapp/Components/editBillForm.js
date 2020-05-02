@@ -24,22 +24,6 @@ componentDidMount() {
     this.editLogic();
 }
 
-updateAfterSpendingAmountsForAllIncome = () => {
-    // ApiMethods.getIncome()
-    //     .then(arrayOfIncome => {
-    //         arrayOfIncome.data.forEach(incomeObject => {
-    //             ApiMethods
-    //             .updateAfterSpendingAmount(incomeObject._id)
-    //             .then(data => {console.log("updateAfterSpending promise returned after editing expense")})
-    //             .catch(err => console.log(err))
-    //             })
-    //         })
-    //     .catch(err => console.log(err))
-
-    this.props.updateWrapperComponent();
-    // this.props.updateDisplayComponent();
-}
-
 showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource, loggedInUserID) => {
 
     Alert.alert(
@@ -54,7 +38,7 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                     alert('Sorry, there was a problem. Please try again');
                 } else {
                     this.props.closeModalOnSubmit();
-                    this.updateAfterSpendingAmountsForAllIncome();
+                    this.props.updateWrapperComponent();
                     Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
                 }
                 })
