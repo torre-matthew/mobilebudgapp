@@ -105,7 +105,6 @@ let deleteIncome = (id) => {
 /////////////Update Methods////////////////////
 
 let editExpense = (id, name, date, amount, isPlanned, fundingSource, loggedInUserID) => {
-    console.log(loggedInUserID);
     return axios.put(URL + "api/updateExpense", {
        data: {_id: id,
         nameOfExpense: name,
