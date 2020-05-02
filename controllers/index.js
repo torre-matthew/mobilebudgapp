@@ -202,7 +202,6 @@ let deleteIncomeByID = (req, res) => {
 }
 
 let editExpenseByID = async (req, res) => {
-    console.log('user ID ' + req.body.data.loggedInUserID);
 //editExpense
 //updateExpenseOnUserRecord
 //getIncome
@@ -235,7 +234,7 @@ let arrayOfUnPlannedExpensesToBeSetInDB = [];
     await db.Expenses
             .find({userID: req.body.data.loggedInUserID, isPlanned: true})
             .then(arrayOfPlannedExpenses => 
-                {  console.log(arrayOfPlannedExpenses);
+                { 
                     arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
                         arrayOfPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
                             });
@@ -246,7 +245,7 @@ let arrayOfUnPlannedExpensesToBeSetInDB = [];
     await db.Expenses
             .find({userID: req.body.data.loggedInUserID, isPlanned: false})
             .then(arrayOfUnPlannedExpenses => 
-                { console.log(arrayOfUnPlannedExpenses);
+                { 
                     arrayOfUnPlannedExpenses.forEach(userExpenseRecordObject => {
                         arrayOfUnPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
                             });
@@ -257,7 +256,15 @@ let arrayOfUnPlannedExpensesToBeSetInDB = [];
     await db.Users
             .updateOne({_id: req.body.data.loggedInUserID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
             .then(data => res.json(data))
-            .catch(err => console.log(err)) 
+            .catch(err => console.log(err))
+
+            
+    await db.Income
+            .find({userID: req.body.data.loggedInUserID})
+            .then(incomeArray => {
+                console.log(incomeArray);
+            })
+            .catch(err => console.log(err));
 }
 
 let editIncomeByID = (req, res) => {
@@ -339,6 +346,7 @@ let updateAfterSpendingAmount = (req, res) => {
     db.Expenses
     .find({fundingSource: req.params.incomeID}) //find expenses by funding source
     .then(data => {
+        
         if (data[0] === undefined) { // if there are no expeses for a given funding source
             totalOfExpenses = 0;    // set the total of expenses to 0
         }else {                         //if there are expenses with that funding source id
@@ -351,6 +359,37 @@ let updateAfterSpendingAmount = (req, res) => {
                     availableIncomeAmount = parseFloat(data[0].amount) - totalOfExpenses;
                 
                     db.Income.updateOne({_id: req.params.incomeID},
+                        {$set: {
+                                afterSpendingAmount: availableIncomeAmount
+                                }
+                        })
+                    .then(data => {res.json(data)})
+                    .catch(err => console.log(err));
+                })
+            .catch(err => console.log(err));
+        })
+    .catch(err => console.log(err));
+}
+
+let updateAfterSpendingAmountDuringExpenseEdit = (fundingSource) => {
+    let totalOfExpenses = 0;
+    let availableIncomeAmount = 0;
+    db.Expenses
+    .find({fundingSource: fundingSource}) //find expenses by funding source
+    .then(data => {
+        
+        if (data[0] === undefined) { // if there are no expeses for a given funding source
+            totalOfExpenses = 0;    // set the total of expenses to 0
+        }else {                         //if there are expenses with that funding source id
+            data.forEach(element => { // add all the amounts of those expenses together then..
+                totalOfExpenses += parseFloat(element.amountOfExpense); // set set total of expenses to that number
+            });
+        }        
+            db.Income.find({_id: fundingSource})
+            .then(data => {
+                    availableIncomeAmount = parseFloat(data[0].amount) - totalOfExpenses;
+                
+                    db.Income.updateOne({_id: fundingSource},
                         {$set: {
                                 afterSpendingAmount: availableIncomeAmount
                                 }
