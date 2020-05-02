@@ -41,7 +41,7 @@ updateAfterSpendingAmountsForAllIncome = () => {
     // this.props.updateDisplayComponent();
 }
 
-showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource) => {
+showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource, loggedInUserID) => {
 
     Alert.alert(
       'Edit Confirmation',
@@ -49,7 +49,7 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
       [ 
         {text: 'Nevermind', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {text: "Yes, that's correct", onPress: () => {
-            ApiMethods.editExpense(id, name, date, amount, isPlanned, fundingSource)
+            ApiMethods.editExpense(id, name, date, amount, isPlanned, fundingSource, loggedInUserID)
             .then(res => {
                 if (res.data.nModified === 0) {
                     alert('Sorry, there was a problem. Please try again');
@@ -131,7 +131,7 @@ editField = (text, input) => {
     }
   };
 
-handleExpenseEditFormSubmit = (event, id, nameChecker, dateChecker, amountChecker, isPlanned, fundingSource) => {
+handleExpenseEditFormSubmit = (event, id, nameChecker, dateChecker, amountChecker, isPlanned, fundingSource, loggedInUserID) => {
     event.preventDefault();
 
     let name;
@@ -156,7 +156,7 @@ handleExpenseEditFormSubmit = (event, id, nameChecker, dateChecker, amountChecke
         amount = amountChecker
     }
     
-    this.showExpenseConfirmationAlert(id, name, date, amount, isPlanned, fundingSource);
+    this.showExpenseConfirmationAlert(id, name, date, amount, isPlanned, fundingSource, loggedInUserID);
 
   };
 
@@ -255,7 +255,7 @@ editLogic = () => {
                             <TouchableOpacity
                                 onPress={this.props.whatsBeingEdited === "bill" 
                                 ? 
-                                (event) => this.handleExpenseEditFormSubmit(event, this.props.billID, this.state.newName, this.state.newDate, this.state.newAmount, this.state.isPlanned, this.state.fundingSourceID)
+                                (event) => this.handleExpenseEditFormSubmit(event, this.props.billID, this.state.newName, this.state.newDate, this.state.newAmount, this.state.isPlanned, this.state.fundingSourceID, this.props.loggedInUserID)
                                 :
                                 (event) => this.handleIncomeEditFormSubmit(event, this.props.incomeID, this.state.newName, this.state.newDate, this.state.newAmount)
                                 }
