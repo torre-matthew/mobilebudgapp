@@ -26,7 +26,7 @@ class SummaryWrapper extends Component {
                             <Picker.Item>
                             </Picker.Item>
                         </Picker>  */}
-                        <Text style={style.summary_section_header}> April </Text>
+                        <Text style={style.summary_section_header}> May </Text>
                         <Text style={style.summary_section_header_secondary}> Income Summary </Text>
                     </View>
                     <IncomeSummarySwitcher 

@@ -3,8 +3,8 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 23532,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "packagerPid": 4460,
+  "expoServerNgrokUrl": "https://k8-7wa.torre-matthew.mobilebudgapp.exp.direct",
+  "packagerNgrokUrl": "https://packager.k8-7wa.torre-matthew.mobilebudgapp.exp.direct",
+  "ngrokPid": 10340
 }

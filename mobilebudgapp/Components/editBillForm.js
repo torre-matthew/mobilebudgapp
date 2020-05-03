@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Dimensions, TouchableOpacity, Picker, Alert } from 'react-native';
 import { Container, Button, Content, Form, Item, Input, Text } from 'native-base';
 import style from "../Styles/Styles";
+import DatePicker from "./datePicker";
 import ApiMethods from '../utilities/apiMethods';
 
 class EditBillFormDisplay extends Component {
@@ -201,7 +202,7 @@ editLogic = () => {
                     <View style={{marginTop: 55}}>
                         <Form id="billForm">
                             <Item>
-                                <Input defaultValue={this.state.currentDate} placeholder='Due Date' onChangeText={(text) => this.editField(text, "date")} />
+                                <DatePicker defaultValue={this.state.currentDate} editDueDate={this.editField} />
                             </Item>
                             <Item>
                                 <Input defaultValue={this.state.currentName} placeholder='Bill/Expense' onChangeText={(text) => this.editField(text, "name")} />
