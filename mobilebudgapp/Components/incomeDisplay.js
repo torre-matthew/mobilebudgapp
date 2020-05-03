@@ -60,7 +60,7 @@ class IncomeDisplay extends Component {
                     } else {
                       alert('You have successfully deleted ' + this.props.incomeName);
                         this.props.updateWrapperComponent();
-                        ApiMethods.updateIncomeOnUserRecord(this.props.loggedInUserID).then(data => res.json(data)).catch(err => console.log(err));
+                        ApiMethods.updateIncomeOnUserRecord(this.props.loggedInUserID).then(data => {}).catch(err => console.log(err));
                         this.closeModal();
                     }
                   })

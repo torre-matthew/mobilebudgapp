@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Dimensions } from 'react-native';
 import { Container, Button, Content, Form, Item, Input, Text } from 'native-base';
+import DatePicker from "./datePicker";
 import style from "../Styles/Styles";
 
 function AddIncomeFormDisplay (props) {
@@ -13,7 +14,7 @@ function AddIncomeFormDisplay (props) {
                             <Input placeholder='Income' onChangeText={props.handleIncomeName} />
                         </Item>
                         <Item>
-                            <Input placeholder='Date' onChangeText={props.handleIncomeDate} />
+                            <DatePicker handleDueDate={props.handleIncomeDate} />
                         </Item>
                         <Item>
                             <Input keyboardType='numeric' placeholder="Amount" onChangeText={props.handleIncomeAmount} />

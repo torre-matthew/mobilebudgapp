@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Dimensions } from 'react-native';
 import { Container, Button, Content, Form, Item, Input, Text } from 'native-base';
+import DatePicker from "./datePicker";
 import style from "../Styles/Styles";
 
 function AddBillFormDisplay (props) {
@@ -10,7 +11,10 @@ function AddBillFormDisplay (props) {
                 <View style={{marginTop: 55}}>
                     <Form id="billForm">
                         <Item>
-                            <Input placeholder='Due Date' onChangeText={props.handleDueDate} />
+                            {/* <Input placeholder='Due Date' onChangeText={props.handleDueDate} /> */}
+                            <DatePicker 
+                                handleDueDate={props.handleDueDate}
+                            />
                         </Item>
                         <Item>
                             <Input placeholder='Bill/Expense' onChangeText={props.handleBillName} />

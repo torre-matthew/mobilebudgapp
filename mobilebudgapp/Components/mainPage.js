@@ -127,10 +127,10 @@ export default class MainPage extends Component {
     });
   };
 
-  handleIncomeDate = text => {
+  handleIncomeDate = (incomeDate) => {
     
     this.setState({
-      income_date: text
+      income_date: incomeDate.toString().substr(4, 12)
     });
   };
 
@@ -141,10 +141,10 @@ export default class MainPage extends Component {
     });
   };
   
-  handleDueDate = text => {
+  handleDueDate = (dueDate) => {
     
     this.setState({
-      due_date: text,
+      due_date: dueDate.toString().substr(4, 12),
     });
   };
   
