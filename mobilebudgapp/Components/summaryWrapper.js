@@ -22,7 +22,7 @@ class SummaryWrapper extends Component {
     render() {
         return (
                 <Content padder style={style.summary_section}>
-                    <MonthPickerModal />
+                    <MonthPickerModal monthData={this.props.monthData} />
                     <View>
                         <Text style={style.summary_section_header_secondary}> Income Summary </Text>
                     </View>

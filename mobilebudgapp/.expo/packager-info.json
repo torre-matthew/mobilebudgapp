@@ -3,8 +3,8 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 8960,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "packagerPid": 9632,
+  "expoServerNgrokUrl": "https://vz-nmt.torre-matthew.mobilebudgapp.exp.direct",
+  "packagerNgrokUrl": "https://packager.vz-nmt.torre-matthew.mobilebudgapp.exp.direct",
+  "ngrokPid": 19844
 }
