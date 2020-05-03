@@ -185,6 +185,33 @@ let getAfterSpendingAmount = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let fetchData = async (req, res) => {
+
+    let fetchedDataObject = {
+        plannedExpenseDataArray: [],
+        unPlannedExpenseDataArray: [],
+        incomeDataArray: []
+    }
+    await db.Users
+            .find({_id: req.params.userID})
+            .populate('expenses.planned')
+            .then(data => {fetchedDataObject.plannedExpenseDataArray.push(data[0].expenses.planned)})
+            .catch(err => console.log(err));
+
+    await db.Users
+            .find({_id: req.params.userID})
+            .populate('expenses.unPlanned')
+            .then(data => {fetchedDataObject.unPlannedExpenseDataArray.push(data[0].expenses.unPlanned)})
+            .catch(err => console.log(err));
+    await db.Users
+            .find({_id: req.params.userID})
+            .populate('income')
+            .then(data => {fetchedDataObject.incomeDataArray.push(data[0].income)})
+            .catch(err => console.log(err));
+
+    return fetchedDataObject;
+}
+
 ////////////// Update/Delete Data ///////////////////////
 
 let deleteExpenseByID = (req, res) => {
@@ -410,6 +437,7 @@ module.exports = {
     addExpense: addExpenseToDb,
     addUser: addUserToDb,
     getAllIncome: getAllIncome,
+    fetchData: fetchData,
     getAllExpenses: getAllExpenses,
     getAllUsers: getAllUsers,
     getExpenseByID: getExpenseByID,
