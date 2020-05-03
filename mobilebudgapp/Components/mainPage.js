@@ -49,9 +49,9 @@ export default class MainPage extends Component {
 
   fetchData = () => {
     this.getPlannedExpenseDataFromDB();
-    this.getTotalIncome();
     this.getIncomeDataFromDB();
     this.getUnPlannedExpenseDataFromDB();
+    this.getTotalIncome();
     setTimeout(() => {this.setState({spinnerSize: 0, spinnerOpacity: 0, showSpinner: false})}, 4500);
   }
 
@@ -83,31 +83,31 @@ export default class MainPage extends Component {
   }
 
   getIncomeDataFromDB = () => {
-    ApiMethods
-    .getIncomeByUserID(this.state.loggedInUserID)
-    .then(income => {
-      
-        this.setState({
-          currentIncomeFromDB: income.data
-          },
-            () => {
-              this.getTotalIncome();
-          })
-      })
-    .catch(err => console.log(err))
+    return ApiMethods
+            .getIncomeByUserID(this.state.loggedInUserID)
+            .then(income => {
+              
+                this.setState({
+                  currentIncomeFromDB: income.data
+                  },
+                    () => {
+                      this.getTotalIncome();
+                  })
+              })
+            .catch(err => console.log(err))
   }
 
   getUnPlannedExpenseDataFromDB = () => {
-    ApiMethods.getAllUnPlannedExpenses(this.state.loggedInUserID).then(expenses => {
-      this.setState({
-        currentUnPlannedExpensesFromDB: expenses.data
-      });
-    })
-    .catch(err => console.log(err));
+    return ApiMethods.getAllUnPlannedExpenses(this.state.loggedInUserID).then(expenses => {
+              this.setState({
+                currentUnPlannedExpensesFromDB: expenses.data
+              });
+            })
+            .catch(err => console.log(err));
   }
 
   getPlannedExpenseDataFromDB = () => {
-    ApiMethods.getAllPlannedExpenses(this.state.loggedInUserID)
+    return ApiMethods.getAllPlannedExpenses(this.state.loggedInUserID)
     .then(expenses => {
       this.setState({
         currentPlannedExpensesFromDB: expenses.data
