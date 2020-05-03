@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { ActivityIndicator, Dimensions, TouchableOpacity, Picker, Alert } from 'react-native';
+import { ActivityIndicator, Dimensions, TouchableOpacity, Alert } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body, View } from "native-base";
 import TotalCashFlowDisplay from './totalCashFlowDisplay';
 import IncomeDisplay from './incomeDisplay';
 import AddEntryModal from "./addIncomeModal";
+import MonthPickerModal from "./monthPickerModal";
 import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
@@ -21,12 +22,8 @@ class SummaryWrapper extends Component {
     render() {
         return (
                 <Content padder style={style.summary_section}>
+                    <MonthPickerModal />
                     <View>
-                        {/* <Picker>
-                            <Picker.Item>
-                            </Picker.Item>
-                        </Picker>  */}
-                        <Text style={style.summary_section_header}> May </Text>
                         <Text style={style.summary_section_header_secondary}> Income Summary </Text>
                     </View>
                     <IncomeSummarySwitcher 

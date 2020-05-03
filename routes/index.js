@@ -4,6 +4,7 @@ const controllers = require("../controllers");
 router.route("/addingIncome").post(controllers.addIncome);
 router.route("/addingExpense").post(controllers.addExpense);
 router.route("/addingUser").post(controllers.addUser);
+router.route("/addingMonth").post(controllers.addMonthToDb);
 
 router.route("/allIncome").get(controllers.getAllIncome);
 router.route("/allIncome/:userID").get(controllers.getAllIncomeByUserID);
