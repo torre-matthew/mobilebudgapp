@@ -222,7 +222,7 @@ let fetchData = async (req, res) => {
     console.log(fetchedDataObject);
 }
 
-let getMonthData = () => {
+let getMonthData = (req, res) => {
     db.Month
     .find({})
     .then(data => res.json(data))
