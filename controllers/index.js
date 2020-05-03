@@ -245,6 +245,13 @@ let deleteIncomeByID = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let deleteAllMonthData = () => {
+    db.Month
+    .remove({})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
 let editExpenseByID = async (req, res) => {
 //editExpense
 //updateExpenseOnUserRecord
@@ -469,6 +476,7 @@ module.exports = {
     getAfterSpendingAmount: getAfterSpendingAmount,
     deleteExpense: deleteExpenseByID,
     deleteIncome: deleteIncomeByID,
+    deleteAllMonthData: deleteAllMonthData,
     editExpense: editExpenseByID,
     editIncome: editIncomeByID,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
