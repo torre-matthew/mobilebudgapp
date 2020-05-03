@@ -10,6 +10,7 @@ router.route("/allIncome").get(controllers.getAllIncome);
 router.route("/allIncome/:userID").get(controllers.getAllIncomeByUserID);
 router.route("/allExpenses").get(controllers.getAllExpenses);
 router.route("/allUsers").get(controllers.getAllUsers);
+router.route("/monthData").get(controllers.getMonthData);
 router.route("/allPlannedExpenses/:userID").get(controllers.getAllPlannedExpenses);
 router.route("/fetchData/:userID").get(controllers.fetchData);
 router.route("/allUnPlannedExpenses/:userID").get(controllers.getAllUnPlannedExpenses);

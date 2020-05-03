@@ -222,6 +222,13 @@ let fetchData = async (req, res) => {
     console.log(fetchedDataObject);
 }
 
+let getMonthData = () => {
+    db.Month
+    .find({})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
 ////////////// Update/Delete Data ///////////////////////
 
 let deleteExpenseByID = (req, res) => {
@@ -451,6 +458,7 @@ module.exports = {
     fetchData: fetchData,
     getAllExpenses: getAllExpenses,
     getAllUsers: getAllUsers,
+    getMonthData: getMonthData,
     getExpenseByID: getExpenseByID,
     getIncomeByID: getIncomeByID,
     getAllIncomeByUserID: getAllIncomeByUserID,
