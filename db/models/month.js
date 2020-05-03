@@ -4,18 +4,13 @@ let Schema = mongoose.Schema;
 
 let MonthSchema = new Schema({
   month: {
-      type: String,
+      type: Number,
       required: true
     },
   year: {
-    type: String,
-    required: true
-    },
-    
-  monthAsNumber: {
     type: Number,
     required: true
-      },
+    },
 });
 
 // This creates our model from the above schema, using mongoose's model method
