@@ -6,11 +6,16 @@ let MonthSchema = new Schema({
   month: {
       type: String,
       required: true
-  },
+    },
   year: {
     type: String,
     required: true
-    }
+    },
+    
+  monthAsNumber: {
+    type: Number,
+    required: false
+      },
 });
 
 // This creates our model from the above schema, using mongoose's model method

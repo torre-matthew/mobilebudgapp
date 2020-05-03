@@ -23,6 +23,7 @@ router.route("/getAfterSpendingAmount/:incomeID").get(controllers.getAfterSpendi
 
 router.route("/deleteExpense").delete(controllers.deleteExpense);
 router.route("/deleteIncome").delete(controllers.deleteIncome);
+router.route("/deleteAllMonthData").delete(controllers.deleteAllMonthData);
 router.route("/updateExpense").put(controllers.editExpense);
 router.route("/updateIncome").put(controllers.editIncome);
 router.route("/updateAfterSpendingAmount/:incomeID").put(controllers.updateAfterSpendingAmount);
