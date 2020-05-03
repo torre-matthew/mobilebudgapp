@@ -101,9 +101,10 @@ let addUserToDb = (req, res) => {
 
 let addMonthToDb = (req, res) => {
     db.Month
-    .create({
+    .insertMany({
         month: req.body.month,
-        year: req.body.year
+        year: req.body.year,
+        monthAsNumber: req.body.monthAsNumber
         })
     .then(data => res.json(data))
     .catch(err => console.log(err));
