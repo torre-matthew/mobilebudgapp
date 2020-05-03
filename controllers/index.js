@@ -209,7 +209,7 @@ let fetchData = async (req, res) => {
             .then(data => {fetchedDataObject.incomeDataArray.push(data[0].income)})
             .catch(err => console.log(err));
 
-    return fetchedDataObject;
+    console.log(fetchedDataObject);
 }
 
 ////////////// Update/Delete Data ///////////////////////
