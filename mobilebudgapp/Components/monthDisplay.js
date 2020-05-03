@@ -16,23 +16,10 @@ class MonthDisplay extends Component {
 
   render () {  
     return (
-          <View>
-              <View>
-                <View onTouchEnd={() => {this.setModalVisible(true);}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10 }}>
-                  <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#DEF1F2', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 25, borderTopLeftRadius: 15 }}> 
-                    <Text style={{fontSize: 18 }}> June 2020 </Text>
-                  </View>
-                  <View style={{ flex: 1, alignItems:'center', backgroundColor: '#DEF1F2', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
-                    <Text style={{fontSize: 18 }}> $Amount </Text>
-                    <Text style={{fontSize: 6 }}> Remaining </Text>
-                  </View>
-                </View>
-                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#F5F5F5', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
-                  <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                    <Text style={{fontSize: 12 }}> Date: ### </Text>
-                  </View>
-                </View>
-              </View>
+          <View onTouchEnd={() => {this.props.selectMonth(this.props.month, this.props.year)}} style={{ flex: 1, alignSelf: 'center', flexDirection: 'row', marginTop: 10, marginBottom: 10 }}>
+            <View style={{ flex: 1, alignSelf: 'center', backgroundColor: '#DEF1F2', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 25, borderTopLeftRadius: 15 }}> 
+              <Text style={{fontSize: 18, textAlign: 'center'}}> {this.props.month + ' ' + this.props.year} </Text>
+            </View>
           </View>
       );
     }

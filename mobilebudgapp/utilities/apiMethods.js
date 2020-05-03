@@ -20,7 +20,7 @@ let getExpenses = () => {
 }
 
 let getMonthData = () => {
-    return axios.get(URL + "api/getMonthData");
+    return axios.get(URL + "api/monthData");
 }
 
 let getAllPlannedExpenses = (userID) => {

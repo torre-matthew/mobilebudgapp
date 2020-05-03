@@ -29,6 +29,7 @@ export default class MainPage extends Component {
     income_amount: '',
     currentIncomeFromDB: [],
     afterSpendingData: [],
+    monthData: [],
     currentTotalIncome: 0,
     afterSpendingIncomeTotal: 0,
     recentlyAdded: false,
@@ -51,6 +52,7 @@ export default class MainPage extends Component {
     this.getPlannedExpenseDataFromDB();
     this.getIncomeDataFromDB();
     this.getUnPlannedExpenseDataFromDB();
+    this.getMonthDataFromDB();
     this.getTotalIncome();
     setTimeout(() => {this.setState({spinnerSize: 0, spinnerOpacity: 0, showSpinner: false})}, 4500);
   }
@@ -104,6 +106,16 @@ export default class MainPage extends Component {
               });
             })
             .catch(err => console.log(err));
+  }
+
+  getMonthDataFromDB = () => {
+    return ApiMethods.getMonthData()
+    .then(monthDataArrayFromDB => {
+      this.setState({
+        monthData: monthDataArrayFromDB.data
+      });
+    })
+    .catch(err => console.log(err));
   }
 
   getPlannedExpenseDataFromDB = () => {
@@ -267,6 +279,7 @@ export default class MainPage extends Component {
                 spinnerSize={this.state.spinnerSize}
                 spinnerOpacity={this.state.spinnerOpacity}
                 showSpinner={this.state.showSpinner}
+                monthData={this.state.monthData}
               />
               <UnplannedBillWrapper
                 expenseDataFromDB={this.state.currentUnPlannedExpensesFromDB}
