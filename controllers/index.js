@@ -99,6 +99,16 @@ let addUserToDb = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let addMonthToDb = (req, res) => {
+    db.Month
+    .create({
+        month: req.body.month,
+        year: req.body.year
+        })
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
 ////////// Get Data Controllers //////////////////
 
 let getAllIncome = (req, res) => {
@@ -436,6 +446,7 @@ module.exports = {
     addIncome: addIncomeToDb,
     addExpense: addExpenseToDb,
     addUser: addUserToDb,
+    addMonthToDb: addMonthToDb,
     getAllIncome: getAllIncome,
     fetchData: fetchData,
     getAllExpenses: getAllExpenses,
