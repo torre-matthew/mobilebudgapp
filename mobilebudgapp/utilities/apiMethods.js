@@ -19,6 +19,10 @@ let getExpenses = () => {
     return axios.get(URL + "api/allExpenses");
 }
 
+let getMonthData = () => {
+    return axios.get(URL + "api/getMonthData");
+}
+
 let getAllPlannedExpenses = (userID) => {
     return axios.get(URL + "api/allPlannedExpenses/" + userID);
 }
@@ -153,6 +157,7 @@ export default {
     getIncome: getIncome,
     getIncomeByUserID: getIncomeByUserID,
     getExpenses: getExpenses,
+    getMonthData: getMonthData,
     fetchData: fetchData,
     getAllPlannedExpenses: getAllPlannedExpenses,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,

@@ -3,14 +3,17 @@ import {Modal, Text, TouchableHighlight, View, Alert, Dimensions} from 'react-na
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MonthDisplay from "./monthDisplay";
 import style from "../Styles/Styles";
+import ApiMethods from '../utilities/apiMethods';
 
 class MonthPickerModal extends Component {
   state = {
     modalVisible: false,
+    monthDataFromDB: []
   };
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
+    ApiMethods.getMonthData().then(data => {console.log(data)}).catch(err => console.log(err));
   }
 
   closeModal = () => {
