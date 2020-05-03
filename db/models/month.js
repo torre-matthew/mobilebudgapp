@@ -14,7 +14,7 @@ let MonthSchema = new Schema({
     
   monthAsNumber: {
     type: Number,
-    required: false
+    required: true
       },
 });
 
