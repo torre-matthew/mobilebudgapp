@@ -248,7 +248,7 @@ let deleteIncomeByID = (req, res) => {
 
 let deleteAllMonthData = () => {
     db.Month
-    .remove({})
+    .deleteMany({})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
