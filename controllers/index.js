@@ -102,7 +102,7 @@ let addUserToDb = (req, res) => {
 let addMonthToDb = (req, res) => {
     db.Month
     .create({
-        month: req.body.month,
+        monthAsNumber: req.body.month,
         year: req.body.year,
         month: req.body.month
         })
