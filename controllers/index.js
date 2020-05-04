@@ -104,6 +104,7 @@ let addMonthToDb = (req, res) => {
     .create({
         month: req.body.month,
         year: req.body.year,
+        month: req.body.month
         })
     .then(data => res.json(data))
     .catch(err => console.log(err));

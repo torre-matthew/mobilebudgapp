@@ -3,12 +3,16 @@ let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 
 let MonthSchema = new Schema({
-  month: {
+  monthAsNumber: {
       type: Number,
       required: true
     },
   year: {
     type: Number,
+    required: true
+    },
+  month: {
+    type: String,
     required: true
     },
 });
