@@ -230,6 +230,13 @@ let getMonthData = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let getCurrentMonth = (req, res) => {
+    db.Month
+    .find({monthAsNumber: new Date().getMonth()})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
 ////////////// Update/Delete Data ///////////////////////
 
 let deleteExpenseByID = (req, res) => {
@@ -475,6 +482,7 @@ module.exports = {
     getAllPlannedExpenses: getAllPlannedExpenses,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     getAfterSpendingAmount: getAfterSpendingAmount,
+    getCurrentMonth: getCurrentMonth,
     deleteExpense: deleteExpenseByID,
     deleteIncome: deleteIncomeByID,
     deleteAllMonthData: deleteAllMonthData,
