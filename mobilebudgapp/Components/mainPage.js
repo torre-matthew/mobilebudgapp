@@ -30,6 +30,8 @@ export default class MainPage extends Component {
     currentIncomeFromDB: [],
     afterSpendingData: [],
     monthData: [],
+    currentMonthID: this.props.currentMonthID,
+    currentMonth: this.props.currentMonth,
     currentTotalIncome: 0,
     afterSpendingIncomeTotal: 0,
     recentlyAdded: false,
@@ -108,6 +110,9 @@ export default class MainPage extends Component {
             .catch(err => console.log(err));
   }
 
+  selectNewMonth = (month, monthID) => {
+    this.setState({currentMonth: month, currentMonthID: monthID});
+  }
   getMonthDataFromDB = () => {
     return ApiMethods.getMonthData()
     .then(monthDataArrayFromDB => {
@@ -225,7 +230,7 @@ export default class MainPage extends Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
 
-    ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount, this.state.loggedInUserID)
+    ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount, this.state.loggedInUserID, this.state.currentMonthID)
     .then(data => res.json(data))
     .catch(err => console.log(err));
 
@@ -280,6 +285,9 @@ export default class MainPage extends Component {
                 spinnerOpacity={this.state.spinnerOpacity}
                 showSpinner={this.state.showSpinner}
                 monthData={this.state.monthData}
+                currentMonth={this.state.currentMonth}
+                currentMonthID={this.state.currentMonthID}
+                selectNewMonth={this.selectNewMonth}
               />
               <UnplannedBillWrapper
                 expenseDataFromDB={this.state.currentUnPlannedExpensesFromDB}
@@ -296,6 +304,8 @@ export default class MainPage extends Component {
                 spinnerSize={this.state.spinnerSize}
                 spinnerOpacity={this.state.spinnerOpacity}
                 showSpinner={this.state.showSpinner}
+                currentMonth={this.state.currentMonth}
+                currentMonthID={this.state.currentMonthID}
               />
               <PlannedBillWrapper
                 expenseDataFromDB={this.state.currentPlannedExpensesFromDB}
@@ -310,6 +320,8 @@ export default class MainPage extends Component {
                 spinnerSize={this.state.spinnerSize}
                 spinnerOpacity={this.state.spinnerOpacity}
                 showSpinner={this.state.showSpinner}
+                currentMonth={this.state.currentMonth}
+                currentMonthID={this.state.currentMonthID}
               />
             </View>
           </ScrollView>

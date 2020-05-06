@@ -9,6 +9,8 @@ class MainScreen extends Component {
     return (
       <MainPage 
         loggedInUsersEmail={this.props.route.params.email}
+        currentMonth={this.props.route.params.currentMonth}
+        currentMonthID={this.props.route.params.currentMonthID}
       />
     );
   }

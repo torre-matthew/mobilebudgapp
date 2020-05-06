@@ -18,6 +18,8 @@ class LoginScreen extends Component {
     photoUrl: "",
     email:"",
     showSpinner: true,
+    currentMonthID: "",
+    currentMonth: "",
     spinnerOpacity: 0 //Because of this bug: https://github.com/facebook/react-native/issues/9023
   }
 
@@ -45,8 +47,17 @@ class LoginScreen extends Component {
                 signedIn: true,
                 name: result.user.name,
                 photoUrl: result.user.photoUrl,
-                email: result.user.email, 
-                spinnerOpacity: 0
+                email: result.user.email
+              }, () => {
+                ApiMethods.getCurrentMonth()
+                      .then(month => {
+                          this.setState({
+                            currentMonthID: month.data[0]._id,
+                            currentMonth: month.data[0].month,
+                            spinnerOpacity: 0
+                          });
+                        })
+                      .catch(err => console.log(err));
               })
             }else {
               this.setState({
@@ -54,7 +65,16 @@ class LoginScreen extends Component {
                 name: result.user.name,
                 photoUrl: result.user.photoUrl,
                 email: result.user.email, 
-                spinnerOpacity: 0
+              }, () => {
+                ApiMethods.getCurrentMonth()
+                      .then(month => {
+                          this.setState({
+                            currentMonthID: month.data[0]._id,
+                            currentMonth: month.data[0].month,
+                            spinnerOpacity: 0
+                          });
+                        })
+                      .catch(err => console.log(err));
               })
             }
           })
@@ -102,7 +122,7 @@ class LoginScreen extends Component {
           </View>
           <View style={LoginScreenStyles.signIn}>
           {this.state.signedIn ? 
-            <Button title="Go To Main Page" onPress={() => navigation.navigate('Main', {email: this.state.email})} />
+            <Button title="Go To Main Page" onPress={() => navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID})} />
             :  
             <Button title="Sign in with Google" onPress={() => {this.signIn()}} /> 
             }

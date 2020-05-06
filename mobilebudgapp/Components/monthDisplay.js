@@ -16,7 +16,7 @@ class MonthDisplay extends Component {
 
   render () {  
     return (
-          <View onTouchEnd={() => {this.props.selectMonth(this.props.month, this.props.year)}} style={{ flex: 1, alignSelf: 'center', flexDirection: 'row', marginTop: 10, marginBottom: 10 }}>
+          <View onTouchEnd={() => { this.props.closeModal(); this.props.selectNewMonth(this.props.month, this.props.monthID); }} style={{ flex: 1, alignSelf: 'center', flexDirection: 'row', marginTop: 10, marginBottom: 10 }}>
             <View style={{ flex: 1, alignSelf: 'center', backgroundColor: '#DEF1F2', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 25, borderTopLeftRadius: 15 }}> 
               <Text style={{fontSize: 18, textAlign: 'center'}}> {this.props.month + ' ' + this.props.year} </Text>
             </View>

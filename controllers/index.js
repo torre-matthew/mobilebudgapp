@@ -9,7 +9,8 @@ let addIncomeToDb = async (req, res) => {
                 name: req.body.name,
                 amount: req.body.amount,
                 userID: req.body.userID,
-                afterSpendingAmount: req.body.amount
+                afterSpendingAmount: req.body.amount,
+                monthID: req.body.monthID
                 })
             .then(data => res.json(data))
             .catch(err => console.log(err));

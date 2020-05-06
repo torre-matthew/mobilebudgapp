@@ -8,8 +8,6 @@ import ApiMethods from '../utilities/apiMethods';
 class MonthPickerModal extends Component {
   state = {
     modalVisible: false,
-    selectedMonth: "",
-    selectedYear: ""
   };
 
   componentDidMount() {
@@ -23,12 +21,12 @@ class MonthPickerModal extends Component {
     this.setModalVisible(!this.state.modalVisible);
   }
 
-  selectMonth = (month, year) => {
-    this.setState({selectedMonth: month, selectedYear: year}
-      , () => {
-        this.closeModal();
-      })
-  }
+  // selectMonth = (month) => {
+  //   this.setState({selectedMonth: month}
+  //     , () => {
+  //       this.closeModal();
+  //     })
+  // }
 
   render() {
     return (
@@ -38,15 +36,18 @@ class MonthPickerModal extends Component {
           transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={this.closeModal}>
-            <Text style={{fontSize: 20, textAlign: 'center', margin: 20}}> Select Month </Text>
+            <Text style={{fontSize: 18, textAlign: 'center', margin: 20}}> Select Month </Text>
           <ScrollView>
             {
               this.props.monthData.map(monthData => 
               <MonthDisplay 
                 month={monthData.month} 
                 year={monthData.year}
-                key={monthData._id} 
+                key={monthData._id}
+                monthID={monthData._id} 
                 selectMonth={this.selectMonth}
+                selectNewMonth={this.props.selectNewMonth}
+                closeModal={this.closeModal}
                 />
               )
             }
@@ -56,8 +57,7 @@ class MonthPickerModal extends Component {
         <TouchableOpacity
           onPress={() => {this.setModalVisible(true)}}
           >
-          <Text style={style.summary_section_header}> {this.state.selectedMonth} </Text>
-          <Text style={{fontSize: 10, textAlign: 'center'}}> {this.state.selectedYear} </Text>
+          <Text style={style.summary_section_header}> {this.props.currentMonth} </Text>
         </TouchableOpacity>
       </View>
     );

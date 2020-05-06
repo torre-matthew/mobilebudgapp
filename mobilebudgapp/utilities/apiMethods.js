@@ -23,6 +23,10 @@ let getMonthData = () => {
     return axios.get(URL + "api/monthData");
 }
 
+let getCurrentMonth = () => {
+    return axios.get(URL + "api/getCurrentMonth");
+}
+
 let getAllPlannedExpenses = (userID) => {
     return axios.get(URL + "api/allPlannedExpenses/" + userID);
 }
@@ -69,12 +73,13 @@ let getAfterSpendingAmount = (incomeID) => {
 
 /////////////Post Methods////////////////////
 
-let addIncome = (name, date, amount, userID) => {
+let addIncome = (name, date, amount, userID, monthID) => {
     return axios.post(URL + 'api/addingIncome', {
         name: name,
         date: date,
         amount: amount,
-        userID: userID
+        userID: userID,
+        monthID: monthID
     });
 }
 
@@ -158,6 +163,7 @@ export default {
     getIncomeByUserID: getIncomeByUserID,
     getExpenses: getExpenses,
     getMonthData: getMonthData,
+    getCurrentMonth: getCurrentMonth,
     fetchData: fetchData,
     getAllPlannedExpenses: getAllPlannedExpenses,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,

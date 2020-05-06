@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
     },
 
     summary_section_header: {
-        fontSize: 45,
+        fontSize: 40,
         textAlign: 'center',
-        marginTop: 25,
+        marginTop: 15,
     },
 
     summary_section_header_secondary: {
