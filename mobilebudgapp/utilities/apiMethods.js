@@ -11,8 +11,8 @@ let getIncome = () => {
     return axios.get(URL + "api/allIncome");
 }
 
-let getIncomeByUserID = (userID) => {
-    return axios.get(URL + "api/allIncome/" + userID);
+let getIncomeByUserID = (userID, monthID) => {
+    return axios.get(URL + "api/allIncome/" + userID + "/" + monthID);
 }
 
 let getExpenses = () => {
