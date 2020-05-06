@@ -56,7 +56,7 @@ export default class MainPage extends Component {
     this.getUnPlannedExpenseDataFromDB();
     this.getMonthDataFromDB();
     this.getTotalIncome();
-    setTimeout(() => {this.setState({spinnerSize: 0, spinnerOpacity: 0, showSpinner: false})}, 4500);
+    setTimeout(() => {this.setState({spinnerSize: 0, spinnerOpacity: 0, showSpinner: false})}, 2500);
   }
 
   onRefresh = () => {

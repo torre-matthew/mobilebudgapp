@@ -39,6 +39,7 @@ class PlannedBillWrapper extends Component {
                   handleBillName={this.props.handleBillName}
                   loggedInUserID={this.props.loggedInUserID}
                   updateWrapperComponent={this.updatePlannedBillWrapperComponent}
+                  showMarkAsPaid={true}
                 />
                 )
               }

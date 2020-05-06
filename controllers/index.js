@@ -366,6 +366,26 @@ let editIncomeByID = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let bulkEditExpensesAndIncome = async(req, res) => {
+    await db.Expenses
+            .updateMany({userID: "5e9675e001ed360017e9ce4e"},
+                {$set: {
+                        monthID: "5eaf6211e7b5c6001726776a",    
+                        }
+                })
+            .then(data => res.json(data))
+            .catch(err => console.log(err));
+
+    await db.Income
+    .updateMany({userID: "5e9675e001ed360017e9ce4e"},
+        {$set: {
+                monthID: "5eaf6211e7b5c6001726776a",    
+                }
+        })
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+} 
+
 let updateIncomeOnUserRecord = (req, res) => {
     //first, empty the the income array for the user
     db.Users
@@ -512,6 +532,7 @@ module.exports = {
     deleteAllMonthData: deleteAllMonthData,
     editExpense: editExpenseByID,
     editIncome: editIncomeByID,
+    bulkEditExpensesAndIncome: bulkEditExpensesAndIncome,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     updateIncomeOnUserRecord: updateIncomeOnUserRecord,
     updateExpensesOnUserRecord: updateExpensesOnUserRecord
