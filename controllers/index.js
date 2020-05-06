@@ -156,19 +156,30 @@ let getAllUsers = (req, res) => {
 }
 
 let getAllPlannedExpenses = (req, res) => {
-    db.Users
-        .find({_id: req.params.userID})
-        .populate('expenses.planned')
-        .then(data => res.json(data[0].expenses.planned))
-        .catch(err => console.log(err));
+    // db.Users
+    //     .find({_id: req.params.userID})
+    //     .populate('expenses.planned')
+    //     .then(data => res.json(data[0].expenses.planned))
+    //     .catch(err => console.log(err));
+
+    db.Expenses
+    .find({userID: req.params.userID, monthID: req.params.monthID, isPlanned: true})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
 }
 
 let getAllUnPlannedExpenses = (req, res) => {
-    db.Users
-        .find({_id: req.params.userID})
-        .populate('expenses.unPlanned')
-        .then(data => res.json(data[0].expenses.unPlanned))
-        .catch(err => console.log(err));
+    // db.Users
+    //     .find({_id: req.params.userID})
+    //     .populate('expenses.unPlanned')
+    //     .then(data => res.json(data[0].expenses.unPlanned))
+    //     .catch(err => console.log(err));
+
+
+    db.Expenses
+    .find({userID: req.params.userID, monthID: req.params.monthID, isPlanned: false})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
 }
 
 let getExpenseByID = (req, res) => {

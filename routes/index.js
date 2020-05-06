@@ -11,9 +11,9 @@ router.route("/allIncome/:userID/:monthID").get(controllers.getAllIncomeByUserID
 router.route("/allExpenses").get(controllers.getAllExpenses);
 router.route("/allUsers").get(controllers.getAllUsers);
 router.route("/monthData").get(controllers.getMonthData);
-router.route("/allPlannedExpenses/:userID").get(controllers.getAllPlannedExpenses);
+router.route("/allPlannedExpenses/:userID/:monthID").get(controllers.getAllPlannedExpenses);
 router.route("/fetchData/:userID").get(controllers.fetchData);
-router.route("/allUnPlannedExpenses/:userID").get(controllers.getAllUnPlannedExpenses);
+router.route("/allUnPlannedExpenses/:userID/:monthID").get(controllers.getAllUnPlannedExpenses);
 router.route("/getExpenseByID/:expenseID").get(controllers.getExpenseByID);
 router.route("/getIncomeByID/:incomeID").get(controllers.getIncomeByID);
 router.route("/getCurrentMonth").get(controllers.getCurrentMonth);

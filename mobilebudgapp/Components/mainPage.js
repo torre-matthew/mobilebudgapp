@@ -102,7 +102,7 @@ export default class MainPage extends Component {
   }
 
   getUnPlannedExpenseDataFromDB = () => {
-    return ApiMethods.getAllUnPlannedExpenses(this.state.loggedInUserID).then(expenses => {
+    return ApiMethods.getAllUnPlannedExpenses(this.state.loggedInUserID, this.state.currentMonthID).then(expenses => {
               this.setState({
                 currentUnPlannedExpensesFromDB: expenses.data
               });
@@ -125,7 +125,7 @@ export default class MainPage extends Component {
   }
 
   getPlannedExpenseDataFromDB = () => {
-    return ApiMethods.getAllPlannedExpenses(this.state.loggedInUserID)
+    return ApiMethods.getAllPlannedExpenses(this.state.loggedInUserID, this.state.currentMonthID)
     .then(expenses => {
       this.setState({
         currentPlannedExpensesFromDB: expenses.data

@@ -27,16 +27,16 @@ let getCurrentMonth = () => {
     return axios.get(URL + "api/getCurrentMonth");
 }
 
-let getAllPlannedExpenses = (userID) => {
-    return axios.get(URL + "api/allPlannedExpenses/" + userID);
+let getAllPlannedExpenses = (userID, monthID) => {
+    return axios.get(URL + "api/allPlannedExpenses/" + userID  + "/" + monthID);
 }
 
 let fetchData = (userID) => {
     return axios.get(URL + "api/fetchData/" + userID);
 }
 
-let getAllUnPlannedExpenses = (userID) => {
-    return axios.get(URL + "api/allUnPlannedExpenses/" + userID);
+let getAllUnPlannedExpenses = (userID, monthID) => {
+    return axios.get(URL + "api/allUnPlannedExpenses/" + userID  + "/" + monthID);
 }
 
 let getExpenseByID = (expenseID) => {
