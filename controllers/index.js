@@ -127,9 +127,14 @@ let getAllIncomeByUserID = (req, res) => {
     // .then(data => res.json(data[0].income))
     // .catch(err => console.log(err));
 
-    db.Users
-    .find({_id: req.params.userID}, {income: {$elemMatch: {monthID: req.params.monthID}}})
-    // .populate('income')
+    // db.Users
+    // .find({_id: req.params.userID}, {income: {$elemMatch: {monthID: req.params.monthID}}})
+    // // .populate('income')
+    // .then(data => res.json(data))
+    // .catch(err => console.log(err));
+
+    db.Income
+    .find({_id: req.params.userID, monthID: req.params.monthID})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
