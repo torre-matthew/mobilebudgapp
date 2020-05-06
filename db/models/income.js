@@ -22,6 +22,10 @@ let IncomeSchema = new Schema({
 userID: {
     type: String,
     required: true
+  },
+  monthID: {
+    type: String,
+    required: true
   }
 });
 
