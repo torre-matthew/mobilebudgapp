@@ -285,11 +285,16 @@ let deleteAllMonthData = () => {
     .catch(err => console.log(err));
 }
 
+let markExpenseAsPaid = (req, res) => {
+    db.Expenses
+            .updateOne({_id: req.body.data._id},
+                {$set: { isPaid: true}
+                })
+            .then(data => res.json(data))
+            .catch(err => console.log(err));
+}
+
 let editExpenseByID = async (req, res) => {
-//editExpense
-//updateExpenseOnUserRecord
-//getIncome
-//updateAfterSpendingAmount
 
 let arrayOfPlannedExpensesToBeSetInDB = [];
 let arrayOfUnPlannedExpensesToBeSetInDB = [];
@@ -533,6 +538,7 @@ module.exports = {
     deleteAllMonthData: deleteAllMonthData,
     editExpense: editExpenseByID,
     editIncome: editIncomeByID,
+    markExpenseAsPaid: markExpenseAsPaid,
     bulkEditExpensesAndIncome: bulkEditExpensesAndIncome,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     updateIncomeOnUserRecord: updateIncomeOnUserRecord,

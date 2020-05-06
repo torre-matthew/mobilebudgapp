@@ -140,6 +140,12 @@ let editIncome = (id, name, date, amount) => {
     });
 }
 
+let markExpenseAsPaid = (id) => {
+    return axios.put(URL + "api/markExpenseAsPaid", {
+        data: {_id: id}
+     });
+}
+
 let updateAfterSpendingAmount = (incomeID) => {
     return axios.put(URL + "api/updateAfterSpendingAmount/" + incomeID , {
       params: {incomeID: incomeID}
@@ -182,5 +188,6 @@ export default {
     deleteExpense: deleteExpense,
     deleteIncome: deleteIncome,
     editExpense: editExpense,
-    editIncome: editIncome
+    editIncome: editIncome,
+    markExpenseAsPaid: markExpenseAsPaid
 }
