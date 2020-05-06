@@ -19,6 +19,10 @@ let ExpenseSchema = new Schema({
     type: Boolean,
     required: true
 },
+isPaid: {
+  type: Boolean,
+  required: true
+},
 
   fundingSource: {
     type: String,
