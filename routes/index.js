@@ -27,6 +27,7 @@ router.route("/deleteIncome").delete(controllers.deleteIncome);
 router.route("/deleteAllMonthData").delete(controllers.deleteAllMonthData);
 router.route("/updateExpense").put(controllers.editExpense);
 router.route("/updateIncome").put(controllers.editIncome);
+router.route("/bulkEditExpensesAndIncome").put(controllers.bulkEditExpensesAndIncome);
 router.route("/updateAfterSpendingAmount/:incomeID").put(controllers.updateAfterSpendingAmount);
 router.route("/updateIncomeOnUserRecord/:userID").put(controllers.updateIncomeOnUserRecord);
 router.route("/updateExpensesOnUserRecord/:userID").put(controllers.updateExpensesOnUserRecord);

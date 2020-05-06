@@ -12,7 +12,8 @@ class UnplannedBillDisplay extends Component {
     modalVisible: false,
     whatsBeingEdited: "",
     fundingSourceName: "",
-    fundingSourceAmount: ""
+    fundingSourceAmount: "",
+    showMarkAsPaid: this.props.showMarkAsPaid
   };
 
   componentDidMount() {
@@ -136,6 +137,16 @@ class UnplannedBillDisplay extends Component {
                   style={style.button_style_form}>
                     <Text style={{fontSize: 12 }}> Delete Expense </Text>
                 </TouchableOpacity>
+                {this.state.showMarkAsPaid 
+                ?
+                <TouchableOpacity
+                  onPress={() => {}}
+                  style={style.button_style_form}>
+                    <Text style={{fontSize: 12 }}> Mark as paid </Text>
+                </TouchableOpacity>
+                :
+                <Text />
+                }
                 </ScrollView>
             </Modal>
             <View>
@@ -151,9 +162,17 @@ class UnplannedBillDisplay extends Component {
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 12 }}> Due: {this.props.dueDate} </Text>
                 </View>
-                <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
+                <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 5, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 12 }}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount} </Text>
                 </View>
+                {this.state.showMarkAsPaid 
+                ?
+                <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 1, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
+                  <Text style={{fontSize: 12 }}> Paid </Text>
+                </View>
+                :
+                <Text />
+                }
               </View>
             </View>
           </View>
