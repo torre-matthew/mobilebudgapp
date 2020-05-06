@@ -134,7 +134,7 @@ let getAllIncomeByUserID = (req, res) => {
     // .catch(err => console.log(err));
 
     db.Income
-    .find({_id: req.params.userID, monthID: req.params.monthID})
+    .find({userID: req.params.userID, monthID: req.params.monthID})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
