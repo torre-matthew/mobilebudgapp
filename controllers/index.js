@@ -48,7 +48,8 @@ let addExpenseToDb = async (req, res) => {
                 nameOfExpense: req.body.nameOfExpense,
                 amountOfExpense: req.body.amountOfExpense,
                 userID: req.body.userID, 
-                isPlanned: false
+                isPlanned: false,
+                monthID: req.body.monthID
                 })
             .then(data => res.json(data))
             .catch(err => console.log(err));

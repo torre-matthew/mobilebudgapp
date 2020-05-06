@@ -31,6 +31,7 @@ class SummaryWrapper extends Component {
                         currentMonth={this.props.currentMonth}
                         currentMonthID={this.props.currentMonthID}
                         selectNewMonth={this.props.selectNewMonth}
+                        fetchData={this.props.fetchData}
                         />
                     }   
                     <View>

@@ -48,6 +48,7 @@ class MonthPickerModal extends Component {
                 selectMonth={this.selectMonth}
                 selectNewMonth={this.props.selectNewMonth}
                 closeModal={this.closeModal}
+                fetchData={this.props.fetchData}
                 />
               )
             }

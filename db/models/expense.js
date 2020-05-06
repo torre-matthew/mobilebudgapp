@@ -28,8 +28,11 @@ let ExpenseSchema = new Schema({
   userID: {
     type: String,
     required: true
+  },
+  monthID: {
+    type: String,
+    required: true
   }
-
 });
 
 // This creates our model from the above schema, using mongoose's model method

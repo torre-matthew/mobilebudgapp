@@ -111,8 +111,9 @@ export default class MainPage extends Component {
   }
 
   selectNewMonth = (month, monthID) => {
-    this.setState({currentMonth: month, currentMonthID: monthID});
+    this.setState({currentMonth: month, currentMonthID: monthID}, () => {this.fetchData();});
   }
+
   getMonthDataFromDB = () => {
     return ApiMethods.getMonthData()
     .then(monthDataArrayFromDB => {
@@ -221,7 +222,7 @@ export default class MainPage extends Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     ApiMethods
-    .addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.state.loggedInUserID)
+    .addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.state.loggedInUserID, this.state.currentMonthID)
     .then(data => res.json(data))
     .catch(err => console.log(err))
   };

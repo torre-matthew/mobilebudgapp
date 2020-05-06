@@ -83,12 +83,13 @@ let addIncome = (name, date, amount, userID, monthID) => {
     });
 }
 
-let addExpense = (name, date, amount, userID) => {
+let addExpense = (name, date, amount, userID, monthID) => {
     return axios.post(URL + "api/addingExpense", {
         nameOfExpense: name,
         dateOfExpense: date,
         amountOfExpense: amount,
-        userID: userID
+        userID: userID,
+        monthID: monthID
     });
 }
 
