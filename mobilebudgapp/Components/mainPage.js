@@ -88,7 +88,7 @@ export default class MainPage extends Component {
 
   getIncomeDataFromDB = () => {
     return ApiMethods
-            .getIncomeByUserID(this.state.loggedInUserID)
+            .getIncomeByUserID(this.state.loggedInUserID, this.state.currentMonthID)
             .then(income => {
               
                 this.setState({
