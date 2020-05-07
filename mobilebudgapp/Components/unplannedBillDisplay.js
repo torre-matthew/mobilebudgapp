@@ -13,11 +13,20 @@ class UnplannedBillDisplay extends Component {
     whatsBeingEdited: "",
     fundingSourceName: "",
     fundingSourceAmount: "",
-    showMarkAsPaid: this.props.showMarkAsPaid
+    showMarkAsPaid: this.props.showMarkAsPaid,
+    colorIfPaid: ""
   };
 
   componentDidMount() {
     this.getFundingSourceInfo(this.props.billID);
+
+    switch (this.props.billIsPaid) {
+      case true:
+        this.setState({colorIfPaid: "#491A8B"})
+          break;
+      case false:
+        this.setState({colorIfPaid: "#E5F3F3"})
+    }
   }
 
   updateBillDisplayComponent = () => {
@@ -33,6 +42,16 @@ class UnplannedBillDisplay extends Component {
 
   closeModal = () => {
     this.setModalVisible(!this.state.modalVisible);
+  }
+
+  markAsPaid = (id, bool) => {
+    switch (bool) {
+      case true:
+        ApiMethods.markExpenseAsPaid(id, false).then({}).catch(err => console.log(err));
+          break;
+      case false:
+        ApiMethods.markExpenseAsPaid(id, true).then({}).catch(err => console.log(err));
+    }
   }
 
   deleteExpense = (idToDelete) => {
@@ -140,7 +159,7 @@ class UnplannedBillDisplay extends Component {
                 {this.state.showMarkAsPaid 
                 ?
                 <TouchableOpacity
-                  onPress={() => {}}
+                  onPress={() => {this.markAsPaid(this.props.billID, this.props.billIsPaid)}}
                   style={style.button_style_form}>
                     <Text style={{fontSize: 12 }}> Mark as paid </Text>
                 </TouchableOpacity>
@@ -158,7 +177,7 @@ class UnplannedBillDisplay extends Component {
                   <Text style={{fontSize: 18 }}> ${this.props.billAmount} </Text>
                 </View>
               </View>
-              <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#E5F3F3', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
+              <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: this.state.colorIfPaid, borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 12 }}> Due: {this.props.dueDate} </Text>
                 </View>

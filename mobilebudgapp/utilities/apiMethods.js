@@ -140,9 +140,9 @@ let editIncome = (id, name, date, amount) => {
     });
 }
 
-let markExpenseAsPaid = (id) => {
+let markExpenseAsPaid = (id, bool) => {
     return axios.put(URL + "api/markExpenseAsPaid", {
-        data: {_id: id}
+        data: {_id: id, isPaid: bool}
      });
 }
 
