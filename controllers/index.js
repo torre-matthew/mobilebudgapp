@@ -288,7 +288,7 @@ let deleteAllMonthData = () => {
 let markExpenseAsPaid = (req, res) => {
     db.Expenses
             .updateOne({_id: req.body.data._id},
-                {$set: { isPaid: true}
+                {$set: { isPaid: req.body.data.isPaid}
                 })
             .then(data => res.json(data))
             .catch(err => console.log(err));
@@ -372,24 +372,15 @@ let editIncomeByID = (req, res) => {
     .catch(err => console.log(err));
 }
 
-let bulkEditExpensesAndIncome = async(req, res) => {
+let bulkUpdate = async(req, res) => {
     await db.Expenses
-            .updateMany({userID: "5e9675e001ed360017e9ce4e"},
+            .updateMany({},
                 {$set: {
-                        monthID: "5eaf6211e7b5c6001726776a",    
+                        isPaid: false,    
                         }
                 })
             .then(data => res.json(data))
             .catch(err => console.log(err));
-
-    await db.Income
-    .updateMany({userID: "5e9675e001ed360017e9ce4e"},
-        {$set: {
-                monthID: "5eaf6211e7b5c6001726776a",    
-                }
-        })
-    .then(data => res.json(data))
-    .catch(err => console.log(err));
 } 
 
 let updateIncomeOnUserRecord = (req, res) => {
@@ -539,7 +530,7 @@ module.exports = {
     editExpense: editExpenseByID,
     editIncome: editIncomeByID,
     markExpenseAsPaid: markExpenseAsPaid,
-    bulkEditExpensesAndIncome: bulkEditExpensesAndIncome,
+    bulkUpdate:bulkUpdate,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     updateIncomeOnUserRecord: updateIncomeOnUserRecord,
     updateExpensesOnUserRecord: updateExpensesOnUserRecord
