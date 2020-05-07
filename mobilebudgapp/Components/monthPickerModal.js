@@ -21,13 +21,6 @@ class MonthPickerModal extends Component {
     this.setModalVisible(!this.state.modalVisible);
   }
 
-  // selectMonth = (month) => {
-  //   this.setState({selectedMonth: month}
-  //     , () => {
-  //       this.closeModal();
-  //     })
-  // }
-
   render() {
     return (
       <View style={{marginTop: 10}}>
