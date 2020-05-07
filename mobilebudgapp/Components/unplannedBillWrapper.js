@@ -34,6 +34,7 @@ class UnplannedBillWrapper extends Component {
               billAmount={expense.amountOfExpense}
               billID={expense._id}
               billIsPlanned={expense.isPlanned}
+              billIsPaid={expense.isPaid}
               billFundingSourceID={expense.fundingSource}
               incomeDataFromDB={this.props.incomeDataFromDB}
               handleBillAmount={this.props.handleBillAmount}
@@ -42,6 +43,7 @@ class UnplannedBillWrapper extends Component {
               loggedInUserID={this.props.loggedInUserID}
               updateWrapperComponent={this.updateUnplannedBillWrapperComponent}
               showMarkAsPaid={false}
+              fetchData={this.props.fetchData}
             />
             )
           }

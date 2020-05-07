@@ -14,7 +14,10 @@ class UnplannedBillDisplay extends Component {
     fundingSourceName: "",
     fundingSourceAmount: "",
     showMarkAsPaid: this.props.showMarkAsPaid,
-    colorIfPaid: ""
+    colorIfPaid: "",
+    textColorIfPaid: "",
+    markAsPaidButtonText: "",
+    paidDisplayText: this.props.paidDisplayText,
   };
 
   componentDidMount() {
@@ -22,15 +25,16 @@ class UnplannedBillDisplay extends Component {
 
     switch (this.props.billIsPaid) {
       case true:
-        this.setState({colorIfPaid: "#491A8B"})
+        this.setState({colorIfPaid: "#474198", textColorIfPaid: "#F5F5F5", markAsPaidButtonText: "Mark as unpaid"})
           break;
       case false:
-        this.setState({colorIfPaid: "#E5F3F3"})
+        this.setState({colorIfPaid: "#E5F3F3", textColorIfPaid: "black", markAsPaidButtonText: "Mark as paid"})
     }
   }
 
   updateBillDisplayComponent = () => {
     this.componentDidMount();
+    this.props.updateWrapperComponent();
   }
 
   setModalVisible = (visible) => {
@@ -42,15 +46,17 @@ class UnplannedBillDisplay extends Component {
 
   closeModal = () => {
     this.setModalVisible(!this.state.modalVisible);
+    this.componentDidMount();
+    this.props.updateWrapperComponent();
   }
 
   markAsPaid = (id, bool) => {
     switch (bool) {
       case true:
-        ApiMethods.markExpenseAsPaid(id, false).then({}).catch(err => console.log(err));
+        ApiMethods.markExpenseAsPaid(id, false).then(data => {this.updateBillDisplayComponent()}).catch(err => console.log(err));
           break;
       case false:
-        ApiMethods.markExpenseAsPaid(id, true).then({}).catch(err => console.log(err));
+        ApiMethods.markExpenseAsPaid(id, true).then(data => {this.updateBillDisplayComponent()}).catch(err => console.log(err));
     }
   }
 
@@ -161,7 +167,7 @@ class UnplannedBillDisplay extends Component {
                 <TouchableOpacity
                   onPress={() => {this.markAsPaid(this.props.billID, this.props.billIsPaid)}}
                   style={style.button_style_form}>
-                    <Text style={{fontSize: 12 }}> Mark as paid </Text>
+                    <Text style={{fontSize: 12 }}> {this.state.markAsPaidButtonText} </Text>
                 </TouchableOpacity>
                 :
                 <Text />
@@ -177,7 +183,7 @@ class UnplannedBillDisplay extends Component {
                   <Text style={{fontSize: 18 }}> ${this.props.billAmount} </Text>
                 </View>
               </View>
-              <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: this.state.colorIfPaid, borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
+              <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#E5F3F3', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 12 }}> Due: {this.props.dueDate} </Text>
                 </View>
@@ -186,8 +192,8 @@ class UnplannedBillDisplay extends Component {
                 </View>
                 {this.state.showMarkAsPaid 
                 ?
-                <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 1, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                  <Text style={{fontSize: 12 }}> Paid </Text>
+                <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 1, backgroundColor: this.state.colorIfPaid, paddingTop: 1, paddingBottom: 5, paddingLeft: 5, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, borderTopRighttRadius: 10, borderBottomRightRadius: 10}}> 
+                  <Text style={{color: this.state.textColorIfPaid, fontSize: 12 }}> Paid </Text>
                 </View>
                 :
                 <Text />
