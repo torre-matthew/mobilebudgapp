@@ -352,24 +352,25 @@ let arrayOfUnPlannedExpensesToBeSetInDB = [];
             .find({userID: req.body.data.loggedInUserID})
             .then(incomeArray => {
                 incomeArray.forEach(incomeObject => {
-                    updateAfterSpendingAmountDuringExpenseEdit(incomeObject._id)
-                    console.log("updateAfterSpending promise returned after editing expense")
+                    updateAfterSpendingAmountDuringExpenseORIncomeEdit(incomeObject._id)
                 });
             })
             .catch(err => console.log(err));
 }
 
-let editIncomeByID = (req, res) => {
-    db.Income
-    .updateOne({_id: req.body.data._id},
-        {$set: {
-                name: req.body.data.name,    
-                date: req.body.data.date, 
-                amount: req.body.data.amount
-                }
-        })
-    .then(data => res.json(data))
-    .catch(err => console.log(err));
+let editIncomeByID = async (req, res) => {
+    await db.Income
+            .updateOne({_id: req.body.data._id},
+                {$set: {
+                        name: req.body.data.name,    
+                        date: req.body.data.date, 
+                        amount: req.body.data.amount
+                        }
+                })
+            .then(data => res.json(data))
+            .catch(err => console.log(err));
+
+    await updateAfterSpendingAmountDuringExpenseORIncomeEdit(req.body.data._id);
 }
 
 let bulkUpdate = async(req, res) => {
@@ -474,7 +475,7 @@ let updateAfterSpendingAmount = (req, res) => {
     .catch(err => console.log(err));
 }
 
-let updateAfterSpendingAmountDuringExpenseEdit = (fundingSource) => {
+let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
     let totalOfExpenses = 0;
     let availableIncomeAmount = 0;
     db.Expenses
