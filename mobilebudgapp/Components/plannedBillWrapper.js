@@ -41,7 +41,6 @@ class PlannedBillWrapper extends Component {
                   loggedInUserID={this.props.loggedInUserID}
                   updateWrapperComponent={this.updatePlannedBillWrapperComponent}
                   showMarkAsPaid={true}
-                  paidDisplayText={expense.isPaid ? "Paid" : ""}
                   fetchData={this.props.fetchData}
                 />
                 )

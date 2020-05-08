@@ -43,6 +43,7 @@ class SummaryWrapper extends Component {
                         displayAfterSpendingData={this.props.displayAfterSpendingData}
                     />
                     <TotalCashFlowDisplay 
+                        switcherClicked={this.props.switcherClicked}
                         currentTotalIncome={this.props.currentTotalIncome}
                         spinnerSize={this.props.spinnerSize}
                         spinnerOpacity={this.props.spinnerOpacity}

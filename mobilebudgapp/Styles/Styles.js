@@ -96,10 +96,6 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         marginTop: 30,
     },
-    total: {
-        fontSize: 25,
-        textAlign: 'center',
-    },
     income: {
         fontSize: 20,
         textAlign: 'center'
@@ -130,7 +126,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid', 
         borderColor: '#4A0784',
         borderWidth: 1,
-        width: 112,
+        width: 125,
         alignSelf: 'center',
         alignItems: 'center',
         paddingTop: 10,
