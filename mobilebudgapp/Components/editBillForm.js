@@ -48,7 +48,7 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                 } else {
                     this.props.closeModalOnSubmit();
                     this.props.updateWrapperComponent();
-                    Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
+                    // Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
                 }
                 })
             .catch(err => console.log(err));
@@ -73,7 +73,7 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
               } else {
                   this.props.closeModalOnSubmit();
                   this.props.updateWrapperComponent();
-                Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
+                // Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
               }
             });
             }
