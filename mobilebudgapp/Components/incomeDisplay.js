@@ -51,6 +51,7 @@ class IncomeDisplay extends Component {
                   whatsBeingEdited={this.state.whatsBeingEdited}
                   updateWrapperComponent={this.props.updateWrapperComponent}
                   updateDisplayComponent={this.updateIncomeDisplayComponent}
+                  switcherClicked={this.props.switcherClicked}
                 />
                 <TouchableOpacity
                   onPress={() => {ApiMethods.deleteIncome(this.props.incomeID).then(res => {

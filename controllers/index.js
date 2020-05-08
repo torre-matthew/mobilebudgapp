@@ -271,11 +271,23 @@ let deleteExpenseByID = (req, res) => {
     .catch(err => console.log(err));
 }
 
-let deleteIncomeByID = (req, res) => {
-    db.Income
-    .deleteOne( { _id: req.body._id } )
-    .then(data => res.json(data))
-    .catch(err => console.log(err));
+let deleteIncomeByID = async (req, res) => {
+    
+    await db.Expenses //first find the expenses that were funded with that income and marke unpaid, unplanned, and clear fundingsource
+            .updateMany({},
+                {$set: {
+                        isPaid: false,
+                        isPlanned: false,
+                        fundingSource: ""    
+                        }
+                })
+            .then(data => res.json(data))
+            .catch(err => console.log(err));
+    
+    await db.Income
+            .deleteOne( { _id: req.body._id } )
+            .then(data => res.json(data))
+            .catch(err => console.log(err));
 }
 
 let deleteAllMonthData = () => {
