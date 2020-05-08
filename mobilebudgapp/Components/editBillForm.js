@@ -18,11 +18,19 @@ class EditBillFormDisplay extends Component {
         fundingSourceID:"",
         newFundingSourceID:"",
         fundingSourceDisplay:"",
-        chosenPickerValue:""
+        chosenPickerValue:"",
+        amountEditable: true,
+        unEditableAmountMessage: ""
         }
 
 componentDidMount() {
     this.editLogic();
+
+    if (this.props.switcherClicked && this.props.whatsBeingEdited === "income") {
+        this.setState({amountEditable: false, unEditableAmountMessage: " - not editable"})
+    } else {
+        this.setState({amountEditable: true})
+    }
 }
 
 showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource, loggedInUserID) => {
@@ -64,7 +72,7 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                 alert('Sorry, there was a problem. Please try again');
               } else {
                   this.props.closeModalOnSubmit();
-                  this.updateAfterSpendingAmountsForAllIncome();
+                  this.props.updateWrapperComponent();
                 Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
               }
             });
@@ -208,7 +216,7 @@ editLogic = () => {
                                 <Input defaultValue={this.state.currentName} placeholder='Bill/Expense' onChangeText={(text) => this.editField(text, "name")} />
                             </Item>
                             <Item>
-                                <Input defaultValue={this.state.currentAmount} keyboardType='numeric' placeholder="Amount" onChangeText={(text) => this.editField(text, "amount")} />
+                                <Input defaultValue={this.state.currentAmount + this.state.unEditableAmountMessage} keyboardType='numeric' editable={this.state.amountEditable} placeholder="Amount" onChangeText={(text) => this.editField(text, "amount")} />
                             </Item>
                             {this.props.whatsBeingEdited === "bill" ?
                             <Item>
@@ -226,7 +234,7 @@ editLogic = () => {
                                 />
                                 {this.state.incomeDataFromDB.map(income => 
                                     <Picker.Item
-                                        label={income.name + ": " + "$" + income.amount + " available"} 
+                                        label={income.name + ": " + "$" + income.afterSpendingAmount + " available"} 
                                         value={income._id} 
                                         key={income._id}
                                         />

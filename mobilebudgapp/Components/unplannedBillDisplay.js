@@ -130,8 +130,8 @@ class UnplannedBillDisplay extends Component {
             ApiMethods.getIncomeByID(data.data[0].fundingSource)
               .then(data => {
                   this.setState({
-                    fundingSourceName: "Funded with: " + data.data[0].name,
-                    fundingSourceAmount: "$" + data.data[0].amount
+                    fundingSourceName: data.data[0].name,
+                    fundingSourceAmount: "$" + data.data[0].afterSpendingAmount + " remains"
                     });                      
                   })
               .catch(err => console.log(err))
@@ -141,7 +141,7 @@ class UnplannedBillDisplay extends Component {
     } else {
       this.setState({
         fundingSourceName: "",
-        fundingSourceAmount: "Not yet planned"
+        fundingSourceAmount: "not yet planned"
       });
     }
   }
