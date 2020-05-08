@@ -274,7 +274,7 @@ let deleteExpenseByID = (req, res) => {
 let deleteIncomeByID = async (req, res) => {
     
     await db.Expenses //first find the expenses that were funded with that income and marke unpaid, unplanned, and clear fundingsource
-            .updateMany({},
+            .updateMany({fundingSource: req.body._id},
                 {$set: {
                         isPaid: false,
                         isPlanned: false,
