@@ -518,6 +518,24 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
     .catch(err => console.log(err));
 }
 
+// let copyPreviousMonthsData = async (req, res) => {
+
+//     letIncomeArray = []
+//     letExpenseArray = []
+
+//     db.Income
+//     .find({monthID: req.body.data.previousMonthID, userID: req.body.data.userID})
+//     .then(data => res.json(data))
+//     .catch(err => console.log(err));
+
+//     db.Expenses
+//     .find({userID: req.params.userID, monthID: req.params.monthID, isPlanned: true})
+//     .then(data => res.json(data))
+//     .catch(err => console.log(err));
+
+
+// }
+
 module.exports = {
     addIncome: addIncomeToDb,
     addExpense: addExpenseToDb,
