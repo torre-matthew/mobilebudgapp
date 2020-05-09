@@ -559,7 +559,7 @@ let copyPreviousMonthsData = async (req, res) => {
 //ID of user
 
     db.Income
-    .find({monthID: req.body.data.previousMonthID, userID: req.body.data.userID})
+    .find({monthID: req.body.previousMonthID, userID: req.body.userID})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 
