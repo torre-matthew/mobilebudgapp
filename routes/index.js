@@ -5,6 +5,7 @@ router.route("/addingIncome").post(controllers.addIncome);
 router.route("/addingExpense").post(controllers.addExpense);
 router.route("/addingUser").post(controllers.addUser);
 router.route("/addingMonth").post(controllers.addMonthToDb);
+router.route("/copyPreviousMonth").post(controllers.copyPreviousMonthsData);
 
 router.route("/allIncome").get(controllers.getAllIncome);
 router.route("/allIncome/:userID/:monthID").get(controllers.getAllIncomeByUserID);

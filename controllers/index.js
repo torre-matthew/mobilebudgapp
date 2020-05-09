@@ -36,6 +36,40 @@ let addIncomeToDb = async (req, res) => {
                 .catch(err => console.log(err));
 }
 
+let addIncomeWhenCopyingPreviousMonth = async (date, name, amount, userID, afterSpendingAmount, monthID) => {
+    await db.Income
+            .create({
+                date: date,
+                name: name,
+                amount: amount,
+                userID: userID,
+                afterSpendingAmount: afterSpendingAmount,
+                monthID: monthID
+                })
+            .then(data => res.json(data))
+            .catch(err => console.log(err));
+
+//then, empty the the income array for the user
+      await db.Users
+                .updateOne({_id: userID}, { $set: { income: [] } }, { new: true })
+                .then(data => res.json(data))
+                .catch(err => console.log(err));
+
+//then find all income with that userID  
+      await db.Income
+                .find({userID: userID}) 
+                .then(userIncomeArrayFromDB => 
+                    {
+//then repopulate the income array on the user with the latest 
+                        userIncomeArrayFromDB.forEach(userIncomeRecordObject => {
+                            db.Users.updateOne({_id: userID}, { $push: { income: userIncomeRecordObject._id } }, { new: true })
+                            .then(data => res.json(data))
+                            .catch(err => console.log(err))
+                            });
+                    })
+                .catch(err => console.log(err));
+}
+
 let addExpenseToDb = async (req, res) => {
     
     let arrayOfPlannedExpensesToBeSetInDB = [];
@@ -518,23 +552,24 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
     .catch(err => console.log(err));
 }
 
-// let copyPreviousMonthsData = async (req, res) => {
+let copyPreviousMonthsData = async (req, res) => {
 
-//     letIncomeArray = []
-//     letExpenseArray = []
+// ID of previous month
+//ID of target month
+//ID of user
 
-//     db.Income
-//     .find({monthID: req.body.data.previousMonthID, userID: req.body.data.userID})
-//     .then(data => res.json(data))
-//     .catch(err => console.log(err));
+    db.Income
+    .find({monthID: req.body.data.previousMonthID, userID: req.body.data.userID})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
 
-//     db.Expenses
-//     .find({userID: req.params.userID, monthID: req.params.monthID, isPlanned: true})
-//     .then(data => res.json(data))
-//     .catch(err => console.log(err));
+    // db.Expenses
+    // .find({userID: req.params.userID, monthID: req.params.monthID, isPlanned: true})
+    // .then(data => res.json(data))
+    // .catch(err => console.log(err));
 
 
-// }
+}
 
 module.exports = {
     addIncome: addIncomeToDb,
@@ -564,5 +599,7 @@ module.exports = {
     bulkUpdate:bulkUpdate,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     updateIncomeOnUserRecord: updateIncomeOnUserRecord,
-    updateExpensesOnUserRecord: updateExpensesOnUserRecord
+    updateExpensesOnUserRecord: updateExpensesOnUserRecord,
+    copyPreviousMonthsData: copyPreviousMonthsData
+
 }
