@@ -557,10 +557,15 @@ let copyPreviousMonthsData = async (req, res) => {
 // ID of previous month
 //ID of target month
 //ID of user
+// addIncomeWhenCopyingPreviousMonth = async (date, name, amount, userID, afterSpendingAmount, monthID)
 
     db.Income
     .find({monthID: req.body.previousMonthID, userID: req.body.userID})
-    .then(data => res.json(data))
+    .then(incomeDataArray => {
+        incomeDataArray.forEach(incomeObject => {
+            addIncomeWhenCopyingPreviousMonth(incomeObject.date, incomeObject.name, incomeObject.amount, incomeObject.userID, incomeObject.amount, req.body.targetMonthID);
+        })
+    })
     .catch(err => console.log(err));
 
     // db.Expenses
