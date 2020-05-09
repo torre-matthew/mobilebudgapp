@@ -124,6 +124,86 @@ let addExpenseToDb = async (req, res) => {
             .catch(err => console.log(err))
 }
 
+let addExpenseWhenCopyingPreviousMonth = async (dateOfExpense, nameOfExpense, amountOfExpense, userID, isPlanned, monthID, fundingSource, isPaid) => {
+    
+    let arrayOfPlannedExpensesToBeSetInDB = [];
+    let arrayOfUnPlannedExpensesToBeSetInDB = [];
+
+// Add Expense to the db
+    await db.Expenses
+            .create({
+                dateOfExpense: dateOfExpense,
+                nameOfExpense: nameOfExpense,
+                amountOfExpense: amountOfExpense,
+                userID: userID, 
+                isPlanned: false,
+                isPaid: false,
+                monthID: monthID
+                })
+            .then(data => {})
+            .catch(err => console.log(err));
+
+//then empty the the expense arrays for the user
+    await db.Users
+            .updateOne({_id: userID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
+                    .then(data => {})
+                    .catch(err => console.log(err))
+
+//then find all the unplannend expenses from the expense table and push them to the arrays above.
+    await db.Expenses
+            .find({userID: userID, isPlanned: true})
+            .then(arrayOfPlannedExpenses => 
+                { 
+                    arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
+                        arrayOfPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
+                            });
+                })
+            .catch(err => console.log(err))
+
+//then find all the plannend expenses from the expense table and push them to the arrays above.
+    await db.Expenses
+            .find({userID: userID, isPlanned: false})
+            .then(arrayOfUnPlannedExpenses => 
+                {
+                    arrayOfUnPlannedExpenses.forEach(userExpenseRecordObject => {
+                        arrayOfUnPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
+                            });
+                })
+            .catch(err => console.log(err))
+
+//then updated the planned and unplanned expense record for that user in the db.
+    await db.Users
+            .updateOne({_id: userID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
+            .then(data => {})
+            .catch(err => console.log(err))
+}
+
+let copyPreviousMonthsData = async (req, res) => {
+
+    // ID of previous month
+    //ID of target month
+    //ID of user
+    // addIncomeWhenCopyingPreviousMonth = async (date, name, amount, userID, afterSpendingAmount, monthID)
+    
+    await db.Income
+            .find({monthID: req.body.previousMonthID, userID: req.body.userID})
+            .then(incomeDataArray => {
+                incomeDataArray.forEach(incomeObject => {
+                    addIncomeWhenCopyingPreviousMonth(incomeObject.date, incomeObject.name, incomeObject.amount, incomeObject.userID, incomeObject.amount, req.body.targetMonthID);
+                })
+            })
+            .catch(err => console.log(err));
+    // addExpenseWhenCopyingPreviousMonth = async (dateOfExpense, nameOfExpense, amountOfExpense, userID, isPlanned, monthID, fundingSource, isPaid)
+     await db.Expenses
+            .find({userID: req.body.userID, monthID: req.body.previousMonthID})
+            .then(expenseDataArray => {
+                expenseDataArray.forEach(expenseObject => {
+                    addExpenseWhenCopyingPreviousMonth(expenseObject.dateOfExpense, expenseObject.nameOfExpense, expenseObject.amountOfExpense, expenseObject.userID, false, req.body.targetMonthID, "", false);
+                })
+            })
+            .catch(err => console.log(err));
+    }
+
 let addUserToDb = (req, res) => {
     db.Users
     .create({
@@ -550,30 +630,6 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
             .catch(err => console.log(err));
         })
     .catch(err => console.log(err));
-}
-
-let copyPreviousMonthsData = async (req, res) => {
-
-// ID of previous month
-//ID of target month
-//ID of user
-// addIncomeWhenCopyingPreviousMonth = async (date, name, amount, userID, afterSpendingAmount, monthID)
-
-    db.Income
-    .find({monthID: req.body.previousMonthID, userID: req.body.userID})
-    .then(incomeDataArray => {
-        incomeDataArray.forEach(incomeObject => {
-            addIncomeWhenCopyingPreviousMonth(incomeObject.date, incomeObject.name, incomeObject.amount, incomeObject.userID, incomeObject.amount, req.body.targetMonthID);
-        })
-    })
-    .catch(err => console.log(err));
-
-    // db.Expenses
-    // .find({userID: req.params.userID, monthID: req.params.monthID, isPlanned: true})
-    // .then(data => res.json(data))
-    // .catch(err => console.log(err));
-
-
 }
 
 module.exports = {
