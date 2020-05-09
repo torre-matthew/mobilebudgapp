@@ -46,13 +46,13 @@ let addIncomeWhenCopyingPreviousMonth = async (date, name, amount, userID, after
                 afterSpendingAmount: afterSpendingAmount,
                 monthID: monthID
                 })
-            .then(data => res.json(data))
+            .then(data => console.log("Income record successfully created"))
             .catch(err => console.log(err));
 
 //then, empty the the income array for the user
       await db.Users
                 .updateOne({_id: userID}, { $set: { income: [] } }, { new: true })
-                .then(data => res.json(data))
+                .then(data => console.log("Income Array Emptied"))
                 .catch(err => console.log(err));
 
 //then find all income with that userID  
@@ -63,7 +63,7 @@ let addIncomeWhenCopyingPreviousMonth = async (date, name, amount, userID, after
 //then repopulate the income array on the user with the latest 
                         userIncomeArrayFromDB.forEach(userIncomeRecordObject => {
                             db.Users.updateOne({_id: userID}, { $push: { income: userIncomeRecordObject._id } }, { new: true })
-                            .then(data => res.json(data))
+                            .then(data => console.log("Income Array Repopulated"))
                             .catch(err => console.log(err))
                             });
                     })
