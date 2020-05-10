@@ -1,9 +1,10 @@
 import React, { Component} from "react";
 import { ActivityIndicator, View } from 'react-native';
-import UnplannedBillDisplay from './unplannedBillDisplay';
+import UnplannedBillDisplay from './billDisplay';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import AddBillModal from "./addBillModal";
 import style from "../Styles/Styles";
+import EmptyStateDisplay from "./unplannedBillWrapperEmptyState";
 
 class UnplannedBillWrapper extends Component {
 
@@ -47,7 +48,7 @@ class UnplannedBillWrapper extends Component {
             />
             )
           }
-
+            {/* <EmptyStateDisplay /> */}
             <AddBillModal
               handleBillAmount={this.props.handleBillAmount}
               handleDueDate={this.props.handleDueDate}

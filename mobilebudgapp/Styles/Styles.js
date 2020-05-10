@@ -120,6 +120,44 @@ const styles = StyleSheet.create({
 
     },
 
+    button2_light_style: {
+        backgroundColor: '#F5F5F5',
+        borderRadius: 10,
+        borderStyle: 'solid', 
+        borderColor: '#4A0784',
+        borderWidth: 1,
+        width: 375,
+        alignSelf: 'center',
+        alignItems: 'center',
+        paddingTop: 10,
+        paddingBottom: 10,
+        shadowOffset: {width: 0, height: 2},
+        shadowColor: '#4A0784',
+        shadowOpacity: 0.75,
+        shadowRadius: 6,
+        marginTop: 15
+
+    },
+
+    button2_cta_style: {
+        backgroundColor: '#40DBCE',
+        borderRadius: 10,
+        borderStyle: 'solid', 
+        borderColor: '#4A0784',
+        borderWidth: 1,
+        width: 375,
+        alignSelf: 'center',
+        alignItems: 'center',
+        paddingTop: 10,
+        paddingBottom: 10,
+        shadowOffset: {width: 0, height: 2},
+        shadowColor: '#4A0784',
+        shadowOpacity: 0.75,
+        shadowRadius: 6,
+        marginTop: 15
+
+    },
+
     button_style_form: {
         backgroundColor: '#40DBCE',
         borderRadius: 20,

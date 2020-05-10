@@ -93,6 +93,14 @@ let addExpense = (name, date, amount, userID, monthID) => {
     });
 }
 
+let copyPreviousMonthData = (previousMonthID, userID, targetMonthID) => {
+    return axios.post(URL + "api/copyPreviousMonth", {
+        previousMonthID: previousMonthID,
+        userID: userID,
+        targetMonthID: targetMonthID
+    });
+}
+
 let addUser = (email, profilePic, lastName, firstName) => {
     return axios.post(URL + "api/addingUser", {
         email: email,
@@ -189,5 +197,7 @@ export default {
     deleteIncome: deleteIncome,
     editExpense: editExpense,
     editIncome: editIncome,
-    markExpenseAsPaid: markExpenseAsPaid
+    markExpenseAsPaid: markExpenseAsPaid,
+    copyPreviousMonthData: copyPreviousMonthData
+    
 }
