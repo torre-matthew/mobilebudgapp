@@ -140,13 +140,13 @@ let addExpenseWhenCopyingPreviousMonth = async (dateOfExpense, nameOfExpense, am
                 isPaid: false,
                 monthID: monthID
                 })
-            .then(data => {})
+            .then(data => {return data})
             .catch(err => console.log(err));
 
 //then empty the the expense arrays for the user
     await db.Users
             .updateOne({_id: userID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
-                    .then(data => {})
+                    .then(data => {return data})
                     .catch(err => console.log(err))
 
 //then find all the unplannend expenses from the expense table and push them to the arrays above.
@@ -174,7 +174,7 @@ let addExpenseWhenCopyingPreviousMonth = async (dateOfExpense, nameOfExpense, am
 //then updated the planned and unplanned expense record for that user in the db.
     await db.Users
             .updateOne({_id: userID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
-            .then(data => {})
+            .then(data => {return data})
             .catch(err => console.log(err))
 }
 
