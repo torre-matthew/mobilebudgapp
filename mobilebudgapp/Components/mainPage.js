@@ -32,6 +32,7 @@ export default class MainPage extends Component {
     monthData: [],
     currentMonthID: this.props.currentMonthID,
     currentMonth: this.props.currentMonth,
+    doesCurrentMonthNeedData: false,
     currentTotalIncome: 0,
     afterSpendingIncomeTotal: 0,
     recentlyAdded: false,
@@ -50,13 +51,13 @@ export default class MainPage extends Component {
     this.getLoggedInUserIdByEmail(this.state.loggedInUsersEmail);
   }
 
-  fetchData = () => {
-    this.getPlannedExpenseDataFromDB();
-    this.getIncomeDataFromDB();
-    this.getUnPlannedExpenseDataFromDB();
-    this.getMonthDataFromDB();
-    this.getTotalIncome();
-    setTimeout(() => {this.setState({spinnerSize: 0, spinnerOpacity: 0, showSpinner: false})}, 2500);
+  fetchData = async () => {
+    await this.getPlannedExpenseDataFromDB();
+    await this.getIncomeDataFromDB();
+    await this.getUnPlannedExpenseDataFromDB();
+    await this.getMonthDataFromDB();
+    await this.getTotalIncome();
+    await this.setState({spinnerSize: 0, spinnerOpacity: 0, showSpinner: false}); 
   }
 
   onRefresh = () => {
@@ -110,8 +111,42 @@ export default class MainPage extends Component {
             .catch(err => console.log(err));
   }
 
-  selectNewMonth = (month, monthID) => {
-    this.setState({currentMonth: month, currentMonthID: monthID}, () => {this.fetchData();});
+  determineIfCreateNewMonthScreenShouldBeShown = () => {
+    if (this.state.currentPlannedExpensesFromDB.length < 1 && this.state.currentUnPlannedExpensesFromDB.length < 1 && this.currentIncomeFromDB.length < 1) {
+        this.props.navigation.navigate('Create New Budget');  
+        this.setState({doesCurrentMonthNeedData: true});
+    } else {
+        this.setState({doesCurrentMonthNeedData: false});
+    }
+  }
+
+  selectNewMonth = async (month, monthID) => {
+    await ApiMethods.getAllUnPlannedExpenses(this.state.loggedInUserID, monthID)
+            .then(expenses => {
+              if (expenses.data.length === 0) {
+                this.setState({doesCurrentMonthNeedData: true})
+              }
+            })
+            .catch(err => console.log(err));
+
+    await  ApiMethods.getAllPlannedExpenses(this.state.loggedInUserID, monthID)
+            .then(expenses => {
+              if (expenses.data.length === 0) {
+                this.setState({doesCurrentMonthNeedData: true})
+              }
+            })
+            .catch(err => console.log(err));
+
+    await  ApiMethods.getIncomeByUserID(this.state.loggedInUserID, monthID)
+              .then(income => {
+                if (income.data.length === 0) { // previousMonthID, userID, targetMonthID
+                      this.props.navigation.navigate('Create New Budget', {previousMonthName: this.props.currentMonth, previousMonthID: this.props.currentMonthID, userID: this.state.loggedInUserID, targetMonthID: monthID, targetMonthName: month});
+                      this.setState({currentMonth: month, currentMonthID: monthID, doesCurrentMonthNeedData: true},() => {this.fetchData()});                  
+                } else {
+                      this.setState({currentMonth: month, currentMonthID: monthID, doesCurrentMonthNeedData: false},() => {this.fetchData()});
+                }
+              })
+              .catch(err => console.log(err));
   }
 
   getMonthDataFromDB = () => {

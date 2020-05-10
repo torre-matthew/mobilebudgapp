@@ -5,6 +5,7 @@ import TotalCashFlowDisplay from './totalCashFlowDisplay';
 import IncomeDisplay from './incomeDisplay';
 import AddEntryModal from "./addIncomeModal";
 import MonthPickerModal from "./monthPickerModal";
+import SummaryWrapperEmptyState from "./summaryWrapperEmptyState";
 import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
@@ -49,6 +50,7 @@ class SummaryWrapper extends Component {
                         spinnerOpacity={this.props.spinnerOpacity}
                         showSpinner={this.props.showSpinner}
                     />
+                    
                     {this.props.showSpinner 
                         ?
                         <ActivityIndicator style={{ opacity: this.props.spinnerOpacity }} animating={this.props.showSpinner} size={this.props.spinnerSize} color="#40DBCE"/>
@@ -71,7 +73,6 @@ class SummaryWrapper extends Component {
                     />
                     )
                 }
-
                     <AddEntryModal
                     handleIncomeAmount={this.props.handleIncomeAmount}
                     handleIncomeDate={this.props.handleIncomeDate}
@@ -82,6 +83,7 @@ class SummaryWrapper extends Component {
                     fetchData={this.props.fetchData}
                     currentMonthID={this.props.currentMonthID}
                     />
+                    {/* <SummaryWrapperEmptyState /> */}
                 </Content>
         );
     }

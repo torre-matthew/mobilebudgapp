@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { ActivityIndicator, View, Button, ImageBackground } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as Google from 'expo-google-app-auth'
 import LoginScreenStyles from "../Styles/loginSreenStyles";
+import style from "../Styles/Styles";
 import MainPage from '../Components/mainPage';
 import ApiMethods from '../utilities/apiMethods';
 import MainScreen from "./mainScreen";
 
-const style = require("../Styles/Styles");
 const backgroundImage = require('../Styles/images/turquise indigo gradient.png');
 
 class LoginScreen extends Component {
@@ -122,9 +123,21 @@ class LoginScreen extends Component {
           </View>
           <View style={LoginScreenStyles.signIn}>
           {this.state.signedIn ? 
-            <Button title="Go To Main Page" onPress={() => navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID})} />
-            :  
-            <Button title="Sign in with Google" onPress={() => {this.signIn()}} /> 
+          <View>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID})}
+            style={style.button2_cta_style} >
+            <Text> Go to main page </Text>
+          </TouchableOpacity>
+          </View>
+            : 
+            <View> 
+            <TouchableOpacity
+              onPress={() => {this.signIn()}}
+              style={style.button2_light_style} >
+              <Text> Sign in with Google </Text>
+            </TouchableOpacity>
+            </View>
             }
           </View>
         </ImageBackground>  
