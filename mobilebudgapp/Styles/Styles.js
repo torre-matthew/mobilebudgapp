@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     summary_section_header: {
         fontSize: 40,
         textAlign: 'center',
-        marginTop: 15,
+        marginTop: 15
     },
 
     summary_section_header_secondary: {
@@ -103,58 +103,84 @@ const styles = StyleSheet.create({
 
     button_style: {
         backgroundColor: '#40DBCE',
-        borderRadius: 20,
-        borderStyle: 'solid', 
-        borderColor: '#4A0784',
-        borderWidth: 1,
-        width: '45%',
+        borderRadius: 10,
+        borderStyle: 'solid',
+        width: '50%',
         alignSelf: 'center',
         alignItems: 'center',
-        paddingTop: 10,
-        paddingBottom: 10,
+        padding: 10,
         shadowOffset: {width: 0, height: 2},
         shadowColor: '#4A0784',
+        elevation: 5,
         shadowOpacity: 0.75,
         shadowRadius: 6,
-        marginTop: 15
+        marginTop: 15,
+        marginBottom: 15
+    },
 
+    button2_dark_style: {
+        backgroundColor: '#4A0784',
+        borderRadius: 10,
+        borderStyle: 'solid',
+        width: '50%',
+        alignSelf: 'center',
+        alignItems: 'center',
+        padding: 10,
+        shadowOffset: {width: 0, height: 2},
+        shadowColor: '#4A0784',
+        elevation: 5,
+        shadowOpacity: 0.75,
+        shadowRadius: 6,
+        marginTop: 15,
+        marginBottom: 15
+    },
+
+    button3_small_light_style: {
+        backgroundColor: '#F5F5F5',
+        borderRadius: 10,
+        borderStyle: 'solid',
+        width: '50%',
+        alignSelf: 'center',
+        alignItems: 'center',
+        padding: 10,
+        shadowOffset: {width: 0, height: 2},
+        shadowColor: '#4A0784',
+        elevation: 5,
+        shadowOpacity: 0.75,
+        shadowRadius: 6,
+        marginTop: 15,
+        marginBottom: 15
     },
 
     button2_light_style: {
         backgroundColor: '#F5F5F5',
         borderRadius: 10,
-        borderStyle: 'solid', 
-        borderColor: '#4A0784',
-        borderWidth: 1,
-        width: 375,
+        width: '85%',
         alignSelf: 'center',
         alignItems: 'center',
-        paddingTop: 10,
-        paddingBottom: 10,
-        shadowOffset: {width: 0, height: 2},
+        padding: 10,
+        elevation: 5,
         shadowColor: '#4A0784',
-        shadowOpacity: 0.75,
-        shadowRadius: 6,
-        marginTop: 15
+        marginTop: 15,
+        marginBottom: 15
 
     },
 
     button2_cta_style: {
         backgroundColor: '#40DBCE',
         borderRadius: 10,
-        borderStyle: 'solid', 
-        borderColor: '#4A0784',
-        borderWidth: 1,
-        width: 375,
+        borderStyle: 'solid',
+        width: '85%',
         alignSelf: 'center',
         alignItems: 'center',
-        paddingTop: 10,
-        paddingBottom: 10,
+        padding: 10,
         shadowOffset: {width: 0, height: 2},
         shadowColor: '#4A0784',
+        elevation: 5,
         shadowOpacity: 0.75,
         shadowRadius: 6,
-        marginTop: 15
+        marginTop: 15,
+        marginBottom: 15
 
     },
 
@@ -167,13 +193,14 @@ const styles = StyleSheet.create({
         width: 125,
         alignSelf: 'center',
         alignItems: 'center',
-        paddingTop: 10,
-        paddingBottom: 10,
+        padding: 10,
         shadowOffset: {width: 0, height: 2},
         shadowColor: '#4A0784',
+        elevation: 5,
         shadowOpacity: 0.75,
         shadowRadius: 6,
-        marginTop: 15
+        marginTop: 15,
+        marginBottom: 15
 
     },
 

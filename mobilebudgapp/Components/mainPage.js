@@ -140,7 +140,7 @@ export default class MainPage extends Component {
     await  ApiMethods.getIncomeByUserID(this.state.loggedInUserID, monthID)
               .then(income => {
                 if (income.data.length === 0) { // previousMonthID, userID, targetMonthID
-                      this.props.navigation.navigate('Create New Budget', {previousMonthName: this.props.currentMonth, previousMonthID: this.props.currentMonthID, userID: this.state.loggedInUserID, targetMonthID: monthID, targetMonthName: month});
+                      this.props.navigation.navigate('Create New Budget', {previousMonthName: this.props.currentMonth, previousMonthID: this.props.currentMonthID, userID: this.state.loggedInUserID, targetMonthID: monthID, targetMonthName: month, fetchData: this.fetchData});
                       this.setState({currentMonth: month, currentMonthID: monthID, doesCurrentMonthNeedData: true},() => {this.fetchData()});                  
                 } else {
                       this.setState({currentMonth: month, currentMonthID: monthID, doesCurrentMonthNeedData: false},() => {this.fetchData()});

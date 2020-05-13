@@ -67,7 +67,7 @@ class IncomeDisplay extends Component {
                   })
                   .catch(err => console.log(err)); 
                     }}
-                  style={style.button_style_form}>
+                  style={style.button2_light_style}>
                     <Text style={{fontSize: 12 }}> Delete Income </Text>
                 </TouchableOpacity>
                 </ScrollView>

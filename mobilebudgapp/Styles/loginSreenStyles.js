@@ -18,7 +18,6 @@ const loginScreenStyles = StyleSheet.create({
     signIn: {
         flex: 1,
         justifyContent: 'flex-start',
-        alignItems: 'center'
         },
   });
 

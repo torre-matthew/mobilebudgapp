@@ -12,26 +12,23 @@ class CreateNewBudgetScreen extends Component {
   state = {
     
   }
-copyPreviousMonth = () => {
-  // alert("Soldiers are in here looking for you, my guy!!!")
-  ApiMethods.copyPreviousMonthData(this.props.route.params.previousMonthID, this.props.route.params.userID, this.props.route.params.targetMonthID)
-    .then(data => {
 
-      console.log(data);
-      // if (data) {
-      //   alert(this.props.route.params.targetMonthName + " ready")
-      // } else {
-      //   alert("Sorry there seems to have been a problem. Please try again.")
-      // }
-    })
+copyPreviousMonth = () => {
+  
+  ApiMethods.copyPreviousMonthData(this.props.route.params.previousMonthID, this.props.route.params.userID, this.props.route.params.targetMonthID)
+    .then(data => {return data})
     .catch(err => console.log(err))
+    this.props.route.params.fetchData();
+    this.props.navigation.navigate('Main');
+
+    //{email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID}
 }
  render() {
 
    const {navigation} = this.props;
 
     return (
-      <Container>
+      <Container style={{backgroundColor: '#F5F5F5'}}>
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', margin: 25}}>
             <Text style={{color: '#474198', fontSize: 20}}>
               Hey there, ready to start planning
@@ -51,13 +48,13 @@ copyPreviousMonth = () => {
             onPress={() => {this.copyPreviousMonth()}}
             style={style.button2_cta_style}
             >
-            <Text> {'Copy ' + this.props.route.params.previousMonthName +  "'s plan"} </Text>
+            <Text style={{color: '#4A0784'}}> {'Copy ' + this.props.route.params.previousMonthName +  "'s plan"} </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => {}}
+            onPress={() => {this.props.navigation.navigate('Main')}}
             style={style.button2_light_style}
             >
-            <Text> Start fresh </Text>
+            <Text style={{color: '#4A0784'}}> Start fresh </Text>
           </TouchableOpacity>
           </View>  
       </Container>

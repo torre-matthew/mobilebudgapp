@@ -224,17 +224,14 @@ editLogic = () => {
                             prompt="Select Funding Source"
                             selectedValue={this.state.chosenPickerValue}
                             style={{height: 50, width: 400}}
-                            onValueChange={(itemValue, itemIndex) => this.chooseFundingSource(itemValue, itemIndex)}
-                            >
+                            onValueChange={(itemValue, itemIndex) => this.chooseFundingSource(itemValue, itemIndex)} >
                              <Picker.Item 
-                                label="Select Funding Source" 
-                                value="none" 
-                                key="none" 
-                                onPress={() => this.chooseFundingSource("none")}
-                                />
+                                label={this.props.fundingSourceName + " " + this.props.fundingSourceAmount + " (current)"} 
+                                value={this.props.billFundingSourceID} 
+                                key={this.props.billFundingSourceID} />
                                 {this.state.incomeDataFromDB.map(income => 
                                     <Picker.Item
-                                        label={income.name + ": " + "$" + income.afterSpendingAmount + " available"} 
+                                        label={income.name + ": " + "$" + income.afterSpendingAmount + " remains"} 
                                         value={income._id} 
                                         key={income._id}
                                         />
@@ -251,7 +248,7 @@ editLogic = () => {
                                 :
                                 (event) => this.handleIncomeEditFormSubmit(event, this.props.incomeID, this.state.newName, this.state.newDate, this.state.newAmount)
                                 }
-                                style={style.button_style_form}>
+                                style={style.button_style}>
                                 <Text> Submit </Text>
                             </TouchableOpacity>
                             </View>

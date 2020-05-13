@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Modal, Text, TouchableHighlight, View, Alert, Dimensions, ScrollView} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { FontAwesome } from '@expo/vector-icons';
 import MonthDisplay from "./monthDisplay";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
@@ -24,6 +25,7 @@ class MonthPickerModal extends Component {
   render() {
     return (
       <View style={{marginTop: 10}}>
+        <FontAwesome name="angellist" size={24} color="black" />
         <Modal
           animationType="slide"
           transparent={false}

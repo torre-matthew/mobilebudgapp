@@ -45,6 +45,7 @@ class UnplannedBillWrapper extends Component {
               updateWrapperComponent={this.updateUnplannedBillWrapperComponent}
               showMarkAsPaid={false}
               fetchData={this.props.fetchData}
+              isThisPlanned={false}
             />
             )
           }
