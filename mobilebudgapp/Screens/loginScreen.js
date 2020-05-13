@@ -66,28 +66,18 @@ class LoginScreen extends Component {
                 name: result.user.name,
                 photoUrl: result.user.photoUrl,
                 email: result.user.email, 
-<<<<<<< HEAD
               }, () => { //callback in setstate to get data for current calendar month and set month data that will be needed when the app is loaded
-=======
-              }, () => {
->>>>>>> 392b365a05557cef370562a3458211a1c8b910c6
                 ApiMethods.getCurrentMonth()
                       .then(month => {
                           this.setState({
                             currentMonthID: month.data[0]._id,
                             currentMonth: month.data[0].month,
                             spinnerOpacity: 0
-<<<<<<< HEAD
                           }, () => { //another callback that then sends the user to the main app after the month data has been recieved and set.
                             this.props.navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID})
                           });
                         })
                       .catch(err => console.log(err))
-=======
-                          });
-                        })
-                      .catch(err => console.log(err));
->>>>>>> 392b365a05557cef370562a3458211a1c8b910c6
               })
             }
           })

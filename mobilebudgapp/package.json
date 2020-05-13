@@ -5,21 +5,14 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "server": "cd .. && npm start",
-<<<<<<< HEAD
     "start": "expo start",
-=======
-    "start": "expo start --web",
->>>>>>> 392b365a05557cef370562a3458211a1c8b910c6
     "test": "jest"
   },
   "proxy": "http://192.168.1.23:3001",
   "dependencies": {
-<<<<<<< HEAD
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-native-fontawesome": "^0.2.4",
-=======
->>>>>>> 392b365a05557cef370562a3458211a1c8b910c6
     "@react-native-community/async-storage": "^1.6.2",
     "@react-native-community/masked-view": "^0.1.7",
     "@react-navigation/native": "^5.1.4",
@@ -27,10 +20,7 @@
     "concurrently": "^5.0.0",
     "expo": "^35.0.0",
     "expo-cli": "3.11.3",
-<<<<<<< HEAD
     "expo-font": "^8.1.1",
-=======
->>>>>>> 392b365a05557cef370562a3458211a1c8b910c6
     "expo-google-app-auth": "^8.1.0",
     "native-base": "^2.13.8",
     "react": "16.8.3",
@@ -40,10 +30,7 @@
     "react-native-reanimated": "^1.8.0",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.4.0",
-<<<<<<< HEAD
     "react-native-svg": "^12.1.0",
-=======
->>>>>>> 392b365a05557cef370562a3458211a1c8b910c6
     "react-native-unimodules": "0.6.0",
     "react-native-web": "^0.11.7",
     "react-native-webview": "7.0.5",
