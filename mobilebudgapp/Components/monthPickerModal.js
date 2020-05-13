@@ -25,7 +25,6 @@ class MonthPickerModal extends Component {
   render() {
     return (
       <View style={{marginTop: 10}}>
-        <FontAwesome name="angellist" size={24} color="black" />
         <Modal
           animationType="slide"
           transparent={false}
