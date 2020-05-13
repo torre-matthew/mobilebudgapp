@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Modal, Text, TouchableHighlight, View, Alert, Dimensions, ScrollView} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { FontAwesome } from '@expo/vector-icons';
 import MonthDisplay from "./monthDisplay";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
