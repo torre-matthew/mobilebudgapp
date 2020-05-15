@@ -74,7 +74,7 @@ class LoginScreen extends Component {
                             currentMonth: month.data[0].month,
                             spinnerOpacity: 0
                           }, () => { //another callback that then sends the user to the main app after the month data has been recieved and set.
-                            this.props.navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID})
+                            this.props.navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl})
                           });
                         })
                       .catch(err => console.log(err))
@@ -127,7 +127,7 @@ class LoginScreen extends Component {
           {this.state.signedIn ? 
           <View>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID})}
+            onPress={() => navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl})}
             style={style.button2_cta_style} >
             <Text> Go to main page </Text>
           </TouchableOpacity>

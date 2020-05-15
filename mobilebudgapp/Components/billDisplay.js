@@ -206,6 +206,20 @@ class UnplannedBillDisplay extends Component {
                   />
                 </View>
                 <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                <View style={{ flex: 1, alignSelf: 'stretch'}}>
+                <TouchableOpacity
+                  onPress={() => {}}
+                  style={style.button3_small_light_style}>
+                    <Text style={{fontSize: 12, color: '#4A0784'}}> Split </Text>
+                </TouchableOpacity>
+                </View>
+                <View style={{ flex: 1, alignSelf: 'stretch'}}>
+                <TouchableOpacity
+                  onPress={() => {}}
+                  style={style.button3_small_light_style}>
+                    <Text style={{fontSize: 12, color: '#4A0784'}}> Move </Text>
+                </TouchableOpacity>
+                </View>
                 {this.state.showMarkAsPaid 
                 ?
                 <View style={{ flex: 1, marginTop: 100}}>

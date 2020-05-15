@@ -13,6 +13,7 @@ class MainScreen extends Component {
           currentMonth={this.props.route.params.currentMonth}
           currentMonthID={this.props.route.params.currentMonthID}
           navigation={navigation}
+          photoURL={this.props.route.params.photoURL}
           />
       </Container>
     );

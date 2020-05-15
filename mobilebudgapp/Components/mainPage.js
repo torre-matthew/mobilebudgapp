@@ -41,7 +41,7 @@ export default class MainPage extends Component {
     signedIn: false,
     loggedInUsersEmail: this.props.loggedInUsersEmail,
     loggedInUserID: "",
-    photoUrl: "",
+    photoUrl: this.props.photoURL,
     spinnerSize: 20,
     spinnerOpacity: 1,
     showSpinner: true
@@ -294,8 +294,8 @@ export default class MainPage extends Component {
 
   render() {
     return (
-        <Container  style={style.container}>
-          <AppHeader />
+        <Container>
+          <AppHeader photoURL={this.state.photoUrl}/>
           <ScrollView
           refreshControl={
             <RefreshControl 
@@ -303,7 +303,7 @@ export default class MainPage extends Component {
               onRefresh={this.onRefresh}/>
           }
           >
-            <View>
+            <View style={style.container}>
               <SummaryWrapper 
                 incomeDataFromDB={!this.state.afterSpendingClicked ? this.state.currentIncomeFromDB : this.state.afterSpendingData}
                 displayAfterSpendingData={this.displayAfterSpendingData}

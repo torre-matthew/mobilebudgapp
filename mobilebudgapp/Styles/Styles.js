@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
+      backgroundColor: '#4666A5',
     },
 
     header: {
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
       },
 
     summary_section: {
-        // backgroundColor: 'white',
+        backgroundColor: 'white',
         // borderStyle: 'solid',
         // borderTopWidth: 0, 
         // borderWidth: 5,
@@ -65,15 +66,20 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         minHeight: 100, 
         height: 'auto',
+        // borderTopLeftRadius: 45,
+        // borderBottomRightRadius: 45,
+        // width: '100%',
         // borderStyle: 'solid', 
-        // borderWidth: 2,
-        // borderColor: '#42B9C2',
+        // borderLeftWidth: 8,
+        // borderRightWidth: 8,
+        // borderColor: 'white',
+        // alignSelf: 'center'
         // borderRadius: 25,
         // margin: 5
     },
 
     planned_section: {
-        backgroundColor: 'white',
+        backgroundColor: '#4666A5',
         minHeight: 100, 
         height: 'auto',
         // borderStyle: 'solid', 
