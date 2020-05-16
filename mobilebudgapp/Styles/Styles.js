@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
 
+//main turquious cta button
     button_style: {
         backgroundColor: '#40DBCE',
         borderRadius: 10,
@@ -124,6 +125,7 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
 
+// small purple button
     button2_dark_style: {
         backgroundColor: '#4A0784',
         borderRadius: 10,
@@ -141,6 +143,7 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
 
+// medium grey button
     button3_small_light_style: {
         backgroundColor: '#F5F5F5',
         borderRadius: 10,
@@ -158,6 +161,7 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
 
+   // large grey button
     button2_light_style: {
         backgroundColor: '#F5F5F5',
         borderRadius: 10,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, Platform, StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native';
+import { ActivityIndicator, Platform, StyleSheet, Text, View, ScrollView, RefreshControl, ImageBackground } from 'react-native';
 import { Container, Button, Content, Form, Item, Input} from 'native-base';
 import SummaryWrapper from './summaryWrapper';
 import UnplannedBillWrapper from './unplannedBillWrapper';
@@ -10,6 +10,7 @@ import ApiMethods from '../utilities/apiMethods';
 
 
 const style = require("../Styles/Styles");
+const backgroundImage = require('../Styles/images/whiteWall.png');
 
 function wait(timeout) {
   return new Promise(resolve => {
@@ -295,6 +296,9 @@ export default class MainPage extends Component {
   render() {
     return (
         <Container>
+          <ImageBackground
+            source={backgroundImage}
+            style={{width: '100%', height: '100%'}} >
           <AppHeader photoURL={this.state.photoUrl}/>
           <ScrollView
           refreshControl={
@@ -361,6 +365,7 @@ export default class MainPage extends Component {
               />
             </View>
           </ScrollView>
+          </ImageBackground>
         </Container>
     );
   }
