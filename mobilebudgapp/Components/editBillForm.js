@@ -226,12 +226,12 @@ editLogic = () => {
                             style={{height: 50, width: 400}}
                             onValueChange={(itemValue, itemIndex) => this.chooseFundingSource(itemValue, itemIndex)} >
                              <Picker.Item 
-                                label={this.props.fundingSourceName + " " + this.props.fundingSourceAmount + " (current)"} 
+                                label={this.props.fundingSourceName + " " + this.props.fundingSourceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " (current)"} 
                                 value={this.props.billFundingSourceID} 
                                 key={this.props.billFundingSourceID} />
                                 {this.state.incomeDataFromDB.map(income => 
                                     <Picker.Item
-                                        label={income.name + ": " + "$" + income.afterSpendingAmount + " remains"} 
+                                        label={income.name + ": " + "$" + income.afterSpendingAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " remains"} 
                                         value={income._id} 
                                         key={income._id}
                                         />

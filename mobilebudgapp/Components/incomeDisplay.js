@@ -74,11 +74,11 @@ class IncomeDisplay extends Component {
             </Modal>
               <View>
                 <View onTouchEnd={() => {this.setModalVisible(true);}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10 }}>
-                  <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#DEF1F2', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 25, borderTopLeftRadius: 15 }}> 
-                    <Text style={{fontSize: 18 }}> {this.props.incomeName} </Text>
+                  <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#DEF1F2', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 28, borderTopLeftRadius: 15 }}> 
+                    <Text style={{fontSize: 15 }}> {this.props.incomeName} </Text>
                   </View>
                   <View style={{ flex: 1, alignItems:'center', backgroundColor: '#DEF1F2', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
-                    <Text style={{fontSize: 18 }}> ${this.props.incomeAmount} </Text>
+                    <Text style={{fontSize: 15 }}> ${this.props.incomeAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                     {this.props.switcherClicked
                      ?
                      <Text style={{fontSize: 8 }}> Remaining </Text>

@@ -47,9 +47,9 @@ class MonthPickerModal extends Component {
             }
           </ScrollView>
         </Modal>
-        
         <TouchableOpacity
           onPress={() => {this.setModalVisible(true)}}
+          
           >
           <Text style={style.summary_section_header}> {this.props.currentMonth} </Text>
         </TouchableOpacity>
