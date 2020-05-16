@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
-      backgroundColor: '#4666A5',
+      backgroundColor: '#F5F5F5',
     },
 
     header: {
@@ -68,14 +68,14 @@ const styles = StyleSheet.create({
         height: 'auto',
         // borderTopLeftRadius: 45,
         // borderBottomRightRadius: 45,
-        // width: '100%',
-        // borderStyle: 'solid', 
-        // borderLeftWidth: 8,
-        // borderRightWidth: 8,
-        // borderColor: 'white',
-        // alignSelf: 'center'
-        // borderRadius: 25,
-        // margin: 5
+        width: '95%',
+        borderStyle: 'solid', 
+        borderWidth: 1,
+        borderColor: 'white',
+        alignSelf: 'center',
+        borderRadius: 10,
+        margin: 10,
+        elevation: 5
     },
 
     planned_section: {
@@ -98,9 +98,9 @@ const styles = StyleSheet.create({
     },
     secondary_header: {
         textAlign: 'center',
-        fontSize: 25,
+        fontSize: 20,
         marginBottom: 30,
-        marginTop: 30,
+        marginTop: 5,
     },
     income: {
         fontSize: 20,
