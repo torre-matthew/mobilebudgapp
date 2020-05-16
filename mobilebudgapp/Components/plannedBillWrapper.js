@@ -17,9 +17,9 @@ class PlannedBillWrapper extends Component {
   }
   render() {
       return (
-          <Content padder style={style.unplanned_section}>
-            <View> 
-              <Text style={style.secondary_header}> Planned Bills and Expenses </Text>
+          <Content padder style={style.planned_section}>
+            <View style={style.secondary_header}> 
+              <Text style={style.secondary_header_text}> Planned </Text>
             </View>
             {/* <PlannedBillWrapperEmptyState /> */}
             {this.props.showSpinner 

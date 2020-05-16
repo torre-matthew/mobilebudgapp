@@ -4,6 +4,8 @@ import { Container, Button, Content, Form, Item, Input} from 'native-base';
 import SummaryWrapper from './summaryWrapper';
 import UnplannedBillWrapper from './unplannedBillWrapper';
 import PlannedBillWrapper from './plannedBillWrapper';
+import MonthPickerModal from './monthPickerModal';
+import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import { thisExpression } from '@babel/types';
 import AppHeader from './appheader';
 import ApiMethods from '../utilities/apiMethods';
@@ -308,6 +310,21 @@ export default class MainPage extends Component {
           }
           >
             <View style={style.container}>
+            {this.state.showSpinner
+              ?
+              <ActivityIndicator style={{ opacity: this.state.spinnerOpacity }} animating={this.state.showSpinner} size={this.state.spinnerSize} color="#40DBCE"/>
+              :
+            <MonthPickerModal 
+                monthData={this.state.monthData} 
+                currentMonth={this.state.currentMonth}
+                currentMonthID={this.state.currentMonthID}
+                selectNewMonth={this.selectNewMonth}
+                fetchData={this.fetchData}
+                />
+            }   
+              <View style={{marginTop: 12, marginBottom: 1, marginLeft: 7}}>
+                  <Text style={{fontSize: 15, color: '#4A0784'}}> Income: </Text>
+              </View>
               <SummaryWrapper 
                 incomeDataFromDB={!this.state.afterSpendingClicked ? this.state.currentIncomeFromDB : this.state.afterSpendingData}
                 displayAfterSpendingData={this.displayAfterSpendingData}
@@ -329,6 +346,9 @@ export default class MainPage extends Component {
                 currentMonthID={this.state.currentMonthID}
                 selectNewMonth={this.selectNewMonth}
               />
+              <View style={{marginTop: 12, marginBottom: 1, marginLeft: 7}}> 
+                <Text style={{fontSize: 15, color: '#4A0784'}}> Bills and Expenses: </Text>
+              </View>
               <UnplannedBillWrapper
                 expenseDataFromDB={this.state.currentUnPlannedExpensesFromDB}
                 incomeDataFromDB={this.state.currentIncomeFromDB}

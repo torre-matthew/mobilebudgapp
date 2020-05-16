@@ -3,8 +3,6 @@ import { getPlatformOrientationLockAsync } from 'expo/build/ScreenOrientation/Sc
 import { bold } from 'ansi-colors';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-const backgroundImage = require('./images/turquise indigo gradient.png');
-
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -19,22 +17,20 @@ const styles = StyleSheet.create({
 
     summary_section: {
         backgroundColor: 'white',
-        // borderStyle: 'solid',
-        // borderTopWidth: 0, 
-        // borderWidth: 5,
-        // borderColor: '#ccf9fb'
+        width: '95%',
+        borderStyle: 'solid', 
+        borderWidth: 1,
+        borderColor: 'white',
+        alignSelf: 'center',
+        borderRadius: 10,
+        margin: 10,
+        elevation: 5
     },
 
     summary_section_header: {
         fontSize: 40,
         textAlign: 'center',
         marginTop: 15
-    },
-
-    summary_section_header_secondary: {
-        fontSize: 20,
-        textAlign: 'center',
-        marginBottom: 20,
     },
 
     summary_income_switcher: {
@@ -64,14 +60,14 @@ const styles = StyleSheet.create({
 
     unplanned_section: {
         backgroundColor: 'white',
+        borderTopColor: '#40DBCE',
+        borderLeftColor: '#40DBCE',
+        borderTopWidth: 5,
+        borderLeftWidth: 2, 
         minHeight: 100, 
         height: 'auto',
-        // borderTopLeftRadius: 45,
-        // borderBottomRightRadius: 45,
         width: '95%',
         borderStyle: 'solid', 
-        borderWidth: 1,
-        borderColor: 'white',
         alignSelf: 'center',
         borderRadius: 10,
         margin: 10,
@@ -79,12 +75,19 @@ const styles = StyleSheet.create({
     },
 
     planned_section: {
-        backgroundColor: '#4666A5',
+        backgroundColor: 'white',
+        borderTopColor: '#4A0784',
+        borderLeftColor: '#4A0784',
+        borderTopWidth: 5,
+        borderLeftWidth: 2, 
         minHeight: 100, 
         height: 'auto',
-        // borderStyle: 'solid', 
-        // borderWidth: 5,
-        // borderColor: '#8C8B99',
+        width: '95%',
+        borderStyle: 'solid', 
+        alignSelf: 'center',
+        borderRadius: 10,
+        margin: 10,
+        elevation: 5
     },
 
     welcome: {
@@ -97,11 +100,14 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     secondary_header: {
-        textAlign: 'center',
-        fontSize: 20,
         marginBottom: 30,
-        marginTop: 5,
     },
+
+    secondary_header_text: {
+        textAlign: 'center',
+        fontSize: 12,
+    },
+
     income: {
         fontSize: 20,
         textAlign: 'center'

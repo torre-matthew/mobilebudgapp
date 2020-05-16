@@ -20,8 +20,8 @@ class UnplannedBillWrapper extends Component {
   render(){
       return (
           <Content padder style={ style.unplanned_section }>
-            <View> 
-              <Text style={style.secondary_header}> Unplanned Bills and Expenses </Text>
+            <View style={style.secondary_header}> 
+              <Text style={style.secondary_header_text}> Needs planning </Text>
             </View>
             {this.props.showSpinner 
               ?

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Text, TouchableHighlight, View, Alert, Dimensions, ScrollView} from 'react-native';
+import {Modal, Text, TouchableHighlight, View, Alert, Dimensions, ScrollView, ViewBase} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MonthDisplay from "./monthDisplay";
 import style from "../Styles/Styles";
@@ -49,9 +49,9 @@ class MonthPickerModal extends Component {
         </Modal>
         <TouchableOpacity
           onPress={() => {this.setModalVisible(true)}}
-          
-          >
-          <Text style={style.summary_section_header}> {this.props.currentMonth} </Text>
+          style={{ flex: 1, alignSelf: 'center', marginTop: 5, marginBottom: 5, backgroundColor: 'white', elevation: 2, borderRadius: 15, borderWidth: 1, borderStyle: 'solid', borderColor: 'white' }}
+          >        
+          <Text style={{fontSize: 30, paddingLeft: 30, paddingRight: 30, paddingTop: 15, paddingBottom: 15}}> {this.props.currentMonth} </Text>
         </TouchableOpacity>
       </View>
     );

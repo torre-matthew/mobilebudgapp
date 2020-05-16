@@ -24,7 +24,7 @@ class AppHeader extends Component {
                   <Title style={{fontSize: 25}}> Lahri </Title>
                 </View>
                 <View style={{flex:1, alignSelf: 'flex-end', flexGrow: 2}}>
-                  <Image style={{width: 50, height: 50, borderRadius: 20, borderWidth: 2}} source={{uri: this.props.photoURL}} />
+                  <Image style={{width: 50, height: 50, borderRadius: 10, borderWidth: 1}} source={{uri: this.props.photoURL}} />
                 </View>
               </Body>
             </ImageBackground>

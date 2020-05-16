@@ -23,21 +23,6 @@ class SummaryWrapper extends Component {
     render() {
         return (
                 <Content padder style={style.summary_section}>
-                    {this.props.showSpinner
-                        ?
-                        <ActivityIndicator style={{ opacity: this.props.spinnerOpacity }} animating={this.props.showSpinner} size={this.props.spinnerSize} color="#40DBCE"/>
-                        :
-                    <MonthPickerModal 
-                        monthData={this.props.monthData} 
-                        currentMonth={this.props.currentMonth}
-                        currentMonthID={this.props.currentMonthID}
-                        selectNewMonth={this.props.selectNewMonth}
-                        fetchData={this.props.fetchData}
-                        />
-                    }   
-                    <View>
-                        <Text style={style.summary_section_header_secondary}> Income Summary </Text>
-                    </View>
                     <IncomeSummarySwitcher 
                         switcherClicked={this.props.switcherClicked}
                         switcherStyle={this.props.switcherClickedStyle}
