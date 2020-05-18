@@ -8,11 +8,13 @@ import MonthPickerModal from './monthPickerModal';
 import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import { thisExpression } from '@babel/types';
 import AppHeader from './appheader';
+import { FontAwesome5 } from '@expo/vector-icons';
+import SideBar from "./sideBar";
 import ApiMethods from '../utilities/apiMethods';
 
 
 const style = require("../Styles/Styles");
-const backgroundImage = require('../Styles/images/whiteWall.png');
+const backgroundImage = require('../Styles/images/app background.png');
 
 function wait(timeout) {
   return new Promise(resolve => {
@@ -297,7 +299,7 @@ export default class MainPage extends Component {
 
   render() {
     return (
-        <Container>
+        <Container style={style.container}>
           <ImageBackground
             source={backgroundImage}
             style={{width: '100%', height: '100%'}} >
@@ -309,7 +311,7 @@ export default class MainPage extends Component {
               onRefresh={this.onRefresh}/>
           }
           >
-            <View style={style.container}>
+            <View style={{zIndex: 0, position: 'relative'}}>
             {this.state.showSpinner
               ?
               <ActivityIndicator style={{ opacity: this.state.spinnerOpacity }} animating={this.state.showSpinner} size={this.state.spinnerSize} color="#40DBCE"/>
@@ -323,7 +325,8 @@ export default class MainPage extends Component {
                 />
             }   
               <View style={{marginTop: 12, marginBottom: 1, marginLeft: 7}}>
-                  <Text style={{fontSize: 15, color: '#4A0784'}}> Income: </Text>
+                  <Text style={{fontSize: 15, fontWeight: 'bold', color: '#4A0784'}}> Income: </Text>
+                  {/* <FontAwesome5 name="bars" size={24} color="black" /> */}
               </View>
               <SummaryWrapper 
                 incomeDataFromDB={!this.state.afterSpendingClicked ? this.state.currentIncomeFromDB : this.state.afterSpendingData}
@@ -347,7 +350,7 @@ export default class MainPage extends Component {
                 selectNewMonth={this.selectNewMonth}
               />
               <View style={{marginTop: 12, marginBottom: 1, marginLeft: 7}}> 
-                <Text style={{fontSize: 15, color: '#4A0784'}}> Bills and Expenses: </Text>
+                <Text style={{fontSize: 15, fontWeight: 'bold', color: '#4A0784'}}> Bills and Expenses: </Text>
               </View>
               <UnplannedBillWrapper
                 expenseDataFromDB={this.state.currentUnPlannedExpensesFromDB}

@@ -5,14 +5,17 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      justifyContent: 'center',
+    //   flex: 1,
+    //   justifyContent: 'center',
       backgroundColor: '#F5F5F5',
+      zIndex: 0
     },
 
     header: {
         paddingLeft: 0,
         paddingRight: 0,
+        // position: 'absolute',
+        // zIndex: 0
       },
 
     summary_section: {
@@ -62,8 +65,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderTopColor: '#40DBCE',
         borderLeftColor: '#40DBCE',
-        borderTopWidth: 5,
-        borderLeftWidth: 2, 
+        borderTopWidth: 3,
+        borderLeftWidth: 1, 
         minHeight: 100, 
         height: 'auto',
         width: '95%',
@@ -78,8 +81,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderTopColor: '#4A0784',
         borderLeftColor: '#4A0784',
-        borderTopWidth: 5,
-        borderLeftWidth: 2, 
+        borderTopWidth: 3,
+        borderLeftWidth: 1, 
         minHeight: 100, 
         height: 'auto',
         width: '95%',

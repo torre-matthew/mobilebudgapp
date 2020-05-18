@@ -8,6 +8,7 @@ import style from "../Styles/Styles";
 import MainPage from '../Components/mainPage';
 import ApiMethods from '../utilities/apiMethods';
 import MainScreen from "./mainScreen";
+import SideBar from "../Components/sideBar";
 
 const backgroundImage = require('../Styles/images/turquise indigo gradient.png');
 
@@ -21,14 +22,8 @@ class LoginScreen extends Component {
     showSpinner: true,
     currentMonthID: "",
     currentMonth: "",
-    spinnerOpacity: 0 //Because of this bug: https://github.com/facebook/react-native/issues/9023
+    spinnerOpacity: 0, //Because of this bug: https://github.com/facebook/react-native/issues/9023
   }
-
-  // handleSignIn = () => {
-  //   this.setState({spinnerOpacity: 1})
-    
-  //   setTimeout(this.signIn, 1000);
-  // }
 
   signIn = async () => {
     this.setState({spinnerOpacity: 1})
@@ -102,6 +97,8 @@ class LoginScreen extends Component {
           <ImageBackground
             source={backgroundImage}
             style={{width: '100%', height: '100%'}} >
+          {/* <SideBar /> */}
+          <View style={{zIndex: 0, position: 'absolute'}}>
           <View style={LoginScreenStyles.welcome}>
             <Text style={{color: '#F5F5F5', fontSize: 30}}>
               Hi! I'm Lahri.
@@ -141,6 +138,7 @@ class LoginScreen extends Component {
             </TouchableOpacity>
             </View>
             }
+          </View>
           </View>
         </ImageBackground>  
       </Container>

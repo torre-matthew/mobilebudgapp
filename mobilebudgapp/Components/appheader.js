@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ImageBackground, Image } from 'react-native';
 import { Container, Header, Left, Body, Right, Title, View } from 'native-base';
+import SideBar from "./sideBar";
 import style from "../Styles/Styles";
 
 const backgroundImage = require('../Styles/images/turquise indigo gradient.png');
@@ -29,7 +30,6 @@ class AppHeader extends Component {
               </Body>
             </ImageBackground>
           </Header>
-
       </Container>
     );
   }
