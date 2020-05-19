@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ActivityIndicator, View, Button, ImageBackground, Alert, Image, ImageBackground } from 'react-native';
+import { ActivityIndicator, View, Button, ImageBackground, Alert, Image } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import LoginScreenStyles from "../Styles/loginSreenStyles";
