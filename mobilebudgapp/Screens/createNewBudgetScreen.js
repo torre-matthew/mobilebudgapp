@@ -6,6 +6,7 @@ import LoginScreenStyles from "../Styles/loginSreenStyles";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 import MainScreen from "./mainScreen";
+import BackGroundImage from "../Styles/images/app background 2.png";
 
 class CreateNewBudgetScreen extends Component {
 
@@ -28,7 +29,10 @@ copyPreviousMonth = () => {
    const {navigation} = this.props;
 
     return (
-      <Container style={{backgroundColor: '#F5F5F5'}}>
+      <Container>
+          <ImageBackground
+            source={BackGroundImage}
+            style={{width: '100%', height: '100%'}} > 
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', margin: 25}}>
             <Text style={{color: '#474198', fontSize: 20}}>
               Hey there, ready to start planning
@@ -57,6 +61,7 @@ copyPreviousMonth = () => {
             <Text style={{color: '#4A0784'}}> Start fresh </Text>
           </TouchableOpacity>
           </View>  
+          </ImageBackground>
       </Container>
       
     );

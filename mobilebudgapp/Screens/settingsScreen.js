@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { ActivityIndicator, View, Button, ImageBackground, Alert, Image } from 'react-native';
+import { ActivityIndicator, View, Button, ImageBackground, Alert, Image, ImageBackground } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import LoginScreenStyles from "../Styles/loginSreenStyles";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 import MainScreen from "./mainScreen";
+import BackGroundImage from "../Styles/images/app background.png";
 
 class SettingsScreen extends Component {
 
@@ -18,7 +19,10 @@ class SettingsScreen extends Component {
    const {navigation} = this.props;
 
     return (
-      <Container> 
+      <Container>
+        <ImageBackground
+            source={BackGroundImage}
+            style={{width: '100%', height: '100%'}} > 
         <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', margin: 15}}> 
             <Image style={{width: 100, height: 100, borderRadius: 50, borderWidth: 1}} source={{uri: this.props.route.params.photoURL}} />
           </View>
@@ -34,7 +38,8 @@ class SettingsScreen extends Component {
             >
             <Text style={{color: 'red'}}> Sign Out </Text>
           </TouchableOpacity>
-          </View>  
+          </View> 
+        </ImageBackground> 
       </Container>
       
     );
