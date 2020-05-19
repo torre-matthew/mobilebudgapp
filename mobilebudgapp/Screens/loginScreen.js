@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { ActivityIndicator, View, Button, ImageBackground } from 'react-native';
+import { ActivityIndicator, View, Button, ImageBackground, Alert } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Icon } from 'react-native-elements'
 import * as Google from 'expo-google-app-auth'
 import LoginScreenStyles from "../Styles/loginSreenStyles";
 import style from "../Styles/Styles";
@@ -19,6 +20,7 @@ class LoginScreen extends Component {
     name: "",
     photoUrl: "",
     email:"",
+    accessToken: "",
     showSpinner: true,
     currentMonthID: "",
     currentMonth: "",
@@ -43,7 +45,8 @@ class LoginScreen extends Component {
                 signedIn: true,
                 name: result.user.name,
                 photoUrl: result.user.photoUrl,
-                email: result.user.email
+                email: result.user.email,
+                accessToken: result.accessToken
               }, () => {
                 ApiMethods.getCurrentMonth()
                       .then(month => {
@@ -61,6 +64,7 @@ class LoginScreen extends Component {
                 name: result.user.name,
                 photoUrl: result.user.photoUrl,
                 email: result.user.email, 
+                accessToken: result.accessToken
               }, () => { //callback in setstate to get data for current calendar month and set month data that will be needed when the app is loaded
                 ApiMethods.getCurrentMonth()
                       .then(month => {
@@ -69,7 +73,7 @@ class LoginScreen extends Component {
                             currentMonth: month.data[0].month,
                             spinnerOpacity: 0
                           }, () => { //another callback that then sends the user to the main app after the month data has been recieved and set.
-                            this.props.navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl})
+                            this.props.navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl, signOut: this.signOut})
                           });
                         })
                       .catch(err => console.log(err))
@@ -88,6 +92,19 @@ class LoginScreen extends Component {
       console.log("error", e)
     }
 }
+
+signOut = async () => {
+
+  await Google.logOutAsync({accessToken: this.state.accessToken, androidClientId: "446220388364-jffs659t4t98fuur4srsstggq04mgd52.apps.googleusercontent.com"})
+              .then(data => {
+                  this.setState({signedIn: false, email: "", name: "", photoUrl: "", accessToken: ""})
+                })
+              .catch(err => console.log(err));
+  
+  await this.props.navigation.navigate('Login');
+
+}
+
  render() {
 
    const {navigation} = this.props;
@@ -97,8 +114,6 @@ class LoginScreen extends Component {
           <ImageBackground
             source={backgroundImage}
             style={{width: '100%', height: '100%'}} >
-          {/* <SideBar /> */}
-          <View style={{zIndex: 0, position: 'absolute'}}>
           <View style={LoginScreenStyles.welcome}>
             <Text style={{color: '#F5F5F5', fontSize: 30}}>
               Hi! I'm Lahri.
@@ -124,7 +139,7 @@ class LoginScreen extends Component {
           {this.state.signedIn ? 
           <View>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl})}
+            onPress={() => navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl, signOut: this.signOut})}
             style={style.button2_cta_style} >
             <Text> Go to main page </Text>
           </TouchableOpacity>
@@ -138,7 +153,6 @@ class LoginScreen extends Component {
             </TouchableOpacity>
             </View>
             }
-          </View>
           </View>
         </ImageBackground>  
       </Container>

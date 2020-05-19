@@ -7,6 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import MainScreen from './Screens/mainScreen';
 import LoginScreen from './Screens/loginScreen';
 import CreateNewBudgetScreen from './Screens/createNewBudgetScreen';
+import SettingsScreen from './Screens/settingsScreen';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,10 @@ function App() {
         <Stack.Screen
           name="Create New Budget"
           component={CreateNewBudgetScreen}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

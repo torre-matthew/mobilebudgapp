@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { ImageBackground, Image } from 'react-native';
+import { ImageBackground, Image, Text } from 'react-native';
 import { Container, Header, Left, Body, Right, Title, View } from 'native-base';
-import SideBar from "./sideBar";
 import style from "../Styles/Styles";
 
 const backgroundImage = require('../Styles/images/turquise indigo gradient.png');
@@ -21,11 +20,13 @@ class AppHeader extends Component {
             <ImageBackground source={backgroundImage} style={{width: '100%', height: '100%'}}>
               <Left/>
               <Body style={{flex:1,flexDirection: 'row' }}>
-                <View style={{flex: 1, alignSelf: 'stretch', flexGrow: 7,}}>
-                  <Title style={{fontSize: 25}}> Lahri </Title>
+                <View style={{flex: 1, alignSelf: 'flex-start', flexGrow: 7}}>
+                  <Title style={{fontSize: 25, fontWeight: 'bold'}}> Lahri </Title>
                 </View>
-                <View style={{flex:1, alignSelf: 'flex-end', flexGrow: 2}}>
-                  <Image style={{width: 50, height: 50, borderRadius: 10, borderWidth: 1}} source={{uri: this.props.photoURL}} />
+                <View
+                  onTouchEnd={() => {this.props.navigation.navigate('Settings', {photoURL: this.props.photoURL, signOut: this.props.signOut})}} 
+                  style={{flex:1, alignSelf: 'flex-end', flexGrow: 2, paddingBottom: 20}}>
+                  <Text style={{color: '#F5F5F5', fontSize: 12, fontWeight: 'bold'}}>Settings</Text>
                 </View>
               </Body>
             </ImageBackground>

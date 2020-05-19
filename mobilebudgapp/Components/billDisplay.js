@@ -217,7 +217,7 @@ class UnplannedBillDisplay extends Component {
                 <TouchableOpacity
                   onPress={() => {}}
                   style={style.button3_small_light_style}>
-                    <Text style={{fontSize: 12, color: '#4A0784'}}> Move </Text>
+                    <Text style={{fontSize: 12, color: '#4A0784'}}> Move to next month </Text>
                 </TouchableOpacity>
                 </View>
                 {this.state.showMarkAsPaid 

@@ -9,7 +9,6 @@ import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import { thisExpression } from '@babel/types';
 import AppHeader from './appheader';
 import { FontAwesome5 } from '@expo/vector-icons';
-import SideBar from "./sideBar";
 import ApiMethods from '../utilities/apiMethods';
 
 
@@ -303,7 +302,10 @@ export default class MainPage extends Component {
           <ImageBackground
             source={backgroundImage}
             style={{width: '100%', height: '100%'}} >
-          <AppHeader photoURL={this.state.photoUrl}/>
+          <AppHeader 
+            photoURL={this.state.photoUrl}
+            navigation={this.props.navigation}
+            signOut={this.props.signOut} />
           <ScrollView
           refreshControl={
             <RefreshControl 
