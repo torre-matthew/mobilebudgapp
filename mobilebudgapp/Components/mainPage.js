@@ -14,7 +14,7 @@ import ApiMethods from '../utilities/apiMethods';
 
 
 const style = require("../Styles/Styles");
-const backgroundImage = require('../Styles/images/app background.png');
+const backgroundImage = require('../Styles/images/app background 2.png');
 
 function wait(timeout) {
   return new Promise(resolve => {
