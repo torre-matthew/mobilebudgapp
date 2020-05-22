@@ -1,6 +1,7 @@
 import React, { Component} from "react";
 import { ActivityIndicator, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
+import BackGroundImage from "../Styles/images/turquise indigo gradient.png";
 import style from "../Styles/Styles";
 
 const qadStyle = StyleSheet.create({
@@ -40,6 +41,9 @@ class QuickActionDrawer extends Component {
   render(){
       return (
         <View style={qadStyle.container_visible}>
+          <ImageBackground
+            source={BackGroundImage}
+            style={{width: '100%', height: '100%'}} >
           <View style={{ flex: 1, alignSelf: 'flex-end', backgroundColor: '#4394B5', borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
             <View style={{ flex: 1, alignSelf: 'stretch'}}>
               <TouchableOpacity
@@ -95,6 +99,7 @@ class QuickActionDrawer extends Component {
               </TouchableOpacity>
             </View>
           </View>
+          </ImageBackground>
         </View>
       );
     }
