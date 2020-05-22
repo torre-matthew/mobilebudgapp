@@ -1,5 +1,5 @@
 import React, { Component} from "react";
-import { ActivityIndicator, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, View, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import BackGroundImage from "../Styles/images/turquise indigo gradient.png";
 import style from "../Styles/Styles";
