@@ -55,6 +55,7 @@ class SummaryWrapper extends Component {
                         switcherClicked={this.props.switcherClicked}
                         loggedInUserID={this.props.loggedInUserID}
                         fetchData={this.props.fetchData}
+                        navigation={this.props.navigation}
                     />
                     )
                 }

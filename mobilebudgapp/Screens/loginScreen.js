@@ -9,7 +9,7 @@ import style from "../Styles/Styles";
 import MainPage from '../Components/mainPage';
 import ApiMethods from '../utilities/apiMethods';
 import MainScreen from "./mainScreen";
-import SideBar from "../Components/sideBar";
+import SideBar from "../Components/quickActionDrawer";
 
 const backgroundImage = require('../Styles/images/turquise indigo gradient.png');
 

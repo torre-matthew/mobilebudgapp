@@ -45,6 +45,7 @@ class PlannedBillWrapper extends Component {
                   showMarkAsPaid={true}
                   fetchData={this.props.fetchData}
                   isThisPlanned={true}
+                  navigation={this.props.navigation}
                 />
                 )
               }

@@ -46,9 +46,8 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                 if (res.data.nModified === 0) {
                     alert('Sorry, there was a problem. Please try again');
                 } else {
-                    this.props.closeModalOnSubmit();
                     this.props.updateWrapperComponent();
-                    // Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
+                    this.props.navigation.navigate('Main');
                 }
                 })
             .catch(err => console.log(err));
@@ -71,9 +70,8 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
               if (res.data.nModified === 0) {
                 alert('Sorry, there was a problem. Please try again');
               } else {
-                  this.props.closeModalOnSubmit();
-                  this.props.updateWrapperComponent();
-                // Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
+                this.props.updateWrapperComponent();
+                this.props.navigation.navigate('Main');
               }
             });
             }

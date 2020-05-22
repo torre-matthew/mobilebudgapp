@@ -8,7 +8,7 @@ import ApiMethods from '../utilities/apiMethods';
 class IncomeDisplay extends Component {
   state = {
     modalVisible: false,
-    whatsBeingEdited: "",
+    whatsBeingEdited: "income",
     amountToDisplay: 0,
   };
 
@@ -21,10 +21,25 @@ class IncomeDisplay extends Component {
   }
 
   setModalVisible = (visible) => {
-    this.setState({
-      modalVisible: visible,
-      whatsBeingEdited: "income"
-    });
+    // this.setState({
+    //   modalVisible: visible,
+    //   whatsBeingEdited: "income"
+    // });
+
+    this.props.navigation.navigate('Edit Entry', {
+      navigation: this.props.navigation,
+      incomeName: this.props.incomeName,
+      incomeDate: this.props.incomeDate,
+      incomeAmount: this.props.incomeAmount,
+      incomeID: this.props.incomeID,
+      handleExpenseEditFormSubmit: this.props.handleExpenseEditFormSubmit,
+      closeModalOnSubmit: this.closeModal,
+      incomeDataFromDB: this.props.currentIncomeFromDB,
+      whatsBeingEdited: this.state.whatsBeingEdited,
+      updateWrapperComponent: this.props.updateWrapperComponent,
+      updateDisplayComponent: this.updateIncomeDisplayComponent,
+      switcherClicked: this.props.switcherClicked,
+    })
   }
 
   closeModal = () => {

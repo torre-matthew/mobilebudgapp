@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { View, Modal, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import EditBillFormDisplay from "./editBillForm";
-import IncomeDisplay from "./incomeDisplay";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
+import QuickActionDrawer from "./quickActionDrawer";
 
 
 class UnplannedBillDisplay extends Component {
@@ -18,7 +18,8 @@ class UnplannedBillDisplay extends Component {
     textColorIfPaid: "",
     markAsPaidButtonText: "",
     paidDisplayText: "",
-    paidBillDescriptionTextInModal: ""
+    paidBillDescriptionTextInModal: "",
+    showDrawer: false
   };
 
   componentDidMount() {
@@ -29,6 +30,14 @@ class UnplannedBillDisplay extends Component {
   updateBillDisplayComponent = () => {
     this.componentDidMount();
     this.props.updateWrapperComponent();
+  }
+
+  setDrawerVisible = () => {
+    if (this.state.showDrawer) { 
+      this.setState({showDrawer: false, whatsBeingEdited: "bill"});
+      } else {
+        this.setState({showDrawer: true, whatsBeingEdited: "bill"});
+      }
   }
 
   setModalVisible = (visible) => {
@@ -253,7 +262,7 @@ class UnplannedBillDisplay extends Component {
                 </View>
             </Modal>
             <View>
-              <View onTouchEnd={() => {this.setModalVisible(true)}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10 }}>
+              <View onTouchEnd={() => {this.setDrawerVisible()}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10 }}>
                 <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#F5F5F5', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 15 }}> 
                   <Text style={{fontSize: 15 }}> {this.props.billName} </Text>
                 </View>
@@ -277,10 +286,34 @@ class UnplannedBillDisplay extends Component {
                 <Text />
                 }
               </View>
+              {this.state.showDrawer
+                ? 
+               <QuickActionDrawer 
+                  navigation={this.props.navigation}
+                  dueDate={this.props.dueDate}
+                  billName={this.props.billName}
+                  billAmount={this.props.billAmount}
+                  billID={this.props.billID}
+                  billIsPlanned={this.props.billIsPlanned}
+                  billFundingSourceID={this.props.billFundingSourceID}
+                  fundingSourceName={this.state.fundingSourceName}
+                  fundingSourceAmount={this.state.fundingSourceAmount}
+                  closeModalOnSubmit={this.closeModal}
+                  incomeDataFromDB={this.props.incomeDataFromDB}
+                  whatsBeingEdited={this.state.whatsBeingEdited}
+                  updateWrapperComponent={this.props.updateWrapperComponent}
+                  updateDisplayComponent={this.updateBillDisplayComponent}
+                  loggedInUserID={this.props.loggedInUserID}
+                  isThisPlanned={this.props.isThisPlanned}
+               />
+                :
+                <Text></Text>
+              }          
             </View>
           </View>
       );
     }
   }
+
 
   export default UnplannedBillDisplay;

@@ -8,6 +8,7 @@ import MainScreen from './Screens/mainScreen';
 import LoginScreen from './Screens/loginScreen';
 import CreateNewBudgetScreen from './Screens/createNewBudgetScreen';
 import SettingsScreen from './Screens/settingsScreen';
+import EditEntryScreen from './Screens/editEntryScreen';
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,10 @@ function App() {
         <Stack.Screen
           name="Settings"
           component={SettingsScreen}
+        />
+        <Stack.Screen
+          name="Edit Entry"
+          component={EditEntryScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

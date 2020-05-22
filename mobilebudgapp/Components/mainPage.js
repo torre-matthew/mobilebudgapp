@@ -350,6 +350,7 @@ export default class MainPage extends Component {
                 currentMonth={this.state.currentMonth}
                 currentMonthID={this.state.currentMonthID}
                 selectNewMonth={this.selectNewMonth}
+                navigation={this.props.navigation}
               />
               <View style={{marginTop: 12, marginBottom: 1, marginLeft: 7}}> 
                 <Text style={{fontSize: 15, fontWeight: 'bold', color: '#4A0784'}}> Bills and Expenses: </Text>
@@ -371,6 +372,7 @@ export default class MainPage extends Component {
                 showSpinner={this.state.showSpinner}
                 currentMonth={this.state.currentMonth}
                 currentMonthID={this.state.currentMonthID}
+                navigation={this.props.navigation}
               />
               <PlannedBillWrapper
                 expenseDataFromDB={this.state.currentPlannedExpensesFromDB}
@@ -387,6 +389,7 @@ export default class MainPage extends Component {
                 showSpinner={this.state.showSpinner}
                 currentMonth={this.state.currentMonth}
                 currentMonthID={this.state.currentMonthID}
+                navigation={this.props.navigation}
               />
             </View>
           </ScrollView>

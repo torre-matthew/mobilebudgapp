@@ -223,6 +223,20 @@ const styles = StyleSheet.create({
 
     },
 
+    // Quick Action buttons
+    button_small_quick_actions: {
+        backgroundColor: '#F5F5F5',
+        borderRadius: 10,
+        borderStyle: 'solid',
+        width: '80%',
+        alignSelf: 'center',
+        alignItems: 'center',
+        padding: 10,
+        elevation: 5,
+        marginTop: 5,
+        marginBottom: 5
+    },
+
   });
 
   export default styles;
