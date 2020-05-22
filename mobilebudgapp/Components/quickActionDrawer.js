@@ -40,10 +40,11 @@ class QuickActionDrawer extends Component {
 
   render(){
       return (
-        <View style={qadStyle.container_visible}>
-          <ImageBackground
+        <ImageBackground
             source={BackGroundImage}
             style={{width: '100%', height: '100%'}} >
+        <View style={qadStyle.container_visible}>
+          
           <View style={{ flex: 1, alignSelf: 'flex-end', borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
             <View style={{ flex: 1, alignSelf: 'stretch'}}>
               <TouchableOpacity
@@ -99,8 +100,9 @@ class QuickActionDrawer extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          </ImageBackground>
+
         </View>
+        </ImageBackground>
       );
     }
   }
