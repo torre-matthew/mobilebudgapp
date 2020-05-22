@@ -9,7 +9,7 @@ const qadStyle = StyleSheet.create({
 container_visible: {
   flex: 1, 
   opacity: 1, 
-  width: '50%', 
+  width: '88%', 
   height: 250, 
   alignSelf: 'center',
   marginRight: 10, 
@@ -40,12 +40,8 @@ class QuickActionDrawer extends Component {
 
   render(){
       return (
-        <ImageBackground
-            source={BackGroundImage}
-            style={{width: '100%', height: '100%'}} >
         <View style={qadStyle.container_visible}>
-          
-          <View style={{ flex: 1, alignSelf: 'flex-end', borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
+          <View style={{ flex: 1, alignSelf: 'flex-end', backgroundColor: "#E5F3F3", borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
             <View style={{ flex: 1, alignSelf: 'stretch'}}>
               <TouchableOpacity
                 onPress={() => {}}
@@ -100,9 +96,7 @@ class QuickActionDrawer extends Component {
               </TouchableOpacity>
             </View>
           </View>
-
         </View>
-        </ImageBackground>
       );
     }
   }
