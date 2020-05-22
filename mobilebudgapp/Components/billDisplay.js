@@ -40,18 +40,18 @@ class UnplannedBillDisplay extends Component {
       }
   }
 
-  setModalVisible = (visible) => {
-    this.setState({
-      modalVisible: visible,
-      whatsBeingEdited: "bill"
-    });
-  }
+  // setModalVisible = (visible) => {
+  //   this.setState({
+  //     modalVisible: visible,
+  //     whatsBeingEdited: "bill"
+  //   });
+  // }
 
-  closeModal = () => {
-    this.setModalVisible(!this.state.modalVisible);
-    this.componentDidMount();
-    this.props.updateWrapperComponent();
-  }
+  // closeModal = () => {
+  //   this.setModalVisible(!this.state.modalVisible);
+  //   this.componentDidMount();
+  //   this.props.updateWrapperComponent();
+  // }
 
   markAsUnplanned = () => {
     ApiMethods.editExpense(this.props.billID, this.props.billName, this.props.dueDate, this.props.billAmount, false, "", this.props.loggedInUserID)
@@ -59,7 +59,7 @@ class UnplannedBillDisplay extends Component {
                 if (res.data.nModified === 0) {
                     alert('Sorry, there was a problem. Please try again');
                 } else {
-                    this.closeModal();
+                    this.componentDidMount();
                     this.props.updateWrapperComponent();
                     // Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
                 }
@@ -73,8 +73,7 @@ class UnplannedBillDisplay extends Component {
       case true:
         ApiMethods.markExpenseAsPaid(id, false)
           .then(data => {
-            this.updateBillDisplayComponent();
-            this.setState({markAsPaidButtonText: "Mark as paid", paidBillDescriptionTextInModal: "This is currently unpaid"})
+            this.setState({markAsPaidButtonText: "Mark as paid", paidBillDescriptionTextInModal: "This is currently unpaid"}, () => {this.updateBillDisplayComponent()})
           })
           .catch(err => console.log(err));
           break;
@@ -82,7 +81,7 @@ class UnplannedBillDisplay extends Component {
         ApiMethods.markExpenseAsPaid(id, true)
           .then(data => {
             this.updateBillDisplayComponent();
-            this.setState({markAsPaidButtonText: "Mark as upaid", paidBillDescriptionTextInModal: "This has been paid"});
+            this.setState({markAsPaidButtonText: "Mark as unpaid", paidBillDescriptionTextInModal: "This has been paid"}, () => {this.updateBillDisplayComponent()});
           })
           .catch(err => console.log(err));
     }
@@ -92,7 +91,7 @@ class UnplannedBillDisplay extends Component {
     switch (this.props.billIsPaid) {
       case true:
         this.setState({
-          colorIfPaid: "#474198", 
+          colorIfPaid: "#4A0784", 
           textColorIfPaid: "#F5F5F5", 
           markAsPaidButtonText: "Mark as unpaid",
           paidBillDescriptionTextInModal: "This has been paid",
@@ -131,7 +130,9 @@ class UnplannedBillDisplay extends Component {
               })
             .catch(err => console.log(err))
           
-          this.closeModal();
+            this.componentDidMount();
+            this.props.updateWrapperComponent();
+            this.props.navigation.navigate('Main');
       } else {
         alert('You have successfully deleted ' + this.props.billName);
         
@@ -141,7 +142,9 @@ class UnplannedBillDisplay extends Component {
         })
         .catch(err => console.log(err));
 
-        this.closeModal();
+        this.componentDidMount();
+        this.props.updateWrapperComponent();
+        this.props.navigation.navigate('Main');
       }
     })
     .catch(err => console.log(err));
@@ -187,80 +190,6 @@ class UnplannedBillDisplay extends Component {
   render () {
       return (
         <View>
-            <Modal
-              style={{flex: 1}}
-              animationType="fade"
-              transparent={false}
-              visible={this.state.modalVisible}
-              onRequestClose={this.closeModal}>
-                <View style={{flex: 1}}>
-                <ScrollView>
-                <View style={{flex: 1, justifyContent: 'flex-end'}}>
-                  <EditBillFormDisplay 
-                    dueDate={this.props.dueDate}
-                    billName={this.props.billName}
-                    billAmount={this.props.billAmount}
-                    billID={this.props.billID}
-                    billIsPlanned={this.props.billIsPlanned}
-                    billFundingSourceID={this.props.billFundingSourceID}
-                    fundingSourceName={this.state.fundingSourceName}
-                    fundingSourceAmount={this.state.fundingSourceAmount}
-                    closeModalOnSubmit={this.closeModal}
-                    incomeDataFromDB={this.props.incomeDataFromDB}
-                    whatsBeingEdited={this.state.whatsBeingEdited}
-                    updateWrapperComponent={this.props.updateWrapperComponent}
-                    updateDisplayComponent={this.updateBillDisplayComponent}
-                    loggedInUserID={this.props.loggedInUserID}
-                    isThisPlanned={this.props.isThisPlanned}
-                  />
-                </View>
-                <View style={{flex: 1, justifyContent: 'flex-end'}}>
-                <View style={{ flex: 1, alignSelf: 'stretch'}}>
-                <TouchableOpacity
-                  onPress={() => {}}
-                  style={style.button3_small_light_style}>
-                    <Text style={{fontSize: 12, color: '#4A0784'}}> Split </Text>
-                </TouchableOpacity>
-                </View>
-                <View style={{ flex: 1, alignSelf: 'stretch'}}>
-                <TouchableOpacity
-                  onPress={() => {}}
-                  style={style.button3_small_light_style}>
-                    <Text style={{fontSize: 12, color: '#4A0784'}}> Move to next month </Text>
-                </TouchableOpacity>
-                </View>
-                {this.state.showMarkAsPaid 
-                ?
-                <View style={{ flex: 1, marginTop: 100}}>
-                <View style={{ flex: 1, alignSelf: 'stretch'}}>
-                <TouchableOpacity
-                  onPress={() => {this.markAsUnplanned()}}
-                  style={style.button3_small_light_style}>
-                    <Text style={{fontSize: 12, color: '#4A0784'}}> Move back to unplanned </Text>
-                </TouchableOpacity>
-                </View>
-                <View style={{ flex: 1, alignSelf: 'stretch'}}>
-                <TouchableOpacity
-                  onPress={() => {this.markAsPaid(this.props.billID, this.props.billIsPaid)}}
-                  style={this.props.billIsPaid ? style.button2_dark_style : style.button3_small_light_style}>
-                    <Text style={{fontSize: 12, color: this.props.billIsPaid ? '#F5F5F5' : '#4A0784'}}> {this.state.markAsPaidButtonText} </Text>
-                </TouchableOpacity>
-                </View>
-                </View>
-                :
-                <Text />
-                }
-                <View style={{marginTop: 100}}>
-                <TouchableOpacity
-                  onPress={() => {this.showConfirmationAlert(this.props.billID);}}
-                  style={style.button2_light_style}>
-                <Text style={{color: 'red' }}> Delete Expense </Text>
-                </TouchableOpacity>
-                </View>
-                </View>
-                </ScrollView>
-                </View>
-            </Modal>
             <View>
               <View onTouchEnd={() => {this.setDrawerVisible()}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10 }}>
                 <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#F5F5F5', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 15 }}> 
@@ -298,13 +227,18 @@ class UnplannedBillDisplay extends Component {
                   billFundingSourceID={this.props.billFundingSourceID}
                   fundingSourceName={this.state.fundingSourceName}
                   fundingSourceAmount={this.state.fundingSourceAmount}
-                  closeModalOnSubmit={this.closeModal}
                   incomeDataFromDB={this.props.incomeDataFromDB}
                   whatsBeingEdited={this.state.whatsBeingEdited}
                   updateWrapperComponent={this.props.updateWrapperComponent}
                   updateDisplayComponent={this.updateBillDisplayComponent}
                   loggedInUserID={this.props.loggedInUserID}
                   isThisPlanned={this.props.isThisPlanned}
+                  markAsPaid={this.markAsPaid}
+                  markAsPaidButtonText={this.state.markAsPaidButtonText}
+                  markAsUnplanned={this.markAsUnplanned}
+                  billIsPaid={this.props.billIsPaid}
+                  deleteExpense={this.showConfirmationAlert}
+                  showMarkAsPaid={this.state.showMarkAsPaid}
                />
                 :
                 <Text></Text>

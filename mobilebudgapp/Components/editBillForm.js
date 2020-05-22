@@ -205,7 +205,7 @@ editLogic = () => {
     render () {
         return (
                 <Content>
-                    <View style={{marginTop: 55}}>
+                    <View>
                         <Form id="billForm">
                             <Item>
                                 <DatePicker defaultValue={this.state.currentDate} editDueDate={this.editField} />

@@ -21,10 +21,6 @@ class IncomeDisplay extends Component {
   }
 
   setModalVisible = (visible) => {
-    // this.setState({
-    //   modalVisible: visible,
-    //   whatsBeingEdited: "income"
-    // });
 
     this.props.navigation.navigate('Edit Entry', {
       navigation: this.props.navigation,
@@ -39,11 +35,28 @@ class IncomeDisplay extends Component {
       updateWrapperComponent: this.props.updateWrapperComponent,
       updateDisplayComponent: this.updateIncomeDisplayComponent,
       switcherClicked: this.props.switcherClicked,
+      deleteIncome: this.deleteIncome
     })
   }
 
   closeModal = () => {
     this.setModalVisible(!this.state.modalVisible);
+  }
+
+  deleteIncome = () => {
+    ApiMethods.deleteIncome(this.props.incomeID).then(res => {
+                    
+      if (res.data.deletedCount === 0) {
+        alert('Sorry, ' + this.props.incomeName + ' could not be deleted');
+      } else {
+        alert('You have successfully deleted ' + this.props.incomeName);
+          this.props.updateWrapperComponent();
+          ApiMethods.updateIncomeOnUserRecord(this.props.loggedInUserID).then(data => {}).catch(err => console.log(err));
+          this.props.navigation.navigate('Main');
+      }
+    })
+    .catch(err => console.log(err));
+
   }
 
   render () {  

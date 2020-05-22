@@ -237,6 +237,19 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
 
+    button_small_quick_actions_dark: {
+        backgroundColor: '#4A0784',
+        borderRadius: 10,
+        borderStyle: 'solid',
+        width: '80%',
+        alignSelf: 'center',
+        alignItems: 'center',
+        padding: 10,
+        elevation: 5,
+        marginTop: 5,
+        marginBottom: 5
+    },
+
   });
 
   export default styles;
