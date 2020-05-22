@@ -44,7 +44,7 @@ class QuickActionDrawer extends Component {
           <ImageBackground
             source={BackGroundImage}
             style={{width: '100%', height: '100%'}} >
-          <View style={{ flex: 1, alignSelf: 'flex-end', backgroundColor: '#4394B5', borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
+          <View style={{ flex: 1, alignSelf: 'flex-end', borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
             <View style={{ flex: 1, alignSelf: 'stretch'}}>
               <TouchableOpacity
                 onPress={() => {}}
