@@ -212,7 +212,7 @@ let splitEntry = (req, res) => {
         db.Expenses
             .create({
                 dateOfExpense: data[0].dateOfExpense,
-                nameOfExpense: '[Split from] ' + data[0].nameOfExpense,
+                nameOfExpense: 'Split from ' + data[0].nameOfExpense,
                 amountOfExpense: ((parseFloat(data[0].amountOfExpense)/2).toFixed(2)).toString(),
                 userID: data[0].userID, 
                 isPlanned: false,

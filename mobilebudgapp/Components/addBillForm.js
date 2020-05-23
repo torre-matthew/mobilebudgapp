@@ -20,7 +20,7 @@ function AddBillFormDisplay (props) {
                             <Input placeholder='Bill/Expense' onChangeText={props.handleBillName} />
                         </Item>
                         <Item>
-                            <Input keyboardType='numeric' placeholder="Amount" onChangeText={props.handleBillAmount} />
+                            <Input keyboardType='decimal-pad' placeholder="Amount" onChangeText={props.handleBillAmount} />
                         </Item>
                         <View style={{ alignItems: 'center' }}>
                             <Button style={style.button_style} onPressIn={props.handleFormSubmit} onPress={props.closeModalOnSubmit}>

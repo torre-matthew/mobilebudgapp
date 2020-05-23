@@ -172,6 +172,12 @@ let updateExpensesOnUserRecord = (userID) => {
       });
 }
 
+let splitEntry = (billID) => {
+    return axios.put(URL + "api/splitEntry/" + billID, {
+        params: {billID: billID}
+      });
+}
+
 
 export default {
     getIncome: getIncome,
@@ -198,6 +204,7 @@ export default {
     editExpense: editExpense,
     editIncome: editIncome,
     markExpenseAsPaid: markExpenseAsPaid,
-    copyPreviousMonthData: copyPreviousMonthData
+    copyPreviousMonthData: copyPreviousMonthData,
+    splitEntry: splitEntry
     
 }

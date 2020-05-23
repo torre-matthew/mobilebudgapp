@@ -40,6 +40,11 @@ class UnplannedBillDisplay extends Component {
       }
   }
 
+  splitEntry = (billID) => {
+    ApiMethods.splitEntry(billID).then(data => {return data}).catch(err => console.log(err));
+    this.updateBillDisplayComponent();
+  }
+
   markAsUnplanned = () => {
     ApiMethods.editExpense(this.props.billID, this.props.billName, this.props.dueDate, this.props.billAmount, false, "", this.props.loggedInUserID)
             .then(res => {
@@ -226,6 +231,7 @@ class UnplannedBillDisplay extends Component {
                   billIsPaid={this.state.billIsPaid}
                   deleteExpense={this.showConfirmationAlert}
                   showMarkAsPaid={this.props.showMarkAsPaid}
+                  splitEntry={this.splitEntry}
                />
                 :
                 <Text></Text>

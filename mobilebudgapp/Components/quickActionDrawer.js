@@ -49,7 +49,7 @@ class QuickActionDrawer extends Component {
             <View style={{ flex: 1, flexDirection: "row", alignSelf: 'center', marginTop: 5}}> 
                 <View style={{ flex: 1, alignSelf: 'stretch'}}>
                   <TouchableOpacity
-                    onPress={() => {}}
+                    onPress={() => {this.props.splitEntry(this.props.billID)}}
                     style={style.button_small_quick_actions}>
                     <Text style={{fontSize: 12, color: '#4A0784'}}> Split this item</Text>
                   </TouchableOpacity>
