@@ -213,7 +213,7 @@ let splitEntry = (req, res) => {
             .create({
                 dateOfExpense: data[0].dateOfExpense,
                 nameOfExpense: '[Split from] ' + data[0].nameOfExpense,
-                amountOfExpense: (parseFloat(data[0].amountOfExpense)/2).toString(),
+                amountOfExpense: ((parseFloat(data[0].amountOfExpense)/2).toFixed(2)).toString(),
                 userID: data[0].userID, 
                 isPlanned: false,
                 isPaid: false,
@@ -223,7 +223,7 @@ let splitEntry = (req, res) => {
             .catch(err => console.log(err));
 
     //update the amount of the original bill/expense to be half it's original value. Since it was just split
-            editExpenseByIDToUseInOtherMethods(req.params.billID, data[0].nameOfExpense, data[0].dateOfExpense, (parseFloat(data[0].amountOfExpense)/2).toString(), data[0].userID);
+            editExpenseByIDToUseInOtherMethods(req.params.billID, data[0].nameOfExpense, data[0].dateOfExpense, ((parseFloat(data[0].amountOfExpense)/2).toFixed(2)).toString(), data[0].userID);
         })
         .catch(err => console.log(err));
 
