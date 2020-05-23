@@ -16,6 +16,14 @@ class MainScreen extends Component {
           photoURL={this.props.route.params.photoURL}
           signOut={this.props.route.params.signOut}
           />
+          <MainPage 
+          loggedInUsersEmail={"torre.pk.matthew@gmail.com"}
+          currentMonth={"May"}
+          currentMonthID={"5eaf6211e7b5c6001726776a"}
+          navigation={navigation}
+          photoURL={"https://lh3.googleusercontent.com/a-/AOh14GiYRuLnlpz-uypUOvbDG_uVR56n6DxLoC5Ubb-Wcg"}
+          // signOut={this.props.route.params.signOut}
+          />
       </Container>
     );
   }

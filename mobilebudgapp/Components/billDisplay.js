@@ -13,13 +13,13 @@ class UnplannedBillDisplay extends Component {
     whatsBeingEdited: "",
     fundingSourceName: "",
     fundingSourceAmount: "",
-    showMarkAsPaid: this.props.showMarkAsPaid,
     colorIfPaid: "",
     textColorIfPaid: "",
     markAsPaidButtonText: "",
     paidDisplayText: "",
     paidBillDescriptionTextInModal: "",
-    showDrawer: false
+    showDrawer: false,
+    billIsPaid: this.props.billIsPaid
   };
 
   componentDidMount() {
@@ -39,19 +39,6 @@ class UnplannedBillDisplay extends Component {
         this.setState({showDrawer: true, whatsBeingEdited: "bill"});
       }
   }
-
-  // setModalVisible = (visible) => {
-  //   this.setState({
-  //     modalVisible: visible,
-  //     whatsBeingEdited: "bill"
-  //   });
-  // }
-
-  // closeModal = () => {
-  //   this.setModalVisible(!this.state.modalVisible);
-  //   this.componentDidMount();
-  //   this.props.updateWrapperComponent();
-  // }
 
   markAsUnplanned = () => {
     ApiMethods.editExpense(this.props.billID, this.props.billName, this.props.dueDate, this.props.billAmount, false, "", this.props.loggedInUserID)
@@ -73,22 +60,22 @@ class UnplannedBillDisplay extends Component {
       case true:
         ApiMethods.markExpenseAsPaid(id, false)
           .then(data => {
-            this.setState({markAsPaidButtonText: "Mark as paid", paidBillDescriptionTextInModal: "This is currently unpaid"}, () => {this.updateBillDisplayComponent()})
+            this.setState({markAsPaidButtonText: "Mark as paid", paidBillDescriptionTextInModal: "This is currently unpaid", billIsPaid: false}, () => {this.updateBillDisplayComponent()})
           })
           .catch(err => console.log(err));
           break;
       case false:
         ApiMethods.markExpenseAsPaid(id, true)
           .then(data => {
-            this.updateBillDisplayComponent();
-            this.setState({markAsPaidButtonText: "Mark as unpaid", paidBillDescriptionTextInModal: "This has been paid"}, () => {this.updateBillDisplayComponent()});
+            // this.updateBillDisplayComponent();
+            this.setState({markAsPaidButtonText: "Mark as unpaid", paidBillDescriptionTextInModal: "This has been paid", billIsPaid: true}, () => {this.updateBillDisplayComponent()})
           })
           .catch(err => console.log(err));
     }
   }
 
   changeDisplayWhenMarkedAsPaid = () => {
-    switch (this.props.billIsPaid) {
+    switch (this.state.billIsPaid) {
       case true:
         this.setState({
           colorIfPaid: "#4A0784", 
@@ -100,7 +87,7 @@ class UnplannedBillDisplay extends Component {
           break;
       case false:
         this.setState({
-          colorIfPaid: "#E5F3F3",
+          colorIfPaid: "#f8f8ff",
           textColorIfPaid: "black",
           markAsPaidButtonText: "Mark as paid",
           paidBillDescriptionTextInModal: "This is currently unpaid",
@@ -186,27 +173,27 @@ class UnplannedBillDisplay extends Component {
     {cancelable: false},
   );
 }
-
+//#F5F5F5
   render () {
       return (
         <View>
             <View>
-              <View onTouchEnd={() => {this.setDrawerVisible()}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10 }}>
-                <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#F5F5F5', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 15 }}> 
+              <View onTouchEnd={() => {this.setDrawerVisible()}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10, elevation: 10 }}>
+                <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 15, borderStyle: 'solid', borderTopWidth: 1, borderLeftWidth: 1 }}> 
                   <Text style={{fontSize: 15 }}> {this.props.billName} </Text>
                 </View>
-                <View style={{ flex: 1, alignItems:'center', backgroundColor: '#F5F5F5', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
+                <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15, borderStyle: 'solid', borderTopWidth: 1, borderRightWidth: 1}}> 
                   <Text style={{fontSize: 15 }}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
               </View>
-              <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#E5F3F3', borderBottomLeftRadius: 15, borderBottomRightRadius: 15}}>
+              <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderBottomLeftRadius: 15, borderBottomRightRadius: 15, borderStyle: 'solid', borderBottomWidth: 1, borderLeftWidth: 1, borderRightWidth: 1}}>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 12 }}> Due: {this.props.dueDate} </Text>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 5, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 12 }}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
-                {this.state.showMarkAsPaid 
+                {this.props.showMarkAsPaid 
                 ?
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 1, backgroundColor: this.state.colorIfPaid, paddingTop: 1, paddingBottom: 5, paddingLeft: 5, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
                   <Text style={{color: this.state.textColorIfPaid, fontSize: 12 }}> {this.state.paidDisplayText} </Text>
@@ -236,9 +223,9 @@ class UnplannedBillDisplay extends Component {
                   markAsPaid={this.markAsPaid}
                   markAsPaidButtonText={this.state.markAsPaidButtonText}
                   markAsUnplanned={this.markAsUnplanned}
-                  billIsPaid={this.props.billIsPaid}
+                  billIsPaid={this.state.billIsPaid}
                   deleteExpense={this.showConfirmationAlert}
-                  showMarkAsPaid={this.state.showMarkAsPaid}
+                  showMarkAsPaid={this.props.showMarkAsPaid}
                />
                 :
                 <Text></Text>

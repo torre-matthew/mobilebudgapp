@@ -44,7 +44,7 @@ class SettingsScreen extends Component {
                 loggedInUserID={this.props.route.params.loggedInUserID}
                 isThisPlanned={this.props.route.params.isThisPlanned} 
               />
-              <View style={{flex: 1, alignSelf: 'stretch'}}>
+              <View style={{flex: 1, alignSelf: 'stretch', justifyContent: 'flex-end'}}>
               <TouchableOpacity
                 onPress={() => {this.props.route.params.deleteExpense(this.props.route.params.billID)}}
                 style={style.button2_light_style}>
@@ -68,7 +68,7 @@ class SettingsScreen extends Component {
                 updateDisplayComponent={ this.props.route.params.updateIncomeDisplayComponent}
                 switcherClicked={ this.props.route.params.switcherClicked}
               />
-              <View style={{flex: 1, alignSelf: 'stretch'}}>
+              <View style={{flex: 1, alignSelf: 'stretch', justifyContent: 'flex-end'}}>
                 <TouchableOpacity
                     onPress={() => {this.props.route.params.deleteIncome(this.props.route.params.incomeID)}}
                     style={style.button2_light_style}>

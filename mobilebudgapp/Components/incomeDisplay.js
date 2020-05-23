@@ -102,10 +102,10 @@ class IncomeDisplay extends Component {
             </Modal>
               <View>
                 <View onTouchEnd={() => {this.setModalVisible(true);}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10 }}>
-                  <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#DEF1F2', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 28, borderTopLeftRadius: 15 }}> 
+                  <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', borderLeftColor: '#40DBCE', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 28, borderTopLeftRadius: 15, borderStyle: 'solid', borderTopWidth: 1, borderLeftWidth: 4 }}> 
                     <Text style={{fontSize: 15 }}> {this.props.incomeName} </Text>
                   </View>
-                  <View style={{ flex: 1, alignItems:'center', backgroundColor: '#DEF1F2', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15 }}> 
+                  <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15, borderStyle: 'solid', borderTopWidth: 1, borderRightWidth: 1 }}> 
                     <Text style={{fontSize: 15 }}> ${this.props.incomeAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                     {this.props.switcherClicked
                      ?
@@ -115,7 +115,7 @@ class IncomeDisplay extends Component {
                     }
                   </View>
                 </View>
-                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#F5F5F5', borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}>
+                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderLeftColor: '#40DBCE', borderBottomLeftRadius: 15, borderBottomRightRadius: 15, borderStyle: 'solid', borderBottomWidth: 1, borderRightWidth: 1, borderLeftWidth: 4 }}>
                   <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                     <Text style={{fontSize: 12 }}> Date: {this.props.incomeDate} </Text>
                   </View>
