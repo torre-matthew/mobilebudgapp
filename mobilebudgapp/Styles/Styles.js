@@ -77,9 +77,7 @@ const styles = StyleSheet.create({
 
     planned_section: {
         backgroundColor: 'white',
-        // borderTopColor: '#4A0784',
         borderLeftColor: '#4A0784',
-        // borderTopWidth: 4,
         borderLeftWidth: 3, 
         minHeight: 100, 
         height: 'auto',

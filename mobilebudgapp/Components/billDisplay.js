@@ -41,8 +41,19 @@ class UnplannedBillDisplay extends Component {
   }
 
   splitEntry = (billID) => {
-    ApiMethods.splitEntry(billID).then(data => {return data}).catch(err => console.log(err));
-    this.updateBillDisplayComponent();
+    Alert.alert(
+      'Split ' + this.props.billName + '?',
+      'I will create a new entry and evenly divide the amounts between this item and the newly created one?',
+      [ 
+        {text: 'Nevermind', style: 'cancel'},
+        {text: 'Ok', onPress: () => {
+          ApiMethods.splitEntry(billID).then(data => {return data}).catch(err => console.log(err));
+          this.updateBillDisplayComponent();
+        }, 
+      },
+        ],
+      {cancelable: false},
+    );
   }
 
   markAsUnplanned = () => {
@@ -181,27 +192,27 @@ class UnplannedBillDisplay extends Component {
 //#F5F5F5
   render () {
       return (
-        <View style={{margin: 5}}>
+        <View>
             <View>
-              <View onTouchEnd={() => {this.setDrawerVisible()}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 10 }}>
+              <View onTouchEnd={() => {this.setDrawerVisible()}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 3 }}>
                 <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: '#6f00ff', borderLeftWidth: 4 }}> 
-                  <Text style={{fontSize: 15 }}> {this.props.billName} </Text>
+                  <Text style={{fontSize: 13, fontWeight: 'bold' }}> {this.props.billName} </Text>
                 </View>
                 <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15, borderStyle: 'solid',}}> 
-                  <Text style={{fontSize: 15 }}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
+                  <Text style={{fontSize: 13, fontWeight: 'bold' }}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
               </View>
               <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftColor: '#6f00ff', borderLeftWidth: 4}}>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                  <Text style={{fontSize: 12 }}> Due: {this.props.dueDate} </Text>
+                  <Text style={{fontSize: 10, fontWeight: 'bold' }}> Due: {this.props.dueDate} </Text>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 5, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                  <Text style={{fontSize: 12 }}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
+                  <Text style={{fontSize: 10, fontWeight: 'bold' }}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
                 {this.props.showMarkAsPaid 
                 ?
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 1, backgroundColor: this.state.colorIfPaid, paddingTop: 1, paddingBottom: 5, paddingLeft: 5, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
-                  <Text style={{color: this.state.textColorIfPaid, fontSize: 12 }}> {this.state.paidDisplayText} </Text>
+                  <Text style={{color: this.state.textColorIfPaid, fontSize: 10, fontWeight: 'bold' }}> {this.state.paidDisplayText} </Text>
                 </View>
                 :
                 <Text />
@@ -234,7 +245,7 @@ class UnplannedBillDisplay extends Component {
                   splitEntry={this.splitEntry}
                />
                 :
-                <Text></Text>
+                <View />
               }          
             </View>
           </View>

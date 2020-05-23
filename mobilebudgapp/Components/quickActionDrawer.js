@@ -81,7 +81,7 @@ class QuickActionDrawer extends Component {
                   </View>
                   </View>
                   :
-                  <Text />          
+                  <View />          
                   }
                 <View style={{ flex: 1, flexDirection: "row", alignSelf: 'center'}}> 
                   <View style={{ flex: 1, alignSelf: 'stretch'}}>
