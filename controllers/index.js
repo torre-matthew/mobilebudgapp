@@ -201,25 +201,35 @@ let copyPreviousMonthsData = (req, res) => {
             .catch(err => console.log(err));
     }
 
-let splitEntry = async (req, res) => {
+let splitEntry = (req, res) => {
 
-     await db.Expenses
-            .find({_id: req.params.billID})
-            .then(data => res.json( parseInt(data[0].amountOfExpense)/2) )
-            .catch(err => console.log(err));
-
-    await db.Expenses
+    //find the bill/expense being split
+     db.Expenses 
+        .find({_id: req.params.billID})
+        .then(data => {
+     
+    //create a new expense that splits the amount of the original one in half       
+        db.Expenses
             .create({
-                dateOfExpense: dateOfExpense,
-                nameOfExpense: nameOfExpense,
-                amountOfExpense: amountOfExpense,
-                userID: userID, 
+                dateOfExpense: data[0].dateOfExpense,
+                nameOfExpense: '[Split from]' + data[0].nameOfExpense,
+                amountOfExpense: (parseInt(data[0].amountOfExpense)/2).toString(),
+                userID: data[0].userID, 
                 isPlanned: false,
                 isPaid: false,
-                monthID: monthID
+                monthID: data[0].monthID
                 })
             .then(data => {return data})
             .catch(err => console.log(err));
+
+    //update the amount of the original bill/expense to be half it's original value. Since it was just split
+            editExpenseByIDToUseInOtherMethods(req.params.billID, data[0].nameOfExpense, data[0].dateOfExpense, (parseInt(data[0].amountOfExpense)/2).toString(), data[0].userID);
+        })
+        .catch(err => console.log(err));
+
+        
+
+    
 
 }
 
@@ -502,6 +512,68 @@ let arrayOfUnPlannedExpensesToBeSetInDB = [];
             })
             .catch(err => console.log(err));
 }
+
+let editExpenseByIDToUseInOtherMethods = async (expenseID, nameOfExpense, dateOfExpense, amountOfExpense, loggedInUserID) => {
+
+    let arrayOfPlannedExpensesToBeSetInDB = [];
+    let arrayOfUnPlannedExpensesToBeSetInDB = [];
+    
+        await db.Expenses
+                .updateOne({_id: expenseID},
+                    {$set: {
+                            nameOfExpense: nameOfExpense,    
+                            dateOfExpense: dateOfExpense, 
+                            amountOfExpense: amountOfExpense,
+                            }
+                    })
+                .then(data => res.json(data))
+                .catch(err => console.log(err));
+    
+    
+        //then empty the the expense arrays for the user
+        await db.Users
+                .updateOne({_id: loggedInUserID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
+                        .then(data => res.json(data))
+                        .catch(err => console.log(err))
+    
+    //then find all the unplannend expenses from the expense table and push them to the arrays above.
+        await db.Expenses
+                .find({userID: loggedInUserID, isPlanned: true})
+                .then(arrayOfPlannedExpenses => 
+                    { 
+                        arrayOfPlannedExpenses.forEach(userExpenseRecordObject => {
+                            arrayOfPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
+                                });
+                    })
+                .catch(err => console.log(err))
+    
+    //then find all the plannend expenses from the expense table and push them to the arrays above.
+        await db.Expenses
+                .find({userID: loggedInUserID, isPlanned: false})
+                .then(arrayOfUnPlannedExpenses => 
+                    { 
+                        arrayOfUnPlannedExpenses.forEach(userExpenseRecordObject => {
+                            arrayOfUnPlannedExpensesToBeSetInDB.push(userExpenseRecordObject._id);
+                                });
+                    })
+                .catch(err => console.log(err))
+    
+    //then updated the planned and unplanned expense record for that user in the db.
+        await db.Users
+                .updateOne({_id: loggedInUserID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
+                .then(data => res.json(data))
+                .catch(err => console.log(err))
+    
+                
+        await db.Income
+                .find({userID: loggedInUserID})
+                .then(incomeArray => {
+                    incomeArray.forEach(incomeObject => {
+                        updateAfterSpendingAmountDuringExpenseORIncomeEdit(incomeObject._id)
+                    });
+                })
+                .catch(err => console.log(err));
+    }
 
 let editIncomeByID = async (req, res) => {
     await db.Income
