@@ -205,7 +205,7 @@ let splitEntry = async (req, res) => {
 
      await db.Expenses
             .find({_id: req.params.billID})
-            .then(data => res.json(parseInt(data[0].amountOfExpense))/2)
+            .then(data => res.json( parseInt(data[0].amountOfExpense)/2) )
             .catch(err => console.log(err));
 
     await db.Expenses
