@@ -212,7 +212,7 @@ let splitEntry = (req, res) => {
         db.Expenses
             .create({
                 dateOfExpense: data[0].dateOfExpense,
-                nameOfExpense: '[Split from]' + data[0].nameOfExpense,
+                nameOfExpense: '[Split from] ' + data[0].nameOfExpense,
                 amountOfExpense: (parseInt(data[0].amountOfExpense)/2).toString(),
                 userID: data[0].userID, 
                 isPlanned: false,
@@ -526,14 +526,14 @@ let editExpenseByIDToUseInOtherMethods = async (expenseID, nameOfExpense, dateOf
                             amountOfExpense: amountOfExpense,
                             }
                     })
-                .then(data => res.json(data))
+                .then(data => {return data})
                 .catch(err => console.log(err));
     
     
         //then empty the the expense arrays for the user
         await db.Users
                 .updateOne({_id: loggedInUserID}, { $set: { expenses: { planned: [], unPlanned: [] }}}, { new: true }) 
-                        .then(data => res.json(data))
+                        .then(data => {return data})
                         .catch(err => console.log(err))
     
     //then find all the unplannend expenses from the expense table and push them to the arrays above.
@@ -561,7 +561,7 @@ let editExpenseByIDToUseInOtherMethods = async (expenseID, nameOfExpense, dateOf
     //then updated the planned and unplanned expense record for that user in the db.
         await db.Users
                 .updateOne({_id: loggedInUserID}, { $set: { expenses: { planned: arrayOfPlannedExpensesToBeSetInDB, unPlanned: arrayOfUnPlannedExpensesToBeSetInDB}} }, { new: true })
-                .then(data => res.json(data))
+                .then(data => {return data})
                 .catch(err => console.log(err))
     
                 
