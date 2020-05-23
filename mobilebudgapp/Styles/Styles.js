@@ -21,10 +21,8 @@ const styles = StyleSheet.create({
     summary_section: {
         backgroundColor: 'white',
         width: '95%',
-        // borderTopColor: '#40DBCE',
         borderLeftColor: '#40DBCE',
         borderStyle: 'solid',
-        // borderTopWidth: 4,
         borderLeftWidth: 3, 
         alignSelf: 'center',
         borderRadius: 10,
@@ -65,9 +63,7 @@ const styles = StyleSheet.create({
 
     unplanned_section: {
         backgroundColor: 'white',
-        // borderTopColor: '#6f00ff',
         borderLeftColor: '#6f00ff',
-        // borderTopWidth: 4,
         borderLeftWidth: 3, 
         minHeight: 100, 
         height: 'auto',

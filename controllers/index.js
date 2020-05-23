@@ -201,6 +201,15 @@ let copyPreviousMonthsData = (req, res) => {
             .catch(err => console.log(err));
     }
 
+let splitEntry = (req, res) => {
+
+    db.Expenses
+    .find({_id: req.params.expenseID})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+
+}
+
 let addUserToDb = (req, res) => {
     db.Users
     .create({
@@ -658,6 +667,7 @@ module.exports = {
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     updateIncomeOnUserRecord: updateIncomeOnUserRecord,
     updateExpensesOnUserRecord: updateExpensesOnUserRecord,
-    copyPreviousMonthsData: copyPreviousMonthsData
+    copyPreviousMonthsData: copyPreviousMonthsData,
+    splitEntry: splitEntry
 
 }

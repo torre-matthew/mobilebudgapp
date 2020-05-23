@@ -33,6 +33,7 @@ router.route("/bulkUpdate").put(controllers.bulkUpdate);
 router.route("/updateAfterSpendingAmount/:incomeID").put(controllers.updateAfterSpendingAmount);
 router.route("/updateIncomeOnUserRecord/:userID").put(controllers.updateIncomeOnUserRecord);
 router.route("/updateExpensesOnUserRecord/:userID").put(controllers.updateExpensesOnUserRecord);
+router.route("/splitEntry/:billID").put(controllers.splitEntry);
 
 router.use("/api", router);
 
