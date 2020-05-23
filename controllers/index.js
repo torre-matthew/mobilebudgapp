@@ -201,12 +201,25 @@ let copyPreviousMonthsData = (req, res) => {
             .catch(err => console.log(err));
     }
 
-let splitEntry = (req, res) => {
+let splitEntry = async (req, res) => {
 
-    db.Expenses
-    .find({_id: req.params.billID})
-    .then(data => res.json(data))
-    .catch(err => console.log(err));
+     await db.Expenses
+            .find({_id: req.params.billID})
+            .then(data => res.json(data[0].amountOfExpense))
+            .catch(err => console.log(err));
+
+    await db.Expenses
+            .create({
+                dateOfExpense: dateOfExpense,
+                nameOfExpense: nameOfExpense,
+                amountOfExpense: amountOfExpense,
+                userID: userID, 
+                isPlanned: false,
+                isPaid: false,
+                monthID: monthID
+                })
+            .then(data => {return data})
+            .catch(err => console.log(err));
 
 }
 
