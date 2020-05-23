@@ -204,7 +204,7 @@ let copyPreviousMonthsData = (req, res) => {
 let splitEntry = (req, res) => {
 
     db.Expenses
-    .find({_id: req.params.expenseID})
+    .find({_id: req.params.billID})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 
