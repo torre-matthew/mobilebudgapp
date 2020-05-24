@@ -238,19 +238,28 @@ let moveToNextMonth = async (req, res) => {
     let nextMonthdateInfo = {};
     let nextMonthID = "";
 
+// Find the month and year of the bill/expense that's beign moved to the next month
   await db.Expenses
         .find({_id: req.params.billID})
         .then(data => {
-        
+       
+    // Month and year of current bill/expense
         dateInfo = { month: new Date(data[0].dateOfExpense).getMonth(), year: new Date(data[0].dateOfExpense).getFullYear() }
+    // Set month and year of the following month
         nextMonthdateInfo = { month: new Date(data[0].dateOfExpense).getMonth() + 1, year: new Date(data[0].dateOfExpense).getFullYear() } 
 
         })
         .catch(err => console.log(err));
 
+// Get the monthID of the month that the bill/expense is being moved to 
   await db.Month
         .find({monthAsNumber: nextMonthdateInfo.month, year: nextMonthdateInfo.year})
-        .then(data => res.json(data))
+        .then(data => {
+            nextMonthID = data[0]._id;
+            console.log(data[0].month);
+            console.log(data[0].year);
+            console.log(nextMonthID);
+        })
         .catch(err => console.log(err));
 
 
