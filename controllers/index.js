@@ -233,6 +233,14 @@ let splitEntry = (req, res) => {
 
 }
 
+let moveToNextMonth = (req, res) => {
+    db.Expenses
+    .find({_id: req.params.expenseID})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+
+}
+
 let addUserToDb = (req, res) => {
     db.Users
     .create({
@@ -753,6 +761,7 @@ module.exports = {
     updateIncomeOnUserRecord: updateIncomeOnUserRecord,
     updateExpensesOnUserRecord: updateExpensesOnUserRecord,
     copyPreviousMonthsData: copyPreviousMonthsData,
-    splitEntry: splitEntry
+    splitEntry: splitEntry,
+    moveToNextMonth: moveToNextMonth
 
 }

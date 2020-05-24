@@ -34,6 +34,7 @@ router.route("/updateAfterSpendingAmount/:incomeID").put(controllers.updateAfter
 router.route("/updateIncomeOnUserRecord/:userID").put(controllers.updateIncomeOnUserRecord);
 router.route("/updateExpensesOnUserRecord/:userID").put(controllers.updateExpensesOnUserRecord);
 router.route("/splitEntry/:billID").put(controllers.splitEntry);
+router.route("/moveToNextMonth/:billID").put(controllers.moveToNextMonth);
 
 router.use("/api", router);
 
