@@ -239,7 +239,9 @@ let moveToNextMonth = (req, res) => {
     .then(data => {
         // res.json(data)
        let dateInfo = { month: new Date(data[0].dateOfExpense).getMonth(), year: new Date(data[0].dateOfExpense).getFullYear() }
+       let nextMonthdateInfo = { month: new Date(data[0].dateOfExpense).getMonth() + 1, year: new Date(data[0].dateOfExpense).getFullYear() } 
        console.log(dateInfo);
+       console.log(nextMonthdateInfo);
     })
     .catch(err => console.log(err));
 
