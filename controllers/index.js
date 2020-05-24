@@ -233,17 +233,27 @@ let splitEntry = (req, res) => {
 
 }
 
-let moveToNextMonth = (req, res) => {
-    db.Expenses
-    .find({_id: req.params.billID})
-    .then(data => {
-        // res.json(data)
-       let dateInfo = { month: new Date(data[0].dateOfExpense).getMonth(), year: new Date(data[0].dateOfExpense).getFullYear() }
-       let nextMonthdateInfo = { month: new Date(data[0].dateOfExpense).getMonth() + 1, year: new Date(data[0].dateOfExpense).getFullYear() } 
-       console.log(dateInfo);
-       console.log(nextMonthdateInfo);
-    })
-    .catch(err => console.log(err));
+let moveToNextMonth = async (req, res) => {
+    let dateInfo = {};
+    let nextMonthdateInfo = {};
+    let nextMonthID = "";
+
+  await db.Expenses
+        .find({_id: req.params.billID})
+        .then(data => {
+        
+        dateInfo = { month: new Date(data[0].dateOfExpense).getMonth(), year: new Date(data[0].dateOfExpense).getFullYear() }
+        nextMonthdateInfo = { month: new Date(data[0].dateOfExpense).getMonth() + 1, year: new Date(data[0].dateOfExpense).getFullYear() } 
+
+        })
+        .catch(err => console.log(err));
+
+  await db.Month
+        .find({monthAsNumber: nextMonthdateInfo.month, year: nextMonthdateInfo.year})
+        .then(data => res.json(data))
+        .catch(err => console.log(err));
+
+
 
 }
 
