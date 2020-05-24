@@ -238,7 +238,7 @@ let moveToNextMonth = (req, res) => {
     .find({_id: req.params.billID})
     .then(data => {
         // res.json(data)
-       return { month: data[0].dateOfExpense.getMonth(), year: data[0].dateOfExpense.getFullYear() }
+       return { month: new Date(data[0].dateOfExpense).getMonth(), year: new Date(data[0].dateOfExpense).getFullYear() }
     })
     .catch(err => console.log(err));
 
