@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     header: {
         paddingLeft: 0,
         paddingRight: 0,
+        fontFamily: 'SpecialElite-Regular'
         // position: 'absolute',
         // zIndex: 0
       },
