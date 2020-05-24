@@ -236,7 +236,10 @@ let splitEntry = (req, res) => {
 let moveToNextMonth = (req, res) => {
     db.Expenses
     .find({_id: req.params.billID})
-    .then(data => res.json(data))
+    .then(data => {
+        // res.json(data)
+       return { month: data[0].dateOfExpense.getMonth(), year: data[0].dateOfExpense.getFullYear() }
+    })
     .catch(err => console.log(err));
 
 }
