@@ -103,10 +103,10 @@ class IncomeDisplay extends Component {
               <View>
                 <View onTouchEnd={() => {this.setModalVisible(true);}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 3 }}>
                   <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', borderLeftColor: '#40DBCE', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 28, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftWidth: 4 }}> 
-                    <Text style={{fontSize: 13, fontWeight: 'bold' }}> {this.props.incomeName} </Text>
+                    <Text style={{fontSize: 16}}> {this.props.incomeName} </Text>
                   </View>
                   <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15}}> 
-                    <Text style={{fontSize: 13, fontWeight: 'bold' }}> ${this.props.incomeAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
+                    <Text style={{fontSize: 16}}> ${this.props.incomeAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                     {/* {this.props.switcherClicked
                      ?
                      <Text style={{fontSize: 8 }}> Remaining </Text>
@@ -117,7 +117,7 @@ class IncomeDisplay extends Component {
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderLeftColor: '#40DBCE', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftWidth: 4 }}>
                   <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                    <Text style={{fontSize: 11, fontWeight: 'bold' }}> Date: {this.props.incomeDate} </Text>
+                    <Text style={{fontSize: 10}}> Date: {this.props.incomeDate} </Text>
                   </View>
                 </View>
               </View>

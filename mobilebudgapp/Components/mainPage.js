@@ -10,6 +10,7 @@ import { thisExpression } from '@babel/types';
 import AppHeader from './appheader';
 import { FontAwesome5 } from '@expo/vector-icons';
 import ApiMethods from '../utilities/apiMethods';
+import * as Font from 'expo-font';
 
 
 const style = require("../Styles/Styles");
@@ -53,6 +54,7 @@ export default class MainPage extends Component {
 
   componentDidMount(){
     this.getLoggedInUserIdByEmail(this.state.loggedInUsersEmail);
+    
   }
 
   fetchData = async () => {
@@ -330,7 +332,6 @@ export default class MainPage extends Component {
                   <Text style={{fontSize: 15, fontWeight: 'bold', color: '#4A0784'}}> Income: </Text>
                   {/* <FontAwesome5 name="bars" size={24} color="black" /> */}
               </View>
-              <FontAwesome5 name="bars" size={24} color="black" />
               <SummaryWrapper 
                 incomeDataFromDB={!this.state.afterSpendingClicked ? this.state.currentIncomeFromDB : this.state.afterSpendingData}
                 displayAfterSpendingData={this.displayAfterSpendingData}

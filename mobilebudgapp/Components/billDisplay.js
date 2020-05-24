@@ -5,6 +5,7 @@ import EditBillFormDisplay from "./editBillForm";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 import QuickActionDrawer from "./quickActionDrawer";
+import * as Font from 'expo-font';
 
 
 class UnplannedBillDisplay extends Component {
@@ -19,17 +20,28 @@ class UnplannedBillDisplay extends Component {
     paidDisplayText: "",
     paidBillDescriptionTextInModal: "",
     showDrawer: false,
-    billIsPaid: this.props.billIsPaid
+    billIsPaid: this.props.billIsPaid,
+    fontsLoaded: false
   };
 
   componentDidMount() {
     this.getFundingSourceInfo(this.props.billID);
     this.changeDisplayWhenMarkedAsPaid();
+    this.loadFonts();
   }
 
   updateBillDisplayComponent = () => {
     this.componentDidMount();
     this.props.updateWrapperComponent();
+  }
+
+  loadFonts = async () => {
+    await Font.loadAsync({
+            'SpecialElite-Regular': require('../assets/fonts/SpecialElite-Regular.ttf'),
+            'Laila-SemiBold': require('../assets/fonts/Laila-SemiBold.ttf'),
+            'Quicksand-SemiBold': require('../assets/fonts/Quicksand-SemiBold.ttf'),
+          });
+    this.setState({fontsLoaded:true});
   }
 
   setDrawerVisible = () => {
@@ -191,28 +203,31 @@ class UnplannedBillDisplay extends Component {
 }
 //#F5F5F5
   render () {
+
+    if (this.state.fontsLoaded) {
+
       return (
         <View>
             <View>
               <View onTouchEnd={() => {this.setDrawerVisible()}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 3 }}>
                 <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: '#6f00ff', borderLeftWidth: 4 }}> 
-                  <Text style={{fontSize: 13, fontWeight: 'bold' }}> {this.props.billName} </Text>
+                  <Text style={{fontSize: 16, fontFamily: 'Quicksand-SemiBold'}}> {this.props.billName} </Text>
                 </View>
                 <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15, borderStyle: 'solid',}}> 
-                  <Text style={{fontSize: 13, fontWeight: 'bold' }}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
+                  <Text style={{fontSize: 16}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
               </View>
               <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftColor: '#6f00ff', borderLeftWidth: 4}}>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                  <Text style={{fontSize: 10, fontWeight: 'bold' }}> Due: {this.props.dueDate} </Text>
+                  <Text style={{fontSize: 10, fontFamily: 'SpecialElite-Regular'}}> Due: {this.props.dueDate} </Text>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 5, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                  <Text style={{fontSize: 10, fontWeight: 'bold' }}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
+                  <Text style={{fontSize: 10}}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
                 {this.props.showMarkAsPaid 
                 ?
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 1, backgroundColor: this.state.colorIfPaid, paddingTop: 1, paddingBottom: 5, paddingLeft: 5, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
-                  <Text style={{color: this.state.textColorIfPaid, fontSize: 10, fontWeight: 'bold' }}> {this.state.paidDisplayText} </Text>
+                  <Text style={{color: this.state.textColorIfPaid, fontSize: 10}}> {this.state.paidDisplayText} </Text>
                 </View>
                 :
                 <Text />
@@ -250,6 +265,12 @@ class UnplannedBillDisplay extends Component {
             </View>
           </View>
       );
+    } else {
+          return (
+            <View><Text>Fonts are still loading</Text></View>
+          )
+        }
+
     }
   }
 
