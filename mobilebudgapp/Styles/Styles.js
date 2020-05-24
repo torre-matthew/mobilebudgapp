@@ -103,8 +103,9 @@ const styles = StyleSheet.create({
     },
 
     secondary_header_text: {
-        textAlign: 'center',
-        fontSize: 12,
+        textAlign: 'left',
+        fontSize: 13,
+        fontWeight: 'bold'
     },
 
     income: {

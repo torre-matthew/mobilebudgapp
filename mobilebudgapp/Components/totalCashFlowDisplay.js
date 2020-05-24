@@ -13,7 +13,7 @@ function TotalCashFlowDisplay (props) {
                     ?
                   <ActivityIndicator style={{ opacity: props.spinnerOpacity }} animating={props.showSpinner} size={props.spinnerSize} color="#40DBCE"/>
                     : 
-                  <Text style={{fontSize: 30, textAlign: 'center'}}> ${props.currentTotalIncome.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
+                  <Text style={{fontSize: 40, textAlign: 'center'}}> ${props.currentTotalIncome.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                   }
                   </View>
           </View>

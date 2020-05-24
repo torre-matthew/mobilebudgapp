@@ -400,7 +400,7 @@ let getMonthData = (req, res) => {
 
 let getCurrentMonth = (req, res) => {
     db.Month
-    .find({monthAsNumber: new Date().getMonth()})
+    .find({monthAsNumber: new Date().getMonth(), year: new Date().getFullYear()})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
