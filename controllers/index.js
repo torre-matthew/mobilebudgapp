@@ -267,7 +267,10 @@ let moveToNextMonth = async (req, res) => {
 await db.Expenses
         .updateOne({_id: req.params.billID},
             {$set: {
-                monthID: nextMonthID
+                monthID: nextMonthID,
+                isPlanned: false,
+                isPaid: false,
+                fundingSource: ""
                     }
             })
         .then(data => {return data})
