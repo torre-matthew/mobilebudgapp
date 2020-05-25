@@ -16,8 +16,9 @@ class AppHeader extends Component {
   render() {
     return (
       <Container style={{ minHeight: 56}}>
-        <ImageBackground source={backgroundImage} style={{width: '100%', height: '100%'}}>
-          <Header style={ style.header }>
+        
+        <Header style={ style.header }>
+          <ImageBackground source={backgroundImage} style={{width: '100%', height: '100%'}}>
               <Body style={{flex:1, flexDirection: 'row'}}>
                 <View style={{flex: 1, justifyContent: 'flex-end', alignSelf: 'center', flexGrow: 7}}>
                   <Text style={{fontSize: 25, fontWeight: 'bold', color: '#F5F5F5'}}> Lahri </Text>
@@ -28,8 +29,8 @@ class AppHeader extends Component {
                   <Text style={{color: '#F5F5F5', fontSize: 12, fontWeight: 'bold'}}> Settings </Text>
                 </View>
               </Body>
+              </ImageBackground>
             </Header>
-          </ImageBackground>
        </Container>
     );
   }
