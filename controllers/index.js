@@ -787,7 +787,7 @@ let updateAfterSpendingAmount = (req, res) => {
         }        
             db.Income.find({_id: req.params.incomeID})
             .then(data => {
-                    availableIncomeAmount = parseFloat(data[0].amount).toFixed(2) - totalOfExpenses;
+                    availableIncomeAmount = (parseFloat(data[0].amount) - totalOfExpenses).toFixed(2);
                 
                     db.Income.updateOne({_id: req.params.incomeID},
                         {$set: {
@@ -818,7 +818,7 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
         }        
             db.Income.find({_id: fundingSource})
             .then(data => {
-                    availableIncomeAmount = parseFloat(data[0].amount).toFixed(2) - totalOfExpenses;
+                    availableIncomeAmount = (parseFloat(data[0].amount) - totalOfExpenses).toFixed(2);
                 
                     db.Income.updateOne({_id: fundingSource},
                         {$set: {
