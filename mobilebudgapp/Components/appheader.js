@@ -15,22 +15,22 @@ class AppHeader extends Component {
   }
   render() {
     return (
-      // <Container style={{ minHeight: 56, backgroundColor: 'white'}}>
+      <Container style={{ minHeight: 56}}>
+        <ImageBackground source={backgroundImage} style={{width: '100%', height: '100%'}}>
           <Header style={ style.header }>
-            <ImageBackground source={backgroundImage} style={{width: '100%', height: '100%'}}>
-              <Body style={{flex:1, flexDirection: 'row' }}>
+              <Body style={{flex:1, flexDirection: 'row'}}>
                 <View style={{flex: 1, justifyContent: 'flex-end', alignSelf: 'center', flexGrow: 7}}>
                   <Text style={{fontSize: 25, fontWeight: 'bold', color: '#F5F5F5'}}> Lahri </Text>
                 </View>
                 <View
                   onTouchEnd={() => {this.props.navigation.navigate('Settings', {photoURL: this.props.photoURL, signOut: this.props.signOut})}} 
                   style={{flex:1, alignSelf: 'center', flexGrow: 2}}>
-                  <Text style={{color: '#F5F5F5', fontSize: 12, fontWeight: 'bold'}}>Settings</Text>
+                  <Text style={{color: '#F5F5F5', fontSize: 12, fontWeight: 'bold'}}> Settings </Text>
                 </View>
               </Body>
-            </ImageBackground>
-          </Header>
-      // </Container>
+            </Header>
+          </ImageBackground>
+       </Container>
     );
   }
 }
