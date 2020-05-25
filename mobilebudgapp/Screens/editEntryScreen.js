@@ -26,7 +26,7 @@ class SettingsScreen extends Component {
             {this.state.whatsBeingEdited === "bill"
             ?
             //Editing Bill/Expense
-            <View style={{flex: 1, alignSelf: 'stretch', marginTop: '15%'}}>
+            <View style={{flex: 1, alignSelf: 'stretch', width: '90%', marginTop: '15%'}}>
               <EditBillFormDisplay
                 navigation={this.props.route.params.navigation}
                 dueDate={this.props.route.params.dueDate}

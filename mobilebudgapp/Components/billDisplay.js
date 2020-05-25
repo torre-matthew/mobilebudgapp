@@ -71,6 +71,7 @@ class UnplannedBillDisplay extends Component {
   moveToNextMonth = (billID) => {
     Alert.alert(
       'Move ' + this.props.billName + ' to next month?',
+      '',
       [ 
         {text: 'Nevermind', style: 'cancel'},
         {text: 'Ok', onPress: () => {
@@ -91,7 +92,6 @@ class UnplannedBillDisplay extends Component {
                 } else {
                     this.componentDidMount();
                     this.props.updateWrapperComponent();
-                    // Alert.alert('', 'Successfully updated',[{text: 'OK'}] );
                 }
                 })
             .catch(err => console.log(err));

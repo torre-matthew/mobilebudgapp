@@ -12,8 +12,9 @@ const styles = StyleSheet.create({
     },
 
     header: {
-        paddingLeft: 0,
-        paddingRight: 0,
+        // flex: 1,
+        // paddingLeft: 0,
+        // paddingRight: 0,
         // position: 'absolute',
         // zIndex: 0
       },

@@ -115,13 +115,13 @@ signOut = async () => {
             source={backgroundImage}
             style={{width: '100%', height: '100%'}} >
           <View style={LoginScreenStyles.welcome}>
-            <Text style={{color: '#F5F5F5', fontSize: 30}}>
+            <Text style={{color: '#F5F5F5', fontSize: 35}}>
               Hi! I'm Lahri.
             </Text>
-            <Text style={{color: '#F5F5F5', fontSize: 18}}>
+            <Text style={{color: '#F5F5F5', fontSize: 15}}>
               I'll help you make a plan for your money.
             </Text>
-            <Text style={{color: '#F5F5F5', fontSize: 18}}>
+            <Text style={{color: '#F5F5F5', fontSize: 15}}>
               Shall we get to it?
             </Text>
           </View>

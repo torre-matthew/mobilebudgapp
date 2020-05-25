@@ -127,6 +127,7 @@ export default class MainPage extends Component {
   }
 
   selectNewMonth = async (month, monthID) => {
+// Check to see if there are any unplanned expenses in this month
     await ApiMethods.getAllUnPlannedExpenses(this.state.loggedInUserID, monthID)
             .then(expenses => {
               if (expenses.data.length === 0) {
@@ -134,7 +135,7 @@ export default class MainPage extends Component {
               }
             })
             .catch(err => console.log(err));
-
+// Check to see if there are any planned expenses in this month
     await  ApiMethods.getAllPlannedExpenses(this.state.loggedInUserID, monthID)
             .then(expenses => {
               if (expenses.data.length === 0) {
@@ -142,7 +143,7 @@ export default class MainPage extends Component {
               }
             })
             .catch(err => console.log(err));
-
+// Check to see if there are is any income in this month
     await  ApiMethods.getIncomeByUserID(this.state.loggedInUserID, monthID)
               .then(income => {
                 if (income.data.length === 0) { // previousMonthID, userID, targetMonthID
