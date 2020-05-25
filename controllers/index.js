@@ -258,7 +258,7 @@ let moveToNextMonth = async (req, res) => {
         // Month and year of current bill/expense
         currentMonthInfo = { month: data[0].monthAsNumber, year: data[0].year }
         if (data[0].monthAsNumber === 11) {
-                nextMonthDateInfo = { month: 0, year: data[0].year }
+                nextMonthDateInfo = { month: 0, year: data[0].year + 1 }
             } else {
                 nextMonthDateInfo = { month: data[0].monthAsNumber + 1, year: data[0].year }
             }
