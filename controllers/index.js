@@ -234,29 +234,37 @@ let splitEntry = (req, res) => {
 }
 
 let moveToNextMonth = async (req, res) => {
-    let dateInfo = {};
-    let nextMonthdateInfo = {};
+    let currentMonthInfo = {};
+    let nextMonthDateInfo = {};
+    let currentMonthID = "";
     let nextMonthID = "";
     let loggedInUserID = "";
 
-// Find the month and year of the bill/expense that's beign moved to the next month
+// Find the monthID of the bill/expense that's beign moved to the next month
   await db.Expenses
         .find({_id: req.params.billID})
         .then(data => {
-       
-    // Month and year of current bill/expense
-        dateInfo = { month: new Date(data[0].dateOfExpense).getMonth(), year: new Date(data[0].dateOfExpense).getFullYear() }
-    // Set month and year of the following month
-        nextMonthdateInfo = { month: new Date(data[0].dateOfExpense).getMonth() + 1, year: new Date(data[0].dateOfExpense).getFullYear() } 
 
         loggedInUserID = data[0].userID;
+        currentMonthID = data[0].monthID;
 
         })
         .catch(err => console.log(err));
 
-// Get the monthID of the month that the bill/expense is being moved to 
+// Get the month and year of the month the bill/expense currently exists in 
+    await db.Month
+        .find({_id: currentMonthID})
+        .then(data => {
+        // Month and year of current bill/expense
+        currentMonthInfo = { month: data[0].monthAsNumber, year: data[0].year }
+        nextMonthDateInfo = { month: data[0].monthAsNumber + 1, year: data[0].year }
+        })
+        .catch(err => console.log(err));
+
+
+        // Get the monthID of the month that the bill/expense is being moved to 
   await db.Month
-        .find({monthAsNumber: nextMonthdateInfo.month, year: nextMonthdateInfo.year})
+        .find({monthAsNumber: nextMonthDateInfo.month, year: nextMonthDateInfo.year})
         .then(data => {
             nextMonthID = data[0]._id;
         })
