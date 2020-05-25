@@ -68,6 +68,21 @@ class UnplannedBillDisplay extends Component {
     );
   }
 
+  moveToNextMonth = (billID) => {
+    Alert.alert(
+      'Move ' + this.props.billName + ' to next month?',
+      [ 
+        {text: 'Nevermind', style: 'cancel'},
+        {text: 'Ok', onPress: () => {
+          ApiMethods.moveToNextMonth(billID).then(data => {return data}).catch(err => console.log(err));
+          this.updateBillDisplayComponent();
+        }, 
+      },
+        ],
+      {cancelable: false},
+    );
+  }
+
   markAsUnplanned = () => {
     ApiMethods.editExpense(this.props.billID, this.props.billName, this.props.dueDate, this.props.billAmount, false, "", this.props.loggedInUserID)
             .then(res => {
@@ -258,6 +273,7 @@ class UnplannedBillDisplay extends Component {
                   deleteExpense={this.showConfirmationAlert}
                   showMarkAsPaid={this.props.showMarkAsPaid}
                   splitEntry={this.splitEntry}
+                  moveToNextMonth={this.moveToNextMonth}
                />
                 :
                 <View />

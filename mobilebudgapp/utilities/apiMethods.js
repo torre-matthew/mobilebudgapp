@@ -178,6 +178,12 @@ let splitEntry = (billID) => {
       });
 }
 
+let moveToNextMonth = (billID) => {
+    return axios.put(URL + "api/moveToNextMonth/" + billID, {
+        params: {billID: billID}
+      });
+}
+
 
 export default {
     getIncome: getIncome,
@@ -205,6 +211,7 @@ export default {
     editIncome: editIncome,
     markExpenseAsPaid: markExpenseAsPaid,
     copyPreviousMonthData: copyPreviousMonthData,
-    splitEntry: splitEntry
+    splitEntry: splitEntry,
+    moveToNextMonth: moveToNextMonth
     
 }

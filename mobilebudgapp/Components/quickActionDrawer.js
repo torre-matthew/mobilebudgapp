@@ -56,7 +56,7 @@ class QuickActionDrawer extends Component {
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch'}}>
                   <TouchableOpacity
-                    onPress={() => {}}
+                    onPress={() => {this.props.moveToNextMonth(this.props.billID)}}
                     style={style.button_small_quick_actions}>
                     <Text style={{fontSize: 12, color: '#4A0784'}}> Move to next month</Text>
                   </TouchableOpacity>
