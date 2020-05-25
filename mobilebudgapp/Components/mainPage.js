@@ -8,7 +8,9 @@ import MonthPickerModal from './monthPickerModal';
 import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import { thisExpression } from '@babel/types';
 import AppHeader from './appheader';
-import { FontAwesome5 } from '@expo/vector-icons';
+// import { FontAwesome5 } from '@expo/vector-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import ApiMethods from '../utilities/apiMethods';
 import * as Font from 'expo-font';
 
@@ -331,7 +333,6 @@ export default class MainPage extends Component {
             }   
               <View style={{marginTop: 12, marginBottom: 1, marginLeft: 7}}>
                   <Text style={{fontSize: 15, fontWeight: 'bold', color: '#4A0784'}}> Income: </Text>
-                  {/* <FontAwesome5 name="bars" size={24} color="black" /> */}
               </View>
               <SummaryWrapper 
                 incomeDataFromDB={!this.state.afterSpendingClicked ? this.state.currentIncomeFromDB : this.state.afterSpendingData}
