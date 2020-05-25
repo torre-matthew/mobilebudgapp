@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
 
     header: {
         // flex: 1,
+        width: '100%',
+        // borderColor: 'white',
+        // borderStyle: 'solid',
+        // borderWidth: 4,
         // paddingLeft: 0,
         // paddingRight: 0,
         // position: 'absolute',
