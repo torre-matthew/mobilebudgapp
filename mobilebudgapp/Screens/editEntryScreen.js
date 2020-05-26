@@ -8,7 +8,7 @@ import MainScreen from "./mainScreen";
 import BackGroundImage from "../Styles/images/app background 2.png";
 import EditBillFormDisplay from "../Components/editBillForm";
 
-class SettingsScreen extends Component {
+class EditEntryScreen extends Component {
 
   state = {
     whatsBeingEdited: this.props.route.params.whatsBeingEdited
@@ -84,4 +84,4 @@ class SettingsScreen extends Component {
   }
 }
 
-  export default SettingsScreen;
+  export default EditEntryScreen;

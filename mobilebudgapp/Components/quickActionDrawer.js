@@ -1,6 +1,5 @@
 import React, { Component} from "react";
-import { ActivityIndicator, View, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
+import { View, StyleSheet, TouchableOpacity, Picker, Text } from 'react-native';
 import BackGroundImage from "../Styles/images/turquise indigo gradient.png";
 import style from "../Styles/Styles";
 
@@ -10,7 +9,7 @@ container_small: {
   flex: 1, 
   opacity: 1, 
   width: '88%', 
-  height: 140, 
+  height: 160, 
   alignSelf: 'center',
   marginRight: 10, 
   backgroundColor: '#6f00ff',
@@ -21,7 +20,7 @@ container_large: {
   flex: 1, 
   opacity: 1, 
   width: '88%', 
-  height: 170, 
+  height: 190, 
   alignSelf: 'center',
   marginRight: 10, 
   backgroundColor: '#6f00ff',
@@ -46,6 +45,22 @@ class QuickActionDrawer extends Component {
   render(){
       return (
         <View style={this.props.showMarkAsPaid ? qadStyle.container_large : qadStyle.container_small}>
+          <View style={{ flex: 1, flexDirection: "row", alignSelf: 'center'}}> 
+                  <View style={{ flex: 1, alignSelf: 'stretch'}}>
+                    <TouchableOpacity
+                      onPress={() => {this.props.navigation.navigate('Select Funding Source', {
+                        billID: this.props.billID,
+                        loggedInUserID: this.props.loggedInUserID,
+                        incomeDataFromDB: this.props.incomeDataFromDB,
+                        updateWrapperComponent: this.props.updateWrapperComponent,
+                        updateDisplayComponent: this.props.updateBillDisplayComponent,
+                        selectFundingSource: this.props.selectFundingSource
+                      })}}
+                      style={style.button_small_quick_actions}>
+                    <Text style={{fontSize: 12, color: '#4A0784'}}> Plan this Item </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             <View style={{ flex: 1, flexDirection: "row", alignSelf: 'center', marginTop: 5}}> 
                 <View style={{ flex: 1, alignSelf: 'stretch'}}>
                   <TouchableOpacity

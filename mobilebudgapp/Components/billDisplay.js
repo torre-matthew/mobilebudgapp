@@ -84,6 +84,33 @@ class UnplannedBillDisplay extends Component {
     );
   }
 
+selectFundingSource = (fundingSourceID) => {
+  Alert.alert(
+    'Plan ' + this.props.billName + ' with this income?',
+    '',
+    [ 
+      {text: 'Nevermind', style: 'cancel'},
+      {text: 'Ok', onPress: () => {
+        ApiMethods.editExpense(this.props.billID, this.props.billName, this.props.dueDate, this.props.billAmount, true, fundingSourceID, this.props.loggedInUserID)
+            .then(res => {
+                if (res.data.nModified === 0) {
+                    alert('Sorry, there was a problem. Please try again');
+                } else {
+                    this.updateBillDisplayComponent();
+                    this.props.navigation.navigate('Main');
+                }
+                })
+            .catch(err => console.log(err));
+      }, 
+    },
+      ],
+    {cancelable: false},
+  );
+
+  }
+
+
+
   markAsUnplanned = () => {
     ApiMethods.editExpense(this.props.billID, this.props.billName, this.props.dueDate, this.props.billAmount, false, "", this.props.loggedInUserID)
             .then(res => {
@@ -274,6 +301,7 @@ class UnplannedBillDisplay extends Component {
                   showMarkAsPaid={this.props.showMarkAsPaid}
                   splitEntry={this.splitEntry}
                   moveToNextMonth={this.moveToNextMonth}
+                  selectFundingSource={this.selectFundingSource}
                />
                 :
                 <View />
