@@ -53,6 +53,32 @@ const styles = StyleSheet.create({
         margin: 5
     },
 
+    bill_switcher: {
+        flex: 1, 
+        alignSelf: 'stretch', 
+        borderStyle: 'solid', 
+        borderColor: '#6f00ff',
+        color: '#6f00ff', 
+        borderWidth: 1,
+        paddingVertical: 10,
+        borderRadius: 20,
+        margin: 5
+        
+    },
+
+    bill_switcher_clicked: {
+        flex: 1, 
+        alignSelf: 'stretch', 
+        borderStyle: 'solid', 
+        borderColor: '#6f00ff',
+        color: '#f8f8ff',
+        borderWidth: 1, 
+        paddingVertical: 10,
+        backgroundColor: '#6f00ff',
+        borderRadius: 20,
+        margin: 5
+    },
+
 
     unplanned_section: {
         backgroundColor: 'white',

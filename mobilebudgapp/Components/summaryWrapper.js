@@ -26,7 +26,7 @@ class SummaryWrapper extends Component {
                     <IncomeSummarySwitcher 
                         switcherClicked={this.props.switcherClicked}
                         switcherStyle={this.props.switcherClickedStyle}
-                        displayAfterSpendingData={this.props.displayAfterSpendingData}
+                        switcherLogic={this.props.switcherLogic}
                     />
                     <TotalCashFlowDisplay 
                         switcherClicked={this.props.switcherClicked}

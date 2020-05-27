@@ -25,11 +25,11 @@ render() {
     return (
         <Content padder>
             <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row' }}>
-                <View onTouchStart={() => {this.props.displayAfterSpendingData('before')}} onTouchEnd={() => {this.clickingIncomeSummarySwithcer(true, 'beforeSpendingSwitherStyle', 'afterSpendingSwitherStyle')}} style={this.state.beforeSpendingSwitherStyle}> 
-                    <Text style={{ textAlign: 'center', fontSize: 15 }}> Before Spending </Text>
+                <View onTouchStart={() => {this.props.switcherLogic('before')}} onTouchEnd={() => {this.clickingIncomeSummarySwithcer(true, 'beforeSpendingSwitherStyle', 'afterSpendingSwitherStyle')}} style={this.state.beforeSpendingSwitherStyle}> 
+                    <Text style={{ textAlign: 'center', fontSize: 15 }}> Before Planning </Text>
                 </View>
-                <View onTouchStart={() => {this.props.displayAfterSpendingData('after')}} onTouchEnd={() => {this.clickingIncomeSummarySwithcer(true, 'afterSpendingSwitherStyle', 'beforeSpendingSwitherStyle');}} style={this.state.afterSpendingSwitherStyle}>
-                    <Text style={{ textAlign: 'center', fontSize: 15 }}> After Spending </Text>
+                <View onTouchStart={() => {this.props.switcherLogic('after')}} onTouchEnd={() => {this.clickingIncomeSummarySwithcer(true, 'afterSpendingSwitherStyle', 'beforeSpendingSwitherStyle');}} style={this.state.afterSpendingSwitherStyle}>
+                    <Text style={{ textAlign: 'center', fontSize: 15 }}> After Planning </Text>
                 </View>
             </View>
         </Content>

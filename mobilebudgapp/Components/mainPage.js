@@ -44,6 +44,7 @@ export default class MainPage extends Component {
     afterSpendingIncomeTotal: 0,
     recentlyAdded: false,
     afterSpendingClicked: false,
+    plannedClicked: false,
     refreshing: false,
     signedIn: false,
     loggedInUsersEmail: this.props.loggedInUsersEmail,
@@ -282,7 +283,47 @@ export default class MainPage extends Component {
     this.getTotalIncome();
   }
 
-  displayAfterSpendingData = (switcher) => {
+  switcherLogic = (switcher) => {
+
+    switch (switcher) {
+      case 'after':
+            this.setState({
+              afterSpendingClicked: true
+            },
+            () => {
+              this.getTotalIncome();
+            });
+          break;
+      case 'before':
+          this.setState({
+            afterSpendingClicked: false
+          },
+          () => {
+            this.getTotalIncome();
+          });
+        break;
+      case 'unplanned':
+        this.setState({
+          plannedClicked: true
+        },
+        () => {
+          
+        });
+      break;
+    case 'planned':
+      this.setState({
+        plannedClicked: false
+      },
+      () => {
+        
+      });
+    break;
+
+    default:
+        break;
+    }
+
+
 
     if (switcher === 'after') {
       this.setState({
@@ -336,7 +377,7 @@ export default class MainPage extends Component {
               </View>
               <SummaryWrapper 
                 incomeDataFromDB={!this.state.afterSpendingClicked ? this.state.currentIncomeFromDB : this.state.afterSpendingData}
-                displayAfterSpendingData={this.displayAfterSpendingData}
+                switcherLogic={this.switcherLogic}
                 handleIncomeAmount={this.handleIncomeAmount}
                 handleIncomeDate={this.handleIncomeDate}
                 handleIncomeName={this.handleIncomeName}
@@ -360,11 +401,13 @@ export default class MainPage extends Component {
                 <Text style={{fontSize: 15, fontWeight: 'bold', color: '#4A0784'}}> Bills and Expenses: </Text>
               </View>
               <UnplannedBillWrapper
-                expenseDataFromDB={this.state.currentUnPlannedExpensesFromDB}
+                expenseDataFromDB={!this.state.plannedClicked ? this.state.currentUnPlannedExpensesFromDB : this.state.currentPlannedExpensesFromDB}
                 incomeDataFromDB={this.state.currentIncomeFromDB}
+                switcherLogic={this.switcherLogic}
                 getUnPlannedExpenseDataFromDB={this.getUnPlannedExpenseDataFromDB}
                 handleBillAmount={this.handleBillAmount}
                 handleDueDate={this.handleDueDate}
+                plannedClicked={this.state.plannedClicked}
                 updateComponent={this.updateComponent}
                 updateExpensesOnUserRecord={this.updateExpensesOnUserRecord}
                 handleBillName={this.handleBillName} 
@@ -378,7 +421,7 @@ export default class MainPage extends Component {
                 currentMonthID={this.state.currentMonthID}
                 navigation={this.props.navigation}
               />
-              <PlannedBillWrapper
+              {/* <PlannedBillWrapper
                 expenseDataFromDB={this.state.currentPlannedExpensesFromDB}
                 incomeDataFromDB={this.state.currentIncomeFromDB}
                 handleBillAmount={this.handleBillAmount}
@@ -394,7 +437,7 @@ export default class MainPage extends Component {
                 currentMonth={this.state.currentMonth}
                 currentMonthID={this.state.currentMonthID}
                 navigation={this.props.navigation}
-              />
+              /> */}
             </View>
           </ScrollView>
           </ImageBackground>

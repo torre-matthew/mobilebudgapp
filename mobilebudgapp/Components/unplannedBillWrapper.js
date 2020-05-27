@@ -5,6 +5,7 @@ import { Container, Header, Content, Card, CardItem, Text, Body } from "native-b
 import AddBillModal from "./addBillModal";
 import style from "../Styles/Styles";
 import EmptyStateDisplay from "./unplannedBillWrapperEmptyState";
+import BillSwitcher from "./billSwitcher";
 
 class UnplannedBillWrapper extends Component {
 
@@ -20,9 +21,10 @@ class UnplannedBillWrapper extends Component {
   render(){
       return (
           <Content padder style={ style.unplanned_section }>
-            <View style={style.secondary_header}> 
-              <Text style={style.secondary_header_text}> Needs planning </Text>
-            </View>
+            <BillSwitcher
+              switcherLogic={this.props.switcherLogic}
+              plannedClicked={this.props.plannedClicked} 
+            />
             {this.props.showSpinner 
               ?
               <ActivityIndicator style={{ opacity: this.props.spinnerOpacity }} animating={this.props.showSpinner} size={this.props.spinnerSize} color="#40DBCE"/>
@@ -43,9 +45,9 @@ class UnplannedBillWrapper extends Component {
               handleBillName={this.props.handleBillName}
               loggedInUserID={this.props.loggedInUserID}
               updateWrapperComponent={this.updateUnplannedBillWrapperComponent}
-              showMarkAsPaid={false}
+              showMarkAsPaid={this.props.plannedClicked}
               fetchData={this.props.fetchData}
-              isThisPlanned={false}
+              isThisPlanned={this.props.plannedClicked}
               navigation={this.props.navigation}
             />
             )
