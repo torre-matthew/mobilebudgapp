@@ -1,5 +1,5 @@
 import React, { Component} from "react";
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, View, ScrollView } from 'react-native';
 import UnplannedBillDisplay from './billDisplay';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import AddBillModal from "./addBillModal";

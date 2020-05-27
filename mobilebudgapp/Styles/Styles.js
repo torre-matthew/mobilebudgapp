@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignSelf: 'stretch', 
         borderStyle: 'solid', 
-        borderColor: '#6f00ff',
-        color: '#6f00ff', 
+        borderColor: '#4A0784',
+        color: '#4A0784', 
         borderWidth: 1,
         paddingVertical: 10,
         borderRadius: 20,
@@ -70,11 +70,11 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignSelf: 'stretch', 
         borderStyle: 'solid', 
-        borderColor: '#6f00ff',
+        borderColor: '#4A0784',
         color: '#f8f8ff',
         borderWidth: 1, 
         paddingVertical: 10,
-        backgroundColor: '#6f00ff',
+        backgroundColor: '#4A0784',
         borderRadius: 20,
         margin: 5
     },
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
 
     unplanned_section: {
         backgroundColor: 'white',
-        borderLeftColor: '#6f00ff',
+        borderLeftColor: '#4A0784',
         borderLeftWidth: 3, 
         minHeight: 100, 
         height: 'auto',
@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderRadius: 10,
         margin: 10,
-        elevation: 5
+        elevation: 5,
+        maxHeight: '100%'
     },
 
     planned_section: {
