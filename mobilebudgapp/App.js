@@ -21,10 +21,10 @@ function App() {
           headerShown: false
         }}
       >
-      <Stack.Screen
+      {/* <Stack.Screen
           name="Login"
           component={LoginScreen}
-        />
+        /> */}
         <Stack.Screen
           name="Main"
           component={MainScreen}

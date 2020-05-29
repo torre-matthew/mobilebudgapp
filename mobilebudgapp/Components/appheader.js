@@ -15,7 +15,7 @@ class AppHeader extends Component {
   }
   render() {
     return (
-      <Container style={{ minHeight: '8%', marginTop: 24}}>
+      <Container style={{ minHeight: '8%'}}>
         <View>
           <ImageBackground source={backgroundImage} style={{width: '100%', height: '100%'}}>
               <View style={{flex:1, alignSelf: 'stretch', flexDirection: 'row'}}>

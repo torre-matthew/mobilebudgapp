@@ -5,16 +5,13 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
     container: {
-    //   flex: 1,
-    //   justifyContent: 'center',
-      backgroundColor: '#F5F5F5',
       zIndex: 0
     },
 
     summary_section: {
         backgroundColor: 'white',
         width: '95%',
-        borderLeftColor: '#40DBCE',
+        borderLeftColor: '#4A0784',
         borderStyle: 'solid',
         borderLeftWidth: 3, 
         alignSelf: 'center',
@@ -33,7 +30,8 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignSelf: 'stretch', 
         borderStyle: 'solid', 
-        borderColor: '#40DBCE',
+        borderColor: '#4A0784',
+        color: '#4A0784',
         borderWidth: 1,
         paddingVertical: 10,
         borderRadius: 20,
@@ -46,9 +44,10 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch', 
         borderStyle: 'solid', 
         borderColor: '#4A0784',
+        color: '#f8f8ff',
         borderWidth: 1, 
         paddingVertical: 10,
-        backgroundColor: '#40DBCE',
+        backgroundColor: '#4A0784',
         borderRadius: 20,
         margin: 5
     },
@@ -136,6 +135,7 @@ const styles = StyleSheet.create({
 //main turquious cta button
     button_style: {
         backgroundColor: '#40DBCE',
+        color: '#4A0784',
         borderRadius: 10,
         borderStyle: 'solid',
         width: '50%',

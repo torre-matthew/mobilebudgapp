@@ -41,7 +41,7 @@ class AddEntryModal extends Component {
           onPress={() => {this.setModalVisible(true)}}
           style={style.button_style}
           >
-          <Text> Add Income </Text>
+          <Text style={{color: style.button_style.color}}> Add Income </Text>
         </TouchableOpacity>
       </View>
     );

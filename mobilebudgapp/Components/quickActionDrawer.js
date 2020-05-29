@@ -12,7 +12,7 @@ container_small: {
   height: 160, 
   alignSelf: 'center',
   marginRight: 10, 
-  backgroundColor: '#6f00ff',
+  backgroundColor: '#BCBCC2',
   borderBottomLeftRadius: 10, 
   borderBottomRightRadius: 10,
 },
@@ -23,7 +23,7 @@ container_large: {
   height: 190, 
   alignSelf: 'center',
   marginRight: 10, 
-  backgroundColor: '#6f00ff',
+  backgroundColor: '#BCBCC2',
   borderBottomLeftRadius: 10, 
   borderBottomRightRadius: 10
 },

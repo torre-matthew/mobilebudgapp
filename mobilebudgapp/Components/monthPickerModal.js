@@ -23,7 +23,7 @@ class MonthPickerModal extends Component {
 
   render() {
     return (
-      <View style={{marginTop: 10}}>
+      <View style={{marginTop: 60}}>
         <Modal
           animationType="slide"
           transparent={false}

@@ -16,7 +16,7 @@ import * as Font from 'expo-font';
 
 
 const style = require("../Styles/Styles");
-const backgroundImage = require('../Styles/images/whiteWall.png');
+const backgroundImage = require('../Styles/images/app background.png');
 
 function wait(timeout) {
   return new Promise(resolve => {
@@ -348,10 +348,10 @@ export default class MainPage extends Component {
           <ImageBackground
             source={backgroundImage}
             style={{width: '100%', height: '100%'}} >
-          <AppHeader 
+          {/* <AppHeader 
             photoURL={this.state.photoUrl}
             navigation={this.props.navigation}
-            signOut={this.props.signOut} />
+            signOut={this.props.signOut} /> */}
           <ScrollView
           refreshControl={
             <RefreshControl 
@@ -440,6 +440,10 @@ export default class MainPage extends Component {
               /> */}
             </View>
           </ScrollView>
+            <AppHeader 
+              photoURL={this.state.photoUrl}
+              navigation={this.props.navigation}
+              signOut={this.props.signOut} />
           </ImageBackground>
         </Container>
     );
