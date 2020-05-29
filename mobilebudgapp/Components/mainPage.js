@@ -16,7 +16,7 @@ import * as Font from 'expo-font';
 
 
 const style = require("../Styles/Styles");
-const backgroundImage = require('../Styles/images/app background.png');
+const backgroundImage = require('../Styles/images/whiteWall.png');
 
 function wait(timeout) {
   return new Promise(resolve => {
@@ -372,9 +372,6 @@ export default class MainPage extends Component {
                 fetchData={this.fetchData}
                 />
             }   
-              <View style={{marginTop: 12, marginBottom: 1, marginLeft: 7}}>
-                  <Text style={{fontSize: 15, fontWeight: 'bold', color: '#4A0784'}}> Income: </Text>
-              </View>
               <SummaryWrapper 
                 incomeDataFromDB={!this.state.afterSpendingClicked ? this.state.currentIncomeFromDB : this.state.afterSpendingData}
                 switcherLogic={this.switcherLogic}
@@ -397,9 +394,6 @@ export default class MainPage extends Component {
                 selectNewMonth={this.selectNewMonth}
                 navigation={this.props.navigation}
               />
-              <View style={{marginTop: 12, marginBottom: 1, marginLeft: 7}}> 
-                <Text style={{fontSize: 15, fontWeight: 'bold', color: '#4A0784'}}> Bills and Expenses: </Text>
-              </View>
               <UnplannedBillWrapper
                 expenseDataFromDB={!this.state.plannedClicked ? this.state.currentUnPlannedExpensesFromDB : this.state.currentPlannedExpensesFromDB}
                 incomeDataFromDB={this.state.currentIncomeFromDB}

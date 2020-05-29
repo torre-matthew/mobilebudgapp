@@ -5,7 +5,7 @@ import LoginScreenStyles from "../Styles/loginSreenStyles";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 import MainScreen from "./mainScreen";
-import BackGroundImage from "../Styles/images/app background 2.png";
+import BackGroundImage from "../Styles/images/whiteWall.png";
 import EditBillFormDisplay from "../Components/editBillForm";
 
 class EditEntryScreen extends Component {

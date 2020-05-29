@@ -49,7 +49,7 @@ class MonthPickerModal extends Component {
         </Modal>
         <TouchableOpacity
           onPress={() => {this.setModalVisible(true)}}
-          style={{ flex: 1, alignSelf: 'center', marginTop: 5, marginBottom: 5, backgroundColor: 'white', elevation: 2, borderRadius: 10, borderBottomWidth: 3, borderLeftWidth: 1, borderBottomStyle: 'solid', borderLeftStyle: 'solid', borderBottomColor: '#40DBCE', borderLeftColor: '#40DBCE' }}
+          style={{ flex: 1, alignSelf: 'center', marginTop: 5, marginBottom: 5, backgroundColor: 'white', elevation: 2, borderRadius: 10, borderBottomWidth: 2, borderLeftWidth: 4, borderRightWidth: 4, borderBottomStyle: 'solid', borderLeftStyle: 'solid', borderBottomColor: '#40DBCE', borderLeftColor: '#40DBCE', borderRightColor: '#40DBCE' }}
           >        
           <Text style={{fontSize: 30, paddingLeft: 80, paddingRight: 80, paddingTop: 15, paddingBottom: 15}}> {this.props.currentMonth} </Text>
         </TouchableOpacity>
