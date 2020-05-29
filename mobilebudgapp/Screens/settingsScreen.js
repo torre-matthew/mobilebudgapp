@@ -23,7 +23,7 @@ class SettingsScreen extends Component {
         <ImageBackground
             source={BackGroundImage}
             style={{width: '100%', height: '100%'}} > 
-        <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', margin: 15}}> 
+        <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', marginTop: 60}}> 
             <Image style={{width: 100, height: 100, borderRadius: 50, borderWidth: 1}} source={{uri: this.props.route.params.photoURL}} />
           </View>
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', margin: 25}}>
