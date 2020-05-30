@@ -782,7 +782,7 @@ let updateAfterSpendingAmount = (req, res) => {
             totalOfExpenses = 0;    // set the total of expenses to 0
         }else {                         //if there are expenses with that funding source id
             data.forEach(element => { // add all the amounts of those expenses together then..
-                totalOfExpenses += parseFloat(element.amountOfExpense); // set set total of expenses to that number
+                totalOfExpenses += (parseFloat(element.amountOfExpense)).toFixed(2); // set set total of expenses to that number
             });
         }        
             db.Income.find({_id: req.params.incomeID})
@@ -813,7 +813,7 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
             totalOfExpenses = 0;    // set the total of expenses to 0
         }else {                         //if there are expenses with that funding source id
             data.forEach(element => { // add all the amounts of those expenses together then..
-                totalOfExpenses += parseFloat(element.amountOfExpense); // set set total of expenses to that number
+                totalOfExpenses += (parseFloat(element.amountOfExpense)).toFixed(2); // set set total of expenses to that number
             });
         }        
             db.Income.find({_id: fundingSource})
