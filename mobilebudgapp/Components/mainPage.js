@@ -8,9 +8,9 @@ import MonthPickerModal from './monthPickerModal';
 import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import { thisExpression } from '@babel/types';
 import AppHeader from './appheader';
-// import { FontAwesome5 } from '@expo/vector-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import ApiMethods from '../utilities/apiMethods';
 import * as Font from 'expo-font';
 
@@ -234,7 +234,7 @@ export default class MainPage extends Component {
       });
 
       this.setState({
-        currentTotalIncome: totalIncome
+        currentTotalIncome: totalIncome.toFixed(2)
       });
 
       return totalIncome;
@@ -256,7 +256,7 @@ export default class MainPage extends Component {
       afterSpendingIncomeTotal = totalIncome - totalSpent;
 
       this.setState({
-        afterSpendingIncomeTotal: afterSpendingIncomeTotal 
+        afterSpendingIncomeTotal: afterSpendingIncomeTotal.toFixed(2) 
       });
 
       return afterSpendingIncomeTotal;
@@ -372,6 +372,7 @@ export default class MainPage extends Component {
                 fetchData={this.fetchData}
                 />
             }   
+              
               <SummaryWrapper 
                 incomeDataFromDB={!this.state.afterSpendingClicked ? this.state.currentIncomeFromDB : this.state.afterSpendingData}
                 switcherLogic={this.switcherLogic}
@@ -415,23 +416,6 @@ export default class MainPage extends Component {
                 currentMonthID={this.state.currentMonthID}
                 navigation={this.props.navigation}
               />
-              {/* <PlannedBillWrapper
-                expenseDataFromDB={this.state.currentPlannedExpensesFromDB}
-                incomeDataFromDB={this.state.currentIncomeFromDB}
-                handleBillAmount={this.handleBillAmount}
-                handleDueDate={this.handleDueDate}
-                handleBillName={this.handleBillName} 
-                handleFormSubmit={this.handleFormSubmit}
-                loggedInUserID={this.state.loggedInUserID}
-                fetchData={this.fetchData}
-                updateExpensesOnUserRecord={this.updateExpensesOnUserRecord}
-                spinnerSize={this.state.spinnerSize}
-                spinnerOpacity={this.state.spinnerOpacity}
-                showSpinner={this.state.showSpinner}
-                currentMonth={this.state.currentMonth}
-                currentMonthID={this.state.currentMonthID}
-                navigation={this.props.navigation}
-              /> */}
             </View>
           </ScrollView>
             <AppHeader 
