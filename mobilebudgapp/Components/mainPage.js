@@ -372,7 +372,7 @@ export default class MainPage extends Component {
                 fetchData={this.fetchData}
                 />
             }   
-              
+              <FontAwesome5 name="caret-up" size={24} color="black" />
               <SummaryWrapper 
                 incomeDataFromDB={!this.state.afterSpendingClicked ? this.state.currentIncomeFromDB : this.state.afterSpendingData}
                 switcherLogic={this.switcherLogic}
