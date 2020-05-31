@@ -34,16 +34,16 @@ copyPreviousMonth = () => {
             source={BackGroundImage}
             style={{width: '100%', height: '100%'}} > 
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', margin: 25}}>
-            <Text style={{color: "#40DBCE", fontSize: 20}}>
+            <Text style={{color: "#40DBCE", fontSize: 22, fontFamily: 'Laila-SemiBold'}}>
               Hey there, ready to start planning
             </Text>
-            <Text style={{color: "#40DBCE", fontSize: 20}}>
+            <Text style={{color: "#40DBCE", fontSize: 22, fontFamily: 'Laila-SemiBold'}}>
               {this.props.route.params.targetMonthName + "'s budget?"}
             </Text>
-            <Text style={{color: "#40DBCE", fontSize: 16, marginTop: 20}}>
-              Get a head start by copying a this month's budget 
+            <Text style={{color: "#40DBCE", fontSize: 15, marginTop: 20, fontFamily: 'Laila-SemiBold'}}>
+              Get a head start by copying this month's budget 
             </Text>
-            <Text style={{color: "#40DBCE", fontSize: 16}}>
+            <Text style={{color: "#40DBCE", fontSize: 15, fontFamily: 'Laila-SemiBold'}}>
               or you can start fresh.
             </Text>
           </View>
