@@ -12,6 +12,7 @@ class MainScreen extends Component {
         {/* <MainPage 
           loggedInUsersEmail={this.props.route.params.email}
           currentMonth={this.props.route.params.currentMonth}
+          currentYear={this.props.route.params.currentYear}
           currentMonthID={this.props.route.params.currentMonthID}
           navigation={navigation}
           photoURL={this.props.route.params.photoURL}
@@ -20,6 +21,7 @@ class MainScreen extends Component {
           <MainPage 
           loggedInUsersEmail={"torre.pk.matthew@gmail.com"}
           currentMonth={"May"}
+          currentYear={"2020"}
           currentMonthID={"5eaf6211e7b5c6001726776a"}
           navigation={navigation}
           photoURL={"https://lh3.googleusercontent.com/a-/AOh14GiYRuLnlpz-uypUOvbDG_uVR56n6DxLoC5Ubb-Wcg"}

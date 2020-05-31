@@ -24,6 +24,7 @@ class LoginScreen extends Component {
     showSpinner: true,
     currentMonthID: "",
     currentMonth: "",
+    currentYear: "",
     spinnerOpacity: 0, //Because of this bug: https://github.com/facebook/react-native/issues/9023
   }
 
@@ -53,6 +54,7 @@ class LoginScreen extends Component {
                           this.setState({
                             currentMonthID: month.data[0]._id,
                             currentMonth: month.data[0].month,
+                            currentyear: month.data[0].year,
                             spinnerOpacity: 0
                           });
                         })
@@ -71,9 +73,10 @@ class LoginScreen extends Component {
                           this.setState({
                             currentMonthID: month.data[0]._id,
                             currentMonth: month.data[0].month,
+                            currentYear: month.data[0].year,
                             spinnerOpacity: 0
                           }, () => { //another callback that then sends the user to the main app after the month data has been recieved and set.
-                            this.props.navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl, signOut: this.signOut})
+                            this.props.navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentYear: this.state.currentYear, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl, signOut: this.signOut})
                           });
                         })
                       .catch(err => console.log(err))
@@ -139,7 +142,7 @@ signOut = async () => {
           {this.state.signedIn ? 
           <View>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl, signOut: this.signOut})}
+            onPress={() => navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentYear: this.state.currentYear, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl, signOut: this.signOut})}
             style={style.button2_cta_style} >
             <Text> Go to main page </Text>
           </TouchableOpacity>

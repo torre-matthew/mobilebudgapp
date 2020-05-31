@@ -9,14 +9,12 @@ import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import { thisExpression } from '@babel/types';
 import AppHeader from './appheader';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import ApiMethods from '../utilities/apiMethods';
 import * as Font from 'expo-font';
 
 
 const style = require("../Styles/Styles");
-const backgroundImage = require('../Styles/images/whiteWall.png');
+const backgroundImage = require('../Styles/images/app background.png');
 
 function wait(timeout) {
   return new Promise(resolve => {
@@ -39,6 +37,7 @@ export default class MainPage extends Component {
     monthData: [],
     currentMonthID: this.props.currentMonthID,
     currentMonth: this.props.currentMonth,
+    currentYear: this.props.currentYear,
     doesCurrentMonthNeedData: false,
     currentTotalIncome: 0,
     afterSpendingIncomeTotal: 0,
@@ -367,12 +366,12 @@ export default class MainPage extends Component {
             <MonthPickerModal 
                 monthData={this.state.monthData} 
                 currentMonth={this.state.currentMonth}
+                currentYear={this.state.currentYear}
                 currentMonthID={this.state.currentMonthID}
                 selectNewMonth={this.selectNewMonth}
                 fetchData={this.fetchData}
                 />
             }   
-              <FontAwesome5 name="caret-up" size={24} color="black" />
               <SummaryWrapper 
                 incomeDataFromDB={!this.state.afterSpendingClicked ? this.state.currentIncomeFromDB : this.state.afterSpendingData}
                 switcherLogic={this.switcherLogic}

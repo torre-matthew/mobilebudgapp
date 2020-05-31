@@ -3,6 +3,7 @@ import {Modal, Text, TouchableHighlight, View, Alert, Dimensions, ScrollView, Vi
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MonthDisplay from "./monthDisplay";
 import style from "../Styles/Styles";
+import { FontAwesome5 } from '@expo/vector-icons';
 import ApiMethods from '../utilities/apiMethods';
 
 class MonthPickerModal extends Component {
@@ -47,12 +48,12 @@ class MonthPickerModal extends Component {
             }
           </ScrollView>
         </Modal>
-        <TouchableOpacity
-          onPress={() => {this.setModalVisible(true)}}
-          style={{ flex: 1, alignSelf: 'center', marginTop: 5, marginBottom: 5, backgroundColor: 'white', elevation: 2, borderRadius: 10, borderBottomWidth: 2, borderLeftWidth: 4, borderRightWidth: 4, borderBottomStyle: 'solid', borderLeftStyle: 'solid', borderBottomColor: '#40DBCE', borderLeftColor: '#40DBCE', borderRightColor: '#40DBCE' }}
-          >        
-          <Text style={{fontSize: 30, paddingLeft: 80, paddingRight: 80, paddingTop: 15, paddingBottom: 15}}> {this.props.currentMonth} </Text>
-        </TouchableOpacity>
+        <View onTouchEnd={() => {this.setModalVisible(true)}} style={{ flex: 1, flexDirection: 'row', alignSelf: 'center', marginTop: 5, marginBottom: 5, borderRadius: 10, width: '95%'}}>        
+          <Text style={{fontSize: 25,}}> {this.props.currentMonth} </Text>
+          <Text style={{fontSize: 25, paddingRight: 8}}> {this.props.currentYear} </Text>
+          <FontAwesome5 style={{alignSelf: 'center', paddingRight: 8}} name="caret-down" size={24} color="#40DBCE" />
+        </View>
+        
       </View>
     );
   }

@@ -3,7 +3,7 @@ import { ImageBackground, Image, Text } from 'react-native';
 import { Container, Header, Left, Body, Right, Title, View } from 'native-base';
 import style from "../Styles/Styles";
 
-const backgroundImage = require('../Styles/images/turquise indigo gradient.png');
+const backgroundImage = require('../Styles/images/whiteWall.png');
 
 class AppHeader extends Component {
 

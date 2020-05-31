@@ -1,5 +1,4 @@
 import {Platform, StyleSheet} from 'react-native';
-import { getPlatformOrientationLockAsync } from 'expo/build/ScreenOrientation/ScreenOrientation';
 import { bold } from 'ansi-colors';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
