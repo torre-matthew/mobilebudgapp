@@ -15,26 +15,10 @@ class IncomeDisplay extends Component {
 
   componentDidMount() {
     this.props.fetchData();
-    this.loadFonts();
   }
 
   updateIncomeDisplayComponent = () => {
     this.componentDidMount();
-  }
-
-  loadFonts = async () => {
-    await Font.loadAsync({
-            'SpecialElite-Regular': require('../assets/fonts/SpecialElite-Regular.ttf'),
-            'Laila-SemiBold': require('../assets/fonts/Laila-SemiBold.ttf'),
-            'Laila-Light': require('../assets/fonts/Laila-Light.ttf'),
-            'Laila-Medium': require('../assets/fonts/Laila-Medium.ttf'),
-            'Laila-Bold': require('../assets/fonts/Laila-Bold.ttf'),
-            'Quicksand-SemiBold': require('../assets/fonts/Quicksand-SemiBold.ttf'),
-            'Quicksand-Bold': require('../assets/fonts/Quicksand-Bold.ttf'),
-            'Quicksand-Light': require('../assets/fonts/Quicksand-Light.ttf'),
-            'Quicksand-Regular': require('../assets/fonts/Quicksand-Regular.ttf'),
-          });
-    this.setState({fontsLoaded:true});
   }
 
   setModalVisible = (visible) => {
@@ -119,7 +103,7 @@ class IncomeDisplay extends Component {
             </Modal>
               <View>
                 <View onTouchEnd={() => {this.setModalVisible(true);}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 3 }}>
-                  <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', borderLeftColor: '#26827A', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 28, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftWidth: 4 }}> 
+                  <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', borderLeftColor: '#4658A1', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 28, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftWidth: 4 }}> 
                     <Text style={{fontSize: 16, fontFamily: "Laila-Medium"}}> {this.props.incomeName} </Text>
                   </View>
                   <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15}}> 
@@ -132,7 +116,7 @@ class IncomeDisplay extends Component {
                     } */}
                   </View>
                 </View>
-                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderLeftColor: '#26827A', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftWidth: 4 }}>
+                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderLeftColor: '#4658A1', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftWidth: 4 }}>
                   <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                     <Text style={{fontSize: 10, fontFamily: "Laila-Medium"}}> Date: {this.props.incomeDate} </Text>
                   </View>

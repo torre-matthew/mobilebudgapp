@@ -26,10 +26,10 @@ render() {
         <Content padder>
             <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row' }}>
                 <View onTouchStart={() => {this.props.switcherLogic('planned')}} onTouchEnd={() => {this.clickingBillSwithcer(true, 'plannedSwitherStyle', 'unplannedSwitherStyle')}} style={this.state.plannedSwitherStyle}> 
-                    <Text style={{ textAlign: 'center', fontSize: 15, color: this.state.plannedSwitherStyle.color }}> Not yet planned </Text>
+                    <Text style={{ textAlign: 'center', fontSize: 15, fontFamily: 'Laila-SemiBold', color: this.state.plannedSwitherStyle.color }}> Not yet planned </Text>
                 </View>
                 <View onTouchStart={() => {this.props.switcherLogic('unplanned')}} onTouchEnd={() => {this.clickingBillSwithcer(true, 'unplannedSwitherStyle', 'plannedSwitherStyle');}} style={this.state.unplannedSwitherStyle}>
-                    <Text style={{ textAlign: 'center', fontSize: 15, color: this.state.unplannedSwitherStyle.color }}> Planned </Text>
+                    <Text style={{ textAlign: 'center', fontSize: 15, fontFamily: 'Laila-SemiBold', color: this.state.unplannedSwitherStyle.color }}> Planned </Text>
                 </View>
             </View>
         </Content>

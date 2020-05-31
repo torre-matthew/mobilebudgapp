@@ -57,7 +57,7 @@ class QuickActionDrawer extends Component {
                         selectFundingSource: this.props.selectFundingSource
                       })}}
                       style={style.button_small_quick_actions}>
-                    <Text style={{fontSize: 12, color: '#4A0784'}}> Plan this Item </Text>
+                    <Text style={{fontSize: 12, fontFamily: 'Laila-SemiBold', color: '#4A0784'}}> Plan this Item </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -66,14 +66,14 @@ class QuickActionDrawer extends Component {
                   <TouchableOpacity
                     onPress={() => {this.props.splitEntry(this.props.billID)}}
                     style={style.button_small_quick_actions}>
-                    <Text style={{fontSize: 12, color: '#4A0784'}}> Split this item</Text>
+                    <Text style={{fontSize: 12, fontFamily: 'Laila-SemiBold', color: '#4A0784'}}> Split this item</Text>
                   </TouchableOpacity>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch'}}>
                   <TouchableOpacity
                     onPress={() => {this.props.moveToNextMonth(this.props.billID)}}
                     style={style.button_small_quick_actions}>
-                    <Text style={{fontSize: 12, color: '#4A0784'}}> Move to next month</Text>
+                    <Text style={{fontSize: 12, fontFamily: 'Laila-SemiBold', color: '#4A0784'}}> Move to next month</Text>
                   </TouchableOpacity>
                   </View>
                 </View>
@@ -84,14 +84,14 @@ class QuickActionDrawer extends Component {
                     <TouchableOpacity
                         onPress={() => {this.props.markAsUnplanned()}}
                         style={style.button_small_quick_actions}>
-                      <Text style={{fontSize: 12, color: '#4A0784'}}> Back to unplanned </Text>
+                      <Text style={{fontSize: 12, fontFamily: 'Laila-SemiBold', color: '#4A0784'}}> Back to unplanned </Text>
                     </TouchableOpacity>
                   </View>
                   <View style={{ flex: 1, alignSelf: 'stretch'}}>
                       <TouchableOpacity
                         onPress={() => {this.props.markAsPaid(this.props.billID, this.props.billIsPaid)}}
                         style={this.props.billIsPaid ? style.button_small_quick_actions_dark : style.button_small_quick_actions}>
-                      <Text style={{fontSize: 12, color: this.props.billIsPaid ? '#F5F5F5' : '#4A0784'}}> {this.props.markAsPaidButtonText} </Text>
+                      <Text style={{fontSize: 12, fontFamily: 'Laila-SemiBold', color: this.props.billIsPaid ? '#F5F5F5' : '#4A0784'}}> {this.props.markAsPaidButtonText} </Text>
                     </TouchableOpacity>
                   </View>
                   </View>
@@ -121,7 +121,7 @@ class QuickActionDrawer extends Component {
                         isThisPlanned: this.props.isThisPlanned })}
                         }
                       style={style.button_small_quick_actions}>
-                    <Text style={{fontSize: 12, color: '#4A0784'}}> Edit </Text>
+                    <Text style={{fontSize: 12, fontFamily: 'Laila-SemiBold', color: '#4A0784'}}> Edit </Text>
                   </TouchableOpacity>
                 </View>
               </View>

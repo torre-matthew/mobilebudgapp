@@ -21,36 +21,17 @@ class UnplannedBillDisplay extends Component {
     paidBillDescriptionTextInModal: "",
     showDrawer: false,
     billIsPaid: this.props.billIsPaid,
-    fontsLoaded: false
   };
 
   componentDidMount() {
     this.getFundingSourceInfo(this.props.billID);
     this.changeDisplayWhenMarkedAsPaid();
-    this.loadFonts();
   }
 
   updateBillDisplayComponent = () => {
     this.componentDidMount();
     this.props.updateWrapperComponent();
   }
-
-  loadFonts = async () => {
-    await Font.loadAsync({
-      'SpecialElite-Regular': require('../assets/fonts/SpecialElite-Regular.ttf'),
-      'Laila-SemiBold': require('../assets/fonts/Laila-SemiBold.ttf'),
-      'Laila-Light': require('../assets/fonts/Laila-Light.ttf'),
-      'Laila-Medium': require('../assets/fonts/Laila-Medium.ttf'),
-      'Laila-Bold': require('../assets/fonts/Laila-Bold.ttf'),
-      'Quicksand-SemiBold': require('../assets/fonts/Quicksand-SemiBold.ttf'),
-      'Quicksand-Bold': require('../assets/fonts/Quicksand-Bold.ttf'),
-      'Quicksand-Light': require('../assets/fonts/Quicksand-Light.ttf'),
-      'Quicksand-Regular': require('../assets/fonts/Quicksand-Regular.ttf'),
-      'Quicksand-Medium': require('../assets/fonts/Quicksand-Medium.ttf'),
-    });
-    this.setState({fontsLoaded:true});
-  }
-
   setDrawerVisible = () => {
     if (this.state.showDrawer) { 
       this.setState({showDrawer: false, whatsBeingEdited: "bill"});
@@ -252,9 +233,6 @@ selectFundingSource = (fundingSourceID) => {
 }
 //#F5F5F5
   render () {
-
-    if (this.state.fontsLoaded) {
-
       return (
         <View>
             <View>
@@ -316,12 +294,6 @@ selectFundingSource = (fundingSourceID) => {
             </View>
           </View>
       );
-    } else {
-          return (
-            <View><Text>Fonts are still loading</Text></View>
-          )
-        }
-
     }
   }
 

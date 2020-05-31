@@ -13,7 +13,7 @@ function TotalCashFlowDisplay (props) {
                     ?
                   <ActivityIndicator style={{ opacity: props.spinnerOpacity }} animating={props.showSpinner} size={props.spinnerSize} color="#40DBCE"/>
                     : 
-                  <Text style={{fontSize: 40, textAlign: 'center'}}> ${props.currentTotalIncome.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
+                  <Text style={{fontSize: 40, fontFamily: 'Laila-SemiBold', textAlign: 'center'}}> ${props.currentTotalIncome.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                   }
                   </View>
           </View>
@@ -21,9 +21,9 @@ function TotalCashFlowDisplay (props) {
                   <View style={{ flex: 1, alignSelf: 'stretch' }}> 
                   {props.switcherClicked
                   ?
-                    <Text style={{fontSize: 12, textAlign: 'center'}}> remaining after planning </Text>
+                    <Text style={{fontSize: 12, fontFamily: 'Laila-SemiBold', textAlign: 'center'}}> remaining after planning </Text>
                   :
-                    <Text style={{fontSize: 12, textAlign: 'center'}}> of total income this month </Text>
+                    <Text style={{fontSize: 12, fontFamily: 'Laila-Medium', textAlign: 'center'}}> of total income this month </Text>
                   }
                   </View>
           </View>

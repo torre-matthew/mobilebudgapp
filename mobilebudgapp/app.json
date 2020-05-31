@@ -20,6 +20,7 @@
     "android": {
       "package": "com.tpkmmobilebudgetapp.tpkmmobilebudgetapp",
       "versionCode": 1
-    }
+    },
+    "sdkVersion": "37.0.0"
   }
 }

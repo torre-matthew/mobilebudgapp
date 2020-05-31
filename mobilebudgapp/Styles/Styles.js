@@ -1,6 +1,4 @@
 import {Platform, StyleSheet} from 'react-native';
-import { bold } from 'ansi-colors';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
     container: {

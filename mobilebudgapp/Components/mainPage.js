@@ -11,10 +11,11 @@ import AppHeader from './appheader';
 import { FontAwesome5 } from '@expo/vector-icons';
 import ApiMethods from '../utilities/apiMethods';
 import * as Font from 'expo-font';
+import LoadFonts from '../assets/fonts';
 
 
 const style = require("../Styles/Styles");
-const backgroundImage = require('../Styles/images/app background.png');
+const backgroundImage = require('../Styles/images/app background 3.png');
 
 function wait(timeout) {
   return new Promise(resolve => {
@@ -56,6 +57,7 @@ export default class MainPage extends Component {
 
   componentDidMount(){
     this.getLoggedInUserIdByEmail(this.state.loggedInUsersEmail);
+    LoadFonts();
     
   }
 

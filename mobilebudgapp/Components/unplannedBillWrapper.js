@@ -22,7 +22,7 @@ class UnplannedBillWrapper extends Component {
       return (
           <Content padder style={ style.unplanned_section }>
               <View style={{marginTop: 6, marginBottom: 1, marginLeft: 7}}> 
-                <Text style={{fontSize: 15, fontWeight: 'bold', color: '#4A0784'}}> Bills and Expenses: </Text>
+                <Text style={{fontSize: 15, color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> Bills and Expenses: </Text>
               </View>
             <BillSwitcher
               switcherLogic={this.props.switcherLogic}

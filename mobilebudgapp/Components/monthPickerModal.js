@@ -48,10 +48,10 @@ class MonthPickerModal extends Component {
             }
           </ScrollView>
         </Modal>
-        <View onTouchEnd={() => {this.setModalVisible(true)}} style={{ flex: 1, flexDirection: 'row', alignSelf: 'center', marginTop: 5, marginBottom: 5, borderRadius: 10, width: '95%'}}>        
-          <Text style={{fontSize: 25,}}> {this.props.currentMonth} </Text>
-          <Text style={{fontSize: 25, paddingRight: 8}}> {this.props.currentYear} </Text>
-          <FontAwesome5 style={{alignSelf: 'center', paddingRight: 8}} name="caret-down" size={24} color="#40DBCE" />
+        <View onTouchEnd={() => {this.setModalVisible(true)}} style={{ flex: 1, flexDirection: 'row', alignSelf: 'center', marginTop: 5, marginBottom: 5, marginLeft: 20, borderRadius: 10, width: '95%'}}>        
+          <Text style={{fontSize: 25, color: "#40DBCE", fontFamily: 'Laila-SemiBold'}}> {this.props.currentMonth} </Text>
+          <Text style={{fontSize: 25, color: "#40DBCE", paddingRight: 8, fontFamily: 'Laila-SemiBold'}}> {this.props.currentYear} </Text>
+          <FontAwesome5 style={{alignSelf: 'center', paddingRight: 8}} name="caret-down" size={20} color="#40DBCE" />
         </View>
         
       </View>

@@ -24,7 +24,7 @@ class SummaryWrapper extends Component {
         return (
                 <Content padder style={style.summary_section}>
                     <View style={{marginTop: 5, marginBottom: 1, marginLeft: 7}}>
-                        <Text style={{fontSize: 15, fontWeight: 'bold', color: '#4A0784'}}> Income: </Text>
+                        <Text style={{fontSize: 15, color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> Income: </Text>
                     </View>
                     <IncomeSummarySwitcher 
                         switcherClicked={this.props.switcherClicked}

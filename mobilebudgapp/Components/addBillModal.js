@@ -42,7 +42,7 @@ class AddBillModal extends Component {
             onPress={() => {this.setModalVisible(true)}}
             style={style.button_style}
           >
-          <Text style={{color: style.button_style.color}}> Add Bill/Expense </Text>
+          <Text style={{color: style.button_style.color, fontFamily: 'Laila-SemiBold'}}> Add Bill/Expense </Text>
         </TouchableOpacity>
         </View>
       );
