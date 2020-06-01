@@ -12,6 +12,7 @@ class UnplannedBillDisplay extends Component {
   state = {
     modalVisible: false,
     whatsBeingEdited: "",
+    fundingSourceID: "",
     fundingSourceName: "",
     fundingSourceAmount: "",
     colorIfPaid: "",
@@ -100,7 +101,14 @@ selectFundingSource = (fundingSourceID) => {
 
 
   markAsUnplanned = () => {
-    ApiMethods.editExpense(this.props.billID, this.props.billName, this.props.dueDate, this.props.billAmount, false, "", this.props.loggedInUserID)
+
+    Alert.alert(
+      'Not ready to plan ' + this.props.billName + '?',
+      'I will move this back to unplanned bills and expenses.',
+      [ 
+        {text: 'Nevermind', style: 'cancel'},
+        {text: 'Ok', onPress: () => {
+          ApiMethods.editExpense(this.props.billID, this.props.billName, this.props.dueDate, this.props.billAmount, false, "", this.props.loggedInUserID)
             .then(res => {
                 if (res.data.nModified === 0) {
                     alert('Sorry, there was a problem. Please try again');
@@ -110,6 +118,11 @@ selectFundingSource = (fundingSourceID) => {
                 }
                 })
             .catch(err => console.log(err));
+        }, 
+      },
+        ],
+      {cancelable: false},
+    );
 
   }
 
@@ -202,6 +215,7 @@ selectFundingSource = (fundingSourceID) => {
             ApiMethods.getIncomeByID(data.data[0].fundingSource)
               .then(data => {
                   this.setState({
+                    fundingSourceID: data.data[0]._id, 
                     fundingSourceName: data.data[0].name,
                     fundingSourceAmount: "$" + data.data[0].afterSpendingAmount + " remains"
                     });                      
@@ -212,6 +226,7 @@ selectFundingSource = (fundingSourceID) => {
 
     } else {
       this.setState({
+        fundingSourceID: "",
         fundingSourceName: "",
         fundingSourceAmount: "not yet planned"
       });
@@ -238,23 +253,23 @@ selectFundingSource = (fundingSourceID) => {
             <View>
               <View onTouchEnd={() => {this.setDrawerVisible()}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 3 }}>
                 <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: '#4A0784', borderLeftWidth: 4 }}> 
-                  <Text style={{fontSize: 16, fontFamily: "Laila-Medium"}}> {this.props.billName} </Text>
+                  <Text style={{fontSize: 16, fontFamily: "Laila-SemiBold"}}> {this.props.billName} </Text>
                 </View>
                 <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15, borderStyle: 'solid',}}> 
-                  <Text style={{fontSize: 16, fontFamily: "Laila-Medium"}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
+                  <Text style={{fontSize: 16, fontFamily: "Laila-SemiBold"}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
               </View>
               <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftColor: '#4A0784', borderLeftWidth: 4}}>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                  <Text style={{fontSize: 10, fontFamily: "Laila-Medium"}}> Due: {this.props.dueDate} </Text>
+                  <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> Due: {this.props.dueDate} </Text>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 5, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                  <Text style={{fontSize: 10, fontFamily: "Laila-Medium"}}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
+                  <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
                 {this.props.showMarkAsPaid 
                 ?
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 1, backgroundColor: this.state.colorIfPaid, paddingTop: 1, paddingBottom: 5, paddingLeft: 5, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
-                  <Text style={{color: this.state.textColorIfPaid, fontSize: 10, fontFamily: "Laila-Medium"}}> {this.state.paidDisplayText} </Text>
+                  <Text style={{color: this.state.textColorIfPaid, fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.state.paidDisplayText} </Text>
                 </View>
                 :
                 <Text />
@@ -270,6 +285,7 @@ selectFundingSource = (fundingSourceID) => {
                   billID={this.props.billID}
                   billIsPlanned={this.props.billIsPlanned}
                   billFundingSourceID={this.props.billFundingSourceID}
+                  fundingSourceID={this.state.fundingSourceID}
                   fundingSourceName={this.state.fundingSourceName}
                   fundingSourceAmount={this.state.fundingSourceAmount}
                   incomeDataFromDB={this.props.incomeDataFromDB}

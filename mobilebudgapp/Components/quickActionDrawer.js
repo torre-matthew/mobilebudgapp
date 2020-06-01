@@ -51,6 +51,7 @@ class QuickActionDrawer extends Component {
                       onPress={() => {this.props.navigation.navigate('Select Funding Source', {
                         billID: this.props.billID,
                         loggedInUserID: this.props.loggedInUserID,
+                        fundingSourceID: this.props.fundingSourceID,
                         incomeDataFromDB: this.props.incomeDataFromDB,
                         updateWrapperComponent: this.props.updateWrapperComponent,
                         updateDisplayComponent: this.props.updateBillDisplayComponent,

@@ -30,7 +30,7 @@ class MonthPickerModal extends Component {
           transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={this.closeModal}>
-            <Text style={{fontSize: 18, textAlign: 'center', margin: 20}}> Select Month </Text>
+            <Text style={{fontSize: 18, textAlign: 'center', margin: 20, fontFamily: 'Laila-SemiBold'}}> Select Month </Text>
           <ScrollView>
             {
               this.props.monthData.map(monthData => 

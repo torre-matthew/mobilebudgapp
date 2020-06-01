@@ -52,13 +52,13 @@ copyPreviousMonth = () => {
             onPress={() => {this.copyPreviousMonth()}}
             style={style.button2_cta_style}
             >
-            <Text style={{color: '#4A0784'}}> {'Copy ' + this.props.route.params.previousMonthName +  "'s plan"} </Text>
+            <Text style={{color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> {'Copy ' + this.props.route.params.previousMonthName +  "'s plan"} </Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {this.props.navigation.navigate('Main')}}
             style={style.button2_light_style}
             >
-            <Text style={{color: '#4A0784'}}> Start fresh </Text>
+            <Text style={{color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> Start fresh </Text>
           </TouchableOpacity>
           </View>  
           </ImageBackground>

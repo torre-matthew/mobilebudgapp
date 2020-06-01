@@ -4,7 +4,7 @@ const loadFonts = async () => {
     
     await Font.loadAsync({
       'SpecialElite-Regular': require('../assets/fonts/SpecialElite-Regular.ttf'),
-      'Laila-SemiBold': require('../assets/fonts/Laila-SemiBold.ttf'),
+      'Laila-SemiBold': require('../assets/fonts/SpecialElite-Regular.ttf'),
       'Laila-Light': require('../assets/fonts/Laila-Light.ttf'),
       'Laila-Medium': require('../assets/fonts/Laila-Medium.ttf'),
       'Laila-Bold': require('../assets/fonts/Laila-Bold.ttf'),

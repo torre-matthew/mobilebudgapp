@@ -26,15 +26,22 @@ class SelectFundingSourceScreen extends Component {
               <View style={{marginBottom: 20}}>  
                 <Text style={{fontSize: 18, margin: 10, fontFamily: 'Laila-SemiBold', textAlign: 'center'}}> Plan this item by selecting a funding source from available income </Text>
               </View>
-              {this.props.route.params.incomeDataFromDB.map(income =>
+              {this.props.route.params.incomeDataFromDB.map(income => 
+                income._id === this.props.route.params.fundingSourceID
+                ?  
+              <View onTouchEnd={() => {alert('This is your current funding source. Please choose another source.')}} style={{ width: '75%', height: '25%', alignSelf: 'center', justifyContent: 'center', backgroundColor: '#F5F5F5', margin: 10, borderRadius: 15, elevation: 5, borderWidth: 1, borderStyle: 'solid', borderColor: '#4A0784'}}> 
+                <Text style={{fontSize: 18, textAlign: 'center', fontFamily: 'Laila-SemiBold'}}> {income.name} </Text>
+                <Text style={{fontSize: 18, textAlign: 'center', fontFamily: 'Laila-SemiBold'}}> ${income.afterSpendingAmount + ' remaining of ' + ' $' + income.amount} </Text>
+                <Text style={{fontSize: 13, textAlign: 'center', fontFamily: 'Laila-SemiBold', color: '#40DBCE'}}> Current Funding Source </Text>
+              </View>
+                :
               <View onTouchEnd={() => {this.props.route.params.selectFundingSource(income._id)}} style={{ width: '75%', height: '25%', alignSelf: 'center', justifyContent: 'center', backgroundColor: '#F5F5F5', margin: 10, borderRadius: 15, elevation: 5, borderWidth: 1, borderStyle: 'solid', borderColor: '#4A0784'}}> 
                 <Text style={{fontSize: 18, textAlign: 'center', fontFamily: 'Laila-SemiBold'}}> {income.name} </Text>
                 <Text style={{fontSize: 18, textAlign: 'center', fontFamily: 'Laila-SemiBold'}}> ${income.afterSpendingAmount + ' remaining of ' + ' $' + income.amount} </Text>
               </View>
-              )}
-            </View>
-            {/* <View style={{flex: 1, alignItems: 'center', marginTop: '5%'}}>
-            </View> */}
+              )
+          }
+          </View>
         </ImageBackground> 
       </View>
       

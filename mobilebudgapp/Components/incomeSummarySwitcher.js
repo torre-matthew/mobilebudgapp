@@ -26,10 +26,10 @@ render() {
         <Content padder>
             <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row' }}>
                 <View onTouchStart={() => {this.props.switcherLogic('before')}} onTouchEnd={() => {this.clickingIncomeSummarySwithcer(true, 'beforeSpendingSwitherStyle', 'afterSpendingSwitherStyle')}} style={this.state.beforeSpendingSwitherStyle}> 
-                    <Text style={{ textAlign: 'center', fontSize: 15, fontFamily: 'Laila-Medium', color: this.state.beforeSpendingSwitherStyle.color }}> Before Planning </Text>
+                    <Text style={{ textAlign: 'center', fontSize: 15, fontFamily: 'Laila-SemiBold', color: this.state.beforeSpendingSwitherStyle.color }}> Before Planning </Text>
                 </View>
                 <View onTouchStart={() => {this.props.switcherLogic('after')}} onTouchEnd={() => {this.clickingIncomeSummarySwithcer(true, 'afterSpendingSwitherStyle', 'beforeSpendingSwitherStyle');}} style={this.state.afterSpendingSwitherStyle}>
-                    <Text style={{ textAlign: 'center', fontSize: 15, fontFamily: 'Laila-Medium', color: this.state.afterSpendingSwitherStyle.color }}> After Planning </Text>
+                    <Text style={{ textAlign: 'center', fontSize: 15, fontFamily: 'Laila-SemiBold', color: this.state.afterSpendingSwitherStyle.color }}> After Planning </Text>
                 </View>
             </View>
         </Content>

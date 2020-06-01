@@ -6,7 +6,7 @@ import LoginScreenStyles from "../Styles/loginSreenStyles";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 import MainScreen from "./mainScreen";
-import BackGroundImage from "../Styles/images/app background.png";
+import BackGroundImage from "../Styles/images/app background 3.png";
 
 class SettingsScreen extends Component {
 
