@@ -786,7 +786,7 @@ let updateAfterSpendingAmount = (req, res) => {
                 
                     db.Income.updateOne({_id: req.params.incomeID},
                         {$set: {
-                                afterSpendingAmount: availableIncomeAmount.toString()
+                                afterSpendingAmount: availableIncomeAmount
                                 }
                         })
                     .then(data => {res.json(data)})
@@ -808,18 +808,22 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
             totalOfExpenses = 0;    // set the total of expenses to 0
         }else {                         //if there are expenses with that funding source id
             data.forEach(element => { // add all the amounts of those expenses together then..
-                totalOfExpenses += (parseFloat(element.amountOfExpense)).toFixed(2); // set set total of expenses to that number
-                // console.log(totalOfExpenses);
+                totalOfExpenses += parseFloat(element.amountOfExpense); // set set total of expenses to that number
+                console.log(typeof totalOfExpenses);
+                console.log(totalOfExpenses);
+                console.log('******************************');
             });
         }        
             db.Income.find({_id: fundingSource})
             .then(data => {
                     availableIncomeAmount = (parseFloat(data[0].amount) - totalOfExpenses).toFixed(2);
                     console.log(typeof availableIncomeAmount);
+                    console.log(availableIncomeAmount);
+                    console.log('******************************');
                 
                     db.Income.updateOne({_id: fundingSource},
                         {$set: {
-                                afterSpendingAmount: availableIncomeAmount.toString()
+                                afterSpendingAmount: availableIncomeAmount
                                 }
                         })
                     .then(data => {})
