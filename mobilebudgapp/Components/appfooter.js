@@ -28,7 +28,15 @@ class AppFooter extends Component {
                 </View>
                 <View style={{flex:1, alignItems: 'center', alignSelf: 'center'}}>
                   <FontAwesome5 name="list-alt" size={28} color="#40DBCE" />
-                  <Text style={{fontSize: 12, color: "#4A0784", fontFamily: 'Laila-SemiBold'}}> Transactions</Text>
+                  <Text style={{fontSize: 12, color: "#4A0784", fontFamily: 'Laila-SemiBold'}}> Transactions </Text>
+                </View>
+                <View style={{flex:1, alignItems: 'center', alignSelf: 'center'}}>
+                  <FontAwesome5 name="file-invoice" size={28} color="#40DBCE" />
+                  <Text style={{fontSize: 12, color: "#4A0784", fontFamily: 'Laila-SemiBold'}}> Pay Bills </Text>
+                </View>
+                <View style={{flex:1, alignItems: 'center', alignSelf: 'center'}}>
+                  <FontAwesome5 name="chart-line" size={28} color="#40DBCE" />
+                  <Text style={{fontSize: 12, color: "#4A0784", fontFamily: 'Laila-SemiBold'}}> Trends </Text>
                 </View>
               </View>
               </ImageBackground>
