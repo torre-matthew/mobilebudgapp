@@ -815,7 +815,7 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
             db.Income.find({_id: fundingSource})
             .then(data => {
                     availableIncomeAmount = (parseFloat(data[0].amount) - totalOfExpenses).toFixed(2);
-                    console.log(availableIncomeAmount);
+                    console.log(typeof availableIncomeAmount);
                 
                     db.Income.updateOne({_id: fundingSource},
                         {$set: {
