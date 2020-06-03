@@ -810,7 +810,7 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
             data.forEach(element => { // add all the amounts of those expenses together then..
                 totalOfExpenses += parseFloat(element.amountOfExpense); // set set total of expenses to that number
                 console.log(typeof totalOfExpenses);
-                console.log(totalOfExpenses);
+                console.log('total of expense' + totalOfExpenses);
                 console.log('******************************');
             });
         }        
@@ -818,7 +818,7 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
             .then(data => {
                     availableIncomeAmount = (parseFloat(data[0].amount) - totalOfExpenses).toFixed(2);
                     console.log(typeof availableIncomeAmount);
-                    console.log(availableIncomeAmount);
+                    console.log('available income amount' + availableIncomeAmount);
                     console.log('******************************');
                 
                     db.Income.updateOne({_id: fundingSource},
