@@ -226,11 +226,6 @@ let splitEntry = (req, res) => {
             editExpenseByIDToUseInOtherMethods(req.params.billID, data[0].nameOfExpense, data[0].dateOfExpense, ((parseFloat(data[0].amountOfExpense)/2).toFixed(2)).toString(), data[0].userID);
         })
         .catch(err => console.log(err));
-
-        
-
-    
-
 }
 
 let moveToNextMonth = async (req, res) => {
@@ -814,11 +809,13 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
         }else {                         //if there are expenses with that funding source id
             data.forEach(element => { // add all the amounts of those expenses together then..
                 totalOfExpenses += (parseFloat(element.amountOfExpense)).toFixed(2); // set set total of expenses to that number
+                console.log(totalOfExpenses);
             });
         }        
             db.Income.find({_id: fundingSource})
             .then(data => {
                     availableIncomeAmount = (parseFloat(data[0].amount) - totalOfExpenses).toFixed(2);
+                    console.log(availableIncomeAmount);
                 
                     db.Income.updateOne({_id: fundingSource},
                         {$set: {

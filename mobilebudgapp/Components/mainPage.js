@@ -7,11 +7,12 @@ import PlannedBillWrapper from './plannedBillWrapper';
 import MonthPickerModal from './monthPickerModal';
 import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import { thisExpression } from '@babel/types';
-import AppHeader from './appheader';
+import AppFooter from './appfooter';
 import { FontAwesome5 } from '@expo/vector-icons';
 import ApiMethods from '../utilities/apiMethods';
 import * as Font from 'expo-font';
 import LoadFonts from '../assets/fonts';
+import AppHeader from './appheader';
 
 
 const style = require("../Styles/Styles");
@@ -52,12 +53,12 @@ export default class MainPage extends Component {
     photoUrl: this.props.photoURL,
     spinnerSize: 20,
     spinnerOpacity: 1,
-    showSpinner: true
+    showSpinner: true,
+    fontsLoaded: false
   };
 
   componentDidMount(){
     this.getLoggedInUserIdByEmail(this.state.loggedInUsersEmail);
-    LoadFonts();
     
   }
 
@@ -259,7 +260,6 @@ export default class MainPage extends Component {
       this.setState({
         afterSpendingIncomeTotal: afterSpendingIncomeTotal.toFixed(2) 
       });
-
       return afterSpendingIncomeTotal;
     }
   }
@@ -349,10 +349,10 @@ export default class MainPage extends Component {
           <ImageBackground
             source={backgroundImage}
             style={{width: '100%', height: '100%'}} >
-          {/* <AppHeader 
+          <AppHeader 
             photoURL={this.state.photoUrl}
             navigation={this.props.navigation}
-            signOut={this.props.signOut} /> */}
+            signOut={this.props.signOut} />
           <ScrollView
           refreshControl={
             <RefreshControl 
@@ -419,7 +419,7 @@ export default class MainPage extends Component {
               />
             </View>
           </ScrollView>
-            <AppHeader 
+            <AppFooter 
               photoURL={this.state.photoUrl}
               navigation={this.props.navigation}
               signOut={this.props.signOut} />
