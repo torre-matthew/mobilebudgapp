@@ -786,7 +786,7 @@ let updateAfterSpendingAmount = (req, res) => {
                 
                     db.Income.updateOne({_id: req.params.incomeID},
                         {$set: {
-                                afterSpendingAmount: availableIncomeAmount
+                                afterSpendingAmount: availableIncomeAmount.toString()
                                 }
                         })
                     .then(data => {res.json(data)})
@@ -809,7 +809,7 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
         }else {                         //if there are expenses with that funding source id
             data.forEach(element => { // add all the amounts of those expenses together then..
                 totalOfExpenses += (parseFloat(element.amountOfExpense)).toFixed(2); // set set total of expenses to that number
-                console.log(totalOfExpenses);
+                // console.log(totalOfExpenses);
             });
         }        
             db.Income.find({_id: fundingSource})
@@ -819,7 +819,7 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
                 
                     db.Income.updateOne({_id: fundingSource},
                         {$set: {
-                                afterSpendingAmount: availableIncomeAmount
+                                afterSpendingAmount: availableIncomeAmount.toString()
                                 }
                         })
                     .then(data => {})
