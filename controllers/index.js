@@ -2,8 +2,6 @@ const db = require("../db/models");
 const plaid = require('plaid');
 const dotenv = require('dotenv');
 
-dotenv.load();
-
 ////////// Add Data Controllers //////////////////
 
 let addIncomeToDb = async (req, res) => {

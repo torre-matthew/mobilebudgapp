@@ -27,6 +27,8 @@ import expo.modules.constants.ConstantsPackage;
 import expo.modules.permissions.PermissionsPackage;
 import expo.modules.filesystem.FileSystemPackage;
 
+import com.plaid.PlaidPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -55,7 +57,8 @@ public class MainApplication extends Application implements ReactApplication {
           new ReanimatedPackage(),
           new RNGestureHandlerPackage(),
           new RNScreensPackage(),
-          new ModuleRegistryAdapter(mModuleRegistryProvider)
+          new ModuleRegistryAdapter(mModuleRegistryProvider),
+          packages.add(new PlaidPackage());
       );
     }
 

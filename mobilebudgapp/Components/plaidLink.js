@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ImageBackground, Image, Text, TouchableOpacity, NativeEventEmitter, NativeModules } from 'react-native';
 import { Container, Header, Left, Body, Right, Title, View } from 'native-base';
 import style from "../Styles/Styles";
+import ApiMethods from '../utilities/apiMethods';
 import PlaidLink from 'react-native-plaid-link-sdk';
 
 const backgroundImage = require('../Styles/images/whiteWall.png');
@@ -35,7 +36,7 @@ class PlaidLinkComponent extends Component {
       product={['transactions']}
       onSuccess={data => console.log('success: ', data)}
       onExit={data => console.log('exit: ', data)}
- 
+ //
       // Optional props
       countryCodes={['<# Country Code #>']}
       accountSubtypes= {{'<#Type#>': ['<# Subtype #>']}}
@@ -45,7 +46,9 @@ class PlaidLinkComponent extends Component {
       userPhoneNumber='<# User Phone Number #>'
       webhook='<# Webhook URL #>'
     >
-      <Text style={{color: '#474198', fontSize: 20}}> Add Account via Plaid Link </Text>
+      <Text
+        // onTouchEnd={ApiMethods.getPlaidAccessToken().then(data => console.log('success: ', data)).catch(err => console.log(err))} 
+        style={{color: '#474198', fontSize: 20}}> Add Account via Plaid Link </Text>
     </PlaidLink>
       
     );
