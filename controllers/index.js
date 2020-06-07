@@ -853,10 +853,10 @@ let acceptPublicTokenSentByLink = (req, res, next) => {
         console.log('Access Token: ' + ACCESS_TOKEN);
         console.log('Item ID: ' + ITEM_ID);
         res.json({'error': false});
-        console.log(process.env.PLAID_CLIENT_ID);
-        console.log(process.env.PLAID_SECRET);
-        console.log(process.env.PUBLIC_KEY);
     });
+    console.log(process.env.PLAID_CLIENT_ID);
+    console.log(process.env.PLAID_SECRET);
+    console.log(process.env.PUBLIC_KEY);
 }
 
 module.exports = {
