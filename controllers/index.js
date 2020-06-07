@@ -888,6 +888,6 @@ module.exports = {
     copyPreviousMonthsData: copyPreviousMonthsData,
     splitEntry: splitEntry,
     moveToNextMonth: moveToNextMonth,
-    // acceptPublicTokenSentByLink: acceptPublicTokenSentByLink
+    acceptPublicTokenSentByLink: acceptPublicTokenSentByLink
 
 }
