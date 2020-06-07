@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const axios = require("axios");
 const app = express();
-// const dotenv = require('dotenv');
+const dotenv = require('dotenv').config();
 // const port = 3001;
 const PORT = process.env.PORT || 3001;
 const routes = require("./routes");
@@ -68,6 +68,8 @@ app.use((req, res, next) => {
 });
 
 app.use(routes);
+
+console.log('********************** ' + process.env.PUBLIC_KEY + ' ***************************************');
 
 app.get('/', (req, res) => res.send(`If you see this, then things are working!!! Good job!`));
 
