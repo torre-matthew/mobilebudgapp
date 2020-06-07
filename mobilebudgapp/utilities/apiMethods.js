@@ -110,6 +110,12 @@ let addUser = (email, profilePic, lastName, firstName) => {
     });
 }
 
+let getPlaidAccessToken = (public_token) => {
+    return axios.post(URL + "api/getAccessToken", {
+        public_token: public_token
+    });
+}
+
 /////////////Delete Methods////////////////////
 
 let deleteExpense = (id) => {
@@ -199,6 +205,7 @@ export default {
     getUserByID: getUserByID,
     getUserByEmail: getUserByEmail,
     getAfterSpendingAmount: getAfterSpendingAmount,
+    getPlaidAccessToken: getPlaidAccessToken,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     updateExpensesOnUserRecord, updateExpensesOnUserRecord,
     updateIncomeOnUserRecord: updateIncomeOnUserRecord,

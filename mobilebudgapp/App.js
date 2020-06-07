@@ -10,6 +10,9 @@ import CreateNewBudgetScreen from './Screens/createNewBudgetScreen';
 import SettingsScreen from './Screens/settingsScreen';
 import EditEntryScreen from './Screens/editEntryScreen';
 import SelectFundingSourceScreen from './Screens/selectFundingSourceScreen';
+import TransactionsScreen from './Screens/transactionsScreen';
+import BillPayScreen from './Screens/billPayScreen';
+import TrendsScreen from './Screens/trendsScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,10 +24,10 @@ function App() {
           headerShown: false
         }}
       >
-      <Stack.Screen
+      {/* <Stack.Screen
           name="Login"
           component={LoginScreen}
-        />
+        /> */}
         <Stack.Screen
           name="Main"
           component={MainScreen}
@@ -44,6 +47,18 @@ function App() {
         <Stack.Screen
           name="Select Funding Source"
           component={SelectFundingSourceScreen}
+        />
+        <Stack.Screen
+          name="Transactions"
+          component={TransactionsScreen}
+        />
+        <Stack.Screen
+          name="Bill Pay"
+          component={BillPayScreen}
+        />
+        <Stack.Screen
+          name="Trends"
+          component={TrendsScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

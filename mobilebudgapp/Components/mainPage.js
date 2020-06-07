@@ -419,10 +419,6 @@ export default class MainPage extends Component {
               />
             </View>
           </ScrollView>
-            <AppFooter 
-              photoURL={this.state.photoUrl}
-              navigation={this.props.navigation}
-              signOut={this.props.signOut} />
           </ImageBackground>
         </Container>
     );

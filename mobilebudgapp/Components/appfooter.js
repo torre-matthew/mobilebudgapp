@@ -16,30 +16,33 @@ class AppFooter extends Component {
 
   componentDidMount() {
   }
+
+  // #2D2D2F - Charcoal
+  // #4658A1 - blue
   render() {
     return (
-      <Container style={{ minHeight: '7%', maxHeight: '7%'}}>
+      <Container style={{ minHeight: '8%', maxHeight: '8%', backgroundColor: '#448EB3'}}>
         <View>
-          <ImageBackground source={backgroundImage} style={{width: '100%', height: '100%'}}>
-              <View style={{flex:1, alignSelf: 'stretch', flexDirection: 'row'}}>
-                <View style={{flex: 1, alignItems: 'center', alignSelf: 'center'}}>
-                <FontAwesome5 name="balance-scale" size={28} color="#40DBCE" />
-                <Text style={{fontSize: 12, color: "#4A0784", fontFamily: 'Laila-SemiBold'}}> Budget </Text>
+          {/* <ImageBackground source={backgroundImage} style={{width: '100%', height: '100%'}}> */}
+              <View style={{flex:1, flexDirection: 'row', margin: 8}}>
+                <View onTouchEnd={() => this.props.navigation.navigate('Main')} style={{flex: 1, alignItems: 'center'}}>
+                <FontAwesome5 name="balance-scale" size={28} color="#F5F5F5" />
+                <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Budget </Text>
                 </View>
-                <View style={{flex:1, alignItems: 'center', alignSelf: 'center'}}>
-                  <FontAwesome5 name="list-alt" size={28} color="#40DBCE" />
-                  <Text style={{fontSize: 12, color: "#4A0784", fontFamily: 'Laila-SemiBold'}}> Transactions </Text>
+                <View onTouchEnd={() => this.props.navigation.navigate('Transactions')} style={{flex:1, alignItems: 'center'}}>
+                  <FontAwesome5 name="list-alt" size={28} color="#F5F5F5" />
+                  <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Transactions </Text>
                 </View>
-                <View style={{flex:1, alignItems: 'center', alignSelf: 'center'}}>
-                  <FontAwesome5 name="file-invoice" size={28} color="#40DBCE" />
-                  <Text style={{fontSize: 12, color: "#4A0784", fontFamily: 'Laila-SemiBold'}}> Pay Bills </Text>
+                <View onTouchEnd={() => this.props.navigation.navigate('Bill Pay')} style={{flex:1, alignItems: 'center'}}>
+                  <FontAwesome5 name="file-invoice" size={28} color="#F5F5F5" />
+                  <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Pay Bills </Text>
                 </View>
-                <View style={{flex:1, alignItems: 'center', alignSelf: 'center'}}>
-                  <FontAwesome5 name="chart-line" size={28} color="#40DBCE" />
-                  <Text style={{fontSize: 12, color: "#4A0784", fontFamily: 'Laila-SemiBold'}}> Trends </Text>
+                <View onTouchEnd={() => this.props.navigation.navigate('Trends')} style={{flex:1, alignItems: 'center'}}>
+                  <FontAwesome5 name="chart-line" size={28} color="#F5F5F5" />
+                  <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Trends </Text>
                 </View>
               </View>
-              </ImageBackground>
+              {/* </ImageBackground> */}
             </View>
        </Container>
     );
