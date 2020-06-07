@@ -4,12 +4,12 @@ const mongoose = require("mongoose");
 const path = require("path");
 const axios = require("axios");
 const app = express();
-const dotenv = require('dotenv').config();
 // const port = 3001;
 const PORT = process.env.PORT || 3001;
 const routes = require("./routes");
 // const plaid = require('plaid');
 
+require('dotenv').config();
 
 
 // let ACCESS_TOKEN = null;
