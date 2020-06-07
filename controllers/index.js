@@ -1,6 +1,6 @@
 const db = require("../db/models");
-// const plaid = require('plaid');
-// const dotenv = require('dotenv');
+const plaid = require('plaid');
+const dotenv = require('dotenv').config();
 
 ////////// Add Data Controllers //////////////////
 
@@ -832,29 +832,29 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
 
 ///////////////////////////////////////////////////////////// Plaid ///////////////////////////////////////////////////////////////////////////////////////
 
-// const plaidClient = new plaid.Client(
-//     process.env.PLAID_CLIENT_ID,
-//     process.env.PLAID_SECRET,
-//     process.env.PUBLIC_KEY,
-//     plaid.environments.sandbox,
-//     {version: '2019-05-29'} // '2019-05-29' | '2018-05-22' | '2017-03-08'
-//   );
+const plaidClient = new plaid.Client(
+    process.env.PLAID_CLIENT_ID,
+    process.env.PLAID_SECRET,
+    process.env.PUBLIC_KEY,
+    plaid.environments.sandbox,
+    {version: '2019-05-29'} // '2019-05-29' | '2018-05-22' | '2017-03-08'
+  );
 
-// let acceptPublicTokenSentByLink = (req, res, next) => {
-//     let PUBLIC_TOKEN = req.body.public_token;
+let acceptPublicTokenSentByLink = (req, res, next) => {
+    let PUBLIC_TOKEN = req.body.public_token;
 
-//         plaidClient.exchangePublicToken(PUBLIC_TOKEN, function(error, tokenResponse) {
-//         if (error != null) {
-//         console.log('Could not exchange public_token!' + '\n' + error);
-//         return res.json({error: msg});
-//         }
-//     let ACCESS_TOKEN = tokenResponse.access_token;
-//         ITEM_ID = tokenResponse.item_id;
-//         console.log('Access Token: ' + ACCESS_TOKEN);
-//         console.log('Item ID: ' + ITEM_ID);
-//         res.json({'error': false});
-//     });
-// }
+        plaidClient.exchangePublicToken(PUBLIC_TOKEN, function(error, tokenResponse) {
+        if (error != null) {
+        console.log('Could not exchange public_token!' + '\n' + error);
+        return res.json({error: msg});
+        }
+    let ACCESS_TOKEN = tokenResponse.access_token;
+        ITEM_ID = tokenResponse.item_id;
+        console.log('Access Token: ' + ACCESS_TOKEN);
+        console.log('Item ID: ' + ITEM_ID);
+        res.json({'error': false});
+    });
+}
 
 module.exports = {
     addIncome: addIncomeToDb,
