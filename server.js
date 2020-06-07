@@ -1,35 +1,35 @@
-const plaid = require('plaid');
 const express = require('express');
 var bodyParser = require('body-parser')
 const mongoose = require("mongoose");
 const path = require("path");
 const axios = require("axios");
 const app = express();
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 // const port = 3001;
 const PORT = process.env.PORT || 3001;
 const routes = require("./routes");
+// const plaid = require('plaid');
 
 
 
-let ACCESS_TOKEN = null;
-let PUBLIC_TOKEN = null;
+// let ACCESS_TOKEN = null;
+// let PUBLIC_TOKEN = null;
 
-// Accept the public_token sent from Link
-app.post('/get_access_token', function(request, response, next) {
-  PUBLIC_TOKEN = request.body.public_token;
-  plaidClient.exchangePublicToken(PUBLIC_TOKEN, function(error, tokenResponse) {
-    if (error != null) {
-      console.log('Could not exchange public_token!' + '\n' + error);
-      return response.json({error: msg});
-    }
-    ACCESS_TOKEN = tokenResponse.access_token;
-    ITEM_ID = tokenResponse.item_id;
-    console.log('Access Token: ' + ACCESS_TOKEN);
-    console.log('Item ID: ' + ITEM_ID);
-    response.json({'error': false});
-  });
-});
+// // Accept the public_token sent from Link
+// app.post('/get_access_token', function(request, response, next) {
+//   PUBLIC_TOKEN = request.body.public_token;
+//   plaidClient.exchangePublicToken(PUBLIC_TOKEN, function(error, tokenResponse) {
+//     if (error != null) {
+//       console.log('Could not exchange public_token!' + '\n' + error);
+//       return response.json({error: msg});
+//     }
+//     ACCESS_TOKEN = tokenResponse.access_token;
+//     ITEM_ID = tokenResponse.item_id;
+//     console.log('Access Token: ' + ACCESS_TOKEN);
+//     console.log('Item ID: ' + ITEM_ID);
+//     response.json({'error': false});
+//   });
+// });
 
 
 

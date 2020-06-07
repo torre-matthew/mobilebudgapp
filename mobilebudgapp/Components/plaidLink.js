@@ -33,18 +33,18 @@ class PlaidLinkComponent extends Component {
       publicKey='ed1160c480b8d7760f30867ac52d83'
       clientName='Plaid Link for LahriApp'
       env='sandbox'  // 'sandbox' or 'development' or 'production'
-      product={['transactions']}
+      product={['auth, transactions']}
       onSuccess={data => console.log('success: ', data)}
       onExit={data => console.log('exit: ', data)}
  //
       // Optional props
-      countryCodes={['<# Country Code #>']}
-      accountSubtypes= {{'<#Type#>': ['<# Subtype #>']}}
-      language='<# Language #>'
-      userEmailAddress='<# User Email #>'
-      userLegalName='<# User Legal Name #>'
-      userPhoneNumber='<# User Phone Number #>'
-      webhook='<# Webhook URL #>'
+      // countryCodes={['<# Country Code #>']}
+      // accountSubtypes= {{'<#Type#>': ['<# Subtype #>']}}
+      // language='<# Language #>'
+      // userEmailAddress='<# User Email #>'
+      // userLegalName='<# User Legal Name #>'
+      // userPhoneNumber='<# User Phone Number #>'
+      // webhook='<# Webhook URL #>'
     >
       <Text
         // onTouchEnd={ApiMethods.getPlaidAccessToken().then(data => console.log('success: ', data)).catch(err => console.log(err))} 
