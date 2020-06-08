@@ -832,13 +832,13 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
 
 ///////////////////////////////////////////////////////////// Plaid ///////////////////////////////////////////////////////////////////////////////////////
 
-const plaidClient = new plaid.Client(
-    process.env.PLAID_CLIENT_ID,
-    process.env.PLAID_SECRET,
-    process.env.PUBLIC_KEY,
-    plaid.environments.sandbox,
-    {version: '2019-05-29'} // '2019-05-29' | '2018-05-22' | '2017-03-08'
-  );
+// const plaidClient = new plaid.Client(
+//     process.env.PLAID_CLIENT_ID,
+//     process.env.PLAID_SECRET,
+//     process.env.PUBLIC_KEY,
+//     plaid.environments.sandbox,
+//     {version: '2019-05-29'} // '2019-05-29' | '2018-05-22' | '2017-03-08'
+//   );
 
 let acceptPublicTokenSentByLink = (req, res, next) => {
     // let PUBLIC_TOKEN = req.body.public_token;
