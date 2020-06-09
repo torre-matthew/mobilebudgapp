@@ -33,7 +33,7 @@ class PlaidLinkComponent extends Component {
       publicKey='ed1160c480b8d7760f30867ac52d83'
       clientName='Plaid Link for LahriApp'
       env='sandbox'  // 'sandbox' or 'development' or 'production'
-      product={['auth, transactions']}
+      product={['auth', 'transactions']}
       onSuccess={data => console.log('success: ', data)}
       onExit={data => console.log('exit: ', data)}
  //
@@ -47,7 +47,7 @@ class PlaidLinkComponent extends Component {
       // webhook='<# Webhook URL #>'
     >
       <Text
-        // onTouchEnd={ApiMethods.getPlaidAccessToken().then(data => console.log('success: ', data)).catch(err => console.log(err))} 
+        onTouch={ApiMethods.getPlaidAccessToken().then(data => console.log('success: ', data)).catch(err => console.log(err))} 
         style={{color: '#474198', fontSize: 20}}> Add Account via Plaid Link </Text>
     </PlaidLink>
       

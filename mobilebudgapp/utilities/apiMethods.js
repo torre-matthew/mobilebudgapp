@@ -1,6 +1,7 @@
 import axios from "axios";
+require('dotenv').config();
 const dev = "http://localhost:3001/";
-const prod ="https://gentle-beyond-46108.herokuapp.com/";
+const prod = process.env.PRODUCTION_URL;
 const URL = prod;
 
 // exp://192.168.1.23:19000
