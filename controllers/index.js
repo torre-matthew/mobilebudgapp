@@ -846,18 +846,20 @@ let acceptPublicTokenSentByLink = (req, res, next) => {
     
     let PUBLIC_TOKEN = req.body;
 
-        plaidClient.exchangePublicToken(PUBLIC_TOKEN, function(error, tokenResponse) {
-        if (error != null) {
-        console.log('Could not exchange public_token!' + '\n' + error);
-        return res.json({error: msg});
-        }
+    console.log(PUBLIC_TOKEN);
 
-    let ACCESS_TOKEN = tokenResponse.access_token;
-        ITEM_ID = tokenResponse.item_id;
-        console.log('Access Token: ' + ACCESS_TOKEN);
-        console.log('Item ID: ' + ITEM_ID);
-        res.json({'error': false});
-    });
+    //     plaidClient.exchangePublicToken(PUBLIC_TOKEN, function(error, tokenResponse) {
+    //     if (error != null) {
+    //     console.log('Could not exchange public_token!' + '\n' + error);
+    //     return res.json({error: msg});
+    //     }
+
+    // let ACCESS_TOKEN = tokenResponse.access_token;
+    //     ITEM_ID = tokenResponse.item_id;
+    //     console.log('Access Token: ' + ACCESS_TOKEN);
+    //     console.log('Item ID: ' + ITEM_ID);
+    //     res.json({'error': false});
+    // });
 }
 
 module.exports = {
