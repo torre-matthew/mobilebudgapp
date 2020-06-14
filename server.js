@@ -69,8 +69,6 @@ app.use((req, res, next) => {
 
 app.use(routes);
 
-console.log('********************** ' + process.env.PUBLIC_KEY + ' ***************************************');
-
 app.get('/', (req, res) => res.send(`If you see this, then things are working!!! Good job!`));
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));

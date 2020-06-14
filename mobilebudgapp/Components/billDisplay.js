@@ -253,10 +253,10 @@ selectFundingSource = (fundingSourceID) => {
             <View>
               <View onTouchEnd={() => {this.setDrawerVisible()}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 3 }}>
                 <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: '#4A0784', borderLeftWidth: 4 }}> 
-                  <Text style={{fontSize: 16, fontFamily: "Laila-SemiBold"}}> {this.props.billName} </Text>
+                  <Text style={{fontSize: 14, fontFamily: "Laila-SemiBold"}}> {this.props.billName} </Text>
                 </View>
                 <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15, borderStyle: 'solid',}}> 
-                  <Text style={{fontSize: 16, fontFamily: "Laila-SemiBold"}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
+                  <Text style={{fontSize: 14, fontFamily: "Laila-SemiBold"}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
               </View>
               <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftColor: '#4A0784', borderLeftWidth: 4}}>

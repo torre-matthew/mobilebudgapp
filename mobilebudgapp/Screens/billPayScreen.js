@@ -33,8 +33,8 @@ class BillPayScreen extends Component {
             <Text style={{color: '#474198', fontSize: 20}}>
               Bill Pay Page
             </Text>
-          </View>
-          <AppFooter 
+        </View>
+        <AppFooter 
               navigation={this.props.navigation} />
         </ImageBackground> 
       </Container>

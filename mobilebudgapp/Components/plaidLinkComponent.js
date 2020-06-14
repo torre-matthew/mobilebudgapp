@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { ImageBackground, Image, Text, TouchableOpacity, NativeEventEmitter, NativeModules } from 'react-native';
-import { Container, Header, Left, Body, Right, Title, View } from 'native-base';
+import { ImageBackground, Image, View, Text, TouchableOpacity, NativeEventEmitter, NativeModules } from 'react-native';
+import { Container, Header, Left, Body, Right, Title} from 'native-base';
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
+/// <reference path='../types/react-native-plaid-link-sdk/index.d.ts' />
 import PlaidLink from 'react-native-plaid-link-sdk';
-
-const backgroundImage = require('../Styles/images/whiteWall.png');
 
 class PlaidLinkComponent extends Component {
 
@@ -23,9 +22,10 @@ class PlaidLinkComponent extends Component {
     }
   }
 
-
+// ApiMethods.getPlaidAccessToken().then(data => console.log('success: ', data)).catch(err => console.log(err))
   render() {
     return (
+      <View>
       <PlaidLink
      // Replace any of the following <#VARIABLE#>s according to your setup,
      // for details see https://plaid.com/docs/quickstart/#client-side-link-configuration
@@ -34,7 +34,7 @@ class PlaidLinkComponent extends Component {
       clientName='Plaid Link for LahriApp'
       env='sandbox'  // 'sandbox' or 'development' or 'production'
       product={['auth', 'transactions']}
-      onSuccess={data => console.log('success: ', data)}
+      onSuccess={public_token => {ApiMethods.getPlaidAccessToken(public_token).then(data => console.log('success: ', data)).catch(err => console.log(err))}}
       onExit={data => console.log('exit: ', data)}
  //
       // Optional props
@@ -46,11 +46,11 @@ class PlaidLinkComponent extends Component {
       // userPhoneNumber='<# User Phone Number #>'
       // webhook='<# Webhook URL #>'
     >
-      <Text
-        onTouch={ApiMethods.getPlaidAccessToken().then(data => console.log('success: ', data)).catch(err => console.log(err))} 
-        style={{color: '#474198', fontSize: 20}}> Add Account via Plaid Link </Text>
+    <Text style={{color: '#474198', fontSize: 20}}>
+       Add Account via Plaid
+    </Text>  
     </PlaidLink>
-      
+    </View>
     );
   }
 }

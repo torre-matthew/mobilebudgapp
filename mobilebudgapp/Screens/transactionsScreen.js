@@ -9,7 +9,7 @@ import MainScreen from "./mainScreen";
 import BackGroundImage from "../Styles/images/app background 3.png";
 import AppFooter from '../Components/appfooter';
 import AppHeader from '../Components/appheader';
-import PlaidLinkComponent from '../Components/plaidLink';
+import PlaidLinkComponent from '../Components/plaidLinkComponent';
 
 class TransactionsScreen extends Component {
 
