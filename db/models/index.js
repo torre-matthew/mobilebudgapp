@@ -3,4 +3,5 @@ module.exports = {
     Expenses: require("./expense"),
     Users: require("./users"),
     Month: require("./month"),
+    Category: require("./category")
   };

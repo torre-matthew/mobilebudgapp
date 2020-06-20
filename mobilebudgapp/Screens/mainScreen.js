@@ -43,7 +43,9 @@ class MainScreen extends Component {
               // signOut={this.props.route.params.signOut}
               />
               <AppFooter 
-              navigation={this.props.navigation} />
+              navigation={this.props.navigation} 
+              screen={"budget"}
+              />
           </Container>
         );
     }

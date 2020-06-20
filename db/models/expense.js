@@ -3,19 +3,19 @@ let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 
 let ExpenseSchema = new Schema({
-  nameOfExpense: {
+nameOfExpense: {
       type: String,
       required: true
   },
-  dateOfExpense: {
+dateOfExpense: {
       type: String,
       required: true
   },
-  amountOfExpense: {
+amountOfExpense: {
     type: String,
     required: true
 },
-  isPlanned: {
+isPlanned: {
     type: Boolean,
     required: true
 },
@@ -23,20 +23,26 @@ isPaid: {
   type: Boolean,
   required: true
 },
-
-  fundingSource: {
+fundingSource: {
     type: String,
     required: false
   },
-
-  userID: {
+userID: {
     type: String,
     required: true
   },
-  monthID: {
+monthID: {
     type: String,
     required: true
-  }
+  },
+categoryName: {
+    type: String,
+    required: false
+  },
+categoryID: {
+  type: String,
+  required: false
+}
 });
 
 // This creates our model from the above schema, using mongoose's model method

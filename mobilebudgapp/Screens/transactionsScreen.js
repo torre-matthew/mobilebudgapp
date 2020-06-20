@@ -34,7 +34,8 @@ class TransactionsScreen extends Component {
             <PlaidLinkComponent />
         </View> 
         <AppFooter 
-              navigation={this.props.navigation} />
+              navigation={this.props.navigation}
+              screen={"spending"} />
         </ImageBackground> 
       </Container>
       

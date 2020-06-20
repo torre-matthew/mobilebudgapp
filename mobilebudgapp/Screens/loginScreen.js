@@ -8,8 +8,7 @@ import LoginScreenStyles from "../Styles/loginSreenStyles";
 import style from "../Styles/Styles";
 import MainPage from '../Components/mainPage';
 import ApiMethods from '../utilities/apiMethods';
-import MainScreen from "./mainScreen";
-import SideBar from "../Components/quickActionDrawer";
+import { AppLoading } from 'expo';
 import LoadFonts from '../assets/fonts';
 
 
@@ -28,10 +27,11 @@ class LoginScreen extends Component {
     currentMonth: "",
     currentYear: "",
     spinnerOpacity: 0, //Because of this bug: https://github.com/facebook/react-native/issues/9023
+    fontsLoaded: false
   }
 
   componentDidMount() {
-    LoadFonts();
+    LoadFonts().then(fonts => {this.setState({fontsLoaded: true})}).catch(err => console.log(err));
   }
 
   signIn = async () => {
@@ -118,55 +118,58 @@ signOut = async () => {
 
    const {navigation} = this.props;
 
-    return (
-      <Container style={LoginScreenStyles.container}>
-          <ImageBackground
-            source={backgroundImage}
-            style={{width: '100%', height: '100%'}} >
-          <View style={LoginScreenStyles.welcome}>
-            <Text style={{color: '#F5F5F5', fontSize: 35, fontFamily: "Laila-SemiBold"}}>
-              Hi! I'm Lahri.
-            </Text>
-            <Text style={{color: '#F5F5F5', fontSize: 15, fontFamily: "Laila-SemiBold"}}>
-              I'll help you make a plan for your money.
-            </Text>
-            <Text style={{color: '#F5F5F5', fontSize: 15, fontFamily: "Laila-SemiBold"}}>
-              Shall we get to it?
-            </Text>
-          </View>
-          <View style={LoginScreenStyles.welcome}>
-          <View>
-          <ActivityIndicator style={{ opacity: this.state.spinnerOpacity }} animating={this.state.showSpinner} size={50} color="#40DBCE" />
-          </View>
+   if (!this.state.fontsLoaded) {
+      return <AppLoading />;
+ } else {
+      return (
+        <Container style={LoginScreenStyles.container}>
+            <ImageBackground
+              source={backgroundImage}
+              style={{width: '100%', height: '100%'}} >
+            <View style={LoginScreenStyles.welcome}>
+              <Text style={{color: '#F5F5F5', fontSize: 45, fontFamily: "Laila-SemiBold"}}>
+                Hi! I'm Lahri.
+              </Text>
+              <Text style={{color: '#F5F5F5', fontSize: 15, fontFamily: "Laila-SemiBold"}}>
+                I'll help you make a plan for your money.
+              </Text>
+              <Text style={{color: '#F5F5F5', fontSize: 15, fontFamily: "Laila-SemiBold"}}>
+                Shall we get to it?
+              </Text>
+            </View>
+            <View style={LoginScreenStyles.welcome}>
+            <View>
+            <ActivityIndicator style={{ opacity: this.state.spinnerOpacity }} animating={this.state.showSpinner} size={50} color="#40DBCE" />
+            </View>
+              {this.state.signedIn ? 
+                <Text style={{color: '#F5F5F5', fontSize: 18, fontFamily: "Laila-SemiBold"}}> {'Welcome back, ' + this.state.name} </Text>
+              : 
+                <Text></Text>
+              }
+            </View>
+            <View style={LoginScreenStyles.signIn}>
             {this.state.signedIn ? 
-              <Text style={{color: '#F5F5F5', fontSize: 18, fontFamily: "Laila-SemiBold"}}> {'Welcome back, ' + this.state.name} </Text>
-            : 
-              <Text></Text>
-            }
-          </View>
-          <View style={LoginScreenStyles.signIn}>
-          {this.state.signedIn ? 
-          <View>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentYear: this.state.currentYear, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl, signOut: this.signOut})}
-            style={style.button2_cta_style} >
-            <Text style={{fontFamily: "Laila-SemiBold"}}> Go to main page </Text>
-          </TouchableOpacity>
-          </View>
-            : 
-            <View> 
+            <View>
             <TouchableOpacity
-              onPress={() => {this.signIn()}}
-              style={style.button2_light_style} >
-              <Text style={{color: '#4A0784', fontFamily: "Laila-SemiBold"}}> Sign in with Google </Text>
+              onPress={() => navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentYear: this.state.currentYear, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl, signOut: this.signOut})}
+              style={style.button2_cta_style} >
+              <Text style={{fontFamily: "Laila-SemiBold"}}> Go to main page </Text>
             </TouchableOpacity>
             </View>
-            }
-          </View>
-        </ImageBackground>  
-      </Container>
-      
-    );
+              : 
+              <View> 
+              <TouchableOpacity
+                onPress={() => {this.signIn()}}
+                style={style.button2_light_style} >
+                <Text style={{color: '#4A0784', fontFamily: "Laila-SemiBold"}}> Sign in with Google </Text>
+              </TouchableOpacity>
+              </View>
+              }
+            </View>
+          </ImageBackground>  
+        </Container>
+      );
+    }
   }
 }
 

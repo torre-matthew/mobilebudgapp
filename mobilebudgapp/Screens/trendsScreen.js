@@ -35,7 +35,8 @@ class TrendsScreen extends Component {
             </Text>
           </View> 
           <AppFooter 
-              navigation={this.props.navigation} />
+              navigation={this.props.navigation}
+              screen={"trends"} />
         </ImageBackground> 
       </Container>
       

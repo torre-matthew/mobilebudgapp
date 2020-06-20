@@ -9,6 +9,7 @@ router.route("/copyPreviousMonth").post(controllers.copyPreviousMonthsData);
 router.route("/getAccessToken").post(controllers.acceptPublicTokenSentByLink);
 
 router.route("/allIncome").get(controllers.getAllIncome);
+router.route("/allCategories").get(controllers.getAllCategories);
 router.route("/allIncome/:userID/:monthID").get(controllers.getAllIncomeByUserID);
 router.route("/allExpenses").get(controllers.getAllExpenses);
 router.route("/allUsers").get(controllers.getAllUsers);

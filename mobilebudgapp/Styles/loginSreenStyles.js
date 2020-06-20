@@ -10,7 +10,7 @@ const loginScreenStyles = StyleSheet.create({
     },
     welcome: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         alignItems: 'center',
         margin: 25
         },

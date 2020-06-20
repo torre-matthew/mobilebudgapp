@@ -35,7 +35,8 @@ class BillPayScreen extends Component {
             </Text>
         </View>
         <AppFooter 
-              navigation={this.props.navigation} />
+              navigation={this.props.navigation} 
+              screen={"bills"} />
         </ImageBackground> 
       </Container>
       

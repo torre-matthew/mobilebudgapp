@@ -322,6 +322,13 @@ let getAllIncome = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let getAllCategories = (req, res) => {
+    db.Category
+    .find({})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
 let getAllIncomeByUserID = (req, res) => {
     // db.Users
     // .find({_id: req.params.userID})
@@ -697,13 +704,11 @@ let editIncomeByID = async (req, res) => {
     await updateAfterSpendingAmountDuringExpenseORIncomeEdit(req.body.data._id);
 }
 
-let bulkUpdate = async(req, res) => {
-    await db.Expenses
-            .updateMany({},
-                {$set: {
-                        isPaid: false,    
-                        }
-                })
+let bulkUpdate = (req, res) => {
+        db.Category
+            .create({
+                categoryName: req.body.categoryName
+            })
             .then(data => res.json(data))
             .catch(err => console.log(err));
 } 
@@ -870,6 +875,7 @@ module.exports = {
     getAllIncome: getAllIncome,
     fetchData: fetchData,
     getAllExpenses: getAllExpenses,
+    getAllCategories: getAllCategories,
     getAllUsers: getAllUsers,
     getMonthData: getMonthData,
     getExpenseByID: getExpenseByID,
