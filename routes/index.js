@@ -7,6 +7,7 @@ router.route("/addingUser").post(controllers.addUser);
 router.route("/addingMonth").post(controllers.addMonthToDb);
 router.route("/copyPreviousMonth").post(controllers.copyPreviousMonthsData);
 router.route("/getAccessToken").post(controllers.acceptPublicTokenSentByLink);
+router.route("/bulkUpdate").post(controllers.bulkUpdate);
 
 router.route("/allIncome").get(controllers.getAllIncome);
 router.route("/allCategories").get(controllers.getAllCategories);
@@ -31,7 +32,6 @@ router.route("/deleteAllMonthData").delete(controllers.deleteAllMonthData);
 router.route("/updateExpense").put(controllers.editExpense);
 router.route("/updateIncome").put(controllers.editIncome);
 router.route("/markExpenseAsPaid").put(controllers.markExpenseAsPaid);
-router.route("/bulkUpdate").put(controllers.bulkUpdate);
 router.route("/updateAfterSpendingAmount/:incomeID").put(controllers.updateAfterSpendingAmount);
 router.route("/updateIncomeOnUserRecord/:userID").put(controllers.updateIncomeOnUserRecord);
 router.route("/updateExpensesOnUserRecord/:userID").put(controllers.updateExpensesOnUserRecord);
