@@ -324,7 +324,7 @@ let getAllIncome = (req, res) => {
 
 let getAllCategories = (req, res) => {
     db.Category
-    .find({})
+    .find().sort({categoryName: 1})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
