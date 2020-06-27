@@ -7,11 +7,39 @@ import ApiMethods from '../utilities/apiMethods';
 import MainScreen from "./mainScreen";
 import BackGroundImage from "../Styles/images/whiteWall.png";
 import EditBillFormDisplay from "../Components/editBillForm";
+import SlideOutDrawer from "../Components/slideOutDrawer";
+import OverLay from "../Components/overLay";
 
 class EditEntryScreen extends Component {
 
   state = {
-    whatsBeingEdited: this.props.route.params.whatsBeingEdited
+    whatsBeingEdited: this.props.route.params.whatsBeingEdited,
+    showDrawer: false,
+    showOverLay: false,
+    arrayOfCategories: []
+  }
+
+  componentDidMount(){
+    
+    ApiMethods.getAllCategories()
+      .then(arrayOfCategories => {
+        this.setState({arrayOfCategories: arrayOfCategories.data})
+        })
+      .catch(err => console.log(err));
+  }
+
+  showDrawerAndOverLay = () => {
+    this.setState({
+      showDrawer: true,
+      showOverLay: true
+    })
+  }
+
+  hideDrawerAndOverLay = () => {
+    this.setState({
+      showDrawer: false,
+      showOverLay: false
+    })
   }
 
  render() {
@@ -22,11 +50,18 @@ class EditEntryScreen extends Component {
       <Container>
         <ImageBackground
             source={BackGroundImage}
-            style={{width: '100%', height: '100%'}} > 
+            style={{width: '100%', height: '100%'}} >
+              <SlideOutDrawer 
+                show={this.state.showDrawer}
+                arrayOfCategories={this.state.arrayOfCategories} />
+              <OverLay 
+                hideDrawerAndOverLay={this.hideDrawerAndOverLay} 
+                show={this.state.showOverLay} />
             {this.state.whatsBeingEdited === "bill"
             ?
             //Editing Bill/Expense
             <View style={{flex: 1, alignSelf: 'stretch', width: '90%', marginTop: '15%'}}>
+              <Text> Edit Item </Text>
               <EditBillFormDisplay
                 navigation={this.props.route.params.navigation}
                 dueDate={this.props.route.params.dueDate}
@@ -44,7 +79,14 @@ class EditEntryScreen extends Component {
                 loggedInUserID={this.props.route.params.loggedInUserID}
                 isThisPlanned={this.props.route.params.isThisPlanned} 
               />
-              <View style={{flex: 1, alignSelf: 'stretch', justifyContent: 'flex-end'}}>
+              <View style={{position: 'relative', zIndex: 0}}>
+              <TouchableOpacity
+                onPress={this.showDrawerAndOverLay}
+                style={style.button2_light_style}>
+                <Text style={{fontSize: 12, color: 'red'}}> Categorize </Text>
+              </TouchableOpacity>
+              </View>
+              <View style={{flex: 1, position: 'relative', zIndex: 0, alignSelf: 'stretch', justifyContent: 'flex-end'}}>
               <TouchableOpacity
                 onPress={() => {this.props.route.params.deleteExpense(this.props.route.params.billID)}}
                 style={style.button2_light_style}>
