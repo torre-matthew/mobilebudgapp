@@ -695,6 +695,7 @@ let addCategoryToEntryByCategoryID = (req, res) => {
     db.Expenses
             .updateOne({_id: req.body._id},
                 {$set: {
+                        categoryName: req.body.categoryName,
                         categoryID: req.body.categoryID,    
                         }
                 })
