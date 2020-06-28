@@ -693,9 +693,9 @@ let updateExpenseInfoOnUserRecordAfterEdit = async (loggedInUserID) => {
 
 let addCategoryToEntryByCategoryID = (req, res) => {
     db.Expenses
-            .updateOne({_id: req.body.data._id},
+            .updateOne({_id: req.body._id},
                 {$set: {
-                        categoryID: req.body.data.categoryID,    
+                        categoryID: req.body.categoryID,    
                         }
                 })
             .then(data => res.json(data))
