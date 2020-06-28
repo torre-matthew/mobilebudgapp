@@ -35,6 +35,23 @@ class EditEntryScreen extends Component {
     })
   }
 
+  addCategory = (expenseID, categoryID, categoryName) => {
+    Alert.alert(
+      'Add Category?',
+      '',
+      [ 
+        {text: 'Nevermind', style: 'cancel'},
+        {text: 'Ok', onPress: () => {
+          ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
+          .then(data => {return data})
+          .catch(err => console.log(err));
+        }, 
+      },
+        ],
+      {cancelable: false},
+    );
+  }
+
   hideDrawerAndOverLay = () => {
     this.setState({
       showDrawer: false,
@@ -53,7 +70,9 @@ class EditEntryScreen extends Component {
             style={{width: '100%', height: '100%'}} >
               <SlideOutDrawer 
                 show={this.state.showDrawer}
-                arrayOfCategories={this.state.arrayOfCategories} />
+                arrayOfCategories={this.state.arrayOfCategories} 
+                addCategory={this.addCategory} 
+                billID={this.props.route.params.billID} />
               <OverLay 
                 hideDrawerAndOverLay={this.hideDrawerAndOverLay} 
                 show={this.state.showOverLay} />

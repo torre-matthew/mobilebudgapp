@@ -164,6 +164,12 @@ let markExpenseAsPaid = (id, bool) => {
      });
 }
 
+let addCategoryToEntry = (expenseID, categoryID, categoryName) => {
+    return axios.put(URL + "api/addCategoryToEntryByCategoryID", {
+        data: {_id: expenseID, categoryID: categoryID, categoryName: categoryName}
+     });
+}
+
 let updateAfterSpendingAmount = (incomeID) => {
     return axios.put(URL + "api/updateAfterSpendingAmount/" + incomeID , {
       params: {incomeID: incomeID}
@@ -217,6 +223,7 @@ export default {
     addIncome: addIncome,
     addExpense: addExpense,
     addUser: addUser,
+    addCategoryToEntry: addCategoryToEntry,
     deleteExpense: deleteExpense,
     deleteIncome: deleteIncome,
     editExpense: editExpense,

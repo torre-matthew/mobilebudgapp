@@ -74,7 +74,7 @@ class CategoryDisplay extends Component {
 
   render () {  
     return (
-          <View style={{position: 'relative', flexDirection: 'row', margin: 8}}>
+          <View onTouchEnd={() => {this.props.addCategory(this.props.billID, this.props.categoryID, this.props.categoryName)}} style={{position: 'relative', flexDirection: 'row', margin: 8}}>
             <View style={{flex: 1, flexGrow: 1, backgroundColor: '#F5F5F5', paddingLeft: 10, paddingTop: 10, paddingBottom: 10, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, elevation: 5}}> 
               <FontAwesome5 name={this.state.categoryIcon} size={15} color={this.state.categoryIconColor} />
             </View>

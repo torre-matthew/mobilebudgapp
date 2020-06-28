@@ -46,7 +46,11 @@ class SlideOutDrawer extends Component {
           {this.props.arrayOfCategories.map(categories => 
             <CategoryDisplay 
               key={categories._id}
-              categoryName={categories.categoryName} />
+              categoryName={categories.categoryName}
+              categoryId={categories._id}
+              addCategory={this.props.addCategory} 
+              billID={this.props.billID} 
+              />
           )}
           </ScrollView>
         </View>
