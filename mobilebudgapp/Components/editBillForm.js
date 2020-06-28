@@ -238,7 +238,7 @@ editLogic = () => {
                             </Item>
                             :<Text></Text>
                             }
-                            <View style={{ alignItems: 'center' }}>
+                            <View style={{alignItems: 'center' }}>
                             <TouchableOpacity
                                 onPress={this.props.whatsBeingEdited === "bill" 
                                 ? 

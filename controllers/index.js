@@ -691,6 +691,17 @@ let updateExpenseInfoOnUserRecordAfterEdit = async (loggedInUserID) => {
             .catch(err => console.log(err));
 }
 
+let addCategoryToEntryByCategoryID = (req, res) => {
+    db.Expenses
+            .updateOne({_id: req.body.data._id},
+                {$set: {
+                        categoryID: req.body.data.categoryID,    
+                        }
+                })
+            .then(data => res.json(data))
+            .catch(err => console.log(err));
+}
+
 let editIncomeByID = async (req, res) => {
     await db.Income
             .updateOne({_id: req.body.data._id},
@@ -874,6 +885,7 @@ module.exports = {
     addExpense: addExpenseToDb,
     addUser: addUserToDb,
     addMonthToDb: addMonthToDb,
+    addCategoryToEntryByCategoryID: addCategoryToEntryByCategoryID,
     getAllIncome: getAllIncome,
     fetchData: fetchData,
     getAllExpenses: getAllExpenses,

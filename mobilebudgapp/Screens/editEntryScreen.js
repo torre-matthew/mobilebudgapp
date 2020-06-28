@@ -60,8 +60,7 @@ class EditEntryScreen extends Component {
             {this.state.whatsBeingEdited === "bill"
             ?
             //Editing Bill/Expense
-            <View style={{flex: 1, alignSelf: 'stretch', width: '90%', marginTop: '15%'}}>
-              <Text> Edit Item </Text>
+            <View style={{flex: 1, position: 'absolute', zIndex: 0, alignSelf: 'stretch', width: '100%', marginTop: '15%'}}>
               <EditBillFormDisplay
                 navigation={this.props.route.params.navigation}
                 dueDate={this.props.route.params.dueDate}
@@ -86,7 +85,7 @@ class EditEntryScreen extends Component {
                 <Text style={{fontSize: 12, color: 'red'}}> Categorize </Text>
               </TouchableOpacity>
               </View>
-              <View style={{flex: 1, position: 'relative', zIndex: 0, alignSelf: 'stretch', justifyContent: 'flex-end'}}>
+              <View style={{flex:1, position: 'relative', zIndex: 0, alignSelf: 'stretch'}}>
               <TouchableOpacity
                 onPress={() => {this.props.route.params.deleteExpense(this.props.route.params.billID)}}
                 style={style.button2_light_style}>

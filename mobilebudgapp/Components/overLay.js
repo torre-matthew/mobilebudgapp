@@ -21,7 +21,7 @@ container_hide: {
 container_show: {
   position: 'absolute',
   zIndex: 1,
-  opacity: 0.5, 
+  opacity: 0.7, 
   width: '100%', 
   height: '100%', 
   alignSelf: 'flex-end',
