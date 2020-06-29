@@ -5,6 +5,7 @@ import EditBillFormDisplay from "./editBillForm";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 import QuickActionDrawer from "./quickActionDrawer";
+import { FontAwesome5 } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 
 
@@ -22,11 +23,14 @@ class UnplannedBillDisplay extends Component {
     paidBillDescriptionTextInModal: "",
     showDrawer: false,
     billIsPaid: this.props.billIsPaid,
+    categoryIcon: "question-circle",
+    categoryIconColor: "grey"
   };
 
   componentDidMount() {
     this.getFundingSourceInfo(this.props.billID);
     this.changeDisplayWhenMarkedAsPaid();
+    this.categoryIconLogic();
   }
 
   updateBillDisplayComponent = () => {
@@ -228,7 +232,7 @@ selectFundingSource = (fundingSourceID) => {
       this.setState({
         fundingSourceID: "",
         fundingSourceName: "",
-        fundingSourceAmount: "not yet planned"
+        fundingSourceAmount: ""
       });
     }
   }
@@ -246,20 +250,70 @@ selectFundingSource = (fundingSourceID) => {
     {cancelable: false},
   );
 }
+
+categoryIconLogic = () => {
+  switch (this.props.billCategoryName) {
+    case "Bills and Utilities":
+      this.setState({
+        categoryIcon: "plug",
+        categoryIconColor: "#8C1184"
+        });
+      break;
+    case "Debt":
+      this.setState({
+        categoryIcon: "file-invoice-dollar",
+        categoryIconColor: "#4036F5"
+        });
+      break;
+    case "Housing":
+      this.setState({
+        categoryIcon: "home",
+        categoryIconColor: "#7DBF7A"
+        });
+      break;
+    case "Non Recurring Expense":
+      this.setState({
+        categoryIcon: "money-check-alt",
+        categoryIconColor: "#F20544"
+        });
+      break;
+    case "Personal Spending":
+      this.setState({
+        categoryIcon: "hand-holding-usd",
+        categoryIconColor: "#F26B6B"
+        });
+      break;
+    case "Savings":
+    this.setState({
+      categoryIcon: "piggy-bank",
+      categoryIconColor: "#B0BFFF"
+      });
+      break;
+    case "Subscriptions & Memberships":
+    this.setState({
+      categoryIcon: "funnel-dollar",
+      categoryIconColor: "#F2872E"
+      });
+      break;
+    }
+}
 //#F5F5F5
   render () {
       return (
         <View>
             <View>
               <View onTouchEnd={() => {this.setDrawerVisible()}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 3 }}>
-                <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: '#4A0784', borderLeftWidth: 4 }}> 
-                  <Text style={{fontSize: 14, fontFamily: "Laila-SemiBold"}}> {this.props.billName} </Text>
+                <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 0.5, paddingLeft: 8, paddingTop: 10, paddingBottom: 5, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor, borderLeftWidth: 4 }}> 
+                  <FontAwesome5 name={this.state.categoryIcon} size={16} color={this.state.categoryIconColor} />
                 </View>
-                <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff', flexGrow: 1, paddingTop: 15, paddingBottom: 15, borderTopRightRadius: 15, borderStyle: 'solid',}}> 
+                <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 6, paddingTop: 10, paddingBottom: 5}}> 
+                  <Text style={{fontSize: 14, fontFamily: "Laila-SemiBold"}}> {this.props.billName.substring(0, 75)} </Text>
+                </View>
+                <View style={{ flex: 1, alignItems:'flex-start', backgroundColor: '#f8f8ff', flexGrow: 2, paddingTop: 10, paddingBottom: 5, borderTopRightRadius: 15}}> 
                   <Text style={{fontSize: 14, fontFamily: "Laila-SemiBold"}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
               </View>
-              <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftColor: '#4A0784', borderLeftWidth: 4}}>
+              <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor, borderLeftWidth: 4}}>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> Due: {this.props.dueDate} </Text>
                 </View>

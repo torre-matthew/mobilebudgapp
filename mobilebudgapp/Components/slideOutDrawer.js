@@ -47,7 +47,7 @@ class SlideOutDrawer extends Component {
             <CategoryDisplay 
               key={categories._id}
               categoryName={categories.categoryName}
-              categoryId={categories._id}
+              categoryID={categories._id}
               addCategory={this.props.addCategory} 
               billID={this.props.billID} 
               />
