@@ -4,6 +4,7 @@ import { Container, Header, Content, Card, CardItem, Text, Body } from "native-b
 import EditBillFormDisplay from "./editBillForm";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
+import Categories from '../utilities/categories';
 import QuickActionDrawer from "./quickActionDrawer";
 import { FontAwesome5 } from '@expo/vector-icons';
 import * as Font from 'expo-font';
@@ -254,47 +255,48 @@ selectFundingSource = (fundingSourceID) => {
 categoryIconLogic = () => {
   switch (this.props.billCategoryName) {
     case "Bills and Utilities":
+      case "Bills and Utilities":
+        this.setState({
+          categoryIcon: Categories.billsAndUtilities.icon,
+          categoryIconColor: Categories.billsAndUtilities.iconColor
+          });
+        break;
+      case "Debt":
+        this.setState({
+          categoryIcon: Categories.debt.icon,
+          categoryIconColor: Categories.debt.iconColor
+          });
+        break;
+      case "Housing":
+        this.setState({
+          categoryIcon: Categories.housing.icon,
+          categoryIconColor: Categories.housing.iconColor
+          });
+        break;
+      case "Non Recurring Expense":
+        this.setState({
+          categoryIcon: Categories.nonRecurringExpense.icon,
+          categoryIconColor: Categories.nonRecurringExpense.iconColor
+          });
+        break;
+      case "Personal Spending":
+        this.setState({
+          categoryIcon: Categories.personalSpending.icon,
+          categoryIconColor: Categories.personalSpending.iconColor
+          });
+        break;
+      case "Savings":
       this.setState({
-        categoryIcon: "plug",
-        categoryIconColor: "#8C1184"
+        categoryIcon: Categories.savings.icon,
+        categoryIconColor: Categories.savings.iconColor
         });
-      break;
-    case "Debt":
+        break;
+      case "Subscriptions & Memberships":
       this.setState({
-        categoryIcon: "file-invoice-dollar",
-        categoryIconColor: "#4036F5"
+        categoryIcon: Categories.subscriptionsAndMemberships.icon,
+        categoryIconColor: Categories.subscriptionsAndMemberships.iconColor
         });
-      break;
-    case "Housing":
-      this.setState({
-        categoryIcon: "home",
-        categoryIconColor: "#7DBF7A"
-        });
-      break;
-    case "Non Recurring Expense":
-      this.setState({
-        categoryIcon: "money-check-alt",
-        categoryIconColor: "#F20544"
-        });
-      break;
-    case "Personal Spending":
-      this.setState({
-        categoryIcon: "hand-holding-usd",
-        categoryIconColor: "#F26B6B"
-        });
-      break;
-    case "Savings":
-    this.setState({
-      categoryIcon: "piggy-bank",
-      categoryIconColor: "#B0BFFF"
-      });
-      break;
-    case "Subscriptions & Memberships":
-    this.setState({
-      categoryIcon: "funnel-dollar",
-      categoryIconColor: "#F2872E"
-      });
-      break;
+        break;
     }
 }
 //#F5F5F5

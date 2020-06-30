@@ -3,6 +3,7 @@ import { View, Modal, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
+import Categories from '../utilities/categories';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 
@@ -29,44 +30,44 @@ class CategoryDisplay extends Component {
     switch (this.props.categoryName) {
       case "Bills and Utilities":
         this.setState({
-          categoryIcon: "plug",
-          categoryIconColor: "#8C1184"
+          categoryIcon: Categories.billsAndUtilities.icon,
+          categoryIconColor: Categories.billsAndUtilities.iconColor
           });
         break;
       case "Debt":
         this.setState({
-          categoryIcon: "file-invoice-dollar",
-          categoryIconColor: "#4036F5"
+          categoryIcon: Categories.debt.icon,
+          categoryIconColor: Categories.debt.iconColor
           });
         break;
       case "Housing":
         this.setState({
-          categoryIcon: "home",
-          categoryIconColor: "#7DBF7A"
+          categoryIcon: Categories.housing.icon,
+          categoryIconColor: Categories.housing.iconColor
           });
         break;
       case "Non Recurring Expense":
         this.setState({
-          categoryIcon: "money-check-alt",
-          categoryIconColor: "#F20544"
+          categoryIcon: Categories.nonRecurringExpense.icon,
+          categoryIconColor: Categories.nonRecurringExpense.iconColor
           });
         break;
       case "Personal Spending":
         this.setState({
-          categoryIcon: "hand-holding-usd",
-          categoryIconColor: "#F26B6B"
+          categoryIcon: Categories.personalSpending.icon,
+          categoryIconColor: Categories.personalSpending.iconColor
           });
         break;
       case "Savings":
       this.setState({
-        categoryIcon: "piggy-bank",
-        categoryIconColor: "#B0BFFF"
+        categoryIcon: Categories.savings.icon,
+        categoryIconColor: Categories.savings.iconColor
         });
         break;
       case "Subscriptions & Memberships":
       this.setState({
-        categoryIcon: "funnel-dollar",
-        categoryIconColor: "#F2872E"
+        categoryIcon: Categories.subscriptionsAndMemberships.icon,
+        categoryIconColor: Categories.subscriptionsAndMemberships.iconColor
         });
         break;
       }

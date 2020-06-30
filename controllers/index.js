@@ -302,6 +302,15 @@ let addUserToDb = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let addCategoryToDb = (req, res) => {
+    db.Category
+    .create({
+        categoryName: req.body.categoryName
+        })
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
 let addMonthToDb = (req, res) => {
     db.Month
     .create({
@@ -718,6 +727,17 @@ let editIncomeByID = async (req, res) => {
     await updateAfterSpendingAmountDuringExpenseORIncomeEdit(req.body.data._id);
 }
 
+let editCategoryByID = (req, res) => {
+    db.Category
+        .updateOne({_id: req.body._id},
+            {$set: {
+                    categoryName: req.body.name,    
+                    }
+            })
+        .then(data => res.json(data))
+        .catch(err => console.log(err));
+}
+
 let bulkUpdate = (req, res) => {
         db.Category
             .create({
@@ -884,6 +904,7 @@ let acceptPublicTokenSentByLink = (req, res, next) => {
 module.exports = {
     addIncome: addIncomeToDb,
     addExpense: addExpenseToDb,
+    addCategoryToDb, addCategoryToDb,
     addUser: addUserToDb,
     addMonthToDb: addMonthToDb,
     addCategoryToEntryByCategoryID: addCategoryToEntryByCategoryID,
@@ -907,6 +928,7 @@ module.exports = {
     deleteAllMonthData: deleteAllMonthData,
     editExpense: editExpenseByID,
     editIncome: editIncomeByID,
+    editCategoryByID: editCategoryByID,
     markExpenseAsPaid: markExpenseAsPaid,
     bulkUpdate:bulkUpdate,
     updateAfterSpendingAmount: updateAfterSpendingAmount,

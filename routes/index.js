@@ -3,6 +3,7 @@ const controllers = require("../controllers");
 
 router.route("/addingIncome").post(controllers.addIncome);
 router.route("/addingExpense").post(controllers.addExpense);
+router.route("/addingCategory").post(controllers.addCategoryToDb);
 router.route("/addingUser").post(controllers.addUser);
 router.route("/addingMonth").post(controllers.addMonthToDb);
 router.route("/copyPreviousMonth").post(controllers.copyPreviousMonthsData);
@@ -31,6 +32,7 @@ router.route("/deleteIncome").delete(controllers.deleteIncome);
 router.route("/deleteAllMonthData").delete(controllers.deleteAllMonthData);
 router.route("/updateExpense").put(controllers.editExpense);
 router.route("/updateIncome").put(controllers.editIncome);
+router.route("/updateCategory").put(controllers.editCategoryID);
 router.route("/addCategoryToEntryByCategoryID").put(controllers.addCategoryToEntryByCategoryID);
 router.route("/markExpenseAsPaid").put(controllers.markExpenseAsPaid);
 router.route("/updateAfterSpendingAmount/:incomeID").put(controllers.updateAfterSpendingAmount);
