@@ -258,7 +258,7 @@ selectFundingSource = (fundingSourceID) => {
             <View>
               <View onTouchEnd={() => {this.setDrawerVisible()}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 3 }}>
                 <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 0.5, paddingLeft: 8, paddingTop: 10, paddingBottom: 5, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor, borderLeftWidth: 4 }}> 
-                  <FontAwesome5 name={this.state.categoryIcon} size={16} color={this.state.categoryIconColor} />
+                  <FontAwesome5 name={this.state.categoryIcon} size={18} color={this.state.categoryIconColor} />
                 </View>
                 <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 6, paddingTop: 10, paddingBottom: 5}}> 
                   <Text style={{fontSize: 14, fontFamily: "Laila-SemiBold"}}> {this.props.billName.substring(0, 75)} </Text>
