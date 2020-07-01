@@ -24,14 +24,13 @@ class UnplannedBillDisplay extends Component {
     paidBillDescriptionTextInModal: "",
     showDrawer: false,
     billIsPaid: this.props.billIsPaid,
-    categoryIcon: "question-circle",
-    categoryIconColor: "grey"
+    categoryIcon: Categories.categoryIconLogic(this.props.billCategoryName).icon,
+    categoryIconColor: Categories.categoryIconLogic(this.props.billCategoryName).iconColor
   };
 
   componentDidMount() {
     this.getFundingSourceInfo(this.props.billID);
     this.changeDisplayWhenMarkedAsPaid();
-    this.categoryIconLogic();
   }
 
   updateBillDisplayComponent = () => {
@@ -252,53 +251,6 @@ selectFundingSource = (fundingSourceID) => {
   );
 }
 
-categoryIconLogic = () => {
-  switch (this.props.billCategoryName) {
-    case "Bills and Utilities":
-      case "Bills and Utilities":
-        this.setState({
-          categoryIcon: Categories.billsAndUtilities.icon,
-          categoryIconColor: Categories.billsAndUtilities.iconColor
-          });
-        break;
-      case "Debt":
-        this.setState({
-          categoryIcon: Categories.debt.icon,
-          categoryIconColor: Categories.debt.iconColor
-          });
-        break;
-      case "Housing":
-        this.setState({
-          categoryIcon: Categories.housing.icon,
-          categoryIconColor: Categories.housing.iconColor
-          });
-        break;
-      case "Non Recurring Expense":
-        this.setState({
-          categoryIcon: Categories.nonRecurringExpense.icon,
-          categoryIconColor: Categories.nonRecurringExpense.iconColor
-          });
-        break;
-      case "Personal Spending":
-        this.setState({
-          categoryIcon: Categories.personalSpending.icon,
-          categoryIconColor: Categories.personalSpending.iconColor
-          });
-        break;
-      case "Savings":
-      this.setState({
-        categoryIcon: Categories.savings.icon,
-        categoryIconColor: Categories.savings.iconColor
-        });
-        break;
-      case "Subscriptions & Memberships":
-      this.setState({
-        categoryIcon: Categories.subscriptionsAndMemberships.icon,
-        categoryIconColor: Categories.subscriptionsAndMemberships.iconColor
-        });
-        break;
-    }
-}
 //#F5F5F5
   render () {
       return (

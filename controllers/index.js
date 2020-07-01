@@ -381,7 +381,7 @@ let getAllPlannedExpenses = (req, res) => {
 
     db.Expenses
     .find({userID: req.params.userID, monthID: req.params.monthID, isPlanned: true})
-    .sort({nameOfExpense: 1})
+    .sort({nameOfExpense: 1, categoryName: 1})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
@@ -396,7 +396,7 @@ let getAllUnPlannedExpenses = (req, res) => {
 
     db.Expenses
     .find({userID: req.params.userID, monthID: req.params.monthID, isPlanned: false})
-    .sort({nameOfExpense: 1})
+    .sort({nameOfExpense: 1, categoryName: 1})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }

@@ -9,68 +9,11 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 class CategoryDisplay extends Component {
   state = {
-    categoryIcon: "",
-    categoryIconColor: ""
+    categoryIcon: Categories.categoryIconLogic(this.props.categoryName).icon,
+    categoryIconColor: Categories.categoryIconLogic(this.props.categoryName).iconColor
   };
 
   componentDidMount() {
-    this.categoryIconLogic();
-
-  }
-
-  // #8C1184 Pinkish Purple
-  // #4036F5 blue
-  // #7DBF7A shade of green 
-  // #F20544 kind of red
-  // #F26B6B kind of salmon
-  // #B0BFFF kind of lavender
-  // #F2872E kind of orange
-
-  categoryIconLogic = () => {
-    switch (this.props.categoryName) {
-      case "Bills and Utilities":
-        this.setState({
-          categoryIcon: Categories.billsAndUtilities.icon,
-          categoryIconColor: Categories.billsAndUtilities.iconColor
-          });
-        break;
-      case "Debt":
-        this.setState({
-          categoryIcon: Categories.debt.icon,
-          categoryIconColor: Categories.debt.iconColor
-          });
-        break;
-      case "Housing":
-        this.setState({
-          categoryIcon: Categories.housing.icon,
-          categoryIconColor: Categories.housing.iconColor
-          });
-        break;
-      case "Non Recurring Expense":
-        this.setState({
-          categoryIcon: Categories.nonRecurringExpense.icon,
-          categoryIconColor: Categories.nonRecurringExpense.iconColor
-          });
-        break;
-      case "Personal Spending":
-        this.setState({
-          categoryIcon: Categories.personalSpending.icon,
-          categoryIconColor: Categories.personalSpending.iconColor
-          });
-        break;
-      case "Savings":
-      this.setState({
-        categoryIcon: Categories.savings.icon,
-        categoryIconColor: Categories.savings.iconColor
-        });
-        break;
-      case "Subscriptions & Memberships":
-      this.setState({
-        categoryIcon: Categories.subscriptionsAndMemberships.icon,
-        categoryIconColor: Categories.subscriptionsAndMemberships.iconColor
-        });
-        break;
-      }
   }
 
   render () {  
