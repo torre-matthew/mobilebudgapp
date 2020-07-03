@@ -35,8 +35,8 @@ class PlannedBillWrapper extends Component {
                   billID={expense._id}
                   billIsPlanned={expense.isPlanned}
                   billIsPaid={expense.isPaid}
-                  billCategoryName={expense.categoryID}
-                  billCategoryID={expense.categoryName}
+                  billCategoryName={expense.categoryName}
+                  billCategoryID={expense.categoryID}
                   billFundingSourceID={expense.fundingSource}
                   incomeDataFromDB={this.props.incomeDataFromDB}
                   handleBillAmount={this.props.handleBillAmount}

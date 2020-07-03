@@ -24,18 +24,26 @@ class UnplannedBillDisplay extends Component {
     paidBillDescriptionTextInModal: "",
     showDrawer: false,
     billIsPaid: this.props.billIsPaid,
-    categoryIcon: Categories.categoryIconLogic(this.props.billCategoryName).icon,
-    categoryIconColor: Categories.categoryIconLogic(this.props.billCategoryName).iconColor
+    categoryIcon: "",
+    categoryIconColor: ""
   };
 
   componentDidMount() {
     this.getFundingSourceInfo(this.props.billID);
     this.changeDisplayWhenMarkedAsPaid();
+    this.setCategoryDisplay();
   }
 
   updateBillDisplayComponent = () => {
     this.componentDidMount();
     this.props.updateWrapperComponent();
+  }
+
+  setCategoryDisplay = () => {
+    this.setState({
+      categoryIcon: Categories.categoryIconLogic(this.props.billCategoryName).icon,
+      categoryIconColor: Categories.categoryIconLogic(this.props.billCategoryName).iconColor,
+    });
   }
   setDrawerVisible = () => {
     if (this.state.showDrawer) { 
@@ -257,11 +265,11 @@ selectFundingSource = (fundingSourceID) => {
         <View>
             <View>
               <View onTouchEnd={() => {this.setDrawerVisible()}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 3 }}>
-                <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 0.5, paddingLeft: 8, paddingTop: 10, paddingBottom: 5, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor, borderLeftWidth: 4 }}> 
+                <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 0.5, paddingLeft: 5, paddingTop: 10, paddingBottom: 5, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor, borderLeftWidth: 4 }}> 
                   <FontAwesome5 name={this.state.categoryIcon} size={18} color={this.state.categoryIconColor} />
                 </View>
                 <View style={{ flex: 1, alignSelf: 'flex-start', backgroundColor: '#f8f8ff', flexGrow: 6, paddingTop: 10, paddingBottom: 5}}> 
-                  <Text style={{fontSize: 14, fontFamily: "Laila-SemiBold"}}> {this.props.billName.substring(0, 75)} </Text>
+                  <Text style={{fontSize: 14, fontFamily: "Laila-SemiBold"}}> {this.props.billName.substring(0, 100)} </Text>
                 </View>
                 <View style={{ flex: 1, alignItems:'flex-start', backgroundColor: '#f8f8ff', flexGrow: 2, paddingTop: 10, paddingBottom: 5, borderTopRightRadius: 15}}> 
                   <Text style={{fontSize: 14, fontFamily: "Laila-SemiBold"}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
@@ -293,6 +301,8 @@ selectFundingSource = (fundingSourceID) => {
                   billID={this.props.billID}
                   billIsPlanned={this.props.billIsPlanned}
                   billFundingSourceID={this.props.billFundingSourceID}
+                  billCategoryName={this.props.billCategoryName}
+                  billCategoryID={this.props.billCategoryID}
                   fundingSourceID={this.state.fundingSourceID}
                   fundingSourceName={this.state.fundingSourceName}
                   fundingSourceAmount={this.state.fundingSourceAmount}

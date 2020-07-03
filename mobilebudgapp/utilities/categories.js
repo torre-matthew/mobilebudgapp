@@ -6,44 +6,74 @@
   // #B0BFFF kind of lavender
   // #F2872E kind of orange
 
+let iconColors = [
+  "#8C1184",
+  "#4036F5",
+  "#7DBF7A",
+  "#F20544",
+  "#F26B6B",
+  "#B0BFFF",
+  "#F2872E",
+  "#6E3D15",
+  "#5D6587",
+  "#873B3B",
+  "#870326",
+  "#486E46",
+  "#1C186E",
+  "#038778",
+]
+
+let index = Math.floor(Math.random() * iconColors.length)
 
 
 let lahriCategories = {
     billsAndUtilities: {
         icon: "plug",
-        iconColor: "#8C1184"
+        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
     },
     debt: {
         icon: "file-invoice-dollar",
-        iconColor: "#4036F5"
+        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
     }, 
     housing: {
         icon: "home",
-        iconColor: "#7DBF7A"
+        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
     },
     nonRecurringExpense: {
         icon: "money-check-alt",
-        iconColor: "#F20544"
+        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
     },
     personalSpending: {
         icon: "hand-holding-usd",
-        iconColor: "#F26B6B"
+        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
     },
     savings: {
         icon: "piggy-bank",
-        iconColor: "#B0BFFF"
+        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
     },
     subscriptionsAndMemberships: {
         icon: "funnel-dollar",
-        iconColor: "#F2872E"
+        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
     },
     edAndTuition: {
         icon: "user-graduate",
-        iconColor: "#F2872E"
+        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
     },
     kidsActivities: {
         icon: "child",
-        iconColor: "#F2872E"
+        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+    },
+    houseHoldExpenses: {
+      icon: "toilet-paper",
+      iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+    },
+    insurance: {
+      icon: "shield-alt",
+      iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+    },
+    default: {
+      icon: "question-circle",
+      iconColor: "grey"
     },
     categoryIconLogic: (categoryName) => {
         switch (categoryName) {
@@ -65,6 +95,12 @@ let lahriCategories = {
             return lahriCategories.edAndTuition
           case "Kids Activities":
             return lahriCategories.kidsActivities
+          case "Household Expenses":
+            return lahriCategories.houseHoldExpenses
+          case "Insurance":
+            return lahriCategories.insurance
+          default:
+            return lahriCategories.default
           }
       }
 

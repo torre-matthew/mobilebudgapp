@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { ActivityIndicator, View, Button, ImageBackground, Alert, Image, TouchableOpacity } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import LoginScreenStyles from "../Styles/loginSreenStyles";
+import { FontAwesome5 } from '@expo/vector-icons';
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
+import Categories from '../utilities/categories';
 import MainScreen from "./mainScreen";
 import BackGroundImage from "../Styles/images/whiteWall.png";
 import EditBillFormDisplay from "../Components/editBillForm";
@@ -16,7 +18,9 @@ class EditEntryScreen extends Component {
     whatsBeingEdited: this.props.route.params.whatsBeingEdited,
     showDrawer: false,
     showOverLay: false,
-    arrayOfCategories: []
+    arrayOfCategories: [],
+    currentCategory: this.props.route.params.billCategoryName,
+    currentCategoryID: this.props.route.params.billCategoryID 
   }
 
   componentDidMount(){
@@ -26,6 +30,7 @@ class EditEntryScreen extends Component {
         this.setState({arrayOfCategories: arrayOfCategories.data})
         })
       .catch(err => console.log(err));
+
   }
 
   showDrawerAndOverLay = () => {
@@ -43,7 +48,10 @@ class EditEntryScreen extends Component {
         {text: 'Nevermind', style: 'cancel'},
         {text: 'Ok', onPress: () => {
           ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
-          .then(data => {return data})
+          .then(data => {
+            this.props.route.params.updateDisplayComponent();
+            this.hideDrawerAndOverLay();
+            })
           .catch(err => console.log(err));
         }, 
       },
@@ -72,7 +80,8 @@ class EditEntryScreen extends Component {
                 show={this.state.showDrawer}
                 arrayOfCategories={this.state.arrayOfCategories} 
                 addCategory={this.addCategory} 
-                billID={this.props.route.params.billID} />
+                billID={this.props.route.params.billID}
+                currentCategoryID={this.state.currentCategoryID} />
               <OverLay 
                 hideDrawerAndOverLay={this.hideDrawerAndOverLay} 
                 show={this.state.showOverLay} />
@@ -100,15 +109,16 @@ class EditEntryScreen extends Component {
               <View style={{position: 'relative', zIndex: 0}}>
               <TouchableOpacity
                 onPress={this.showDrawerAndOverLay}
-                style={style.button2_light_style}>
-                <Text style={{fontSize: 12, color: 'red'}}> Categorize </Text>
+                style={style.button2_light_style} >
+                <FontAwesome5 name={Categories.categoryIconLogic(this.state.currentCategory).icon} size={16} color={Categories.categoryIconLogic(this.state.currentCategory).iconColor} />
+                <Text style={{fontSize: 12, fontFamily: 'Laila-SemiBold', fontWeight: 'bold', color: Categories.categoryIconLogic(this.state.currentCategory).iconColor}}> Category{': ' + this.state.currentCategory} </Text>
               </TouchableOpacity>
               </View>
               <View style={{flex:1, position: 'relative', zIndex: 0, alignSelf: 'stretch'}}>
               <TouchableOpacity
                 onPress={() => {this.props.route.params.deleteExpense(this.props.route.params.billID)}}
                 style={style.button2_light_style}>
-                <Text style={{fontSize: 12, color: 'red'}}> Delete </Text>
+                <Text style={{fontSize: 12, color: 'red', fontFamily: 'Laila-SemiBold', fontWeight: 'bold'}}> Delete </Text>
               </TouchableOpacity>
               </View>
             </View>
@@ -132,7 +142,7 @@ class EditEntryScreen extends Component {
                 <TouchableOpacity
                     onPress={() => {this.props.route.params.deleteIncome(this.props.route.params.incomeID)}}
                     style={style.button2_light_style}>
-                  <Text style={{fontSize: 12, color: 'red'}}> Delete </Text>
+                  <Text style={{fontSize: 12, fontFamily: 'Laila-SemiBold', color: 'red'}}> Delete </Text>
                 </TouchableOpacity>
               </View>
             </View>
