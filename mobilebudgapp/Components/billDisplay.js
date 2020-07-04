@@ -303,6 +303,7 @@ selectFundingSource = (fundingSourceID) => {
                   billFundingSourceID={this.props.billFundingSourceID}
                   billCategoryName={this.props.billCategoryName}
                   billCategoryID={this.props.billCategoryID}
+                  fetchData={this.props.fetchData}
                   fundingSourceID={this.state.fundingSourceID}
                   fundingSourceName={this.state.fundingSourceName}
                   fundingSourceAmount={this.state.fundingSourceAmount}

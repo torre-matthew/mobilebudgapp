@@ -26,7 +26,7 @@ container_show: {
   height: '100%', 
   marginLeft: '40%',
   marginTop: '5%', 
-  backgroundColor: '#F5F5F5',
+  backgroundColor: '#448EB3',
   borderBottomLeftRadius: 10,
   borderTopLeftRadius: 10, 
   borderBottomRightRadius: 10

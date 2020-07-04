@@ -12,7 +12,7 @@ container_small: {
   height: 160, 
   alignSelf: 'center',
   marginRight: 10, 
-  backgroundColor: '#BCBCC2',
+  backgroundColor: '#448EB3',
   borderBottomLeftRadius: 10, 
   borderBottomRightRadius: 10,
 },
@@ -23,7 +23,7 @@ container_large: {
   height: 190, 
   alignSelf: 'center',
   marginRight: 10, 
-  backgroundColor: '#BCBCC2',
+  backgroundColor: '#448EB3',
   borderBottomLeftRadius: 10, 
   borderBottomRightRadius: 10
 },
@@ -119,6 +119,7 @@ class QuickActionDrawer extends Component {
                         whatsBeingEdited: this.props.whatsBeingEdited,
                         updateWrapperComponent: this.props.updateWrapperComponent,
                         updateDisplayComponent: this.props.updateDisplayComponent,
+                        fetchData: this.props.fetchData,
                         loggedInUserID: this.props.loggedInUserID,
                         deleteExpense: this.props.deleteExpense,
                         isThisPlanned: this.props.isThisPlanned })}

@@ -16,11 +16,10 @@ let iconColors = [
   "#F2872E",
   "#6E3D15",
   "#5D6587",
-  "#873B3B",
+  "#038778",
   "#870326",
   "#486E46",
   "#1C186E",
-  "#038778",
 ]
 
 let index = Math.floor(Math.random() * iconColors.length)
@@ -29,47 +28,47 @@ let index = Math.floor(Math.random() * iconColors.length)
 let lahriCategories = {
     billsAndUtilities: {
         icon: "plug",
-        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+        iconColor: iconColors[0]
     },
     debt: {
         icon: "file-invoice-dollar",
-        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+        iconColor: iconColors[1]
     }, 
     housing: {
         icon: "home",
-        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+        iconColor: iconColors[2]
     },
     nonRecurringExpense: {
         icon: "money-check-alt",
-        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+        iconColor: iconColors[3]
     },
     personalSpending: {
         icon: "hand-holding-usd",
-        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+        iconColor: iconColors[4]
     },
     savings: {
         icon: "piggy-bank",
-        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+        iconColor: iconColors[5]
     },
     subscriptionsAndMemberships: {
         icon: "funnel-dollar",
-        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+        iconColor: iconColors[6]
     },
     edAndTuition: {
         icon: "user-graduate",
-        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+        iconColor: iconColors[7]
     },
     kidsActivities: {
         icon: "child",
-        iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+        iconColor: iconColors[8]
     },
     houseHoldExpenses: {
       icon: "toilet-paper",
-      iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+      iconColor: iconColors[9]
     },
     insurance: {
       icon: "shield-alt",
-      iconColor: iconColors[Math.floor(Math.random() * iconColors.length)]
+      iconColor: iconColors[10]
     },
     default: {
       icon: "question-circle",

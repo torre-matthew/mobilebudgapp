@@ -50,6 +50,7 @@ class EditEntryScreen extends Component {
           ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
           .then(data => {
             this.props.route.params.updateDisplayComponent();
+            this.props.route.params.fetchData();
             this.hideDrawerAndOverLay();
             })
           .catch(err => console.log(err));
