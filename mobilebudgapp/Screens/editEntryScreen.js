@@ -10,7 +10,7 @@ import MainScreen from "./mainScreen";
 import BackGroundImage from "../Styles/images/whiteWall.png";
 import EditBillFormDisplay from "../Components/editBillForm";
 import SlideOutDrawer from "../Components/slideOutDrawer";
-import OverLay from "../Components/overLay";
+import EditEntryScreenOverLay from "../Components/overlays/editEntryScreenOverLay";
 
 class EditEntryScreen extends Component {
 
@@ -49,9 +49,8 @@ class EditEntryScreen extends Component {
         {text: 'Ok', onPress: () => {
           ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
           .then(data => {
-            this.props.route.params.updateDisplayComponent();
-            this.props.route.params.fetchData();
             this.hideDrawerAndOverLay();
+            this.props.route.params.fetchData();
             })
           .catch(err => console.log(err));
         }, 
@@ -83,7 +82,7 @@ class EditEntryScreen extends Component {
                 addCategory={this.addCategory} 
                 billID={this.props.route.params.billID}
                 currentCategoryID={this.state.currentCategoryID} />
-              <OverLay 
+              <EditEntryScreenOverLay 
                 hideDrawerAndOverLay={this.hideDrawerAndOverLay} 
                 show={this.state.showOverLay} />
             {this.state.whatsBeingEdited === "bill"

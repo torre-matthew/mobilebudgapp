@@ -126,7 +126,7 @@ let addExpenseToDb = async (req, res) => {
             .catch(err => console.log(err))
 }
 
-let addExpenseWhenCopyingPreviousMonth = async (dateOfExpense, nameOfExpense, amountOfExpense, userID, isPlanned, monthID, fundingSource, isPaid) => {
+let addExpenseWhenCopyingPreviousMonth = async (dateOfExpense, nameOfExpense, amountOfExpense, userID, isPlanned, monthID, fundingSource, isPaid, categoryName, categoryID) => {
     
     let arrayOfPlannedExpensesToBeSetInDB = [];
     let arrayOfUnPlannedExpensesToBeSetInDB = [];
@@ -140,7 +140,9 @@ let addExpenseWhenCopyingPreviousMonth = async (dateOfExpense, nameOfExpense, am
                 userID: userID, 
                 isPlanned: false,
                 isPaid: false,
-                monthID: monthID
+                monthID: monthID,
+                categoryName: categoryName,
+                categoryID: categoryID
                 })
             .then(data => {return data})
             .catch(err => console.log(err));
@@ -197,7 +199,7 @@ let copyPreviousMonthsData = (req, res) => {
             .find({userID: req.body.userID, monthID: req.body.previousMonthID})
             .then(expenseDataArray => {
                 expenseDataArray.forEach(expenseObject => {
-                    addExpenseWhenCopyingPreviousMonth(expenseObject.dateOfExpense, expenseObject.nameOfExpense, expenseObject.amountOfExpense, expenseObject.userID, false, req.body.targetMonthID, "", false);
+                    addExpenseWhenCopyingPreviousMonth(expenseObject.dateOfExpense, expenseObject.nameOfExpense, expenseObject.amountOfExpense, expenseObject.userID, false, req.body.targetMonthID, "", false, expenseObject.categoryName, expenseObject.categoryID);
                 })
             })
             .catch(err => console.log(err));

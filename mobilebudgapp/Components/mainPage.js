@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, Platform, StyleSheet, Text, View, ScrollView, RefreshControl, ImageBackground } from 'react-native';
+import { ActivityIndicator, Platform, StyleSheet, Alert, View, ScrollView, RefreshControl, ImageBackground } from 'react-native';
 import { Container, Button, Content, Form, Item, Input} from 'native-base';
 import SummaryWrapper from './summaryWrapper';
 import UnplannedBillWrapper from './unplannedBillWrapper';
 import PlannedBillWrapper from './plannedBillWrapper';
 import MonthPickerModal from './monthPickerModal';
+import QuickActionDrawer2 from "../Components/quickActionDrawer2";
+import OverLay from "../Components/overLay";
 import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import { thisExpression } from '@babel/types';
 import AppFooter from './appfooter';
@@ -13,6 +15,7 @@ import ApiMethods from '../utilities/apiMethods';
 import * as Font from 'expo-font';
 import LoadFonts from '../assets/fonts';
 import AppHeader from './appheader';
+import Animation from "../utilities/animation";
 
 
 const style = require("../Styles/Styles");
@@ -54,7 +57,24 @@ export default class MainPage extends Component {
     spinnerSize: 20,
     spinnerOpacity: 1,
     showSpinner: true,
-    fontsLoaded: false
+    fontsLoaded: false,
+    showDrawer: false,
+    showOverLay: false,
+    selectedBillID: "",
+    selectedBillName: "",
+    selectedBillAmount: "",
+    selectedBillDueDate: "",
+    selectedBillCategoryName: "",
+    selectedBillCategoryID: "",
+    selectedFundingSourceID: "",
+    selectedFundingSourceName: "",
+    selectedFundingSourceAmount: "",
+    selectedBillCategoryIconName: "",
+    selectedBillCategoryIconColor: "",
+    selectedBillIsPaid: "",
+    selectedBillIsPlanned: "",
+    whatsBeingEdited: "",
+    fontSize: 0
   };
 
   componentDidMount(){
@@ -343,6 +363,220 @@ export default class MainPage extends Component {
     }
   };
 
+  showDrawerAndOverLayLogic = (billID, billName, billAmount, categoryName, categoryID, selectedBillCategoryIconName, selectedBillCategoryIconColor, billDueDate, fundingSourceID, fundingSourceName, fundingSourceAmount, billIsPaid, billIsPlanned, whatsBeingEdited) => {
+  
+    let initialSize = 0;
+    let finalSize = 12;
+    let size = setInterval(() => {
+        if (initialSize < finalSize) {
+          initialSize++
+          this.setState({fontSize: initialSize})
+        } else {
+          clearInterval(size);
+        }
+      }
+      , 10);
+
+
+        this.setState({
+          showDrawer: true,
+          showOverLay: true,
+          selectedBillID: billID,
+          selectedBillName: billName,
+          selectedBillAmount: billAmount,
+          selectedBillCategoryName: categoryName,
+          selectedBillCategoryID: categoryID,
+          selectedBillCategoryIconName: selectedBillCategoryIconName,
+          selectedBillCategoryIconColor: selectedBillCategoryIconColor,
+          selectedBillDueDate: billDueDate,
+          selectedFundingSourceID: fundingSourceID,
+          selectedFundingSourceName: fundingSourceName,
+          selectedFundingSourceAmount: fundingSourceAmount,
+          selectedBillIsPaid: billIsPaid,
+          selectedBillIsPlanned: billIsPlanned,
+          whatsBeingEdited: whatsBeingEdited })
+  }
+
+  hideDrawerAndOverLayLogic = () => {
+    this.setState({
+      showDrawer: false,
+      showOverLay: false,
+    })
+  }
+
+  selectFundingSource = (fundingSourceID) => {
+    Alert.alert(
+      'Plan ' + this.state.selectedBillName + ' with this income?',
+      '',
+      [ 
+        {text: 'Nevermind', style: 'cancel'},
+        {text: 'Ok', onPress: () => {
+          ApiMethods.editExpense(this.state.selectedBillID, this.state.selectedBillName, this.state.selectedBillDueDate, this.state.selectedBillAmount, true, fundingSourceID, this.state.loggedInUserID)
+              .then(res => {
+                  if (res.data.nModified === 0) {
+                      alert('Sorry, there was a problem. Please try again');
+                  } else {
+                      this.fetchData();
+                      this.props.navigation.navigate('Main');
+                  }
+                  })
+              .catch(err => console.log(err));
+        }, 
+      },
+        ],
+      {cancelable: false},
+    );
+  
+    }
+    
+    moveToNextMonth = () => {
+      Alert.alert(
+        'Move ' + this.state.selectedBillName + ' to next month?',
+        '',
+        [ 
+          {text: 'Nevermind', style: 'cancel'},
+          {text: 'Ok', onPress: () => {
+            ApiMethods.moveToNextMonth(this.state.selectedBillID).then(data => {return data}).catch(err => console.log(err));
+            this.fetchData();
+            this.hideDrawerAndOverLayLogic();
+          }, 
+        },
+          ],
+        {cancelable: false},
+      );
+    }
+
+    splitEntry = () => {
+      Alert.alert(
+        'Split ' + this.state.selectedBillName + '?',
+        'I will create a new entry and evenly divide the amounts between this item and the newly created one?',
+        [ 
+          {text: 'Nevermind', style: 'cancel'},
+          {text: 'Ok', onPress: () => {
+            ApiMethods.splitEntry(this.state.selectedBillID).then(data => {return data}).catch(err => console.log(err));
+            this.fetchData();
+            this.hideDrawerAndOverLayLogic();
+          }, 
+        },
+          ],
+        {cancelable: false},
+      );
+    }
+
+    markAsUnplanned = () => {
+
+      Alert.alert(
+        'Not ready to plan ' + this.state.selectedBillName + '?',
+        'I will move this back to unplanned bills and expenses.',
+        [ 
+          {text: 'Nevermind', style: 'cancel'},
+          {text: 'Ok', onPress: () => {
+            ApiMethods.editExpense(this.state.selectedBillID, this.state.selectedBillName, this.state.selectedBillDueDate, this.state.selectedBillAmount, false, "", this.state.loggedInUserID)
+              .then(res => {
+                  if (res.data.nModified === 0) {
+                      alert('Sorry, there was a problem. Please try again');
+                  } else {
+                      this.fetchData();
+                      this.hideDrawerAndOverLayLogic();
+                  }
+                  })
+              .catch(err => console.log(err));
+          }, 
+        },
+          ],
+        {cancelable: false},
+      );
+  
+    }
+
+    markAsPaid = () => {
+      switch (this.state.selectedBillIsPaid) {
+        case true:
+          ApiMethods.markExpenseAsPaid(this.state.selectedBillID, false)
+            .then(data => {
+              this.fetchData();
+              this.hideDrawerAndOverLayLogic();
+            })
+            .catch(err => console.log(err));
+            break;
+        case false:
+          ApiMethods.markExpenseAsPaid(this.state.selectedBillID, true)
+            .then(data => {
+              this.fetchData();
+              this.hideDrawerAndOverLayLogic();
+            })
+            .catch(err => console.log(err));
+      }
+    }
+
+    deleteExpense = () => {
+      ApiMethods.deleteExpense(this.state.selectedBillID)
+      .then(res => {
+        if (res.data.deletedCount === 0) {
+          alert('Sorry, ' + idToDelete + ' could not be deleted');
+  
+        } else if (this.state.selectedBillIsPlanned) {
+          alert('You have successfully deleted ' + this.state.selectedBillName);
+  
+            ApiMethods
+              .updateAfterSpendingAmount(this.state.selectedFundingSourceID)
+              .then(data => {
+                ApiMethods
+                  .updateIncomeOnUserRecord(this.state.loggedInUserID)
+                  .then(data => {
+                    this.fetchData();
+                    })
+                  .catch(err => console.log(err));
+                })
+              .catch(err => console.log(err))
+            
+              this.fetchData();
+              this.hideDrawerAndOverLayLogic();
+              this.props.navigation.navigate('Main');
+        } else {
+          alert('You have successfully deleted ' + this.state.selectedBillName);
+          
+          ApiMethods.updateIncomeOnUserRecord(this.state.loggedInUserID)
+          .then(data => {
+            this.fetchData();
+          })
+          .catch(err => console.log(err));
+  
+          this.fetchData();
+          this.hideDrawerAndOverLayLogic();
+          this.props.navigation.navigate('Main');
+        }
+      })
+      .catch(err => console.log(err));
+    }
+
+    goToEditScreen = () => {
+      this.props.navigation.navigate('Edit Entry', {
+        navigation: this.props.navigation,
+        dueDate: this.state.selectedBillDueDate,
+        billName: this.state.selectedBillName,
+        billAmount: this.state.selectedBillAmount,
+        billID: this.state.selectedBillID,
+        billIsPlanned: this.state.selectedBillIsPlanned,
+        billFundingSourceID: this.state.selectedFundingSourceID,
+        billCategoryName: this.state.selectedBillCategoryName,
+        billCategoryID: this.state.selectedBillCategoryID, 
+        fundingSourceName: this.state.selectedFundingSourceName,
+        fundingSourceAmount: this.state.selectedFundingSourceAmount,
+        fetchData: this.fetchData,
+        incomeDataFromDB: this.state.currentIncomeFromDB,
+        whatsBeingEdited: this.state.whatsBeingEdited,
+        updateWrapperComponent: this.fetchData,
+        loggedInUserID: this.state.loggedInUserID,
+        deleteExpense: this.deleteExpense,
+        hideDrawerAndOverLayLogic: this.hideDrawerAndOverLayLogic,
+        showDrawerAndOverLayLogic: this.showDrawerAndOverLayLogic,
+        showDrawer: this.state.showDrawer,
+        showOverLay: this.state.showOverLay,
+        showOverLayOnEditScreen: false,
+        isThisPlanned: this.state.plannedClicked })
+    }
+
   render() {
     return (
         <Container style={style.container}>
@@ -360,6 +594,10 @@ export default class MainPage extends Component {
               onRefresh={this.onRefresh}/>
           }
           >
+            <OverLay 
+              show={this.state.showOverLay}
+              showDrawerAndOverLayLogic={this.showDrawerAndOverLayLogic}
+              hideDrawerAndOverLayLogic={this.hideDrawerAndOverLayLogic} />
             <View style={{zIndex: 0, position: 'relative'}}>
             {this.state.showSpinner
               ?
@@ -371,8 +609,7 @@ export default class MainPage extends Component {
                 currentYear={this.state.currentYear}
                 currentMonthID={this.state.currentMonthID}
                 selectNewMonth={this.selectNewMonth}
-                fetchData={this.fetchData}
-                />
+                fetchData={this.fetchData} />
             }   
               <SummaryWrapper 
                 incomeDataFromDB={!this.state.afterSpendingClicked ? this.state.currentIncomeFromDB : this.state.afterSpendingData}
@@ -394,8 +631,7 @@ export default class MainPage extends Component {
                 currentMonth={this.state.currentMonth}
                 currentMonthID={this.state.currentMonthID}
                 selectNewMonth={this.selectNewMonth}
-                navigation={this.props.navigation}
-              />
+                navigation={this.props.navigation} />
               <UnplannedBillWrapper
                 expenseDataFromDB={!this.state.plannedClicked ? this.state.currentUnPlannedExpensesFromDB : this.state.currentPlannedExpensesFromDB}
                 incomeDataFromDB={this.state.currentIncomeFromDB}
@@ -416,9 +652,30 @@ export default class MainPage extends Component {
                 currentMonth={this.state.currentMonth}
                 currentMonthID={this.state.currentMonthID}
                 navigation={this.props.navigation}
-              />
+                showDrawerAndOverLayLogic={this.showDrawerAndOverLayLogic}
+                hide={this.hideDrawerAndOverLayLogic} />
             </View>
           </ScrollView>
+          <QuickActionDrawer2 
+            navigation={this.props.navigation}
+            show={this.state.showDrawer} 
+            billName={this.state.selectedBillName} 
+            billID={this.state.selectedBillID} 
+            billAmount={this.state.selectedBillAmount}
+            billCategoryName={this.state.selectedBillCategoryName} 
+            billCategoryIconColor={this.state.selectedBillCategoryIconColor}
+            billCategoryIconName={this.state.selectedBillCategoryIconName} 
+            billIsPaid={this.state.selectedBillIsPaid}
+            billIsPlanned={this.state.selectedBillIsPlanned}
+            selectedFundingSourceID={this.state.selectedFundingSourceID}
+            selectFundingSourceFunction={this.selectFundingSource} 
+            incomeDataFromDB={this.state.currentIncomeFromDB} 
+            moveToNextMonth={this.moveToNextMonth} 
+            splitEntry={this.splitEntry}
+            markAsUnplanned={this.markAsUnplanned}
+            markAsPaid={this.markAsPaid}
+            goToEditScreen={this.goToEditScreen}
+            fontSize={this.state.fontSize} />
           </ImageBackground>
         </Container>
     );

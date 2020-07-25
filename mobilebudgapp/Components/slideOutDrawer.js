@@ -35,6 +35,9 @@ container_show: {
 })
 
 class SlideOutDrawer extends Component {
+  state = {
+    showDrawer: this.props.show
+  }
 
   render(){
       return (

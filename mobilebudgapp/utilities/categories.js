@@ -10,14 +10,14 @@ let iconColors = [
   "#8C1184",
   "#4036F5",
   "#7DBF7A",
-  "#F20544",
+  "#6E021F",
   "#F26B6B",
   "#B0BFFF",
   "#F2872E",
   "#6E3D15",
   "#5D6587",
   "#038778",
-  "#870326",
+  "#F23913",
   "#486E46",
   "#1C186E",
 ]
@@ -72,7 +72,7 @@ let lahriCategories = {
     },
     default: {
       icon: "question-circle",
-      iconColor: "grey"
+      iconColor: '#454545'
     },
     categoryIconLogic: (categoryName) => {
         switch (categoryName) {

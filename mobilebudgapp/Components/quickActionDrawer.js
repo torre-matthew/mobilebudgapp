@@ -6,7 +6,8 @@ import style from "../Styles/Styles";
 const qadStyle = StyleSheet.create({
 
 container_small: {
-  flex: 1, 
+  position: 'relative',
+  // flex: 1, 
   opacity: 1, 
   width: '88%', 
   height: 160, 
@@ -17,7 +18,8 @@ container_small: {
   borderBottomRightRadius: 10,
 },
 container_large: {
-  flex: 1, 
+  position: 'relative',
+  // flex: 1, 
   opacity: 1, 
   width: '88%', 
   height: 190, 
@@ -122,6 +124,7 @@ class QuickActionDrawer extends Component {
                         fetchData: this.props.fetchData,
                         loggedInUserID: this.props.loggedInUserID,
                         deleteExpense: this.props.deleteExpense,
+                        hideDrawerAndOverLayLogic: this.props.hideDrawerAndOverLayLogic,
                         isThisPlanned: this.props.isThisPlanned })}
                         }
                       style={style.button_small_quick_actions}>

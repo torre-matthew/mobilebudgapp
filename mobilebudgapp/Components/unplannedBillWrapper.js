@@ -17,6 +17,7 @@ class UnplannedBillWrapper extends Component {
   updateUnplannedBillWrapperComponent = () => {
     this.componentDidMount();
   }
+  
 
   render(){
       return (
@@ -54,6 +55,9 @@ class UnplannedBillWrapper extends Component {
               fetchData={this.props.fetchData}
               isThisPlanned={this.props.plannedClicked}
               navigation={this.props.navigation}
+              showDrawerAndOverLayLogic={this.props.showDrawerAndOverLayLogic}
+              hideDrawerAndOverLayLogic={this.props.hideDrawerAndOverLayLogic}
+              show={this.props.show}
             />
             )
           }
