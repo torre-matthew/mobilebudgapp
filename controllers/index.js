@@ -906,7 +906,7 @@ let acceptPublicTokenSentByLink = (req, res, next) => {
 let calculateCategoryTotalsPerMonth = (req, res) => {
     db.Expenses
     .find({userID: "5e952c83a5ad7500176ad379", monthID: "5eaf622ae7b5c6001726776c", categoryID: "5eee734ad0da5700175fd6ab"})
-    .then(expenses => res.json(expenses.amountOfExpense))
+    .then(expenses => res.json(expenses))
     .catch(err => console.log(err));
 }
 
