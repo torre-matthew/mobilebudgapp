@@ -79,7 +79,7 @@ class EditEntryScreen extends Component {
               <SlideOutDrawer 
                 show={this.state.showDrawer}
                 arrayOfCategories={this.state.arrayOfCategories} 
-                addCategory={this.addCategory} 
+                addCategory={this.props.route.params.addCategory} 
                 billID={this.props.route.params.billID}
                 currentCategoryID={this.state.currentCategoryID} />
               <EditEntryScreenOverLay 

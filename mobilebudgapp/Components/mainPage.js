@@ -494,6 +494,7 @@ export default class MainPage extends Component {
         case true:
           ApiMethods.markExpenseAsPaid(this.state.selectedBillID, false)
             .then(data => {
+              this.onRefresh();
               this.fetchData();
               this.hideDrawerAndOverLayLogic();
             })
@@ -502,6 +503,7 @@ export default class MainPage extends Component {
         case false:
           ApiMethods.markExpenseAsPaid(this.state.selectedBillID, true)
             .then(data => {
+              this.onRefresh();
               this.fetchData();
               this.hideDrawerAndOverLayLogic();
             })
@@ -574,7 +576,29 @@ export default class MainPage extends Component {
         showDrawer: this.state.showDrawer,
         showOverLay: this.state.showOverLay,
         showOverLayOnEditScreen: false,
-        isThisPlanned: this.state.plannedClicked })
+        isThisPlanned: this.state.plannedClicked,
+        addCategory: this.addCategory })
+    }
+
+    addCategory = (expenseID, categoryID, categoryName) => {
+      Alert.alert(
+        'Add Category?',
+        '',
+        [ 
+          {text: 'Nevermind', style: 'cancel'},
+          {text: 'Ok', onPress: () => {
+            ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
+            .then(data => {
+              this.onRefresh();
+              this.props.navigation.navigate('Main');
+              this.hideDrawerAndOverLayLogic();
+              })
+            .catch(err => console.log(err));
+          }, 
+        },
+          ],
+        {cancelable: false},
+      );
     }
 
   render() {

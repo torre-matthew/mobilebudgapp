@@ -903,6 +903,13 @@ let acceptPublicTokenSentByLink = (req, res, next) => {
     // });
 }
 
+let calculateCategoryTotalsPerMonth = () => {
+    db.Expenses
+    .find({userID: "5e952c83a5ad7500176ad379", monthID: "5eaf622ae7b5c6001726776c", categoryID: "5eee734ad0da5700175fd6ab"})
+    .then(expenses => res.json(expenses.amountOfExpense))
+    .catch(err => console.log(err));
+}
+
 module.exports = {
     addIncome: addIncomeToDb,
     addExpense: addExpenseToDb,
@@ -939,6 +946,7 @@ module.exports = {
     copyPreviousMonthsData: copyPreviousMonthsData,
     splitEntry: splitEntry,
     moveToNextMonth: moveToNextMonth,
-    acceptPublicTokenSentByLink: acceptPublicTokenSentByLink
+    acceptPublicTokenSentByLink: acceptPublicTokenSentByLink,
+    calculateCategoryTotalsPerMonth: calculateCategoryTotalsPerMonth
 
 }
