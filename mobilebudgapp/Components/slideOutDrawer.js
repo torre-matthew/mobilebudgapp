@@ -54,6 +54,8 @@ class SlideOutDrawer extends Component {
               currentCategoryID={this.props.currentCategoryID}
               addCategory={this.props.addCategory} 
               billID={this.props.billID} 
+              loggedInUserID={this.props.loggedInUserID}
+              currentMonthID={this.props.currentMonthID}
               />
           )}
           </ScrollView>

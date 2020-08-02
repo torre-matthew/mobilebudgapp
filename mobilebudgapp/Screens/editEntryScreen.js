@@ -81,7 +81,9 @@ class EditEntryScreen extends Component {
                 arrayOfCategories={this.state.arrayOfCategories} 
                 addCategory={this.props.route.params.addCategory} 
                 billID={this.props.route.params.billID}
-                currentCategoryID={this.state.currentCategoryID} />
+                loggedInUserID={this.props.route.params.loggedInUserID}
+                currentCategoryID={this.state.currentCategoryID} 
+                currentMonthID={this.props.route.params.currentMonthID} />
               <EditEntryScreenOverLay 
                 hideDrawerAndOverLay={this.hideDrawerAndOverLay} 
                 show={this.state.showOverLay} />

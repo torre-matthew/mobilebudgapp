@@ -570,6 +570,7 @@ export default class MainPage extends Component {
         whatsBeingEdited: this.state.whatsBeingEdited,
         updateWrapperComponent: this.fetchData,
         loggedInUserID: this.state.loggedInUserID,
+        currentMonthID: this.state.currentMonthID,
         deleteExpense: this.deleteExpense,
         hideDrawerAndOverLayLogic: this.hideDrawerAndOverLayLogic,
         showDrawerAndOverLayLogic: this.showDrawerAndOverLayLogic,
