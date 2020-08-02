@@ -73,6 +73,16 @@ let getAfterSpendingAmount = (incomeID) => {
     });
 }
 
+let getCategoryTotalByMonth = (userID, monthID, categoryID) => {
+    return axios.get(URL + "api/calculateCategoryTotalsPerMonth", {
+      data: {
+          userID: userID,
+          monthID: monthID,
+          categoryID: categoryID
+        }
+    });
+}
+
 
 
 /////////////Post Methods////////////////////
@@ -217,6 +227,7 @@ export default {
     getUserByEmail: getUserByEmail,
     getAfterSpendingAmount: getAfterSpendingAmount,
     getPlaidAccessToken: getPlaidAccessToken,
+    getCategoryTotalByMonth: getCategoryTotalByMonth,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     updateExpensesOnUserRecord, updateExpensesOnUserRecord,
     updateIncomeOnUserRecord: updateIncomeOnUserRecord,
