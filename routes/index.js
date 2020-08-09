@@ -25,7 +25,7 @@ router.route("/getCurrentMonth").get(controllers.getCurrentMonth);
 router.route("/getUserByID/:userID").get(controllers.getUserByID);
 router.route("/getUserByEmail/:email").get(controllers.getUserByEmail);
 router.route("/getAfterSpendingAmount/:incomeID").get(controllers.getAfterSpendingAmount);
-router.route("/calculateCategoryTotalsPerMonth").get(controllers.calculateCategoryTotalsPerMonth);
+router.route("/calculateCategoryTotalsPerMonth/:userID/:monthID/:categoryID").get(controllers.calculateCategoryTotalsPerMonth);
 
 
 router.route("/deleteExpense").delete(controllers.deleteExpense);
