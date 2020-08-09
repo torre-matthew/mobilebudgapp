@@ -907,18 +907,12 @@ let calculateCategoryTotalsPerMonth = (req, res) => {
     let categoryTotal = 0;
 
     db.Expenses
-    .find({userID: req.body.userID, monthID: req.body.monthID, categoryID: req.body.categoryID})
+    .find({userID: req.params.userID, monthID: req.params.monthID, categoryID: req.params.categoryID})
     .then(expenses => {
         expenses.forEach(expenseRecord => {
             categoryTotal += parseFloat(expenseRecord.amountOfExpense)
         })
-        
-        console.log(req.params);
-
-        // console.log(req.params.userID);
-        // console.log(req.params.monthID);
-        // console.log(req.params.categoryID);
-        // console.log(categoryTotal.toFixed(2));
+        console.log(categoryTotal.toFixed(2));
     })
     .catch(err => console.log(err));
 }
