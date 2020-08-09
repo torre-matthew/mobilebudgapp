@@ -74,10 +74,10 @@ let getAfterSpendingAmount = (incomeID) => {
 }
 
 let getCategoryTotalByMonth = (userID, monthID, categoryID) => {
-    return axios.get(URL + "api/calculateCategoryTotalsPerMonth", {
-          userID: userID,
-          monthID: monthID,
-          categoryID: categoryID
+    return axios.get(URL + "api/calculateCategoryTotalsPerMonth/" + userID + "/" + monthID + "/" + categoryID, {
+      params:  { userID: userID,
+                monthID: monthID,
+                categoryID: categoryID}
     });
 }
 
