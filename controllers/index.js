@@ -912,9 +912,8 @@ let calculateCategoryTotalsPerMonth = (req, res) => {
         expenses.forEach(expenseRecord => {
             categoryTotal += parseFloat(expenseRecord.amountOfExpense)
         })
-        console.log('**************************************');
-        console.log(categoryTotal.toFixed(2));
-        console.log('**************************************');
+        
+        return categoryTotal.toFixed(2);
     })
     .catch(err => console.log(err));
 }

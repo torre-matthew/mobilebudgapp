@@ -11,7 +11,8 @@ class CategoryDisplay extends Component {
   state = {
     categoryIcon: Categories.categoryIconLogic(this.props.categoryName).icon,
     categoryIconColor: Categories.categoryIconLogic(this.props.categoryName).iconColor,
-    currentSelectedCategory: ""
+    currentSelectedCategory: "",
+    categoryTotal: ""
   };
 
   componentDidMount() {
