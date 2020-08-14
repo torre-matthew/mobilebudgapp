@@ -31,6 +31,11 @@ class EditEntryScreen extends Component {
         })
       .catch(err => console.log(err));
 
+
+      ApiMethods.getCategoryTotalByMonth(this.props.route.params.loggedInUserID, this.props.route.params.currentMonthID, this.props.route.params.billCategoryID)
+      .then(data => console.log("What the fuck, man!!!"))
+      .catch(err => console.log(err));
+
   }
 
   showDrawerAndOverLay = () => {
