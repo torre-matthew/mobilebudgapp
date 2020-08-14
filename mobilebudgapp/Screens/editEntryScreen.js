@@ -20,7 +20,8 @@ class EditEntryScreen extends Component {
     showOverLay: false,
     arrayOfCategories: [],
     currentCategory: this.props.route.params.billCategoryName,
-    currentCategoryID: this.props.route.params.billCategoryID 
+    currentCategoryID: this.props.route.params.billCategoryID,
+    categoryTotal: ""
   }
 
   componentDidMount(){
@@ -126,6 +127,13 @@ class EditEntryScreen extends Component {
                 onPress={() => {this.props.route.params.deleteExpense(this.props.route.params.billID)}}
                 style={style.button2_light_style}>
                 <Text style={{fontSize: 12, color: 'red', fontFamily: 'Laila-SemiBold', fontWeight: 'bold'}}> Delete </Text>
+              </TouchableOpacity>
+              </View>
+              <View style={{flex:1, position: 'relative', zIndex: 0, alignSelf: 'stretch'}}>
+              <TouchableOpacity
+                onPress={() => {this.props.route.params.deleteExpense(this.props.route.params.billID)}}
+                style={style.button2_light_style}>
+                <Text style={{fontSize: 12, color: 'red', fontFamily: 'Laila-SemiBold', fontWeight: 'bold'}}>  </Text>
               </TouchableOpacity>
               </View>
             </View>
