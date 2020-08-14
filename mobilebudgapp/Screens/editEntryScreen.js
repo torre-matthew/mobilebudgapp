@@ -31,13 +31,10 @@ class EditEntryScreen extends Component {
         this.setState({arrayOfCategories: arrayOfCategories.data})
         })
       .catch(err => console.log(err));
-
-
+      
       ApiMethods.getCategoryTotalByMonth(this.props.route.params.loggedInUserID, this.props.route.params.currentMonthID, this.props.route.params.billCategoryID)
-      .then(data => {this.setState({
-        categoryTotal: data.categoryTotal.toFixed(2)
-      })})
-      .catch(err => console.log(err));
+                            .then(data => {console.log(data)})
+                            .catch(err => console.log(err))  
 
   }
 

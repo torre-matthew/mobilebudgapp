@@ -914,7 +914,7 @@ let calculateCategoryTotalsPerMonth = (req, res) => {
         })
         
         let total = categoryTotal.toFixed(2);
-        return total;
+        res.json(total);
     })
     .catch(err => console.log(err));
 }
