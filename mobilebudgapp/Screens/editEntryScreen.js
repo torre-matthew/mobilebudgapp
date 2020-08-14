@@ -21,7 +21,7 @@ class EditEntryScreen extends Component {
     arrayOfCategories: [],
     currentCategory: this.props.route.params.billCategoryName,
     currentCategoryID: this.props.route.params.billCategoryID,
-    categoryTotal: ""
+    categoryTotal: "Total here"
   }
 
   componentDidMount(){
@@ -34,7 +34,9 @@ class EditEntryScreen extends Component {
 
 
       ApiMethods.getCategoryTotalByMonth(this.props.route.params.loggedInUserID, this.props.route.params.currentMonthID, this.props.route.params.billCategoryID)
-      .then(data => console.log("What the fuck, man!!!"))
+      .then(data => {this.setState({
+        categoryTotal: data.categoryTotal.toFixed(2)
+      })})
       .catch(err => console.log(err));
 
   }
@@ -133,7 +135,7 @@ class EditEntryScreen extends Component {
               <TouchableOpacity
                 onPress={() => {this.props.route.params.deleteExpense(this.props.route.params.billID)}}
                 style={style.button2_light_style}>
-                <Text style={{fontSize: 12, color: 'red', fontFamily: 'Laila-SemiBold', fontWeight: 'bold'}}>  </Text>
+                <Text style={{fontSize: 12, color: 'red', fontFamily: 'Laila-SemiBold', fontWeight: 'bold'}}> {this.state.categoryTotal} </Text>
               </TouchableOpacity>
               </View>
             </View>
