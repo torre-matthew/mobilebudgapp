@@ -17,9 +17,15 @@ class CategoryDisplay extends Component {
 
   componentDidMount() {
     this.checkCurrentCategory();
-    // this.setState({
-    //   categoryTotal: ApiMethods.getCategoryTotalByMonth(this.props.loggedInUserID, this.props.currentMonthID, this.props.categoryID) 
-    // });
+    ApiMethods.getCategoryTotalByMonth(this.props.loggedInUserID, this.props.currentMonthID, this.props.categoryID)
+                            .then(data => {
+                        
+                              this.setState({
+                              categoryTotal: data.data
+                            })
+                          
+                          })
+                            .catch(err => console.log(err));
   }
 
   checkCurrentCategory = () => {
@@ -42,7 +48,7 @@ class CategoryDisplay extends Component {
             </View>
             <View style={{flex: 1, flexGrow: 10, backgroundColor: '#F5F5F5', paddingTop: 10, paddingBottom: 10, borderTopRightRadius: 10, borderBottomRightRadius: 10, elevation: 5, backgroundColor: this.state.currentSelectedCategory ? this.state.categoryIconColor : '#F5F5F5'}}> 
               <Text style={{fontSize: 12, textAlign: 'left', fontFamily: 'Laila-SemiBold', color: this.state.currentSelectedCategory ? '#F5F5F5' : 'black'}}> {this.props.categoryName} </Text>
-              <Text style={{fontSize: 12, textAlign: 'left', fontFamily: 'Laila-SemiBold', color: this.state.currentSelectedCategory ? '#F5F5F5' : 'black'}}> {this.state.categoryTotal} </Text>
+              <Text style={{fontSize: 12, textAlign: 'left', fontFamily: 'Laila-SemiBold', color: this.state.currentSelectedCategory ? '#F5F5F5' : 'black'}}> Total ${this.state.categoryTotal} </Text>
             </View>
           </View>
       );
