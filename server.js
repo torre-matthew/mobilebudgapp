@@ -35,8 +35,8 @@ require('dotenv').config();
 
 let databaseUri = "mongodb://localhost/budgetAppDB"; 
 
-if (process.env.DB_URI) {
-  mongoose.connect(process.env.DB_URI);
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
 }
 else {
   mongoose.connect(databaseUri);
