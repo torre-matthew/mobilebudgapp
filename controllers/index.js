@@ -472,6 +472,7 @@ let getMonthData = (req, res) => {
     db.Month
     .find({})
     .sort({year: 1})
+    .sort({monthAsNumber: 1})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
