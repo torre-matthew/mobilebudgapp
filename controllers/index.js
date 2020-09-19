@@ -471,6 +471,7 @@ let fetchData = async (req, res) => {
 let getMonthData = (req, res) => {
     db.Month
     .find({})
+    .sort({monthAsNumber: 1, year: 1})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }

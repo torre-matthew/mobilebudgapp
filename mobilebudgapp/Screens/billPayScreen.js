@@ -9,6 +9,7 @@ import MainScreen from "./mainScreen";
 import BackGroundImage from "../Styles/images/app background 3.png";
 import AppFooter from '../Components/appfooter';
 import AppHeader from '../Components/appheader';
+import MonthlyBillWrapper from '../Components/PayBills/monthlyBillWrapper';
 
 class BillPayScreen extends Component {
 
@@ -29,11 +30,7 @@ class BillPayScreen extends Component {
             photoURL={this.state.photoUrl}
             navigation={this.props.navigation}
             signOut={this.props.signOut} />
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', margin: 25}}>
-            <Text style={{color: '#474198', fontSize: 20}}>
-              Bill Pay Page
-            </Text>
-        </View>
+            <MonthlyBillWrapper />
         <AppFooter 
               navigation={this.props.navigation} 
               screen={"bills"} />

@@ -56,5 +56,3 @@ class CategoryDisplay extends Component {
   }
 
   export default CategoryDisplay;
-
-  // mongodb://heroku_jx4v8z1h:prp2sdigr3957mfmcb8frd1hda@ds063439.mlab.com:63439/heroku_jx4v8z1h
