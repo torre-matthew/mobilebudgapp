@@ -24,7 +24,7 @@ class MainScreen extends Component {
     } else {
         return (
           <Container> 
-            <View style={{ position: 'relative', zIndex: 0, height: '92%'}}>
+            {/* <View style={{ position: 'relative', zIndex: 0, height: '92%'}}>
             <MainPage 
               loggedInUsersEmail={this.props.route.params.email}
               currentMonth={this.props.route.params.currentMonth}
@@ -34,8 +34,8 @@ class MainScreen extends Component {
               photoURL={this.props.route.params.photoURL}
               signOut={this.props.route.params.signOut}
             />
-            </View>
-              {/* <MainPage 
+            </View> */}
+              <MainPage 
               loggedInUsersEmail={"torre.pk.matthew@gmail.com"}
               currentMonth={"May"}
               currentYear={"2020"}
@@ -43,7 +43,7 @@ class MainScreen extends Component {
               navigation={navigation}
               photoURL={"https://lh3.googleusercontent.com/a-/AOh14GiYRuLnlpz-uypUOvbDG_uVR56n6DxLoC5Ubb-Wcg"}
               // signOut={this.props.route.params.signOut}
-              /> */}
+              />
               <AppFooter 
               navigation={this.props.navigation} 
               screen={"budget"}

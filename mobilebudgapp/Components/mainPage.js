@@ -5,8 +5,10 @@ import SummaryWrapper from './summaryWrapper';
 import UnplannedBillWrapper from './unplannedBillWrapper';
 import PlannedBillWrapper from './plannedBillWrapper';
 import MonthPickerModal from './monthPickerModal';
+import SlideOutDrawer from './slideOutDrawer';
 import QuickActionDrawer2 from "../Components/quickActionDrawer2";
 import OverLay from "../Components/overLay";
+import CategorySlideOutOverlay from "../Components/overlays/categorySlideOutOverlay";
 import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import { thisExpression } from '@babel/types';
 import AppFooter from './appfooter';
@@ -40,6 +42,7 @@ export default class MainPage extends Component {
     currentIncomeFromDB: [],
     afterSpendingData: [],
     monthData: [],
+    arrayOfCategories: [],
     currentMonthID: this.props.currentMonthID,
     currentMonth: this.props.currentMonth,
     currentYear: this.props.currentYear,
@@ -59,7 +62,9 @@ export default class MainPage extends Component {
     showSpinner: true,
     fontsLoaded: false,
     showDrawer: false,
+    showCategories: false,
     showOverLay: false,
+    showCategorySlideOutOverlay: false,
     selectedBillID: "",
     selectedBillName: "",
     selectedBillAmount: "",
@@ -74,7 +79,7 @@ export default class MainPage extends Component {
     selectedBillIsPaid: "",
     selectedBillIsPlanned: "",
     whatsBeingEdited: "",
-    fontSize: 0
+    fontSize: 0,
   };
 
   componentDidMount(){
@@ -397,11 +402,34 @@ export default class MainPage extends Component {
           whatsBeingEdited: whatsBeingEdited })
   }
 
-  hideDrawerAndOverLayLogic = () => {
+  showCategoriesDrawer = () => {
+    this.getAllCategories();
     this.setState({
-      showDrawer: false,
-      showOverLay: false,
+      showCategories: true,
+      showCategorySlideOutOverlay: true
     })
+  }
+
+  hideDrawerAndOverLayLogic = (overLay) => {
+    switch (overLay) {
+      case "quickActionDrawer":
+        this.setState({
+          showDrawer: false,
+          showOverLay: false,
+        })
+          break;
+      case "categorySlideOut":
+        this.setState({
+          showCategories: false,
+          showCategorySlideOutOverlay: false,
+        })
+    }
+    
+    
+    
+    
+    
+    
   }
 
   selectFundingSource = (fundingSourceID) => {
@@ -438,7 +466,7 @@ export default class MainPage extends Component {
           {text: 'Ok', onPress: () => {
             ApiMethods.moveToNextMonth(this.state.selectedBillID).then(data => {return data}).catch(err => console.log(err));
             this.fetchData();
-            this.hideDrawerAndOverLayLogic();
+            this.hideDrawerAndOverLayLogic("quickActionDrawer");
           }, 
         },
           ],
@@ -455,7 +483,7 @@ export default class MainPage extends Component {
           {text: 'Ok', onPress: () => {
             ApiMethods.splitEntry(this.state.selectedBillID).then(data => {return data}).catch(err => console.log(err));
             this.fetchData();
-            this.hideDrawerAndOverLayLogic();
+            this.hideDrawerAndOverLayLogic("quickActionDrawer");
           }, 
         },
           ],
@@ -477,7 +505,7 @@ export default class MainPage extends Component {
                       alert('Sorry, there was a problem. Please try again');
                   } else {
                       this.fetchData();
-                      this.hideDrawerAndOverLayLogic();
+                      this.hideDrawerAndOverLayLogic("quickActionDrawer");
                   }
                   })
               .catch(err => console.log(err));
@@ -496,7 +524,7 @@ export default class MainPage extends Component {
             .then(data => {
               this.onRefresh();
               this.fetchData();
-              this.hideDrawerAndOverLayLogic();
+              this.hideDrawerAndOverLayLogic("quickActionDrawer");
             })
             .catch(err => console.log(err));
             break;
@@ -505,7 +533,7 @@ export default class MainPage extends Component {
             .then(data => {
               this.onRefresh();
               this.fetchData();
-              this.hideDrawerAndOverLayLogic();
+              this.hideDrawerAndOverLayLogic("quickActionDrawer");
             })
             .catch(err => console.log(err));
       }
@@ -533,7 +561,7 @@ export default class MainPage extends Component {
               .catch(err => console.log(err))
             
               this.fetchData();
-              this.hideDrawerAndOverLayLogic();
+              this.hideDrawerAndOverLayLogic("quickActionDrawer");
               this.props.navigation.navigate('Main');
         } else {
           alert('You have successfully deleted ' + this.state.selectedBillName);
@@ -545,7 +573,7 @@ export default class MainPage extends Component {
           .catch(err => console.log(err));
   
           this.fetchData();
-          this.hideDrawerAndOverLayLogic();
+          this.hideDrawerAndOverLayLogic("quickActionDrawer");
           this.props.navigation.navigate('Main');
         }
       })
@@ -591,8 +619,7 @@ export default class MainPage extends Component {
             ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
             .then(data => {
               this.onRefresh();
-              this.props.navigation.navigate('Main');
-              this.hideDrawerAndOverLayLogic();
+              this.hideDrawerAndOverLayLogic("categorySlideOut");
               })
             .catch(err => console.log(err));
           }, 
@@ -600,6 +627,14 @@ export default class MainPage extends Component {
           ],
         {cancelable: false},
       );
+    }
+
+    getAllCategories = () => {
+      ApiMethods.getAllCategories()
+      .then(arrayOfCategories => {
+        this.setState({arrayOfCategories: arrayOfCategories.data})
+        })
+      .catch(err => console.log(err));
     }
 
   render() {
@@ -700,7 +735,22 @@ export default class MainPage extends Component {
             markAsUnplanned={this.markAsUnplanned}
             markAsPaid={this.markAsPaid}
             goToEditScreen={this.goToEditScreen}
-            fontSize={this.state.fontSize} />
+            fontSize={this.state.fontSize} 
+            showCategoriesDrawer={this.showCategoriesDrawer}
+            />
+          <CategorySlideOutOverlay 
+            show={this.state.showCategorySlideOutOverlay}
+            hideDrawerAndOverLayLogic={this.hideDrawerAndOverLayLogic} />
+          <SlideOutDrawer 
+            show={this.state.showCategories}
+            arrayOfCategories={this.state.arrayOfCategories} 
+            addCategory={this.addCategory} 
+            billID={this.state.selectedBillID}
+            loggedInUserID={this.state.loggedInUserID}
+            currentCategoryID={this.state.selectedBillCategoryID} 
+            currentMonthID={this.state.currentMonthID} 
+            />
+
           </ImageBackground>
         </Container>
     );

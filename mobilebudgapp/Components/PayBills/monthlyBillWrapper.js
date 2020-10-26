@@ -24,7 +24,6 @@ class MonthlyBillWrapper extends Component {
               </View> 
                 <BillDisplay />
                 <BillDisplay />
-                <BillDisplay />
           </Content>
       );
     }

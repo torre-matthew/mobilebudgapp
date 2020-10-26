@@ -40,26 +40,6 @@ class QuickActionDrawer extends Component {
   state = {
   }
 
-  componentDidMount() {
-  }
-
-  // animateFontSize = () => {
-    
-  //   let initialSize = this.state.menuItemFontSize;
-  //   let finalSize = 12;
-  //   let size = setInterval(() => {
-  //       if (initialSize < finalSize) {
-  //         initialSize++
-  //         this.setState({menuItemFontSize: initialSize})
-  //         return this.state.menuItemFontSize;
-  //       } else {
-  //         clearInterval(size);
-  //       }
-  //     }
-  //     , 10);
-
-  // }
-
   render(){
       return (
         <Container style={this.props.show ? qadStyle.container_show : qadStyle.container_hide}>
@@ -93,6 +73,12 @@ class QuickActionDrawer extends Component {
                   <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Choose funding source </Text>
                 </View>
                 </TouchableHighlight>
+                <TouchableHighlight onPress={() => {this.props.showCategoriesDrawer();}}>
+                  <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
+                    <FontAwesome5 name={"arrow-circle-right"} size={20} color={'#6E6E6E'} />
+                    <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Choose Category </Text>
+                  </View>
+                </TouchableHighlight>
                 <TouchableHighlight onPress={() => {this.props.moveToNextMonth();}}>
                   <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
                     <FontAwesome5 name={"arrow-circle-right"} size={20} color={'#6E6E6E'} />
@@ -104,6 +90,7 @@ class QuickActionDrawer extends Component {
                     <FontAwesome5 name={"cut"} size={20} color={'#6E6E6E'} />
                     <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Split </Text>
                   </View>
+                  
                 </TouchableHighlight>
 
             {this.props.billIsPlanned

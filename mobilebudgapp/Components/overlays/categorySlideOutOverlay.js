@@ -1,7 +1,5 @@
 import React, { Component} from "react";
 import { View, StyleSheet, TouchableOpacity, Picker, Text } from 'react-native';
-import BackGroundImage from "../Styles/images/turquise indigo gradient.png";
-import style from "../Styles/Styles";
 
 const qadStyle = StyleSheet.create({
 
@@ -20,7 +18,7 @@ container_hide: {
 },
 container_show: {
   position: 'absolute',
-  zIndex: 1,
+  zIndex: 3,
   opacity: 0.6, 
   width: '100%', 
   height: '100%', 
@@ -34,7 +32,7 @@ container_show: {
 
 })
 
-class OverLay extends Component {
+class CategorySlideOutOverLay extends Component {
 
   state = {
   }
@@ -42,9 +40,9 @@ class OverLay extends Component {
 
   render(){
       return (
-        <View style={this.props.show ? qadStyle.container_show : qadStyle.container_hide} onTouchEnd={() => {this.props.hideDrawerAndOverLayLogic("quickActionDrawer")}} />
+        <View style={this.props.show ? qadStyle.container_show : qadStyle.container_hide} onTouchEnd={() => {this.props.hideDrawerAndOverLayLogic("categorySlideOut")}} />
       );
     }
   }
 
-  export default OverLay;
+  export default CategorySlideOutOverLay;
