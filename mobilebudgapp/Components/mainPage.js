@@ -620,6 +620,7 @@ export default class MainPage extends Component {
             .then(data => {
               this.onRefresh();
               this.hideDrawerAndOverLayLogic("categorySlideOut");
+              this.hideDrawerAndOverLayLogic("quickActionDrawer");
               })
             .catch(err => console.log(err));
           }, 

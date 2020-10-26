@@ -18,18 +18,9 @@ class EditEntryScreen extends Component {
     whatsBeingEdited: this.props.route.params.whatsBeingEdited,
     showDrawer: false,
     showOverLay: false,
-    arrayOfCategories: [],
-    currentCategory: this.props.route.params.billCategoryName,
-    currentCategoryID: this.props.route.params.billCategoryID,
   }
 
   componentDidMount(){
-    
-    ApiMethods.getAllCategories()
-      .then(arrayOfCategories => {
-        this.setState({arrayOfCategories: arrayOfCategories.data})
-        })
-      .catch(err => console.log(err));
   }
 
   showDrawerAndOverLay = () => {
@@ -37,26 +28,6 @@ class EditEntryScreen extends Component {
       showDrawer: true,
       showOverLay: true
     })
-  }
-
-  addCategory = (expenseID, categoryID, categoryName) => {
-    Alert.alert(
-      'Add Category?',
-      '',
-      [ 
-        {text: 'Nevermind', style: 'cancel'},
-        {text: 'Ok', onPress: () => {
-          ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
-          .then(data => {
-            this.hideDrawerAndOverLay();
-            this.props.route.params.fetchData();
-            })
-          .catch(err => console.log(err));
-        }, 
-      },
-        ],
-      {cancelable: false},
-    );
   }
 
   hideDrawerAndOverLay = () => {
@@ -75,17 +46,6 @@ class EditEntryScreen extends Component {
         <ImageBackground
             source={BackGroundImage}
             style={{width: '100%', height: '100%'}} >
-              <SlideOutDrawer 
-                show={this.state.showDrawer}
-                arrayOfCategories={this.state.arrayOfCategories} 
-                addCategory={this.props.route.params.addCategory} 
-                billID={this.props.route.params.billID}
-                loggedInUserID={this.props.route.params.loggedInUserID}
-                currentCategoryID={this.state.currentCategoryID} 
-                currentMonthID={this.props.route.params.currentMonthID} />
-              <EditEntryScreenOverLay 
-                hideDrawerAndOverLay={this.hideDrawerAndOverLay} 
-                show={this.state.showOverLay} />
             {this.state.whatsBeingEdited === "bill"
             ?
             //Editing Bill/Expense
@@ -107,14 +67,6 @@ class EditEntryScreen extends Component {
                 loggedInUserID={this.props.route.params.loggedInUserID}
                 isThisPlanned={this.props.route.params.isThisPlanned} 
               />
-              <View style={{position: 'relative', zIndex: 0}}>
-              <TouchableOpacity
-                onPress={this.showDrawerAndOverLay}
-                style={style.button2_light_style} >
-                <FontAwesome5 name={Categories.categoryIconLogic(this.state.currentCategory).icon} size={16} color={Categories.categoryIconLogic(this.state.currentCategory).iconColor} />
-                <Text style={{fontSize: 12, fontFamily: 'Laila-SemiBold', fontWeight: 'bold', color: Categories.categoryIconLogic(this.state.currentCategory).iconColor}}> Category{': ' + this.state.currentCategory} </Text>
-              </TouchableOpacity>
-              </View>
               <View style={{flex:1, position: 'relative', zIndex: 0, alignSelf: 'stretch'}}>
               <TouchableOpacity
                 onPress={() => {this.props.route.params.deleteExpense(this.props.route.params.billID)}}
