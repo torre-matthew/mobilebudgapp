@@ -70,9 +70,9 @@ class AppFooter extends Component {
           <FontAwesome5 name="balance-scale" size={25} color="#F5F5F5" />
           <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Budget </Text>
           </View>
-          <View onTouchEnd={() => {this.props.navigation.navigate('Transactions')}} style={{flex:1, alignItems: 'center', opacity: this.state.spendingClicked ? 1.0 : 0.7}}>
+          <View onTouchEnd={() => {this.props.navigation.navigate('Add Entry')}} style={{flex:1, alignItems: 'center', opacity: this.state.spendingClicked ? 1.0 : 0.7}}>
             <FontAwesome5 name="list-alt" size={25} color="#F5F5F5" />
-            <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Spending </Text>
+            <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> ADD ENTRY </Text>
           </View>
           <View onTouchEnd={() => {this.props.navigation.navigate('Bill Pay')}} style={{flex:1, alignItems: 'center', opacity: this.state.billsClicked ? 1.0 : 0.7}}>
             <FontAwesome5 name="file-invoice" size={25} color="#F5F5F5" />

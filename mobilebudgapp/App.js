@@ -9,6 +9,7 @@ import LoginScreen from './Screens/loginScreen';
 import CreateNewBudgetScreen from './Screens/createNewBudgetScreen';
 import SettingsScreen from './Screens/settingsScreen';
 import EditEntryScreen from './Screens/editEntryScreen';
+import AddEntryScreen from './Screens/addEntryScreen';
 import SelectFundingSourceScreen from './Screens/selectFundingSourceScreen';
 import TransactionsScreen from './Screens/transactionsScreen';
 import BillPayScreen from './Screens/billPayScreen';
@@ -24,10 +25,10 @@ function App() {
           headerShown: false
         }}
       >
-      {/* <Stack.Screen
+      <Stack.Screen
           name="Login"
           component={LoginScreen}
-        /> */}
+        />
         <Stack.Screen
           name="Main"
           component={MainScreen}
@@ -43,6 +44,10 @@ function App() {
         <Stack.Screen
           name="Edit Entry"
           component={EditEntryScreen}
+        />
+        <Stack.Screen
+          name="Add Entry"
+          component={AddEntryScreen}
         />
         <Stack.Screen
           name="Select Funding Source"

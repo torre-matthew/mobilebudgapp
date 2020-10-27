@@ -23,7 +23,7 @@ container_show: {
   width: '100%', 
   height: '100%', 
   alignSelf: 'flex-end',
-  marginTop: '5%',
+  marginTop: '14%',
   marginRight: 10, 
   backgroundColor: 'black',
   borderBottomLeftRadius: 10, 

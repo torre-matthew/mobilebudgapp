@@ -7,7 +7,7 @@ import CategoryDisplay from "./categoryDisplay";
 const qadStyle = StyleSheet.create({
 
 container_hide: {
-  position: 'relative',
+  position: 'absolute',
   zIndex: 0,
   opacity: 0, 
   width: '0%', 
@@ -19,13 +19,14 @@ container_hide: {
   borderBottomRightRadius: 0
 },
 container_show: {
-  position: 'relative',
+  position: 'absolute',
   zIndex: 4,
   opacity: 1, 
+  marginTop: '14%',
   width: '60%', 
-  height: '90%', 
+  height: '93%', 
   marginLeft: '40%',
-  backgroundColor: '#448EB3',
+  backgroundColor: '#f8f8ff',
   borderBottomLeftRadius: 10,
   borderTopLeftRadius: 10, 
   borderBottomRightRadius: 10
