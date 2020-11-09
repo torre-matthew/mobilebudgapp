@@ -211,7 +211,6 @@ export default class MainPage extends Component {
   }
 
   handleIncomeName = text => {
-    
     this.setState({
       income_name: text
     });

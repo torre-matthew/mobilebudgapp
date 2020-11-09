@@ -131,8 +131,8 @@ const styles = StyleSheet.create({
 
 //main turquious cta button
     button_style: {
-        backgroundColor: '#40DBCE',
-        color: '#4A0784',
+        backgroundColor: '#4A4A4A',
+        color: '#F5F5F5',
         borderRadius: 10,
         borderStyle: 'solid',
         width: '50%',
@@ -197,6 +197,20 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginBottom: 15
 
+    },
+
+    // big circular buttons
+    button_circle_big: {
+        backgroundColor: '#F5F5F5',
+        borderRadius: 10,
+        width: '85%',
+        alignSelf: 'center',
+        alignItems: 'center',
+        padding: 10,
+        elevation: 5,
+        shadowColor: '#4A0784',
+        marginTop: 15,
+        marginBottom: 15
     },
 
     button2_cta_style: {

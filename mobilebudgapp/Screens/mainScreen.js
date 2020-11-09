@@ -45,7 +45,15 @@ class MainScreen extends Component {
               // signOut={this.props.route.params.signOut}
               /> */}
               <AppFooter 
-              navigation={this.props.navigation} 
+              navigation={this.props.navigation}
+              loggedInUsersEmail={this.props.route.params.email} 
+              handleIncomeAmount={MainPage.handleIncomeAmount}
+              handleIncomeDate={MainPage.handleIncomeDate}
+              handleIncomeName={MainPage.handleIncomeName}
+              handleAddIncomeFormSubmit={MainPage.handleAddIncomeFormSubmit}
+              currentMonth={this.props.route.params.currentMonth}
+              currentYear={this.props.route.params.currentYear}
+              currentMonthID={this.props.route.params.currentMonthID}
               screen={"budget"}
               />
           </Container>

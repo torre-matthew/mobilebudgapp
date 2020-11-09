@@ -3,7 +3,7 @@ import { ActivityIndicator, Dimensions, TouchableOpacity, Alert } from 'react-na
 import { Container, Header, Content, Card, CardItem, Text, Body, View } from "native-base";
 import TotalCashFlowDisplay from './totalCashFlowDisplay';
 import IncomeDisplay from './incomeDisplay';
-import AddEntryModal from "./addIncomeModal";
+// import AddEntryModal from "./addIncomeModal";
 import MonthPickerModal from "./monthPickerModal";
 import SummaryWrapperEmptyState from "./summaryWrapperEmptyState";
 import IncomeSummarySwitcher from "./incomeSummarySwitcher";
@@ -62,7 +62,7 @@ class SummaryWrapper extends Component {
                     />
                     )
                 }
-                    <AddEntryModal
+                    {/* <AddEntryModal
                     handleIncomeAmount={this.props.handleIncomeAmount}
                     handleIncomeDate={this.props.handleIncomeDate}
                     handleIncomeName={this.props.handleIncomeName}
@@ -71,7 +71,7 @@ class SummaryWrapper extends Component {
                     loggedInUserID={this.props.loggedInUserID}
                     fetchData={this.props.fetchData}
                     currentMonthID={this.props.currentMonthID}
-                    />
+                    /> */}
                     {/* <SummaryWrapperEmptyState /> */}
                 </Content>
         );

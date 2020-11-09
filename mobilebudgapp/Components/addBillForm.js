@@ -6,30 +6,28 @@ import style from "../Styles/Styles";
 
 function AddBillFormDisplay (props) {
     return (
-      <Container>
-            <Content>
-                <View style={{marginTop: 55}}>
-                    <Form id="billForm">
-                        <Item>
-                            {/* <Input placeholder='Due Date' onChangeText={props.handleDueDate} /> */}
-                            <DatePicker 
-                                handleDueDate={props.handleDueDate}
-                            />
-                        </Item>
-                        <Item>
-                            <Input placeholder='Bill/Expense' onChangeText={props.handleBillName} />
-                        </Item>
-                        <Item>
-                            <Input keyboardType='decimal-pad' placeholder="Amount" onChangeText={props.handleBillAmount} />
-                        </Item>
-                        <View style={{ alignItems: 'center' }}>
-                            <Button style={style.button_style} onPressIn={props.handleFormSubmit} onPress={props.closeModalOnSubmit}>
-                                <Text>Submit</Text>
-                            </Button>
-                        </View>
-                    </Form>
-                </View>
-            </Content>
+      <Container style={{flex: 0, width: '95%', marginLeft: '1%'}}>
+        <Content>
+            <View>
+                <Form id="billForm">
+                    <Item>
+                        <DatePicker 
+                            handleDueDate={props.handleDueDate} />
+                    </Item>
+                    <Item>
+                        <Input placeholder='Bill/Expense' onChangeText={props.handleBillName} />
+                    </Item>
+                    <Item>
+                        <Input keyboardType='decimal-pad' placeholder="Amount" onChangeText={props.handleBillAmount} />
+                    </Item>
+                    <View style={{ alignItems: 'center' }}>
+                        <Button style={style.button_style} onPressIn={props.handleFormSubmit} onPress={props.closeModalOnSubmit}>
+                            <Text style={{color: style.button_style.color, fontFamily: 'Laila-SemiBold'}}>Submit</Text>
+                        </Button>
+                    </View>
+                </Form>
+            </View>
+        </Content>
       </Container>
     );
 }

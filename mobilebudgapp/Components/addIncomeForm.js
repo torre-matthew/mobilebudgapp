@@ -6,9 +6,9 @@ import style from "../Styles/Styles";
 
 function AddIncomeFormDisplay (props) {
     return (
-      <Container>
+      <Container style={{flex: 0, width: '95%', marginLeft: '1%'}}>
             <Content>
-                <View style={{marginTop: 55}}>
+                <View>
                     <Form id="billForm">
                         <Item>
                             <Input placeholder='Income' onChangeText={props.handleIncomeName} />
@@ -19,9 +19,9 @@ function AddIncomeFormDisplay (props) {
                         <Item>
                             <Input keyboardType='numeric' placeholder="Amount" onChangeText={props.handleIncomeAmount} />
                         </Item>
-                        <View style={{ alignItems: 'center' }}>
+                        <View>
                             <Button style={style.button_style} onPressIn={props.handleAddIncomeFormSubmit} onPress={props.closeModalOnSubmit}>
-                                <Text>Submit</Text>
+                                <Text style={{color: style.button_style.color, fontFamily: 'Laila-SemiBold'}}>Submit</Text>
                             </Button>
                         </View>
                     </Form>

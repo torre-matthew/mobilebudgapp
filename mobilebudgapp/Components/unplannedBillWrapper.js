@@ -2,7 +2,7 @@ import React, { Component} from "react";
 import { ActivityIndicator, View, ScrollView } from 'react-native';
 import UnplannedBillDisplay from './billDisplay';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
-import AddBillModal from "./addBillModal";
+// import AddBillModal from "./addBillModal";
 import style from "../Styles/Styles";
 import EmptyStateDisplay from "./unplannedBillWrapperEmptyState";
 import BillSwitcher from "./billSwitcher";
@@ -62,7 +62,7 @@ class UnplannedBillWrapper extends Component {
             )
           }
             {/* <EmptyStateDisplay /> */}
-            <AddBillModal
+            {/* <AddBillModal
               handleBillAmount={this.props.handleBillAmount}
               handleDueDate={this.props.handleDueDate}
               handleBillName={this.props.handleBillName}
@@ -71,7 +71,7 @@ class UnplannedBillWrapper extends Component {
               getUnPlannedExpenseDataFromDB={this.props.getUnPlannedExpenseDataFromDB}
               updateWrapperComponent={this.updateUnplannedBillWrapperComponent}
               updateExpensesOnUserRecord={this.props.updateExpensesOnUserRecord}
-            />
+            /> */}
           </Content>
       );
     }
