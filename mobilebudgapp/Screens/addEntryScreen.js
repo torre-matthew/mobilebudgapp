@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
 import { FontAwesome5 } from '@expo/vector-icons';
 import style from "../Styles/Styles";
@@ -7,7 +7,6 @@ import ApiMethods from '../utilities/apiMethods';
 import MonthPickerModal2 from '../Components/monthPickerModal2';
 import AddIncomeForm from "../Components/addIncomeForm";
 import AddBillForm from "../Components/addBillForm";
-import BackGroundImage from "../Styles/images/app background 2.png";
 import EditEntryScreen from "./editEntryScreen";
 
 
@@ -185,36 +184,28 @@ class AddEntryScreen extends Component {
 
     return (
       <Container style={{position: 'relative'}}>
-        <ImageBackground
-            source={BackGroundImage}
-            style={{width: '100%', height: '100%'}} >
             <View style={{position: 'relative', alignSelf: 'center', marginTop: '15%'}}>
-              <Text style={{fontSize: 20, fontFamily: 'Laila-SemiBold'}}>
-                Add new
+              <Text style={{fontSize: 22, fontFamily: 'Laila-SemiBold'}}>
+                Add new 
               </Text> 
             </View>
-            <View style={{height: '10%', marginTop: 15, flexDirection: 'row'}}>
+            <View style={{height: '10%', flexDirection: 'row'}}>
               <View style={{flexGrow: 5}}>
                 <TouchableOpacity
                   onPress={() => {this.setState({showIncomeForm: true, showBillExpenseForm: false})}}
                   style={this.state.showIncomeForm ? addEntryScreenStyles.income_button_active : addEntryScreenStyles.income_button_inactive}>
-                    <Text style={{fontSize: 15, fontFamily: 'Laila-SemiBold', color: this.state.showIncomeForm ? '#F5F5F5' : '#40DBCE'}}> Income </Text>
+                    <Text style={{fontSize: 18, fontFamily: 'Laila-SemiBold', color: this.state.showIncomeForm ? '#F5F5F5' : '#40DBCE'}}> Income </Text>
                 </TouchableOpacity>
               </View>
-              <View style={{flexGrow: 0.125, marginTop: '5%'}}>
-              <Text style={{fontSize: 20, fontFamily: 'Laila-SemiBold'}}>
-                or
-              </Text> 
-            </View>
               <View style={{flexGrow: 4}}>
                 <TouchableOpacity
                   onPress={() => {this.setState({showBillExpenseForm: true, showIncomeForm: false})}}
                   style={this.state.showBillExpenseForm ? addEntryScreenStyles.billExpense_button_active : addEntryScreenStyles.billExpense_button_inactive}>
-                    <Text style={{fontSize: 15, fontFamily: 'Laila-SemiBold', color: this.state.showBillExpenseForm ? '#F5F5F5' : 'red'}}> Bill/Expense </Text>
+                    <Text style={{fontSize: 18, fontFamily: 'Laila-SemiBold', color: this.state.showBillExpenseForm ? '#F5F5F5' : 'red'}}> Bill/Expense </Text>
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={{marginBottom: 25, marginTop: 15}}>
+            <View style={{marginBottom: 25}}>
               <MonthPickerModal2 
                 monthData={this.state.monthData} 
                 currentMonth={this.state.month}
@@ -222,7 +213,7 @@ class AddEntryScreen extends Component {
                 currentMonthID={this.state.monthID}
                 selectNewMonth={this.selectNewMonth}
                 fetchData={this.fetchData} />
-              </View>
+            </View>
             {
               this.state.showIncomeForm 
               ?
@@ -250,7 +241,6 @@ class AddEntryScreen extends Component {
               :
               <Text />           
             }
-        </ImageBackground> 
       </Container>
       
     );

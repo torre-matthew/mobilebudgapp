@@ -20,10 +20,10 @@ class MonthlyBillWrapper extends Component {
       return (
           <Content padder style={ style.unplanned_section }>
               <View style={{marginTop: 6, marginBottom: 1, marginLeft: 7}}> 
-                <Text style={{fontSize: 15, color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> This month's bills </Text>
+                <Text style={{fontSize: 25, color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> Coming Soon. Stay Tuned!! </Text>
               </View> 
-                <BillDisplay />
-                <BillDisplay />
+                {/* <BillDisplay />
+                <BillDisplay /> */}
           </Content>
       );
     }

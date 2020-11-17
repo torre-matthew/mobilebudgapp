@@ -5,7 +5,7 @@ import LoginScreenStyles from "../Styles/loginSreenStyles";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 import MainScreen from "./mainScreen";
-import BackGroundImage from "../Styles/images/app background 2.png";
+import BackGroundImage from "../Styles/images/whiteWall.png";
 
 class CreateNewBudgetScreen extends Component {
 
@@ -33,10 +33,10 @@ copyPreviousMonth = () => {
             source={BackGroundImage}
             style={{width: '100%', height: '100%'}} > 
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', margin: 25}}>
-            <Text style={{color: "#40DBCE", fontSize: 22, fontFamily: 'Laila-SemiBold'}}>
+            <Text style={{color: "#40DBCE", fontSize: 20, fontFamily: 'Laila-SemiBold'}}>
               Hey there, ready to start planning
             </Text>
-            <Text style={{color: "#40DBCE", fontSize: 22, fontFamily: 'Laila-SemiBold'}}>
+            <Text style={{color: "#40DBCE", fontSize: 20, fontFamily: 'Laila-SemiBold'}}>
               {this.props.route.params.targetMonthName + "'s budget?"}
             </Text>
             <Text style={{color: "#40DBCE", fontSize: 15, marginTop: 20, fontFamily: 'Laila-SemiBold'}}>

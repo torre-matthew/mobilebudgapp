@@ -7,6 +7,7 @@ import ApiMethods from '../../utilities/apiMethods';
 import Categories from '../../utilities/categories';
 import QuickActionDrawer from "../quickActionDrawer";
 import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 
 
@@ -116,27 +117,26 @@ class BillDisplay extends Component {
 }
   render () {
       return (
-        <View>
-            <View style={{position: 'relative', zIndex: 0}}>
-              <View  style={{ flex: 1, alignSelf: 'stretch', marginTop: 40 }}>
-                <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f8f8ff', paddingTop: 10, paddingBottom: 5, paddingRight: 5}}> 
+        
+          <View style={{flex: 1, flexDirection: 'row', marginTop: 20}}>
+            <View style={{ flex: 1, flexGrow: 1, justifyContent: 'center', backgroundColor: '#f8f8ff', paddingLeft: 10}}> 
+            <FontAwesome name="square-o" size={30} color="black" />
+            </View>
+            <View style={{flex: 1, flexGrow: 8}}>
+              <View  style={{ flex: 1, alignSelf: 'stretch'}}>
+                <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f8f8ff'}}> 
+                  <FontAwesome5 name={this.state.categoryIcon} size={20} color={this.state.categoryIconColor} />
                   <Text style={{fontSize: 20, fontFamily: "Laila-SemiBold"}}> Bill name here </Text>
                 </View>
               </View>
-              <View  style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row'}}>
-                <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff', flexGrow: 2, paddingTop: 10, paddingBottom: 5, borderTopRightRadius: 15}}> 
+              <View  style={{ flex: 1, alignSelf: 'stretch'}}>
+                <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff'}}> 
                   <Text style={{fontSize: 20, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${"55.98"} </Text>
                 </View>
               </View>
-              <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor}}>
-                <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#f8f8ff', flexGrow: 0.55, paddingLeft: 10, paddingTop: 10, paddingBottom: 5, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor }}> 
-                  <FontAwesome5 name={this.state.categoryIcon} size={15} color={this.state.categoryIconColor} />
-                </View>
-                <View style={{ flex: 1, alignItems: 'center', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
+              <View style={{ flex: 1, alignSelf: 'center', alignItems: 'center', flexDirection: 'row', backgroundColor: '#f8f8ff', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor}}>
+                <View style={{ flex: 1, alignItems: 'center'}}> 
                   <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold"}}> Due: {"12/15/19"} </Text>
-                </View>
-                <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 1, backgroundColor: this.state.colorIfPaid, paddingTop: 1, paddingBottom: 5, paddingLeft: 5, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
-                  <Text style={{color: this.state.textColorIfPaid, fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.state.paidDisplayText} </Text>
                 </View>
               </View>
               {this.state.showDrawer
@@ -176,7 +176,7 @@ class BillDisplay extends Component {
                 <View />
               }          
             </View>
-          </View>
+            </View>
       );
     }
   }
