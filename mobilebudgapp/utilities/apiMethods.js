@@ -19,7 +19,7 @@ let getExpenses = () => {
     return axios.get(URL + "api/allExpenses");
 }
 
-let getBillTrackerItems = () => {
+let getBillTrackerItems = (userID, monthID) => {
     return axios.get(URL + "api/allBillTrackerItems/" + userID + "/" + monthID);
 }
 
