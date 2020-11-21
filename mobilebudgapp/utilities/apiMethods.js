@@ -85,13 +85,14 @@ let getCategoryTotalByMonth = (userID, monthID, categoryID) => {
 
 /////////////Post Methods////////////////////
 
-let addIncome = (name, date, amount, userID, monthID) => {
+let addIncome = (name, date, amount, userID, monthID, forBillTracker) => {
     return axios.post(URL + 'api/addingIncome', {
         name: name,
         date: date,
         amount: amount,
         userID: userID,
-        monthID: monthID
+        monthID: monthID,
+        forBillTracker: forBillTracker
     });
 }
 

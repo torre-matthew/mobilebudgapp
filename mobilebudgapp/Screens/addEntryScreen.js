@@ -81,7 +81,8 @@ class AddEntryScreen extends Component {
     showIncomeForm: false,
     showBillExpenseForm: false,
     month: this.props.route.params.currentMonth,
-    monthID: this.props.route.params.currentMonthID
+    monthID: this.props.route.params.currentMonthID,
+    forBillTracker: false
   }
 
   componentDidMount(){
@@ -157,11 +158,22 @@ class AddEntryScreen extends Component {
     });
   };
 
+  addToBillTracker = () => {
+    switch (this.state.forBillTracker) {
+      case true:
+        this.setState({forBillTracker: false})
+        break;
+      case false:
+        this.setState({forBillTracker: true})
+  }
+
+  }
+
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     // event.preventDefault();
     ApiMethods
-    .addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.state.loggedInUserID, this.state.monthID)
+    .addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.state.loggedInUserID, this.state.monthID, this.state.forBillTracker)
     .then(data => res.json(data))
     .catch(err => console.log(err))
 
@@ -186,9 +198,6 @@ class AddEntryScreen extends Component {
     return (
       <Container style={{position: 'relative'}}>
             <View style={{position: 'relative', alignSelf: 'center', marginTop: '15%'}}>
-              {/* <Text style={{fontSize: 22, fontFamily: 'Laila-SemiBold'}}>
-                Add new 
-              </Text>  */}
             </View>
             <View style={{height: '10%', flexDirection: 'row'}}>
               <View style={{flexGrow: 5}}>
@@ -215,8 +224,12 @@ class AddEntryScreen extends Component {
                 selectNewMonth={this.selectNewMonth}
                 fetchData={this.fetchData} />
             </View>
-            <View style={{position: 'relative', flexDirection: 'row', alignSelf: 'center'}}>
-              <FontAwesome name="square-o" size={28} color="black" />
+            <View onTouchEnd={this.addToBillTracker} style={{position: 'relative', flexDirection: 'row', alignSelf: 'center'}}>
+              {this.state.forBillTracker ?
+                <FontAwesome name="check-square-o" size={20} color="black" />
+                :
+                <FontAwesome name="square-o" size={20} color="black" />
+              }
               <Text style={{fontSize: 16, fontFamily: 'Laila-SemiBold', marginLeft: 5}}>
                 Add to bill tracker checklist 
               </Text> 
