@@ -22,8 +22,8 @@ class MonthlyBillWrapper extends Component {
               <View style={{marginTop: 6, marginBottom: 1, marginLeft: 7}}> 
                 <Text style={{fontSize: 25, color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> Coming Soon. Stay Tuned!! </Text>
               </View> 
-                {/* <BillDisplay />
-                <BillDisplay /> */}
+                <BillDisplay />
+                <BillDisplay />
           </Content>
       );
     }

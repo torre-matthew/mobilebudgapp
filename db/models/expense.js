@@ -23,6 +23,10 @@ isPaid: {
   type: Boolean,
   required: true
 },
+forBillTracker: {
+  type: Boolean,
+  required: false
+},
 fundingSource: {
     type: String,
     required: false

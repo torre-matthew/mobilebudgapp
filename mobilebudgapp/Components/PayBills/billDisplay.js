@@ -13,132 +13,57 @@ import * as Font from 'expo-font';
 
 class BillDisplay extends Component {
   state = {
-    modalVisible: false,
-    whatsBeingEdited: "",
-    fundingSourceID: "",
-    fundingSourceName: "",
-    fundingSourceAmount: "",
-    colorIfPaid: "",
-    textColorIfPaid: "",
-    markAsPaidButtonText: "",
-    paidDisplayText: "",
-    paidBillDescriptionTextInModal: "",
-    showDrawer: false,
-    billIsPaid: this.props.billIsPaid,
+    isPaid: true,
     categoryIcon: "",
     categoryIconColor: ""
   };
 
   componentDidMount() {
-    this.getFundingSourceInfo(this.props.billID);
-    this.changeDisplayWhenMarkedAsPaid();
-    this.setCategoryDisplay();  
+    this.setCategoryDisplay();   
   }
 
-  updateBillDisplayComponent = () => {
-    this.componentDidMount();
-    this.props.updateWrapperComponent();
-  }
-
-  setCategoryDisplay = () => {
-    this.setState({
-      categoryIcon: Categories.categoryIconLogic(this.props.billCategoryName).icon,
-      categoryIconColor: Categories.categoryIconLogic(this.props.billCategoryName).iconColor,
-    });
-  }
-  setDrawerVisible = () => {
-    if (this.state.showDrawer) { 
-      this.setState({showDrawer: false, whatsBeingEdited: "bill"});
-      } else {
-        this.setState({showDrawer: true, whatsBeingEdited: "bill"});
-      }
-  }
-
-
-  changeDisplayWhenMarkedAsPaid = () => {
-    switch (this.state.billIsPaid) {
+  markAsPaid = () => {
+    switch (this.state.isPaid) {
       case true:
-        this.setState({
-          colorIfPaid: "#4A0784", 
-          textColorIfPaid: "#F5F5F5", 
-          markAsPaidButtonText: "Mark as unpaid",
-          paidBillDescriptionTextInModal: "This has been paid",
-          paidDisplayText: "Paid"
-        })
-          break;
+        this.setState({isPaid: false})
+        break;
       case false:
-        this.setState({
-          colorIfPaid: "#f8f8ff",
-          textColorIfPaid: "black",
-          markAsPaidButtonText: "Mark as paid",
-          paidBillDescriptionTextInModal: "This is currently unpaid",
-          paidDisplayText: ""
-        })
-    }
+        this.setState({isPaid: true})
   }
-
-  getFundingSourceInfo = (expenseID) => {
-    if (this.props.billIsPlanned) {
-        ApiMethods.getExpenseByID(expenseID)
-          .then(data => {
-            ApiMethods.getIncomeByID(data.data[0].fundingSource)
-              .then(data => {
-                  this.setState({
-                    fundingSourceID: data.data[0]._id, 
-                    fundingSourceName: data.data[0].name,
-                    fundingSourceAmount: "$" + data.data[0].afterSpendingAmount + " remains"
-                    });                      
-                  })
-              .catch(err => console.log(err))
-            })
-          .catch(err => console.log(err));
-
-    } else {
-      this.setState({
-        fundingSourceID: "",
-        fundingSourceName: "",
-        fundingSourceAmount: ""
-      });
-    }
-  }
-
-  showConfirmationAlert = (idToDelete) => {
-
-  Alert.alert(
-    'Delete Expense ' + idToDelete,
-    'Are you sure?',
-    [ 
-      {text: 'Nevermind', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-      {text: 'Yes, I am', onPress: () => {this.deleteExpense(idToDelete)},
-      },
-      ],
-    {cancelable: false},
-  );
 }
+
+setCategoryDisplay = () => {
+  this.setState({
+    categoryIcon: Categories.categoryIconLogic(this.props.billCategoryName).icon,
+    categoryIconColor: Categories.categoryIconLogic(this.props.billCategoryName).iconColor,
+  });
+}
+
+  
   render () {
       return (
         
           <View style={{flex: 1, flexDirection: 'row', marginTop: 20}}>
-            <View style={{ flex: 1, flexGrow: 1, justifyContent: 'center', backgroundColor: '#f8f8ff', paddingLeft: 10}}> 
-            <FontAwesome name="square-o" size={30} color="black" />
+            <View onTouchEnd={this.markAsPaid} style={{ flex: 1, flexGrow: 1, justifyContent: 'center', backgroundColor: '#f8f8ff', paddingLeft: 10}}> 
+              {this.state.isPaid ?
+              <FontAwesome name="check-square-o" size={30} color="black" />
+              :
+              <FontAwesome name="square-o" size={30} color="black" />
+              }
             </View>
             <View style={{flex: 1, flexGrow: 8}}>
               <View  style={{ flex: 1, alignSelf: 'stretch'}}>
                 <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f8f8ff'}}> 
-                  <FontAwesome5 name={this.state.categoryIcon} size={20} color={this.state.categoryIconColor} />
-                  <Text style={{fontSize: 20, fontFamily: "Laila-SemiBold"}}> Bill name here </Text>
+                  <FontAwesome5 name={this.state.categoryIcon} size={18} color={this.state.categoryIconColor} />
+                  <Text style={{fontSize: 18, fontFamily: "Laila-SemiBold"}}> This is a long bill name</Text>
                 </View>
               </View>
-              <View  style={{ flex: 1, alignSelf: 'stretch'}}>
                 <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff'}}> 
-                  <Text style={{fontSize: 20, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${"55.98"} </Text>
-                </View>
+                  <Text style={{fontSize: 18, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${"55.98"} </Text>
               </View>
-              <View style={{ flex: 1, alignSelf: 'center', alignItems: 'center', flexDirection: 'row', backgroundColor: '#f8f8ff', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor}}>
-                <View style={{ flex: 1, alignItems: 'center'}}> 
-                  <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold"}}> Due: {"12/15/19"} </Text>
+                <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f8f8ff' }}> 
+                  <Text style={{fontSize: 12, fontFamily: "Laila-SemiBold"}}> Due: {"12/15/19"} </Text>
                 </View>
-              </View>
               {this.state.showDrawer
                 ? 
                <QuickActionDrawer 

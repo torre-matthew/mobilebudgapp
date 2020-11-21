@@ -7,6 +7,7 @@ import ApiMethods from '../utilities/apiMethods';
 import MonthPickerModal2 from '../Components/monthPickerModal2';
 import AddIncomeForm from "../Components/addIncomeForm";
 import AddBillForm from "../Components/addBillForm";
+import { FontAwesome } from '@expo/vector-icons';
 import EditEntryScreen from "./editEntryScreen";
 
 
@@ -185,9 +186,9 @@ class AddEntryScreen extends Component {
     return (
       <Container style={{position: 'relative'}}>
             <View style={{position: 'relative', alignSelf: 'center', marginTop: '15%'}}>
-              <Text style={{fontSize: 22, fontFamily: 'Laila-SemiBold'}}>
+              {/* <Text style={{fontSize: 22, fontFamily: 'Laila-SemiBold'}}>
                 Add new 
-              </Text> 
+              </Text>  */}
             </View>
             <View style={{height: '10%', flexDirection: 'row'}}>
               <View style={{flexGrow: 5}}>
@@ -213,6 +214,12 @@ class AddEntryScreen extends Component {
                 currentMonthID={this.state.monthID}
                 selectNewMonth={this.selectNewMonth}
                 fetchData={this.fetchData} />
+            </View>
+            <View style={{position: 'relative', flexDirection: 'row', alignSelf: 'center'}}>
+              <FontAwesome name="square-o" size={28} color="black" />
+              <Text style={{fontSize: 16, fontFamily: 'Laila-SemiBold', marginLeft: 5}}>
+                Add to bill tracker checklist 
+              </Text> 
             </View>
             {
               this.state.showIncomeForm 
