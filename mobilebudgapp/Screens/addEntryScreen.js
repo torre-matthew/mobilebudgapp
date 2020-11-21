@@ -165,8 +165,7 @@ class AddEntryScreen extends Component {
         break;
       case false:
         this.setState({forBillTracker: true})
-  }
-
+    }
   }
 
   handleFormSubmit = event => {
@@ -176,7 +175,7 @@ class AddEntryScreen extends Component {
     .addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.state.loggedInUserID, this.state.monthID, this.state.forBillTracker)
     .then(data => res.json(data))
     .catch(err => console.log(err))
-
+    
     this.props.navigation.navigate('Main');
   };
 
