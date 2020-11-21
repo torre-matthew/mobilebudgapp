@@ -19,6 +19,10 @@ let getExpenses = () => {
     return axios.get(URL + "api/allExpenses");
 }
 
+let getBillTrackerItems = () => {
+    return axios.get(URL + "api/allBillTrackerItems");
+}
+
 let getMonthData = () => {
     return axios.get(URL + "api/monthData");
 }
@@ -227,6 +231,7 @@ export default {
     getAfterSpendingAmount: getAfterSpendingAmount,
     getPlaidAccessToken: getPlaidAccessToken,
     getCategoryTotalByMonth: getCategoryTotalByMonth,
+    getBillTrackerItems: getBillTrackerItems,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     updateExpensesOnUserRecord, updateExpensesOnUserRecord,
     updateIncomeOnUserRecord: updateIncomeOnUserRecord,

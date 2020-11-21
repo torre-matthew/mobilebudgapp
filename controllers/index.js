@@ -376,15 +376,16 @@ let getAllUsers = (req, res) => {
 }
 
 let getAllPlannedExpenses = (req, res) => {
-    // db.Users
-    //     .find({_id: req.params.userID})
-    //     .populate('expenses.planned')
-    //     .then(data => res.json(data[0].expenses.planned))
-    //     .catch(err => console.log(err));
-
     db.Expenses
     .find({userID: req.params.userID, monthID: req.params.monthID, isPlanned: true})
     .sort({categoryName: 1, nameOfExpense: 1})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
+let getBillTrackerItems = (req, res) => {
+    db.Expenses
+    .find({userID: req.params.userID, monthID: req.params.monthID, forBillTracker: true})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
@@ -942,6 +943,7 @@ module.exports = {
     getUserByEmail: getUserByEmail,
     getAllPlannedExpenses: getAllPlannedExpenses,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
+    getBillTrackerItems: getBillTrackerItems,
     getAfterSpendingAmount: getAfterSpendingAmount,
     getCurrentMonth: getCurrentMonth,
     deleteExpense: deleteExpenseByID,

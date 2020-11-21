@@ -14,6 +14,7 @@ router.route("/allIncome").get(controllers.getAllIncome);
 router.route("/allCategories").get(controllers.getAllCategories);
 router.route("/allIncome/:userID/:monthID").get(controllers.getAllIncomeByUserID);
 router.route("/allExpenses").get(controllers.getAllExpenses);
+router.route("/allBillTrackerItems").get(controllers.getBillTrackerItems);
 router.route("/allUsers").get(controllers.getAllUsers);
 router.route("/monthData").get(controllers.getMonthData);
 router.route("/allPlannedExpenses/:userID/:monthID").get(controllers.getAllPlannedExpenses);
