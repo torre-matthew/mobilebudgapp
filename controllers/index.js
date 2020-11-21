@@ -86,7 +86,8 @@ let addExpenseToDb = async (req, res) => {
                 userID: req.body.userID, 
                 isPlanned: false,
                 isPaid: false,
-                monthID: req.body.monthID
+                monthID: req.body.monthID,
+                forBillTracker: req.body.forBillTracker
                 })
             .then(data => res.json(data))
             .catch(err => console.log(err));
