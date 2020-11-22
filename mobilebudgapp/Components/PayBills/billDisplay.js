@@ -13,22 +13,26 @@ import * as Font from 'expo-font';
 
 class BillDisplay extends Component {
   state = {
-    isPaid: true,
+    isPaid: this.props.isPaid,
     categoryIcon: "",
-    categoryIconColor: ""
+    categoryIconColor: "",
+    billDisplayOpacity: 1
   };
 
   componentDidMount() {
-    this.setCategoryDisplay();   
+    this.setCategoryDisplay(); 
+    this.setBillDisplay();  
   }
 
   markAsPaid = () => {
     switch (this.state.isPaid) {
       case true:
-        this.setState({isPaid: false})
+        this.setState({isPaid: false, billDisplayOpacity: 1})
+        ApiMethods.markExpenseAsPaid(this.props.billID, false);
         break;
       case false:
-        this.setState({isPaid: true})
+        this.setState({isPaid: true, billDisplayOpacity: .5});
+        ApiMethods.markExpenseAsPaid(this.props.billID, true);
   }
 }
 
@@ -39,30 +43,40 @@ setCategoryDisplay = () => {
   });
 }
 
+setBillDisplay = () => {
+  switch (this.state.isPaid) {
+    case true:
+      this.setState({billDisplayOpacity: .5})
+      break;
+    case false:
+      this.setState({billDisplayOpacity: 1});
+  }
+}
+
   
   render () {
       return (
         
-          <View style={{flex: 1, flexDirection: 'row', marginTop: 20}}>
-            <View onTouchEnd={this.markAsPaid} style={{ flex: 1, flexGrow: 1, justifyContent: 'center', backgroundColor: '#f8f8ff', paddingLeft: 10}}> 
+          <View style={{flex: 1, flexDirection: 'row', marginTop: 20, opacity: this.state.billDisplayOpacity, borderTopColor: this.state.categoryIconColor, borderTopWidth: 5, borderRadius: 10}}>
+            <View onTouchEnd={this.markAsPaid} style={{ flex: 1, flexGrow: 1, justifyContent: 'center', backgroundColor: '#f8f8ff', padding: 18}}> 
               {this.state.isPaid ?
               <FontAwesome name="check-square-o" size={30} color="black" />
               :
               <FontAwesome name="square-o" size={30} color="black" />
               }
             </View>
-            <View style={{flex: 1, flexGrow: 8}}>
+            <View style={{flex: 1, flexGrow: 8,}}>
               <View  style={{ flex: 1, alignSelf: 'stretch'}}>
                 <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f8f8ff'}}> 
                   <FontAwesome5 name={this.state.categoryIcon} size={18} color={this.state.categoryIconColor} />
-                  <Text style={{fontSize: 18, fontFamily: "Laila-SemiBold"}}> This is a long bill name</Text>
+                  <Text style={{fontSize: 18, fontFamily: "Laila-SemiBold"}}> {this.props.billName} </Text>
                 </View>
               </View>
                 <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff'}}> 
-                  <Text style={{fontSize: 18, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${"55.98"} </Text>
+                  <Text style={{fontSize: 18, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${this.props.billAmount} </Text>
               </View>
                 <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f8f8ff' }}> 
-                  <Text style={{fontSize: 12, fontFamily: "Laila-SemiBold"}}> Due: {"12/15/19"} </Text>
+                  <Text style={{fontSize: 12, fontFamily: "Laila-SemiBold"}}> Due: {this.props.billDate} </Text>
                 </View>
               {this.state.showDrawer
                 ? 

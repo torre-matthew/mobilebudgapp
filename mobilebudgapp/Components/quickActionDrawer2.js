@@ -75,7 +75,7 @@ class QuickActionDrawer extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight onPress={() => {this.props.showCategoriesDrawer();}}>
                   <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
-                    <FontAwesome5 name={"arrow-circle-right"} size={20} color={'#6E6E6E'} />
+                    <FontAwesome5 name={"shapes"} size={20} color={'#6E6E6E'} />
                     <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Choose Category </Text>
                   </View>
                 </TouchableHighlight>

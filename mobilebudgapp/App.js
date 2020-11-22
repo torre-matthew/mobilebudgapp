@@ -12,7 +12,7 @@ import EditEntryScreen from './Screens/editEntryScreen';
 import AddEntryScreen from './Screens/addEntryScreen';
 import SelectFundingSourceScreen from './Screens/selectFundingSourceScreen';
 import TransactionsScreen from './Screens/transactionsScreen';
-import BillPayScreen from './Screens/billPayScreen';
+import BillTrackerScreen from './Screens/billTrackerScreen';
 import TrendsScreen from './Screens/trendsScreen';
 
 const Stack = createStackNavigator();
@@ -59,7 +59,7 @@ function App() {
         />
         <Stack.Screen
           name="Bill Pay"
-          component={BillPayScreen}
+          component={BillTrackerScreen}
         />
         <Stack.Screen
           name="Trends"

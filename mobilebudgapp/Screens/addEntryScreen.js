@@ -223,16 +223,6 @@ class AddEntryScreen extends Component {
                 selectNewMonth={this.selectNewMonth}
                 fetchData={this.fetchData} />
             </View>
-            <View onTouchEnd={this.addToBillTracker} style={{position: 'relative', flexDirection: 'row', alignSelf: 'center'}}>
-              {this.state.forBillTracker ?
-                <FontAwesome name="check-square-o" size={20} color="black" />
-                :
-                <FontAwesome name="square-o" size={20} color="black" />
-              }
-              <Text style={{fontSize: 16, fontFamily: 'Laila-SemiBold', marginLeft: 5}}>
-                Add to bill tracker checklist 
-              </Text> 
-            </View>
             {
               this.state.showIncomeForm 
               ?
@@ -251,11 +241,21 @@ class AddEntryScreen extends Component {
               this.state.showBillExpenseForm 
               ?
               <View style={{height: '60%'}}>
-                <AddBillForm
-                  handleBillAmount={this.handleBillAmount}
-                  handleDueDate={this.handleDueDate}
-                  handleBillName={this.handleBillName}
-                  handleFormSubmit={this.handleFormSubmit} />
+                <View onTouchEnd={this.addToBillTracker} style={{position: 'relative', flexDirection: 'row', alignSelf: 'center'}}>
+                  {this.state.forBillTracker ?
+                    <FontAwesome name="check-square-o" size={20} color="black" />
+                    :
+                    <FontAwesome name="square-o" size={20} color="black" />
+                  }
+                <Text style={{fontSize: 16, fontFamily: 'Laila-SemiBold', marginLeft: 5}}>
+                  Add to bill tracker checklist 
+                </Text> 
+              </View>
+              <AddBillForm
+                handleBillAmount={this.handleBillAmount}
+                handleDueDate={this.handleDueDate}
+                handleBillName={this.handleBillName}
+                handleFormSubmit={this.handleFormSubmit} />
               </View>
               :
               <Text />           

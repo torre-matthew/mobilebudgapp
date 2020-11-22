@@ -83,7 +83,12 @@ class AppFooter extends Component {
             })}} style={{flex: 0, alignItems: 'center', opacity: this.state.spendingClicked ? 1.0 : 1.0, bottom: 5}}>
             <FontAwesome5 name="plus" size={45} color= '#F5F5F5' />
           </View>
-          <View onTouchEnd={() => {this.props.navigation.navigate('Bill Pay')}} style={{flex:1, alignItems: 'center', opacity: this.state.billsClicked ? 1.0 : 0.7}}>
+          <View onTouchEnd={() => {this.props.navigation.navigate('Bill Pay', {
+            loggedInUsersEmail: this.props.loggedInUsersEmail,
+            currentMonthID: this.props.currentMonthID,
+            currentMonth: this.props.currentMonth,
+            currentYear: this.props.currentYear
+          })}} style={{flex:1, alignItems: 'center', opacity: this.state.billsClicked ? 1.0 : 0.7}}>
             <FontAwesome5 name="file-invoice" size={25} color="#F5F5F5" />
             <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Track Bills </Text>
           </View>

@@ -521,6 +521,15 @@ let deleteAllMonthData = () => {
     .catch(err => console.log(err));
 }
 
+let addToBillTracker = (req, res) => {
+    db.Expenses
+            .updateOne({_id: req.body.data._id},
+                {$set: { forBillTracker: true}
+                })
+            .then(data => res.json(data))
+            .catch(err => console.log(err));
+}
+
 let markExpenseAsPaid = (req, res) => {
     db.Expenses
             .updateOne({_id: req.body.data._id},
@@ -952,6 +961,7 @@ module.exports = {
     editExpense: editExpenseByID,
     editIncome: editIncomeByID,
     editCategoryByID: editCategoryByID,
+    addToBillTracker: addToBillTracker,
     markExpenseAsPaid: markExpenseAsPaid,
     bulkUpdate:bulkUpdate,
     updateAfterSpendingAmount: updateAfterSpendingAmount,

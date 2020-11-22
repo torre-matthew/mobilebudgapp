@@ -171,6 +171,12 @@ let editIncome = (id, name, date, amount) => {
     });
 }
 
+let addToBillTracker = (id) => {
+    return axios.put(URL + "api/addToBillTracker", {
+        data: {_id: id}
+     });
+}
+
 let markExpenseAsPaid = (id, bool) => {
     return axios.put(URL + "api/markExpenseAsPaid", {
         data: {_id: id, isPaid: bool}
@@ -243,6 +249,7 @@ export default {
     deleteIncome: deleteIncome,
     editExpense: editExpense,
     editIncome: editIncome,
+    addToBillTracker: addToBillTracker,
     markExpenseAsPaid: markExpenseAsPaid,
     copyPreviousMonthData: copyPreviousMonthData,
     splitEntry: splitEntry,

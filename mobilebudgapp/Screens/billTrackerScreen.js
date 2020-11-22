@@ -11,10 +11,41 @@ import AppFooter from '../Components/appfooter';
 import AppHeader from '../Components/appheader';
 import MonthlyBillWrapper from '../Components/PayBills/monthlyBillWrapper';
 
-class BillPayScreen extends Component {
+class BillTrackerScreen extends Component {
 
   state = {
-    
+    billTrackerItemsFromDB: [],
+    loggedInUserID: "",
+  }
+
+  componentDidMount() {
+    this.getLoggedInUserIdByEmail(this.props.route.params.loggedInUsersEmail);
+  }
+
+  updateUnplannedBillWrapperComponent = () => {
+    this.componentDidMount();
+  }
+
+  getBillTrackerItems = () => {
+    ApiMethods
+      .getBillTrackerItems(this.state.loggedInUserID, this.props.route.params.currentMonthID)
+      .then(billTrackerItems => {
+          this.setState({
+            billTrackerItemsFromDB: billTrackerItems.data
+          })
+        })
+      .catch(err => console.log(err))
+  }
+
+  getLoggedInUserIdByEmail = async (email) => {
+    await ApiMethods.getUserByEmail(email)
+          .then(data => 
+                this.setState({
+                  loggedInUserID: data.data[0]._id 
+                }))
+          .catch(err => console.log(err))
+
+    await this.getBillTrackerItems();
   }
 
  render() {
@@ -30,7 +61,11 @@ class BillPayScreen extends Component {
             photoURL={this.state.photoUrl}
             navigation={this.props.navigation}
             signOut={this.props.signOut} />
-            <MonthlyBillWrapper />
+            <MonthlyBillWrapper 
+              billTrackerItemsFromDB={this.state.billTrackerItemsFromDB}
+              currentMonth={this.props.route.params.currentMonth}
+              currentYear={this.props.route.params.currentYear}
+            />
         <AppFooter 
               navigation={this.props.navigation} 
               screen={"bills"} />
@@ -41,4 +76,4 @@ class BillPayScreen extends Component {
   }
 }
 
-  export default BillPayScreen;
+  export default BillTrackerScreen;

@@ -36,6 +36,7 @@ router.route("/updateExpense").put(controllers.editExpense);
 router.route("/updateIncome").put(controllers.editIncome);
 router.route("/updateCategory").put(controllers.editCategoryByID);
 router.route("/addCategoryToEntryByCategoryID").put(controllers.addCategoryToEntryByCategoryID);
+router.route("/addToBillTracker").put(controllers.addToBillTracker);
 router.route("/markExpenseAsPaid").put(controllers.markExpenseAsPaid);
 router.route("/updateAfterSpendingAmount/:incomeID").put(controllers.updateAfterSpendingAmount);
 router.route("/updateIncomeOnUserRecord/:userID").put(controllers.updateIncomeOnUserRecord);
