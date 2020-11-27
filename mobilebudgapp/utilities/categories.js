@@ -20,7 +20,7 @@ let iconColors = [
   "#F23913",
   "#486E46",
   "#1C186E",
-  "#64467A"
+  "#BEF33B"
 ]
 
 let index = Math.floor(Math.random() * iconColors.length)
@@ -104,7 +104,7 @@ let lahriCategories = {
           case "Insurance":
             return lahriCategories.insurance
           case "Investment":
-            return lahriCategories.ivestment
+            return lahriCategories.investment
           default:
             return lahriCategories.default
           }
