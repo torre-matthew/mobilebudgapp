@@ -118,20 +118,23 @@ class UnplannedBillDisplay extends Component {
       return (
         <View>
             <View style={{position: 'relative', zIndex: 0}}>
-              <View onTouchEnd={() => {this.props.showDrawerAndOverLayLogic(this.props.billID, this.props.billName, this.props.billAmount, this.props.billCategoryName, this.props.billCategoryID, this.state.categoryIcon, this.state.categoryIconColor, this.props.dueDate, this.state.fundingSourceID, this.state.fundingSourceName, this.state.fundingSourceAmount, this.props.billIsPaid, this.props.billIsPlanned, "bill");}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 3 }}>
-                <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#f8f8ff', flexGrow: 0.55, paddingLeft: 10, paddingTop: 10, paddingBottom: 5, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor, borderLeftWidth: 4 }}> 
+              <View onTouchEnd={() => {this.props.showDrawerAndOverLayLogic(this.props.billID, this.props.billName, this.props.billAmount, this.props.billCategoryName, this.props.billCategoryID, this.state.categoryIcon, this.state.categoryIconColor, this.props.dueDate, this.state.fundingSourceID, this.state.fundingSourceName, this.state.fundingSourceAmount, this.props.billIsPaid, this.props.billIsPlanned, "bill", this.props.forBillTracker);}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 3 }}>
+                <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#f8f8ff', flexGrow: 0.65, paddingLeft: 10, paddingTop: 10, paddingBottom: 5, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor, borderLeftWidth: 4 }}> 
                   <FontAwesome5 name={this.state.categoryIcon} size={18} color={this.state.categoryIconColor} />
                 </View>
-                <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#f8f8ff', flexGrow: 6.25, paddingTop: 10, paddingBottom: 5, paddingRight: 5}}> 
+                <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#f8f8ff', flexGrow: 8.5, paddingTop: 10, paddingBottom: 5, paddingRight: 5}}> 
                   <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold"}}> {this.props.billName} </Text>
                 </View>
-                <View style={{ flex: 1, alignItems:'stretch', backgroundColor: '#f8f8ff', flexGrow: 2, paddingTop: 10, paddingBottom: 5, borderTopRightRadius: 15}}> 
+                <View style={{ flex: 1, alignItems:'stretch', backgroundColor: '#f8f8ff', flexGrow: 5, paddingTop: 10, paddingBottom: 5, borderTopRightRadius: 15}}> 
                   <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
               </View>
               <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor, borderLeftWidth: 4}}>
-                <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 3, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                  <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> Due: {this.props.dueDate} </Text>
+                <View style={{ flex: 1, flexGrow: .25, alignItems: 'flex-end', paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
+                  <FontAwesome5 name='calendar-alt' size={12} />
+                </View>
+                <View style={{ flex: 1, flexGrow: 2, alignItems: 'flex-start', paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
+                  <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.props.dueDate} </Text>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 5, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>

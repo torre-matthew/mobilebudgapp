@@ -85,23 +85,38 @@ class QuickActionDrawer extends Component {
                     <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Move to next month </Text>
                   </View>
                 </TouchableHighlight>
+                {this.props.billIsForBillTracker
+                  ?
+                  <Text></Text>
+                  :
+                  <TouchableHighlight onPress={() => {this.props.addToBillTracker(this.props.billID)}}>
+                    <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
+                      <FontAwesome5 name={"check-circle"} size={20} color= '#6E6E6E' />
+                      <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Add to bill tracker </Text>
+                    </View>
+                  </TouchableHighlight>
+                  }
                 <TouchableHighlight onPress={() => {this.props.splitEntry()}}>
                   <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
                     <FontAwesome5 name={"cut"} size={20} color={'#6E6E6E'} />
                     <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Split </Text>
                   </View>
-                  
                 </TouchableHighlight>
 
             {this.props.billIsPlanned
                 ?
               <View>
-                <TouchableHighlight onPress={() => {this.props.markAsPaid()}}>
-                  <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
-                    <FontAwesome5 name={"check-circle"} size={20} color={this.props.billIsPaid ? '#4A0784' : '#6E6E6E'} />
-                    <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> {this.props.billIsPaid ? "Unmark as paid" : "Mark as paid"}</Text>
-                  </View>
-                </TouchableHighlight>
+                {this.props.billIsForBillTracker
+                  ?
+                  <Text></Text>
+                  :
+                  <TouchableHighlight onPress={() => {this.props.addToBillTracker(this.props.billID)}}>
+                    <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
+                      <FontAwesome5 name={"check-circle"} size={20} color= '#6E6E6E' />
+                      <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Add to bill tracker </Text>
+                    </View>
+                  </TouchableHighlight>
+                  }
                 <TouchableHighlight onPress={() => {this.props.markAsUnplanned()}}>
                   <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
                     <FontAwesome5 name={"edit"} size={20} color={'#6E6E6E'} />

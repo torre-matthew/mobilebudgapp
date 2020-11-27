@@ -42,6 +42,7 @@ class UnplannedBillWrapper extends Component {
               billID={expense._id}
               billIsPlanned={expense.isPlanned}
               billIsPaid={expense.isPaid}
+              forBillTracker={expense.forBillTracker}
               billFundingSourceID={expense.fundingSource}
               billCategoryName={expense.categoryName}
               billCategoryID={expense.categoryID}

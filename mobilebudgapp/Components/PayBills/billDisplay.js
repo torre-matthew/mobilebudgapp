@@ -65,17 +65,19 @@ setBillDisplay = () => {
               <FontAwesome name="square-o" size={30} color="black" />
               }
             </View>
-            <View style={{flex: 1, flexGrow: 8,}}>
-              <View  style={{ flex: 1, alignSelf: 'stretch'}}>
-                <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f8f8ff'}}> 
+            <View style={{flex: 1, flexGrow: 8}}>
+              <View  style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row'}}>
+              <View style={{ flex: 1, flexGrow: 1, backgroundColor: '#f8f8ff'}}> 
                   <FontAwesome5 name={this.state.categoryIcon} size={18} color={this.state.categoryIconColor} />
-                  <Text style={{fontSize: 18, fontFamily: "Laila-SemiBold"}}> {this.props.billName} </Text>
+              </View>
+                <View style={{ flex: 1, flexGrow: 10, backgroundColor: '#f8f8ff'}}> 
+                  <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold"}}> {this.props.billName} </Text>
+                </View>
+                <View style={{ flex: 1, flexGrow: 5, backgroundColor: '#f8f8ff'}}> 
+                  <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${this.props.billAmount} </Text>
                 </View>
               </View>
-                <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff'}}> 
-                  <Text style={{fontSize: 18, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${this.props.billAmount} </Text>
-              </View>
-                <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#f8f8ff' }}> 
+                <View style={{ flex: 1, backgroundColor: '#f8f8ff' }}> 
                   <Text style={{fontSize: 12, fontFamily: "Laila-SemiBold"}}> Due: {this.props.billDate} </Text>
                 </View>
               {this.state.showDrawer

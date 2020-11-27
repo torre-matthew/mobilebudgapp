@@ -25,7 +25,7 @@ isPaid: {
 },
 forBillTracker: {
   type: Boolean,
-  required: true
+  required: false
 },
 fundingSource: {
     type: String,

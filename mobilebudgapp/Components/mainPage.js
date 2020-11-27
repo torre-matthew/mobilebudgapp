@@ -77,6 +77,7 @@ export default class MainPage extends Component {
     selectedBillCategoryIconName: "",
     selectedBillCategoryIconColor: "",
     selectedBillIsPaid: "",
+    selectedBillIsForBillTracker: "",
     selectedBillIsPlanned: "",
     whatsBeingEdited: "",
     fontSize: 0,
@@ -367,7 +368,7 @@ export default class MainPage extends Component {
     }
   };
 
-  showDrawerAndOverLayLogic = (billID, billName, billAmount, categoryName, categoryID, selectedBillCategoryIconName, selectedBillCategoryIconColor, billDueDate, fundingSourceID, fundingSourceName, fundingSourceAmount, billIsPaid, billIsPlanned, whatsBeingEdited) => {
+  showDrawerAndOverLayLogic = (billID, billName, billAmount, categoryName, categoryID, selectedBillCategoryIconName, selectedBillCategoryIconColor, billDueDate, fundingSourceID, fundingSourceName, fundingSourceAmount, billIsPaid, billIsPlanned, whatsBeingEdited, forBillTracker) => {
   
     let initialSize = 0;
     let finalSize = 12;
@@ -398,7 +399,9 @@ export default class MainPage extends Component {
           selectedFundingSourceAmount: fundingSourceAmount,
           selectedBillIsPaid: billIsPaid,
           selectedBillIsPlanned: billIsPlanned,
-          whatsBeingEdited: whatsBeingEdited })
+          whatsBeingEdited: whatsBeingEdited,
+          selectedBillIsForBillTracker: forBillTracker
+         })
   }
 
   showCategoriesDrawer = () => {
@@ -514,6 +517,12 @@ export default class MainPage extends Component {
         {cancelable: false},
       );
   
+    }
+
+    addToBillTracker = (billID) => {
+      ApiMethods.addToBillTracker(billID)
+        .then(res => alert(this.state.selectedBillName + ' has been added to your bill tracker.'))
+        .catch(err => console.log(err));
     }
 
     markAsPaid = () => {
@@ -727,12 +736,14 @@ export default class MainPage extends Component {
             billCategoryIconName={this.state.selectedBillCategoryIconName} 
             billIsPaid={this.state.selectedBillIsPaid}
             billIsPlanned={this.state.selectedBillIsPlanned}
+            billIsForBillTracker={this.state.selectedBillIsForBillTracker}
             selectedFundingSourceID={this.state.selectedFundingSourceID}
             selectFundingSourceFunction={this.selectFundingSource} 
             incomeDataFromDB={this.state.currentIncomeFromDB} 
             moveToNextMonth={this.moveToNextMonth} 
             splitEntry={this.splitEntry}
             markAsUnplanned={this.markAsUnplanned}
+            addToBillTracker={this.addToBillTracker}
             markAsPaid={this.markAsPaid}
             goToEditScreen={this.goToEditScreen}
             fontSize={this.state.fontSize} 
