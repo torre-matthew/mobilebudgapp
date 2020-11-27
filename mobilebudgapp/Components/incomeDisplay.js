@@ -103,10 +103,10 @@ class IncomeDisplay extends Component {
             </Modal>
               <View>
                 <View onTouchEnd={() => {this.setModalVisible(true);}} style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', marginTop: 5 }}>
-                  <View style={{ flex: 1, alignItems:'flex-start', justifyContent: 'center', backgroundColor: '#f8f8ff', borderLeftColor: '#4658A1', flexGrow: 3, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftWidth: 4 }}> 
+                  <View style={{ flex: 1, alignItems:'flex-start', justifyContent: 'center', backgroundColor: '#f8f8ff', borderLeftColor: '#4658A1', flexGrow: 6, paddingLeft: 5, paddingTop: 15, paddingBottom: 15, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftWidth: 4 }}> 
                     <Text style={{fontSize: 14, fontFamily: "Laila-SemiBold"}}> {this.props.incomeName} </Text>
                   </View>
-                  <View style={{ flex: 1, alignItems:'center', backgroundColor: '#f8f8ff', flexGrow: 1, borderTopRightRadius: 15, paddingRight: 5, paddingTop: 15, paddingBottom: 15,}}> 
+                  <View style={{ flex: 1, alignItems:'flex-end', backgroundColor: '#f8f8ff', flexGrow: 4, borderTopRightRadius: 15, paddingRight: 5, paddingTop: 15, paddingBottom: 15,}}> 
                     <Text style={{fontSize: 14, fontFamily: "Laila-SemiBold"}}> ${this.props.incomeAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                     {/* {this.props.switcherClicked
                      ?

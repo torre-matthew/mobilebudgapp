@@ -122,10 +122,10 @@ class UnplannedBillDisplay extends Component {
                 <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#f8f8ff', flexGrow: 1, paddingLeft: 10, paddingTop: 10, paddingBottom: 5, borderTopLeftRadius: 5, borderStyle: 'solid', borderLeftColor: this.state.categoryIconColor, borderLeftWidth: 4 }}> 
                   <FontAwesome5 name={this.state.categoryIcon} size={18} color={this.state.categoryIconColor} />
                 </View>
-                <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#f8f8ff', flexGrow: 8.5, paddingTop: 10, paddingBottom: 5, paddingRight: 5}}> 
+                <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#f8f8ff', flexGrow: 9, paddingTop: 10, paddingBottom: 5, paddingRight: 5}}> 
                   <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold"}}> {this.props.billName} </Text>
                 </View>
-                <View style={{ flex: 1, alignItems:'stretch', backgroundColor: '#f8f8ff', flexGrow: 5, paddingTop: 10, paddingBottom: 5, borderTopRightRadius: 15}}> 
+                <View style={{ flex: 1, justifyContent: 'center', alignItems:'flex-end', backgroundColor: '#f8f8ff', flexGrow: 6, padding: 5, borderTopRightRadius: 15}}> 
                   <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
               </View>

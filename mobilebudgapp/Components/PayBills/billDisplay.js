@@ -57,8 +57,8 @@ setBillDisplay = () => {
   render () {
       return (
         
-          <View style={{flex: 1, flexDirection: 'row', marginTop: 20, opacity: this.state.billDisplayOpacity, borderTopColor: this.state.categoryIconColor, borderTopWidth: 5, borderRadius: 10}}>
-            <View onTouchEnd={this.markAsPaid} style={{ flex: 1, flexGrow: 1, justifyContent: 'center', backgroundColor: '#f8f8ff', padding: 18}}> 
+          <View style={{flex: 1, flexDirection: 'row', marginTop: 10, opacity: this.state.billDisplayOpacity}}>
+            <View onTouchEnd={this.markAsPaid} style={{ flex: 1, flexGrow: 1, padding: 5, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f8f8ff', borderTopLeftRadius: 10, borderBottomLeftRadius: 10}}> 
               {this.state.isPaid ?
               <FontAwesome name="check-square-o" size={30} color="black" />
               :
@@ -67,22 +67,23 @@ setBillDisplay = () => {
             </View>
             <View style={{flex: 1, flexGrow: 8}}>
               <View  style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row'}}>
-              <View style={{ flex: 1, flexGrow: 1, backgroundColor: '#f8f8ff'}}> 
-                  <FontAwesome5 name={this.state.categoryIcon} size={18} color={this.state.categoryIconColor} />
-              </View>
-                <View style={{ flex: 1, flexGrow: 10, backgroundColor: '#f8f8ff'}}> 
+                <View style={{ flex: 1, flexGrow: 8, backgroundColor: '#f8f8ff', padding: 3, justifyContent: 'center', alignItems: 'flex-start'}}> 
                   <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold"}}> {this.props.billName} </Text>
                 </View>
-                <View style={{ flex: 1, flexGrow: 5, backgroundColor: '#f8f8ff'}}> 
-                  <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${this.props.billAmount} </Text>
+                <View style={{ flex: 1, flexGrow: 6, backgroundColor: '#f8f8ff', justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 10}}> 
+                  <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
               </View>
-              <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#f8f8ff'}}>
-                <View style={{ flex: 1, flexGrow: .5, alignItems: 'flex-start', paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                    <FontAwesome5 name='calendar-alt' size={12} />
+              <View style={{flex: 1, flexDirection: 'row',backgroundColor: '#f8f8ff', borderBottomRightRadius: 10}}>
+                <View style={{ flex: 1, flexGrow: .5, justifyContent: 'center', alignItems: 'flex-end', padding: 2}}> 
+                    <FontAwesome5 name='calendar-alt' size={10} />
                 </View>
-                <View style={{ flex: 1, flexGrow: 8, backgroundColor: '#f8f8ff' }}> 
-                  <Text style={{fontSize: 12, fontFamily: "Laila-SemiBold"}}> {this.props.billDate} </Text>
+                <View style={{ flex: 1, flexGrow: 6, padding: 2, justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#f8f8ff'}}> 
+                  <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.props.billDate} </Text>
+                </View>
+                <View style={{ flex: 1, flexGrow: 2, padding: 3, justifyContent: 'center', alignItems: 'center', backgroundColor: this.state.categoryIconColor, borderBottomRightRadius: 10, borderTopRightRadius: 10}}> 
+                <FontAwesome5 name={this.state.categoryIcon} size={10} color='white' />
+                <Text style={{fontSize: 7, color: 'white', fontFamily: "Laila-SemiBold"}}> {this.props.billCategoryName} </Text>
                 </View>
               </View>
               {this.state.showDrawer

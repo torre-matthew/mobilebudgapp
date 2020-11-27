@@ -54,7 +54,7 @@ class QuickActionDrawer extends Component {
               <Text style={{fontSize: 22, alignSelf: 'center', paddingLeft: 20, paddingRight: 40, fontFamily: 'Laila-SemiBold', color: "#F5F5F5"}}> {this.props.billName} </Text> 
             </View>
             <View>
-              <Text style={{fontSize: 22, alignSelf: 'center', paddingLeft: 20, paddingRight: 40, fontFamily: 'Laila-SemiBold', color: "#F5F5F5"}}> ${this.props.billAmount} </Text> 
+              <Text style={{fontSize: 22, alignSelf: 'center', paddingLeft: 20, paddingRight: 40, fontFamily: 'Laila-SemiBold', color: "#F5F5F5"}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text> 
             </View>
             <View style={{marginLeft: 20, flexDirection: 'row', alignSelf: 'center'}}>
               <FontAwesome5 name={this.props.billCategoryIconName} size={17} color={"#F5F5F5"} />
@@ -81,51 +81,41 @@ class QuickActionDrawer extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight onPress={() => {this.props.moveToNextMonth();}}>
                   <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
-                    <FontAwesome5 name={"arrow-circle-right"} size={20} color={'#6E6E6E'} />
+                    <FontAwesome5 name={"step-forward"} size={20} color={'#6E6E6E'} />
                     <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Move to next month </Text>
                   </View>
                 </TouchableHighlight>
-                {this.props.billIsForBillTracker
-                  ?
-                  <Text></Text>
-                  :
-                  <TouchableHighlight onPress={() => {this.props.addToBillTracker(this.props.billID)}}>
-                    <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
-                      <FontAwesome5 name={"check-circle"} size={20} color= '#6E6E6E' />
-                      <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Add to bill tracker </Text>
-                    </View>
-                  </TouchableHighlight>
-                  }
                 <TouchableHighlight onPress={() => {this.props.splitEntry()}}>
                   <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
-                    <FontAwesome5 name={"cut"} size={20} color={'#6E6E6E'} />
+                    <FontAwesome5 name={"divide"} size={20} color={'#6E6E6E'} />
                     <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Split </Text>
                   </View>
                 </TouchableHighlight>
-
-            {this.props.billIsPlanned
+                {this.props.billIsPlanned
                 ?
               <View>
-                {this.props.billIsForBillTracker
-                  ?
-                  <Text></Text>
-                  :
-                  <TouchableHighlight onPress={() => {this.props.addToBillTracker(this.props.billID)}}>
-                    <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
-                      <FontAwesome5 name={"check-circle"} size={20} color= '#6E6E6E' />
-                      <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Add to bill tracker </Text>
-                    </View>
-                  </TouchableHighlight>
-                  }
                 <TouchableHighlight onPress={() => {this.props.markAsUnplanned()}}>
                   <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
-                    <FontAwesome5 name={"edit"} size={20} color={'#6E6E6E'} />
+                    <FontAwesome5 name={"arrow-left"} size={20} color={'#6E6E6E'} />
                     <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Back to unplanned </Text>
                   </View>
                 </TouchableHighlight>
               </View>
                 :
               <Text></Text> }
+                {this.props.billIsForBillTracker
+                  ?
+                  <Text></Text>
+                  :
+                  <TouchableHighlight onPress={() => {this.props.addToBillTracker(this.props.billID)}}>
+                    <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
+                      <FontAwesome5 name={"check-circle"} size={20} color= '#6E6E6E' />
+                      <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Add to bill tracker </Text>
+                    </View>
+                  </TouchableHighlight>
+                }
+
+                
             </View>
           </ScrollView>
         </Container>
