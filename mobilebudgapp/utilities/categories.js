@@ -20,6 +20,7 @@ let iconColors = [
   "#F23913",
   "#486E46",
   "#1C186E",
+  "#64467A"
 ]
 
 let index = Math.floor(Math.random() * iconColors.length)
@@ -70,6 +71,10 @@ let lahriCategories = {
       icon: "shield-alt",
       iconColor: iconColors[10]
     },
+    investment: {
+      icon: "chart-line",
+      iconColor: iconColors[11]
+    },
     default: {
       icon: "question-circle",
       iconColor: '#454545'
@@ -98,6 +103,8 @@ let lahriCategories = {
             return lahriCategories.houseHoldExpenses
           case "Insurance":
             return lahriCategories.insurance
+          case "Investment":
+            return lahriCategories.ivestment
           default:
             return lahriCategories.default
           }

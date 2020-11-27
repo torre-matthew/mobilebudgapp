@@ -77,9 +77,14 @@ setBillDisplay = () => {
                   <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${this.props.billAmount} </Text>
                 </View>
               </View>
-                <View style={{ flex: 1, backgroundColor: '#f8f8ff' }}> 
-                  <Text style={{fontSize: 12, fontFamily: "Laila-SemiBold"}}> Due: {this.props.billDate} </Text>
+              <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#f8f8ff'}}>
+                <View style={{ flex: 1, flexGrow: .5, alignItems: 'flex-start', paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
+                    <FontAwesome5 name='calendar-alt' size={12} />
                 </View>
+                <View style={{ flex: 1, flexGrow: 8, backgroundColor: '#f8f8ff' }}> 
+                  <Text style={{fontSize: 12, fontFamily: "Laila-SemiBold"}}> {this.props.billDate} </Text>
+                </View>
+              </View>
               {this.state.showDrawer
                 ? 
                <QuickActionDrawer 
