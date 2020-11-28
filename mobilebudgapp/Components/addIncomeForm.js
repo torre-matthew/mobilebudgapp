@@ -6,9 +6,9 @@ import style from "../Styles/Styles";
 
 function AddIncomeFormDisplay (props) {
     return (
-      <Container style={{flex: 0, width: '95%', marginLeft: '1%'}}>
-            <Content>
-                <View>
+      <Container style={{flex: 1}}>
+            {/* <Content> */}
+                <View style={{flex: 1}}>
                     <Form id="billForm">
                         <Item>
                             <Input placeholder='Income' onChangeText={props.handleIncomeName} />
@@ -26,7 +26,7 @@ function AddIncomeFormDisplay (props) {
                         </View>
                     </Form>
                 </View>
-            </Content>
+            {/* </Content> */}
       </Container>
     );
 }

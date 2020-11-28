@@ -6,7 +6,7 @@ import style from "../Styles/Styles";
 
 function AddBillFormDisplay (props) {
     return (
-      <Container style={{flex: 0, width: '95%', marginLeft: '1%'}}>
+      <Container style={{flex: 1}}>
         <Content>
             <View>
                 <Form id="billForm">

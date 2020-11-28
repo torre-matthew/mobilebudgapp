@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Modal, Text, TouchableHighlight, View, Alert, Dimensions, ScrollView, ViewBase} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {Modal, Text, TouchableHighlight, View, Alert, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
+// import { TouchableOpacity } from 'react-native-gesture-handler';
 import MonthDisplay from "./monthDisplay";
 import style from "../Styles/Styles";
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -9,9 +9,21 @@ import ApiMethods from '../utilities/apiMethods';
 class MonthPickerModal extends Component {
   state = {
     modalVisible: false,
+    monthData: [],
   };
 
   componentDidMount() {
+    this.getMonthDataFromDB();
+  }
+
+  getMonthDataFromDB = () => {
+    return ApiMethods.getMonthData()
+    .then(monthDataArrayFromDB => {
+      this.setState({
+        monthData: monthDataArrayFromDB.data
+      });
+    })
+    .catch(err => console.log(err));
   }
 
   setModalVisible(visible) {
@@ -33,7 +45,7 @@ class MonthPickerModal extends Component {
             <Text style={{fontSize: 18, textAlign: 'center', margin: 20, fontFamily: 'Laila-SemiBold'}}> Select Month </Text>
           <ScrollView>
             {
-              this.props.monthData.map(monthData => 
+              this.state.monthData.map(monthData => 
               <MonthDisplay 
                 month={monthData.month} 
                 year={monthData.year}
@@ -48,12 +60,11 @@ class MonthPickerModal extends Component {
             }
           </ScrollView>
         </Modal>
-        <View onTouchEnd={() => {this.setModalVisible(true)}} style={style.button2_light_style, { flex: 1, flexDirection: 'row', alignSelf: 'center'}}>        
-          <Text style={{fontSize: 22, fontFamily: 'Laila-SemiBold'}}> for </Text>
-          <Text style={{fontSize: 22, fontFamily: 'Laila-SemiBold'}}> {this.props.currentMonth} </Text>
-          <Text style={{fontSize: 22, paddingRight: 8, fontFamily: 'Laila-SemiBold'}}> {this.props.currentYear} </Text>
-          <FontAwesome5 style={{alignSelf: 'center', paddingRight: 8}} name="caret-down" size={20} />
-        </View>
+        <TouchableOpacity onPress={() => {this.setModalVisible(true)}} style={{ flex: 1, flexDirection: 'row'}}>        
+          <Text style={{fontSize: 15, fontFamily: 'Laila-SemiBold'}}> {this.props.currentMonth} </Text>
+          <Text style={{fontSize: 15, fontFamily: 'Laila-SemiBold'}}> {this.props.currentYear} </Text>
+          <FontAwesome5 name="caret-down" size={20} />
+        </TouchableOpacity>
       </View>
     );
   }

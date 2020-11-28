@@ -86,7 +86,6 @@ class AddEntryScreen extends Component {
   }
 
   componentDidMount(){
-    this.getMonthDataFromDB();
     this.getLoggedInUserIdByEmail(this.props.route.params.loggedInUsersEmail);
   }
 
@@ -100,7 +99,7 @@ class AddEntryScreen extends Component {
     .catch(err => console.log(err));
   }
 
-  getLoggedInUserIdByEmail = (email) => {
+  getLoggedInUserIdByEmail = async (email) => {
     ApiMethods.getUserByEmail(email)
     .then(data => 
           this.setState({
@@ -108,6 +107,8 @@ class AddEntryScreen extends Component {
           })
         )
     .catch(err => console.log(err))
+
+    await this.getMonthDataFromDB();
   }
 
   handleIncomeName = text => {
@@ -195,30 +196,28 @@ class AddEntryScreen extends Component {
    const {navigation} = this.props;
 
     return (
-      <Container style={{position: 'relative'}}>
-            <View style={{position: 'relative', alignSelf: 'center', marginTop: '15%'}}>
-            </View>
-            <View style={{height: '10%', flexDirection: 'row'}}>
+      <Container style={{flex: 1}}>
+            <View style={{height: '10%', flexDirection: 'row', marginTop: '10%', marginBottom: '2%'}}>
               <View style={{flexGrow: 5}}>
                 <TouchableOpacity
                   onPress={() => {this.setState({showIncomeForm: true, showBillExpenseForm: false})}}
                   style={this.state.showIncomeForm ? addEntryScreenStyles.income_button_active : addEntryScreenStyles.income_button_inactive}>
-                    <Text style={{fontSize: 18, fontFamily: 'Laila-SemiBold', color: this.state.showIncomeForm ? '#F5F5F5' : '#40DBCE'}}> Income </Text>
+                    <Text style={{fontSize: 15, fontFamily: 'Laila-SemiBold', color: this.state.showIncomeForm ? '#F5F5F5' : '#40DBCE'}}> Income </Text>
                 </TouchableOpacity>
               </View>
               <View style={{flexGrow: 4}}>
                 <TouchableOpacity
                   onPress={() => {this.setState({showBillExpenseForm: true, showIncomeForm: false})}}
                   style={this.state.showBillExpenseForm ? addEntryScreenStyles.billExpense_button_active : addEntryScreenStyles.billExpense_button_inactive}>
-                    <Text style={{fontSize: 18, fontFamily: 'Laila-SemiBold', color: this.state.showBillExpenseForm ? '#F5F5F5' : 'red'}}> Bill/Expense </Text>
+                    <Text style={{fontSize: 15, fontFamily: 'Laila-SemiBold', color: this.state.showBillExpenseForm ? '#F5F5F5' : 'red'}}> Bill/Expense </Text>
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={{marginBottom: 25}}>
+            <View style={{marginBottom: '2%', marginTop: '5%', height: '5%', alignSelf: 'center'}}>
               <MonthPickerModal2 
                 monthData={this.state.monthData} 
                 currentMonth={this.state.month}
-                currentYear={this.props.route.params.currentYear}
+                currentYear={this.state.currentYear}
                 currentMonthID={this.state.monthID}
                 selectNewMonth={this.selectNewMonth}
                 fetchData={this.fetchData} />
@@ -226,7 +225,7 @@ class AddEntryScreen extends Component {
             {
               this.state.showIncomeForm 
               ?
-              <View style={{height: '30%'}}>
+              <View style={{height: '60%', justifyContent: 'center'}}>
                 <AddIncomeForm
                   handleIncomeAmount={this.handleIncomeAmount}
                   handleIncomeDate={this.handleIncomeDate}
@@ -241,7 +240,7 @@ class AddEntryScreen extends Component {
               this.state.showBillExpenseForm 
               ?
               <View style={{height: '60%'}}>
-                <View onTouchEnd={this.addToBillTracker} style={{position: 'relative', flexDirection: 'row', alignSelf: 'center'}}>
+                <View onTouchEnd={this.addToBillTracker} style={{marginTop: 15, flexDirection: 'row', alignSelf: 'center'}}>
                   {this.state.forBillTracker ?
                     <FontAwesome name="check-square-o" size={20} color="black" />
                     :

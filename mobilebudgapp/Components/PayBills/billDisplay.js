@@ -25,7 +25,7 @@ class BillDisplay extends Component {
   }
 
   markAsPaid = () => {
-    switch (this.state.isPaid) {
+    switch (this.props.isPaid) {
       case true:
         this.setState({isPaid: false, billDisplayOpacity: 1})
         ApiMethods.markExpenseAsPaid(this.props.billID, false);
@@ -66,13 +66,13 @@ setBillDisplay = () => {
               }
             </View>
             <View style={{flex: 1, flexGrow: 8}}>
-              <View  style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row'}}>
-                <View style={{ flex: 1, flexGrow: 8, backgroundColor: '#f8f8ff', padding: 3, justifyContent: 'center', alignItems: 'flex-start'}}> 
+              <View  style={{ flex: 1, alignSelf: 'stretch'}}>
+                <View style={{ flex: 1, backgroundColor: '#f8f8ff', padding: 3, justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 10}}> 
                   <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold"}}> {this.props.billName} </Text>
                 </View>
-                <View style={{ flex: 1, flexGrow: 6, backgroundColor: '#f8f8ff', justifyContent: 'center', alignItems: 'center', borderTopRightRadius: 10}}> 
+              </View>
+              <View style={{ flex: 1, flexGrow: 6, backgroundColor: '#f8f8ff', justifyContent: 'center', alignItems: 'center'}}> 
                   <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
-                </View>
               </View>
               <View style={{flex: 1, flexDirection: 'row',backgroundColor: '#f8f8ff', borderBottomRightRadius: 10}}>
                 <View style={{ flex: 1, flexGrow: .5, justifyContent: 'center', alignItems: 'flex-end', padding: 2}}> 

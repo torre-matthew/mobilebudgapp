@@ -16,19 +16,28 @@ class BillTrackerScreen extends Component {
   state = {
     billTrackerItemsFromDB: [],
     loggedInUserID: "",
+    month: this.props.route.params.currentMonth,
+    monthID: this.props.route.params.currentMonthID
   }
 
   componentDidMount() {
     this.getLoggedInUserIdByEmail(this.props.route.params.loggedInUsersEmail);
   }
 
+  selectNewMonth = (month, monthID) => {
+    this.setState({
+      month: month,
+      monthID: monthID
+    }, () => {this.getBillTrackerItems();})
+  }
+
   updateUnplannedBillWrapperComponent = () => {
     this.componentDidMount();
   }
 
-  getBillTrackerItems = () => {
+  getBillTrackerItems = (loggedInUserID, monthID) => {
     ApiMethods
-      .getBillTrackerItems(this.state.loggedInUserID, this.props.route.params.currentMonthID)
+      .getBillTrackerItems(this.state.loggedInUserID, this.state.monthID)
       .then(billTrackerItems => {
           this.setState({
             billTrackerItemsFromDB: billTrackerItems.data
@@ -45,7 +54,7 @@ class BillTrackerScreen extends Component {
                 }))
           .catch(err => console.log(err))
 
-    await this.getBillTrackerItems();
+    await this.getBillTrackerItems(this.state.loggedInUserID, this.state.monthID);
   }
 
  render() {
@@ -61,11 +70,12 @@ class BillTrackerScreen extends Component {
             photoURL={this.state.photoUrl}
             navigation={this.props.navigation}
             signOut={this.props.signOut} />
-            <MonthlyBillWrapper 
-              billTrackerItemsFromDB={this.state.billTrackerItemsFromDB}
-              currentMonth={this.props.route.params.currentMonth}
-              currentYear={this.props.route.params.currentYear}
-            />
+        <MonthlyBillWrapper 
+          billTrackerItemsFromDB={this.state.billTrackerItemsFromDB}
+          currentMonth={this.state.month}
+          currentYear={this.props.route.params.currentYear}
+          selectNewMonth={this.selectNewMonth}
+        />
         <AppFooter 
               navigation={this.props.navigation} 
               screen={"bills"} />
