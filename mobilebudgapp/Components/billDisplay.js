@@ -24,6 +24,7 @@ class UnplannedBillDisplay extends Component {
     paidBillDescriptionTextInModal: "",
     showDrawer: false,
     billIsPaid: this.props.billIsPaid,
+    forBillTracker: this.props.forBillTracker,
     categoryIcon: "",
     categoryIconColor: ""
   };
@@ -55,14 +56,14 @@ class UnplannedBillDisplay extends Component {
 
 
   changeDisplayWhenMarkedAsPaid = () => {
-    switch (this.state.billIsPaid) {
+    switch (this.state.forBillTracker) {
       case true:
         this.setState({
           colorIfPaid: "#4A0784", 
           textColorIfPaid: "#F5F5F5", 
           markAsPaidButtonText: "Mark as unpaid",
           paidBillDescriptionTextInModal: "This has been paid",
-          paidDisplayText: "Paid"
+          paidDisplayText: "In bill tracker"
         })
           break;
       case false:
@@ -85,7 +86,7 @@ class UnplannedBillDisplay extends Component {
                   this.setState({
                     fundingSourceID: data.data[0]._id, 
                     fundingSourceName: data.data[0].name,
-                    fundingSourceAmount: "$" + data.data[0].afterSpendingAmount + " remains"
+                    fundingSourceAmount: "$" + data.data[0].afterSpendingAmount + " left"
                     });                      
                   })
               .catch(err => console.log(err))
@@ -139,14 +140,9 @@ class UnplannedBillDisplay extends Component {
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 5, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
-                {this.props.showMarkAsPaid 
-                ?
-                <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 1, backgroundColor: this.state.colorIfPaid, paddingTop: 1, paddingBottom: 5, paddingLeft: 5, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
-                  <Text style={{color: this.state.textColorIfPaid, fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.state.paidDisplayText} </Text>
+                <View style={{ flex: 1, alignItems: 'center', flexGrow: .75, backgroundColor: this.state.colorIfPaid, padding: 3, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
+                  <FontAwesome5 name="file-invoice" size={15} color='#f8f8ff' />
                 </View>
-                :
-                <Text />
-                }
               </View>
               {this.state.showDrawer
                 ? 

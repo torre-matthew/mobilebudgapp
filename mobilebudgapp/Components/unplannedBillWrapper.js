@@ -11,7 +11,6 @@ class UnplannedBillWrapper extends Component {
 
   componentDidMount() {
     this.props.fetchData();
-    
   }
 
   updateUnplannedBillWrapperComponent = () => {

@@ -426,12 +426,6 @@ export default class MainPage extends Component {
           showCategorySlideOutOverlay: false,
         })
     }
-    
-    
-    
-    
-    
-    
   }
 
   selectFundingSource = (fundingSourceID) => {
@@ -521,7 +515,11 @@ export default class MainPage extends Component {
 
     addToBillTracker = (billID) => {
       ApiMethods.addToBillTracker(billID)
-        .then(res => alert(this.state.selectedBillName + ' has been added to your bill tracker.'))
+        .then(res => {
+            alert(this.state.selectedBillName + ' has been added to your bill tracker.')
+            this.hideDrawerAndOverLayLogic("quickActionDrawer");
+            this.onRefresh();
+          })
         .catch(err => console.log(err));
     }
 

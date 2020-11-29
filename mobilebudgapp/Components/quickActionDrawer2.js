@@ -109,7 +109,7 @@ class QuickActionDrawer extends Component {
                   :
                   <TouchableHighlight onPress={() => {this.props.addToBillTracker(this.props.billID)}}>
                     <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: "row", marginBottom: 25}}>
-                      <FontAwesome5 name={"check-circle"} size={20} color= '#6E6E6E' />
+                      <FontAwesome5 name={"file-invoice"} size={20} color= '#6E6E6E' />
                       <Text style={{fontSize: this.props.show ? 12 : 0, marginLeft: 20, fontFamily: 'Laila-SemiBold', color: '#6E6E6E'}}> Add to bill tracker </Text>
                     </View>
                   </TouchableHighlight>

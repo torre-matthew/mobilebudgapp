@@ -219,6 +219,12 @@ let moveToNextMonth = (billID) => {
       });
 }
 
+let removeFromBillTracker = (billID) => {
+    return axios.put(URL + "api/removeFromBillTracker/" + billID, {
+        params: {billID: billID}
+      });
+}
+
 
 export default {
     getIncome: getIncome,
@@ -253,6 +259,7 @@ export default {
     markExpenseAsPaid: markExpenseAsPaid,
     copyPreviousMonthData: copyPreviousMonthData,
     splitEntry: splitEntry,
-    moveToNextMonth: moveToNextMonth
+    moveToNextMonth: moveToNextMonth,
+    removeFromBillTracker: removeFromBillTracker,
     
 }

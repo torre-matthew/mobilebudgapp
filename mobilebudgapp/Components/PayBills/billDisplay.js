@@ -74,16 +74,19 @@ setBillDisplay = () => {
               <View style={{ flex: 1, flexGrow: 6, backgroundColor: '#f8f8ff', justifyContent: 'center', alignItems: 'center'}}> 
                   <Text style={{fontSize: 15, fontFamily: "Laila-SemiBold", color: this.state.categoryIconColor}}> ${this.props.billAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
               </View>
-              <View style={{flex: 1, flexDirection: 'row',backgroundColor: '#f8f8ff', borderBottomRightRadius: 10}}>
+              <View style={{flex: 1, flexDirection: 'row',backgroundColor: '#f8f8ff', borderBottomLeftRadius: 10, borderTopLeftRadius: 10, borderBottomRightRadius: 10}}>
                 <View style={{ flex: 1, flexGrow: .5, justifyContent: 'center', alignItems: 'flex-end', padding: 2}}> 
-                    <FontAwesome5 name='calendar-alt' size={10} />
+                    <FontAwesome5 name='calendar-alt' size={10} color='white' />
                 </View>
-                <View style={{ flex: 1, flexGrow: 6, padding: 2, justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#f8f8ff'}}> 
-                  <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.props.billDate} </Text>
+                <View style={{ flex: 1, flexGrow: 3, padding: 2, justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#f8f8ff'}}> 
+                  <Text style={{fontSize: 10, color: this.state.categoryIconColor, fontFamily: "Laila-SemiBold"}}> {this.props.billDate} </Text>
                 </View>
-                <View style={{ flex: 1, flexGrow: 2, padding: 3, justifyContent: 'center', alignItems: 'center', backgroundColor: this.state.categoryIconColor, borderBottomRightRadius: 10, borderTopRightRadius: 10}}> 
-                <FontAwesome5 name={this.state.categoryIcon} size={10} color='white' />
-                <Text style={{fontSize: 7, color: 'white', fontFamily: "Laila-SemiBold"}}> {this.props.billCategoryName} </Text>
+                <View style={{ flex: 1, flexDirection:'row', flexGrow: 5, padding: 3, justifyContent: 'flex-start', alignItems: 'center', backgroundColor: '#f8f8ff', borderBottomRightRadius: 10, borderTopRightRadius: 10}}> 
+                  <FontAwesome5 name={this.state.categoryIcon} size={12} color={this.state.categoryIconColor} />
+                  <Text style={{fontSize: 10, color: this.state.categoryIconColor, fontFamily: "Laila-SemiBold"}}> {this.props.billCategoryName} </Text>
+                </View>
+                <View style={{ flex: 1, flexGrow: 1, padding: 2, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f8f8ff', borderBottomRightRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 10, borderTopLeftRadius: 10}}> 
+                  <FontAwesome5 name="times-circle" size={20} />
                 </View>
               </View>
               {this.state.showDrawer
