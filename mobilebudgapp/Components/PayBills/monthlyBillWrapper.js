@@ -29,6 +29,9 @@ class MonthlyBillWrapper extends Component {
                   isPaid={billTrackerItems.isPaid}
                   billCategoryID={billTrackerItems.categoryID}
                   billCategoryName={billTrackerItems.categoryName}
+                  removeFromBillTracker={this.props.removeFromBillTracker}
+                  getLoggedInUserIdByEmail={this.props.getLoggedInUserIdByEmail}
+                  loggedInUsersEmail={this.props.loggedInUsersEmail}
                   />
               )
               }

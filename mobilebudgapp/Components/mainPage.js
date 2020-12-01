@@ -81,11 +81,11 @@ export default class MainPage extends Component {
     selectedBillIsPlanned: "",
     whatsBeingEdited: "",
     fontSize: 0,
+    componentUpdateSwitch: false
   };
 
   componentDidMount(){
     this.getLoggedInUserIdByEmail(this.state.loggedInUsersEmail);
-    
   }
 
   fetchData = async () => {
@@ -94,6 +94,7 @@ export default class MainPage extends Component {
     await this.getUnPlannedExpenseDataFromDB();
     await this.getMonthDataFromDB();
     await this.getTotalIncome();
+    await this.setState({componentUpdateSwitch: true});
     await this.setState({spinnerSize: 0, spinnerOpacity: 0, showSpinner: false}); 
   }
 
@@ -370,19 +371,6 @@ export default class MainPage extends Component {
 
   showDrawerAndOverLayLogic = (billID, billName, billAmount, categoryName, categoryID, selectedBillCategoryIconName, selectedBillCategoryIconColor, billDueDate, fundingSourceID, fundingSourceName, fundingSourceAmount, billIsPaid, billIsPlanned, whatsBeingEdited, forBillTracker) => {
   
-    let initialSize = 0;
-    let finalSize = 12;
-    let size = setInterval(() => {
-        if (initialSize < finalSize) {
-          initialSize++
-          this.setState({fontSize: initialSize})
-        } else {
-          clearInterval(size);
-        }
-      }
-      , 10);
-
-
         this.setState({
           showDrawer: true,
           showOverLay: true,
@@ -516,9 +504,9 @@ export default class MainPage extends Component {
     addToBillTracker = (billID) => {
       ApiMethods.addToBillTracker(billID)
         .then(res => {
-            alert(this.state.selectedBillName + ' has been added to your bill tracker.')
-            this.hideDrawerAndOverLayLogic("quickActionDrawer");
+            alert(this.state.selectedBillName + ' has been added to your payment tracker.')
             this.onRefresh();
+            this.showDrawerAndOverLayLogic(this.state.selectedBillID, this.state.selectedBillName, this.state.selectedBillAmount, this.state.selectedBillCategoryName, this.state.selectedBillCategoryID, this.state.selectedBillCategoryIconName, this.state.selectedBillCategoryIconColor, this.state.selectedBillDueDate, this.state.selectedFundingSourceID, this.state.selectedFundingSourceName, this.state.selectedFundingSourceAmount, this.state.selectedBillIsPaid, this.state.selectedBillIsPlanned, "bill", true);
           })
         .catch(err => console.log(err));
     }
@@ -616,24 +604,41 @@ export default class MainPage extends Component {
     }
 
     addCategory = (expenseID, categoryID, categoryName) => {
-      Alert.alert(
-        'Add Category?',
-        '',
-        [ 
-          {text: 'Nevermind', style: 'cancel'},
-          {text: 'Ok', onPress: () => {
-            ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
-            .then(data => {
-              this.onRefresh();
-              this.hideDrawerAndOverLayLogic("categorySlideOut");
-              this.hideDrawerAndOverLayLogic("quickActionDrawer");
-              })
-            .catch(err => console.log(err));
-          }, 
-        },
-          ],
-        {cancelable: false},
-      );
+      ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
+        .then(data => {
+          this.onRefresh();
+          this.hideDrawerAndOverLayLogic("categorySlideOut");
+          this.hideDrawerAndOverLayLogic("quickActionDrawer", 
+          () => {
+            this.showDrawerAndOverLayLogic(this.state.selectedBillID, this.state.selectedBillName, this.state.selectedBillAmount, this.state.selectedBillCategoryName, this.state.selectedBillCategoryID, this.state.selectedBillCategoryIconName, this.state.selectedBillCategoryIconColor, this.state.selectedBillDueDate, this.state.selectedFundingSourceID, this.state.selectedFundingSourceName, this.state.selectedFundingSourceAmount, this.state.selectedBillIsPaid, this.state.selectedBillIsPlanned, "bill", this.state.selectedBillIsForBillTracker);
+              }
+            );
+          })
+        .catch(err => console.log(err));
+      
+      
+      
+      
+      
+      // Alert.alert(
+      //   'Add Category?',
+      //   '',
+      //   [ 
+      //     {text: 'Nevermind', style: 'cancel'},
+      //     {text: 'Ok', onPress: () => {
+      //       ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
+      //       .then(data => {
+      //         this.onRefresh();
+      //         // this.showDrawerAndOverLayLogic(this.state.selectedBillID, this.state.selectedBillName, this.state.selectedBillAmount, this.state.selectedBillCategoryName, this.state.selectedBillCategoryID, this.state.selectedBillCategoryIconName, this.state.selectedBillCategoryIconColor, this.state.selectedBillDueDate, this.state.selectedFundingSourceID, this.state.selectedFundingSourceName, this.state.selectedFundingSourceAmount, this.state.selectedBillIsPaid, this.state.selectedBillIsPlanned, "bill", this.state.selectedBillIsForBillTracker);
+      //         this.hideDrawerAndOverLayLogic("categorySlideOut");
+      //         this.hideDrawerAndOverLayLogic("quickActionDrawer");
+      //         })
+      //       .catch(err => console.log(err));
+      //     }, 
+      //   },
+      //     ],
+      //   {cancelable: false},
+      // );
     }
 
     getAllCategories = () => {
@@ -658,7 +663,7 @@ export default class MainPage extends Component {
           refreshControl={
             <RefreshControl 
               refreshing={this.state.refreshing} 
-              onRefresh={this.onRefresh}/>
+              onRefresh={this.onRefresh} />
           }
           >
             <OverLay 
@@ -720,7 +725,8 @@ export default class MainPage extends Component {
                 currentMonthID={this.state.currentMonthID}
                 navigation={this.props.navigation}
                 showDrawerAndOverLayLogic={this.showDrawerAndOverLayLogic}
-                hide={this.hideDrawerAndOverLayLogic} />
+                hide={this.hideDrawerAndOverLayLogic}
+                componentUpdateSwitch={this.state.componentUpdateSwitch} />
             </View>
           </ScrollView>
           <QuickActionDrawer2 
@@ -746,6 +752,7 @@ export default class MainPage extends Component {
             goToEditScreen={this.goToEditScreen}
             fontSize={this.state.fontSize} 
             showCategoriesDrawer={this.showCategoriesDrawer}
+            fetchData={this.fetchData}
             />
           <CategorySlideOutOverlay 
             show={this.state.showCategorySlideOutOverlay}

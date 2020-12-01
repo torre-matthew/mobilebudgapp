@@ -57,6 +57,15 @@ class BillTrackerScreen extends Component {
     await this.getBillTrackerItems(this.state.loggedInUserID, this.state.monthID);
   }
 
+  removeFromBillTracker = (billID) => {
+    ApiMethods.removeFromBillTracker(billID)
+              .then(data => {
+                // alert(this.props.billName + ' has been removed from your bill tracker.');
+                this.getBillTrackerItems(this.state.loggedInUserID, this.state.monthID)
+              })
+              .catch(err => console.log(err))
+  }
+
  render() {
 
    const {navigation} = this.props;
@@ -75,6 +84,9 @@ class BillTrackerScreen extends Component {
           currentMonth={this.state.month}
           currentYear={this.props.route.params.currentYear}
           selectNewMonth={this.selectNewMonth}
+          removeFromBillTracker={this.removeFromBillTracker}
+          getLoggedInUserIdByEmail={this.getLoggedInUserIdByEmail}
+          loggedInUsersEmail={this.props.route.params.loggedInUsersEmail}
         />
         <AppFooter 
               navigation={this.props.navigation} 

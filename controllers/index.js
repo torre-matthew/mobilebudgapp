@@ -387,6 +387,7 @@ let getAllPlannedExpenses = (req, res) => {
 let getBillTrackerItems = (req, res) => {
     db.Expenses
     .find({userID: req.params.userID, monthID: req.params.monthID, forBillTracker: true})
+    .sort({dateOfExpense: 1, categoryName: 1, nameOfExpense: 1})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }

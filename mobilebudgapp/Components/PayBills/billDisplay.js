@@ -25,7 +25,7 @@ class BillDisplay extends Component {
   }
 
   markAsPaid = () => {
-    switch (this.props.isPaid) {
+    switch (this.state.isPaid) {
       case true:
         this.setState({isPaid: false, billDisplayOpacity: 1})
         ApiMethods.markExpenseAsPaid(this.props.billID, false);
@@ -51,9 +51,7 @@ setBillDisplay = () => {
     case false:
       this.setState({billDisplayOpacity: 1});
   }
-}
-
-  
+} 
   render () {
       return (
         
@@ -81,13 +79,13 @@ setBillDisplay = () => {
                 <View style={{ flex: 1, flexGrow: 3, padding: 2, justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#f8f8ff'}}> 
                   <Text style={{fontSize: 10, color: this.state.categoryIconColor, fontFamily: "Laila-SemiBold"}}> {this.props.billDate} </Text>
                 </View>
-                <View style={{ flex: 1, flexDirection:'row', flexGrow: 5, padding: 3, justifyContent: 'flex-start', alignItems: 'center', backgroundColor: '#f8f8ff', borderBottomRightRadius: 10, borderTopRightRadius: 10}}> 
+                <View style={{ flex: 1, flexDirection:'row', flexGrow: 6, padding: 3, justifyContent: 'flex-start', alignItems: 'center', backgroundColor: '#f8f8ff', borderBottomRightRadius: 10, borderTopRightRadius: 10}}> 
                   <FontAwesome5 name={this.state.categoryIcon} size={12} color={this.state.categoryIconColor} />
                   <Text style={{fontSize: 10, color: this.state.categoryIconColor, fontFamily: "Laila-SemiBold"}}> {this.props.billCategoryName} </Text>
                 </View>
-                <View style={{ flex: 1, flexGrow: 1, padding: 2, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f8f8ff', borderBottomRightRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 10, borderTopLeftRadius: 10}}> 
+                <TouchableOpacity onPress={() => {this.props.removeFromBillTracker(this.props.billID)}} style={{ flex: 1, flexGrow: 1, padding: 5, justifyContent: 'center', alignItems: 'flex-end', backgroundColor: '#f8f8ff', borderBottomRightRadius: 10, borderTopRightRadius: 10, borderBottomLeftRadius: 10, borderTopLeftRadius: 10}}> 
                   <FontAwesome5 name="times-circle" size={20} />
-                </View>
+                </TouchableOpacity>
               </View>
               {this.state.showDrawer
                 ? 

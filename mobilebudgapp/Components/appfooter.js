@@ -89,8 +89,8 @@ class AppFooter extends Component {
             currentMonth: this.props.currentMonth,
             currentYear: this.props.currentYear
           })}} style={{flex:1, alignItems: 'center', opacity: this.state.billsClicked ? 1.0 : 0.7}}>
-            <FontAwesome5 name="file-invoice" size={25} color="#F5F5F5" />
-            <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Track Bills </Text>
+            <FontAwesome5 name="list-alt" size={25} color="#F5F5F5" />
+            <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Payment Tracker </Text>
           </View>
           {/* <View onTouchEnd={() => {this.props.navigation.navigate('Trends')}} style={{flex:1, alignItems: 'center', opacity: this.state.trendsClicked ? 1.0 : 0.7}}>
             <FontAwesome5 name="chart-line" size={25} color="#F5F5F5" />

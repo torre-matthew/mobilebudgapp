@@ -58,6 +58,7 @@ class UnplannedBillWrapper extends Component {
               showDrawerAndOverLayLogic={this.props.showDrawerAndOverLayLogic}
               hideDrawerAndOverLayLogic={this.props.hideDrawerAndOverLayLogic}
               show={this.props.show}
+              componentUpdateSwitch={this.props.componentUpdateSwitch}
             />
             )
           }

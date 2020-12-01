@@ -26,7 +26,8 @@ class UnplannedBillDisplay extends Component {
     billIsPaid: this.props.billIsPaid,
     forBillTracker: this.props.forBillTracker,
     categoryIcon: "",
-    categoryIconColor: ""
+    categoryIconColor: "",
+    componentUpdateSwitch: this.props.componentUpdateSwitch
   };
 
   componentDidMount() {
@@ -141,7 +142,7 @@ class UnplannedBillDisplay extends Component {
                   <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                 </View>
                 <View style={{ flex: 1, alignItems: 'center', flexGrow: .75, backgroundColor: this.state.colorIfPaid, padding: 3, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}> 
-                  <FontAwesome5 name="file-invoice" size={15} color='#f8f8ff' />
+                  <FontAwesome5 name="list-alt" size={15} color='#f8f8ff' />
                 </View>
               </View>
               {this.state.showDrawer
