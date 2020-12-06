@@ -8,7 +8,8 @@ nameOfExpense: {
       required: true
   },
 dateOfExpense: {
-      type: String,
+      type: Date,
+      default: Date.now,
       required: true
   },
 amountOfExpense: {

@@ -126,7 +126,7 @@ class AddEntryScreen extends Component {
   handleIncomeDate = (incomeDate) => {
     
     this.setState({
-      income_date: incomeDate.toString().substr(4, 12)
+      income_date: incomeDate
     });
   };
 
@@ -140,7 +140,7 @@ class AddEntryScreen extends Component {
   handleDueDate = (dueDate) => {
     
     this.setState({
-      due_date: dueDate.toString().substr(4, 12),
+      due_date: dueDate,
     });
   };
   

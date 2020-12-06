@@ -4,6 +4,9 @@ import { Container, Button, Content, Form, Item, Input, Text, DatePicker } from 
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 
+
+// .toString().substr(4, 12)
+
 class DatePickerComponent extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +18,7 @@ setDate(newDate) {
     if (!this.props.editDueDate) {
         this.setState({ chosenDate: newDate }, () => {this.props.handleDueDate(this.state.chosenDate)});
     } else {
-        this.setState({ chosenDate: newDate }, () => {this.props.editDueDate(this.state.chosenDate.toString().substr(4, 12), "date")});
+        this.setState({ chosenDate: newDate }, () => {this.props.editDueDate(this.state.chosenDate, "date")});
     }
 }
 render() {
