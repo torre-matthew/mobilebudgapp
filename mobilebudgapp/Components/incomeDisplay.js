@@ -118,7 +118,7 @@ class IncomeDisplay extends Component {
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#f8f8ff', borderLeftColor: '#4658A1', borderBottomLeftRadius: 5, borderBottomRightRadius: 15, borderStyle: 'solid', borderLeftWidth: 4 }}>
                   <View style={{ flex: 1, alignSelf: 'stretch', paddingLeft: 5, flexGrow: 3, paddingLeft: 5, paddingBottom: 5,}}> 
-                    <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.props.incomeDate} </Text>
+                    <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.props.incomeDate.toString().substr(0, 10)} </Text>
                   </View>
                 </View>
               </View>

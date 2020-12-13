@@ -136,7 +136,7 @@ class UnplannedBillDisplay extends Component {
                   <FontAwesome5 name='calendar-alt' size={12} />
                 </View>
                 <View style={{ flex: 1, flexGrow: 2, alignItems: 'flex-start', paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
-                  <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.props.dueDate} </Text>
+                  <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.props.dueDate.toString().substr(0, 10)} </Text>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', flexGrow: 5, paddingTop: 1, paddingBottom: 5, paddingLeft: 5,}}> 
                   <Text style={{fontSize: 10, fontFamily: "Laila-SemiBold"}}> {this.state.fundingSourceName + ' ' + this.state.fundingSourceAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>

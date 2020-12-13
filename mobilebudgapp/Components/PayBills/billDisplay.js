@@ -77,7 +77,7 @@ setBillDisplay = () => {
                     <FontAwesome5 name='calendar-alt' size={10} color='white' />
                 </View>
                 <View style={{ flex: 1, flexGrow: 3, padding: 2, justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#f8f8ff'}}> 
-                  <Text style={{fontSize: 10, color: this.state.categoryIconColor, fontFamily: "Laila-SemiBold"}}> {this.props.billDate} </Text>
+                  <Text style={{fontSize: 10, color: this.state.categoryIconColor, fontFamily: "Laila-SemiBold"}}> {this.props.billDate.toString().substr(0, 10)} </Text>
                 </View>
                 <View style={{ flex: 1, flexDirection:'row', flexGrow: 6, padding: 3, justifyContent: 'flex-start', alignItems: 'center', backgroundColor: '#f8f8ff', borderBottomRightRadius: 10, borderTopRightRadius: 10}}> 
                   <FontAwesome5 name={this.state.categoryIcon} size={12} color={this.state.categoryIconColor} />

@@ -5,7 +5,7 @@ import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 
 
-// .toString().substr(4, 12)
+// toString().substr(4, 12)
 
 class DatePickerComponent extends Component {
     constructor(props) {
