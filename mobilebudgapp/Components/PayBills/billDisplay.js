@@ -16,7 +16,12 @@ class BillDisplay extends Component {
     isPaid: this.props.isPaid,
     categoryIcon: "",
     categoryIconColor: "",
-    billDisplayOpacity: 1
+    billDisplayOpacity: 1,
+    date: this.props.billDate,
+    dateParsed: Date.parse(this.props.billDate),
+    dateMonth: new Date(Date.parse(this.props.billDate)).getMonth() + 1,
+    dateDay: new Date(Date.parse(this.props.billDate)).getDate(),
+    dateYear: new Date(Date.parse(this.props.billDate)).getFullYear(),
   };
 
   componentDidMount() {
@@ -78,6 +83,7 @@ setBillDisplay = () => {
                 </View>
                 <View style={{ flex: 1, flexGrow: 3, padding: 2, justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#f8f8ff'}}> 
                   <Text style={{fontSize: 10, color: this.state.categoryIconColor, fontFamily: "Laila-SemiBold"}}> {this.props.billDate.toString().substr(0, 10)} </Text>
+                  <Text style={{fontSize: 10, color: this.state.categoryIconColor, fontFamily: "Laila-SemiBold"}}> { new Date(this.state.dateYear, this.state.dateMonth, this.state.dateDay).toDateString()} </Text>
                 </View>
                 <View style={{ flex: 1, flexDirection:'row', flexGrow: 6, padding: 3, justifyContent: 'flex-start', alignItems: 'center', backgroundColor: '#f8f8ff', borderBottomRightRadius: 10, borderTopRightRadius: 10}}> 
                   <FontAwesome5 name={this.state.categoryIcon} size={12} color={this.state.categoryIconColor} />

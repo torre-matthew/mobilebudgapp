@@ -127,6 +127,21 @@ let addExpenseToDb = async (req, res) => {
             .catch(err => console.log(err))
 }
 
+let addOneMonthToDateWhenCopyingPreviousMonth = (dateString) => {
+    let dateMonth = new Date(Date.parse(dateString)).getMonth();
+    let dateDay = new Date(Date.parse(dateString)).getDate();
+    let dateYear = new Date(Date.parse(dateString)).getFullYear();
+    let newDate = '';
+
+    if (dateMonth === 11) {
+        newDate = new Date(dateYear + 1, 0, dateDay);
+        return newDate;
+    } else {
+        newDate = new Date(dateYear, dateMonth + 1, dateDay);
+        return newDate;
+    }
+}
+
 let addExpenseWhenCopyingPreviousMonth = async (dateOfExpense, nameOfExpense, amountOfExpense, userID, isPlanned, monthID, fundingSource, isPaid, categoryName, categoryID, forBillTracker) => {
     
     let arrayOfPlannedExpensesToBeSetInDB = [];
@@ -135,7 +150,7 @@ let addExpenseWhenCopyingPreviousMonth = async (dateOfExpense, nameOfExpense, am
 // Add Expense to the db
     await db.Expenses
             .create({
-                dateOfExpense: dateOfExpense,
+                dateOfExpense: addOneMonthToDateWhenCopyingPreviousMonth(dateOfExpense),
                 nameOfExpense: nameOfExpense,
                 amountOfExpense: amountOfExpense,
                 userID: userID, 
