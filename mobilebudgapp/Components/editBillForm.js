@@ -208,7 +208,7 @@ editLogic = () => {
                     <View>
                         <Form id="billForm">
                             <Item>
-                                <DatePicker defaultValue={this.state.currentDate} editDueDate={this.editField} />
+                                <DatePicker defaultValue={new Date(this.state.currentDate).toDateString().substr(4, 12)} editDueDate={this.editField} />
                             </Item>
                             <Item>
                                 <Input defaultValue={this.state.currentName} placeholder='Bill/Expense' onChangeText={(text) => this.editField(text, "name")} />
