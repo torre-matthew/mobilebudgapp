@@ -238,7 +238,10 @@ let splitEntry = (req, res) => {
                 userID: data[0].userID, 
                 isPlanned: false,
                 isPaid: false,
-                monthID: data[0].monthID
+                monthID: data[0].monthID,
+                categoryName: data[0].categoryName,
+                categoryID: data[0].categoryID,
+                forBillTracker: data[0].forBillTracker
                 })
             .then(data => {return data})
             .catch(err => console.log(err));
