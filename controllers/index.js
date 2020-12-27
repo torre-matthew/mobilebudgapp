@@ -361,20 +361,9 @@ let getAllCategories = (req, res) => {
 }
 
 let getAllIncomeByUserID = (req, res) => {
-    // db.Users
-    // .find({_id: req.params.userID})
-    // .populate('income')
-    // .then(data => res.json(data[0].income))
-    // .catch(err => console.log(err));
-
-    // db.Users
-    // .find({_id: req.params.userID}, {income: {$elemMatch: {monthID: req.params.monthID}}})
-    // // .populate('income')
-    // .then(data => res.json(data))
-    // .catch(err => console.log(err));
-
     db.Income
     .find({userID: req.params.userID, monthID: req.params.monthID})
+    .sort({date: 1})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
@@ -435,6 +424,7 @@ let getExpenseByID = (req, res) => {
 let getIncomeByID = (req, res) => {
     db.Income
     .find({_id: req.params.incomeID})
+    .sort({date: 1})
     .then(data => res.json(data))
     .catch(err => console.log(err));
 }
