@@ -4,7 +4,7 @@ import { Platform, StyleSheet, Text, View, ScrollView, RefreshControl, Button } 
 import * as Google from 'expo-google-app-auth'
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import MainScreen from './Screens/mainScreen';
+import BudgetScreen from './Screens/budgetScreen';
 import LoginScreen from './Screens/loginScreen';
 import CreateNewBudgetScreen from './Screens/createNewBudgetScreen';
 import SettingsScreen from './Screens/settingsScreen';
@@ -30,8 +30,8 @@ function App() {
           component={LoginScreen}
         />
         <Stack.Screen
-          name="Main"
-          component={MainScreen}
+          name="Budget"
+          component={BudgetScreen}
         />
         <Stack.Screen
           name="Create New Budget"

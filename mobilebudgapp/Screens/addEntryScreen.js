@@ -177,7 +177,8 @@ class AddEntryScreen extends Component {
     .then(data => res.json(data))
     .catch(err => console.log(err))
     
-    this.props.navigation.navigate('Main');
+    this.props.navigation.navigate('Budget');
+    this.props.route.params.getUnPlannedExpenseDataFromDB();
   };
 
   handleAddIncomeFormSubmit = event => {
@@ -188,7 +189,7 @@ class AddEntryScreen extends Component {
     .then(data => res.json(data))
     .catch(err => console.log(err));
 
-    this.props.navigation.navigate('Main');
+    this.props.navigation.navigate('Budget');
   }
 
  render() {

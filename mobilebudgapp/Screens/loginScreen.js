@@ -21,6 +21,7 @@ class LoginScreen extends Component {
     name: "",
     photoUrl: "",
     email:"",
+    userID: "",
     accessToken: "",
     showSpinner: true,
     currentMonthID: "",
@@ -72,6 +73,7 @@ class LoginScreen extends Component {
                 name: result.user.name,
                 photoUrl: result.user.photoUrl,
                 email: result.user.email, 
+                userID: data.data[0]._id,
                 accessToken: result.accessToken
               }, () => { //callback in setstate to get data for current calendar month and set month data that will be needed when the app is loaded
                 ApiMethods.getCurrentMonth()
@@ -82,7 +84,7 @@ class LoginScreen extends Component {
                             currentYear: month.data[0].year,
                             spinnerOpacity: 0
                           }, () => { //another callback that then sends the user to the main app after the month data has been recieved and set.
-                            this.props.navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentYear: this.state.currentYear, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl, signOut: this.signOut})
+                            this.props.navigation.navigate('Budget', {email: this.state.email, userID: this.state.userID, currentMonth: this.state.currentMonth, currentYear: this.state.currentYear, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl, signOut: this.signOut})
                           });
                         })
                       .catch(err => console.log(err))
@@ -151,7 +153,7 @@ signOut = async () => {
             {this.state.signedIn ? 
             <View>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Main', {email: this.state.email, currentMonth: this.state.currentMonth, currentYear: this.state.currentYear, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl, signOut: this.signOut})}
+              onPress={() => navigation.navigate('Budget', {email: this.state.email, currentMonth: this.state.currentMonth, currentYear: this.state.currentYear, currentMonthID: this.state.currentMonthID, photoURL: this.state.photoUrl, signOut: this.signOut})}
               style={style.button2_cta_style} >
               <Text style={{fontFamily: "Laila-SemiBold"}}> Go to main page </Text>
             </TouchableOpacity>

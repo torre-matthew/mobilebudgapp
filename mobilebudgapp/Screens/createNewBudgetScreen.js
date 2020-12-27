@@ -4,7 +4,7 @@ import { Container, Header, Content, Card, CardItem, Text, Body } from "native-b
 import LoginScreenStyles from "../Styles/loginSreenStyles";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
-import MainScreen from "./mainScreen";
+import BudgetScreen from "./budgetScreen";
 import BackGroundImage from "../Styles/images/whiteWall.png";
 
 class CreateNewBudgetScreen extends Component {
@@ -19,7 +19,7 @@ copyPreviousMonth = () => {
     .then(data => {return data})
     .catch(err => console.log(err))
     this.props.route.params.fetchData();
-    this.props.navigation.navigate('Main');
+    this.props.navigation.navigate('Budget');
 
     //{email: this.state.email, currentMonth: this.state.currentMonth, currentMonthID: this.state.currentMonthID}
 }
@@ -54,7 +54,7 @@ copyPreviousMonth = () => {
             <Text style={{color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> {'Copy ' + this.props.route.params.previousMonthName +  "'s plan"} </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => {this.props.navigation.navigate('Main')}}
+            onPress={() => {this.props.navigation.navigate('Budget')}}
             style={style.button2_light_style}
             >
             <Text style={{color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> Start fresh </Text>

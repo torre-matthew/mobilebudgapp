@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import LoginScreenStyles from "../Styles/loginSreenStyles";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
-import MainScreen from "./mainScreen";
+import MainScreen from "./budgetScreen";
 import BackGroundImage from "../Styles/images/app background 3.png";
 import AppFooter from '../Components/appfooter';
 import AppHeader from '../Components/appheader';
@@ -60,7 +60,6 @@ class BillTrackerScreen extends Component {
   removeFromBillTracker = (billID) => {
     ApiMethods.removeFromBillTracker(billID)
               .then(data => {
-                // alert(this.props.billName + ' has been removed from your bill tracker.');
                 this.getBillTrackerItems(this.state.loggedInUserID, this.state.monthID)
               })
               .catch(err => console.log(err))

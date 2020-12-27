@@ -6,7 +6,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
 import Categories from '../utilities/categories';
-import MainScreen from "./mainScreen";
+import MainScreen from "./budgetScreen";
 import BackGroundImage from "../Styles/images/whiteWall.png";
 import EditBillFormDisplay from "../Components/editBillForm";
 import SlideOutDrawer from "../Components/slideOutDrawer";

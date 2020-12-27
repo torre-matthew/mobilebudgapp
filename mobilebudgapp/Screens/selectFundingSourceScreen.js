@@ -4,7 +4,7 @@ import { Container, Header, Content, Card, CardItem, Text, Body } from "native-b
 import LoginScreenStyles from "../Styles/loginSreenStyles";
 import style from "../Styles/Styles";
 import ApiMethods from '../utilities/apiMethods';
-import MainScreen from "./mainScreen";
+import MainScreen from "./budgetScreen";
 import BackGroundImage from "../Styles/images/app background 2.png";
 
 class SelectFundingSourceScreen extends Component {

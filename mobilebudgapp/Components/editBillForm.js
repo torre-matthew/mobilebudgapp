@@ -47,7 +47,7 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                     alert('Sorry, there was a problem. Please try again');
                 } else {
                     this.props.updateWrapperComponent();
-                    this.props.navigation.navigate('Main');
+                    this.props.navigation.navigate('Budget');
                 }
                 })
             .catch(err => console.log(err));
@@ -71,7 +71,7 @@ showExpenseConfirmationAlert = (id, name, date, amount, isPlanned, fundingSource
                 alert('Sorry, there was a problem. Please try again');
               } else {
                 this.props.updateWrapperComponent();
-                this.props.navigation.navigate('Main');
+                this.props.navigation.navigate('Budget');
               }
             });
             }

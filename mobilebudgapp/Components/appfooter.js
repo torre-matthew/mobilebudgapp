@@ -66,16 +66,14 @@ class AppFooter extends Component {
     return (
       <Container style={{ minHeight: '8%', maxHeight: '8%', backgroundColor: '#448EB3'}}>
         <View style={{flex:0, flexDirection: 'row', paddingTop: 12}}>
-          <View onTouchEnd={() => {this.props.navigation.navigate('Main')}} style={{flex:1, alignItems: 'center', opacity: this.state.budgetClicked ? 1.0 : 0.7}}>
+          <View onTouchEnd={() => {this.props.navigation.navigate('Budget')}} style={{flex:1, alignItems: 'center', opacity: this.state.budgetClicked ? 1.0 : 0.7}}>
           <FontAwesome5 name="balance-scale" size={25} color="#F5F5F5" />
           <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Plan Budget </Text>
           </View>
           <View onTouchEnd={() => {this.props.navigation.navigate('Add Entry', {
-              handleIncomeAmount: this.props.handleIncomeAmount,
-              handleIncomeDate: this.props.handleIncomeDate,
-              handleIncomeName: this.props.handleIncomeName,
               handleAddIncomeFormSubmit: this.props.handleAddIncomeFormSubmit,
               currentMonth: this.props.currentMonth,
+              getUnPlannedExpenseDataFromDB: this.props.getUnPlannedExpenseDataFromDB,
               currentYear: this.props.currentYear,
               currentMonthID: this.props.currentMonthID,
               loggedInUsersEmail: this.props.loggedInUsersEmail,
