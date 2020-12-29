@@ -74,9 +74,11 @@ class AppFooter extends Component {
               handleAddIncomeFormSubmit: this.props.handleAddIncomeFormSubmit,
               currentMonth: this.props.currentMonth,
               getUnPlannedExpenseDataFromDB: this.props.getUnPlannedExpenseDataFromDB,
+              getIncomeDataFromDB: this.props.getIncomeDataFromDB,
               currentYear: this.props.currentYear,
               currentMonthID: this.props.currentMonthID,
               loggedInUsersEmail: this.props.loggedInUsersEmail,
+              currentUserID: this.props.currentUserID,
               navigation: this.props.navigation
             })}} style={{flex: 0, alignItems: 'center', opacity: this.state.spendingClicked ? 1.0 : 1.0, bottom: 5}}>
             <FontAwesome5 name="plus" size={45} color= '#F5F5F5' />

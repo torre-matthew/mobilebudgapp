@@ -157,10 +157,12 @@ class BudgetScreen extends Component {
               <AppFooter 
               navigation={this.props.navigation}
               loggedInUsersEmail={this.props.route.params.email}
-              currentMonth={this.props.route.params.currentMonth}
+              currentUserID={this.props.route.params.userID}
+              currentMonth={this.state.currentMonth}
               currentYear={this.props.route.params.currentYear}
-              currentMonthID={this.props.route.params.currentMonthID}
+              currentMonthID={this.state.currentMonthID}
               getUnPlannedExpenseDataFromDB={this.getUnPlannedExpenseDataFromDB}
+              getIncomeDataFromDB={this.getIncomeDataFromDB}
               screen={"budget"}
               />
           </Container>

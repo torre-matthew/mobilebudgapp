@@ -86,7 +86,7 @@ class AddEntryScreen extends Component {
   }
 
   componentDidMount(){
-    this.getLoggedInUserIdByEmail(this.props.route.params.loggedInUsersEmail);
+    this.getMonthDataFromDB();
     this.setState({
       month: this.props.route.params.currentMonth,
       monthID: this.props.route.params.currentMonthID  
@@ -101,18 +101,6 @@ class AddEntryScreen extends Component {
       });
     })
     .catch(err => console.log(err));
-  }
-
-  getLoggedInUserIdByEmail = async (email) => {
-    ApiMethods.getUserByEmail(email)
-    .then(data => 
-          this.setState({
-            loggedInUserID: data.data[0]._id 
-          })
-        )
-    .catch(err => console.log(err))
-
-    await this.getMonthDataFromDB();
   }
 
   handleIncomeName = text => {
@@ -177,23 +165,24 @@ class AddEntryScreen extends Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     // event.preventDefault();
     ApiMethods
-    .addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.state.loggedInUserID, this.state.monthID, this.state.forBillTracker)
+    .addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.props.route.params.currentUserID, this.state.monthID, this.state.forBillTracker)
     .then(data => res.json(data))
     .catch(err => console.log(err))
     
     this.props.navigation.navigate('Budget');
-    this.props.route.params.getUnPlannedExpenseDataFromDB();
+    this.props.route.params.getUnPlannedExpenseDataFromDB(this.props.route.params.currentUserID, this.state.monthID);
   };
 
   handleAddIncomeFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     // event.preventDefault();
 
-    ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount, this.state.loggedInUserID, this.state.monthID)
+    ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount, this.props.route.params.currentUserID, this.state.monthID)
     .then(data => res.json(data))
     .catch(err => console.log(err));
 
     this.props.navigation.navigate('Budget');
+    this.props.route.params.getIncomeDataFromDB(this.props.route.params.currentUserID, this.state.monthID);
   }
 
  render() {
