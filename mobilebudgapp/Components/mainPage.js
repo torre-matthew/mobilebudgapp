@@ -34,8 +34,8 @@ export default class MainPage extends Component {
     due_date: '',
     bill_name: '',
     amount_due: '',
-    currentUnPlannedExpensesFromDB: this.props.currentUnPlannedExpensesFromDB,
-    currentPlannedExpensesFromDB: this.props.currentPlannedExpensesFromDB,
+    currentUnPlannedExpensesFromDB: [],
+    currentPlannedExpensesFromDB: [],
     income_name: '',
     income_date: '',
     income_amount: '',
@@ -86,15 +86,15 @@ export default class MainPage extends Component {
   };
 
   componentDidMount(){
-    this.getLoggedInUserIdByEmail(this.state.loggedInUsersEmail);
-  }
+    // this.getLoggedInUserIdByEmail(this.state.loggedInUsersEmail);
+    this.fetchData();
+  //   this.setState({
+  //     currentUnPlannedExpensesFromDB: this.props.currentUnPlannedExpensesFromDB,
+  //     currentPlannedExpensesFromDB: this.props.currentPlannedExpensesFromDB}) 
+}
 
   fetchData = () => {
-    this.props.fetchData();
-    // await this.getPlannedExpenseDataFromDB();
-    // await this.getIncomeDataFromDB();
-    // await this.getUnPlannedExpenseDataFromDB();
-    // await this.getMonthDataFromDB();
+    this.props.fetchData(this.props.currentUserID, this.props.currentMonthID);
     this.getTotalIncome();
     // await this.setState({componentUpdateSwitch: true});
     this.setState({spinnerSize: 0, spinnerOpacity: 0, showSpinner: false}); 
@@ -111,53 +111,6 @@ export default class MainPage extends Component {
 
   updateComponent = () => {
     this.setState({state: this.state});
-  }
-
-  getLoggedInUserIdByEmail = (email) => {
-    ApiMethods.getUserByEmail(email)
-    .then(data => 
-          this.setState({
-            loggedInUserID: data.data[0]._id 
-          }, 
-          
-          () => {
-            this.fetchData();
-          })
-        )
-    .catch(err => console.log(err))
-  }
-
-  // getIncomeDataFromDB = () => {
-  //   return ApiMethods
-  //           .getIncomeByUserID(this.state.loggedInUserID, this.state.currentMonthID)
-  //           .then(income => {
-              
-  //               this.setState({
-  //                 currentIncomeFromDB: income.data
-  //                 },
-  //                   () => {
-  //                     this.getTotalIncome();
-  //                 })
-  //             })
-  //           .catch(err => console.log(err))
-  // }
-
-  // getUnPlannedExpenseDataFromDB = () => {
-  //   return ApiMethods.getAllUnPlannedExpenses(this.state.loggedInUserID, this.state.currentMonthID).then(expenses => {
-  //             this.setState({
-  //               currentUnPlannedExpensesFromDB: expenses.data
-  //             });
-  //           })
-  //           .catch(err => console.log(err));
-  // }
-
-  determineIfCreateNewMonthScreenShouldBeShown = () => {
-    if (this.state.currentPlannedExpensesFromDB.length < 1 && this.state.currentUnPlannedExpensesFromDB.length < 1 && this.currentIncomeFromDB.length < 1) {
-        this.props.navigation.navigate('Create New Budget');  
-        this.setState({doesCurrentMonthNeedData: true});
-    } else {
-        this.setState({doesCurrentMonthNeedData: false});
-    }
   }
 
   selectNewMonth = async (month, monthID) => {
@@ -190,71 +143,9 @@ export default class MainPage extends Component {
               .catch(err => console.log(err));
   }
 
-  // getMonthDataFromDB = () => {
-  //   return ApiMethods.getMonthData()
-  //   .then(monthDataArrayFromDB => {
-  //     this.setState({
-  //       monthData: monthDataArrayFromDB.data
-  //     });
-  //   })
-  //   .catch(err => console.log(err));
-  // }
-
-  // getPlannedExpenseDataFromDB = () => {
-  //   return ApiMethods.getAllPlannedExpenses(this.state.loggedInUserID, this.state.currentMonthID)
-  //   .then(expenses => {
-  //     this.setState({
-  //       currentPlannedExpensesFromDB: expenses.data
-  //     });
-  //   })
-  //   .catch(err => console.log(err));
-  // }
-
   updateExpensesOnUserRecord = () => {
     ApiMethods.updateExpensesOnUserRecord(this.state.loggedInUserID).then(data => res.json(data)).catch(err => console.log(err));
   }
-
-  handleIncomeName = text => {
-    this.setState({
-      income_name: text
-    });
-  };
-
-  handleIncomeDate = (incomeDate) => {
-    
-    this.setState({
-      income_date: incomeDate.toString().substr(4, 12)
-    });
-  };
-
-  handleIncomeAmount = text => {
-    
-    this.setState({
-      income_amount: text
-    });
-  };
-  
-  handleDueDate = (dueDate) => {
-    
-    this.setState({
-      due_date: dueDate.toString().substr(4, 12),
-    });
-  };
-  
-  
-  handleBillName = text => {
-    
-    this.setState({
-      bill_name: text,
-    });
-  };
-
-  handleBillAmount = text => {
-    
-    this.setState({
-      amount_due: text,
-    });
-  };
 
   getTotalIncome = () => {
     if (!this.state.afterSpendingClicked) {
@@ -619,30 +510,6 @@ export default class MainPage extends Component {
             );
           })
         .catch(err => console.log(err));
-      
-      
-      
-      
-      
-      // Alert.alert(
-      //   'Add Category?',
-      //   '',
-      //   [ 
-      //     {text: 'Nevermind', style: 'cancel'},
-      //     {text: 'Ok', onPress: () => {
-      //       ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
-      //       .then(data => {
-      //         this.onRefresh();
-      //         // this.showDrawerAndOverLayLogic(this.state.selectedBillID, this.state.selectedBillName, this.state.selectedBillAmount, this.state.selectedBillCategoryName, this.state.selectedBillCategoryID, this.state.selectedBillCategoryIconName, this.state.selectedBillCategoryIconColor, this.state.selectedBillDueDate, this.state.selectedFundingSourceID, this.state.selectedFundingSourceName, this.state.selectedFundingSourceAmount, this.state.selectedBillIsPaid, this.state.selectedBillIsPlanned, "bill", this.state.selectedBillIsForBillTracker);
-      //         this.hideDrawerAndOverLayLogic("categorySlideOut");
-      //         this.hideDrawerAndOverLayLogic("quickActionDrawer");
-      //         })
-      //       .catch(err => console.log(err));
-      //     }, 
-      //   },
-      //     ],
-      //   {cancelable: false},
-      // );
     }
 
     getAllCategories = () => {
@@ -681,10 +548,10 @@ export default class MainPage extends Component {
               :
             <MonthPickerModal 
                 monthData={this.props.monthData} 
-                currentMonth={this.state.currentMonth}
-                currentYear={this.state.currentYear}
-                currentMonthID={this.state.currentMonthID}
-                selectNewMonth={this.selectNewMonth}
+                currentMonth={this.props.currentMonth}
+                currentYear={this.props.currentYear}
+                currentMonthID={this.props.currentMonthID}
+                selectNewMonth={this.props.selectNewMonth}
                 fetchData={this.fetchData} />
             }   
               <SummaryWrapper 
@@ -712,7 +579,6 @@ export default class MainPage extends Component {
                 expenseDataFromDB={!this.state.plannedClicked ? this.props.currentUnPlannedExpensesFromDB : this.props.currentPlannedExpensesFromDB}
                 incomeDataFromDB={this.props.currentIncomeFromDB}
                 switcherLogic={this.switcherLogic}
-                getUnPlannedExpenseDataFromDB={this.getUnPlannedExpenseDataFromDB}
                 handleBillAmount={this.handleBillAmount}
                 handleDueDate={this.handleDueDate}
                 plannedClicked={this.state.plannedClicked}

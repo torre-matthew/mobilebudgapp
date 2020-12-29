@@ -80,13 +80,17 @@ class AddEntryScreen extends Component {
     loggedInUserID: '',
     showIncomeForm: false,
     showBillExpenseForm: false,
-    month: this.props.route.params.currentMonth,
-    monthID: this.props.route.params.currentMonthID,
+    month: '',
+    monthID: '',
     forBillTracker: false
   }
 
   componentDidMount(){
     this.getLoggedInUserIdByEmail(this.props.route.params.loggedInUsersEmail);
+    this.setState({
+      month: this.props.route.params.currentMonth,
+      monthID: this.props.route.params.currentMonthID  
+    });
   }
 
   getMonthDataFromDB = () => {

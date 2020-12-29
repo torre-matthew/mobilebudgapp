@@ -15,25 +15,29 @@ class BudgetScreen extends Component {
     currentPlannedExpensesFromDB: [],
     currentUnPlannedExpensesFromDB: [],
     currentIncomeFromDB: [],
+    currentMonth: "",
+    currentMonthID: "",
     monthData: [],
-    showComponent: false
+    showComponent: false,
+    doesCurrentMonthNeedData: false,
   }
 
   componentDidMount() {
-    this.fetchData();
+    this.fetchData(this.props.route.params.userID, this.props.route.params.currentMonthID);
+    this.setState({currentMonth: this.props.route.params.currentMonth, currentMonthID: this.props.route.params.currentMonthID});
     LoadFonts().then(fonts => {this.setState({fontsLoaded: true})}).catch(err => console.log(err));
   }
 
-  fetchData = () => {
-    this.getPlannedExpenseDataFromDB();
-    this.getUnPlannedExpenseDataFromDB();
-    this.getIncomeDataFromDB();
+  fetchData = (userID, currentMonthID) => {
+    this.getPlannedExpenseDataFromDB(userID, currentMonthID);
+    this.getUnPlannedExpenseDataFromDB(userID, currentMonthID);
+    this.getIncomeDataFromDB(userID, currentMonthID);
     this.getMonthDataFromDB();
     this.setState({showComponent: true});
   }
 
-  getPlannedExpenseDataFromDB = () => {
-    ApiMethods.getAllPlannedExpenses(this.props.route.params.userID, this.props.route.params.currentMonthID)
+  getPlannedExpenseDataFromDB = (userID, currentMonthID) => {
+    ApiMethods.getAllPlannedExpenses(userID, currentMonthID)
     .then(expenses => {
       this.setState({
         currentPlannedExpensesFromDB: expenses.data
@@ -42,8 +46,8 @@ class BudgetScreen extends Component {
     .catch(err => console.log(err));
   }
 
-  getUnPlannedExpenseDataFromDB = () => {
-    ApiMethods.getAllUnPlannedExpenses(this.props.route.params.userID, this.props.route.params.currentMonthID)
+  getUnPlannedExpenseDataFromDB = (userID, currentMonthID) => {
+    ApiMethods.getAllUnPlannedExpenses(userID, currentMonthID)
       .then(expenses => {
               this.setState({
                 currentUnPlannedExpensesFromDB: expenses.data
@@ -52,9 +56,9 @@ class BudgetScreen extends Component {
             .catch(err => console.log(err));
   }
 
-  getIncomeDataFromDB = () => {
+  getIncomeDataFromDB = (userID, currentMonthID) => {
     ApiMethods
-            .getIncomeByUserID(this.props.route.params.userID, this.props.route.params.currentMonthID)
+            .getIncomeByUserID(userID, currentMonthID)
             .then(income => {
                 this.setState({
                   currentIncomeFromDB: income.data
@@ -72,6 +76,44 @@ class BudgetScreen extends Component {
     })
     .catch(err => console.log(err));
   }
+
+
+  selectNewMonth = async (month, monthID) => {
+    // Check to see if there are any unplanned expenses in this month
+        await ApiMethods.getAllUnPlannedExpenses(this.props.route.params.userID, monthID)
+                .then(expenses => {
+                  if (expenses.data.length === 0) {
+                    this.setState({doesCurrentMonthNeedData: true})
+                  }
+                })
+                .catch(err => console.log(err));
+    // Check to see if there are any planned expenses in this month
+        await  ApiMethods.getAllPlannedExpenses(this.props.route.params.userID, monthID)
+                .then(expenses => {
+                  if (expenses.data.length === 0) {
+                    this.setState({doesCurrentMonthNeedData: true})
+                  }
+                })
+                .catch(err => console.log(err));
+    // Check to see if there are is any income in this month
+        await  ApiMethods.getIncomeByUserID(this.props.route.params.userID, monthID)
+                  .then(income => {
+                    if (income.data.length === 0) { // previousMonthID, userID, targetMonthID
+                          this.props.navigation.navigate('Create New Budget', {previousMonthName: this.props.route.params.currentMonth, previousMonthID: this.props.route.params.currentMonthID, userID: this.props.route.params.userID, targetMonthID: monthID, targetMonthName: month, fetchData: this.fetchData});
+                          this.setState({currentMonth: month, currentMonthID: monthID, doesCurrentMonthNeedData: true},() => {this.fetchData(this.props.route.params.userID, monthID)});                  
+                    } else {
+                          this.setState({currentMonth: month, currentMonthID: monthID, doesCurrentMonthNeedData: false},() => {this.fetchData(this.props.route.params.userID, monthID)});
+                    }
+                  })
+                  .catch(err => console.log(err));
+      }
+
+
+
+
+
+
+
     render(){
         const {navigation} = this.props;
     
@@ -85,9 +127,10 @@ class BudgetScreen extends Component {
             <View style={{ position: 'relative', zIndex: 0, height: '92%'}}>
             <MainPage 
               loggedInUsersEmail={this.props.route.params.email}
-              currentMonth={this.props.route.params.currentMonth}
+              currentUserID={this.props.route.params.userID}
+              currentMonth={this.state.currentMonth}
               currentYear={this.props.route.params.currentYear}
-              currentMonthID={this.props.route.params.currentMonthID}
+              currentMonthID={this.state.currentMonthID}
               currentPlannedExpensesFromDB={this.state.currentPlannedExpensesFromDB}
               currentUnPlannedExpensesFromDB={this.state.currentUnPlannedExpensesFromDB}
               currentIncomeFromDB={this.state.currentIncomeFromDB}
@@ -96,6 +139,7 @@ class BudgetScreen extends Component {
               navigation={navigation}
               photoURL={this.props.route.params.photoURL}
               signOut={this.props.route.params.signOut}
+              selectNewMonth={this.selectNewMonth}
             />
             </View>
               :
