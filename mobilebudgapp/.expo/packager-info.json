@@ -2,9 +2,9 @@
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://6x-8rv.torre-matthew.mobilebudgapp.exp.direct",
   "packagerNgrokUrl": "https://packager.6x-8rv.torre-matthew.mobilebudgapp.exp.direct",
-  "ngrokPid": 7880,
+  "ngrokPid": 28280,
   "packagerPort": 19001,
-  "packagerPid": 22328,
+  "packagerPid": 25224,
   "webpackServerPort": null,
   "devToolsPort": 19002
 }

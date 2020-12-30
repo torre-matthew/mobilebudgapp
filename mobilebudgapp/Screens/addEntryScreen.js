@@ -161,28 +161,17 @@ class AddEntryScreen extends Component {
     }
   }
 
-  handleFormSubmit = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    // event.preventDefault();
-    ApiMethods
-    .addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.props.route.params.currentUserID, this.state.monthID, this.state.forBillTracker)
-    .then(data => res.json(data))
-    .catch(err => console.log(err))
+  handleFormSubmit = async (event) => {
+    await ApiMethods.addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.props.route.params.currentUserID, this.state.monthID, this.state.forBillTracker);
+    await this.props.route.params.getUnPlannedExpenseDataFromDB(this.props.route.params.currentUserID, this.state.monthID);
+    await this.props.navigation.navigate('Budget');
     
-    this.props.navigation.navigate('Budget');
-    this.props.route.params.getUnPlannedExpenseDataFromDB(this.props.route.params.currentUserID, this.state.monthID);
   };
 
-  handleAddIncomeFormSubmit = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    // event.preventDefault();
-
-    ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount, this.props.route.params.currentUserID, this.state.monthID)
-    .then(data => res.json(data))
-    .catch(err => console.log(err));
-
-    this.props.navigation.navigate('Budget');
-    this.props.route.params.getIncomeDataFromDB(this.props.route.params.currentUserID, this.state.monthID);
+  handleAddIncomeFormSubmit = async (event) => {
+    await ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount, this.props.route.params.currentUserID, this.state.monthID)
+    await this.props.route.params.getIncomeDataFromDB(this.props.route.params.currentUserID, this.state.monthID);
+    await this.props.navigation.navigate('Budget');
   }
 
  render() {

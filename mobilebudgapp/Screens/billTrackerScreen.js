@@ -22,6 +22,10 @@ class BillTrackerScreen extends Component {
 
   componentDidMount() {
     this.getLoggedInUserIdByEmail(this.props.route.params.loggedInUsersEmail);
+    this.setState({
+      month: this.props.route.params.currentMonth,
+      monthID: this.props.route.params.currentMonthID  
+    });
   }
 
   selectNewMonth = (month, monthID) => {
