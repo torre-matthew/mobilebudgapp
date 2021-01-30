@@ -1230,14 +1230,6 @@ let getPlannedItemsForLastSixMonths = (req, res) => {
                     .catch(err => console.log(err));
 
             await  db.Month
-                    .find({monthAsNumber: monthTwo, year: yearOfMonthTwo})
-                    .then(data => {
-                        monthIDArray.push(data[0]._id);
-                        return monthIDArray;
-                        })
-                    .catch(err => console.log(err));
-
-            await  db.Month
                     .find({monthAsNumber: monthThree, year: yearOfMonthThree})
                     .then(data => {
                         monthIDArray.push(data[0]._id);
