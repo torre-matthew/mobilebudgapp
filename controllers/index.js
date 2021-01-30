@@ -1020,7 +1020,6 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
             .sort({year: 1})
             .sort({monthAsNumber: 1})
             .then(data => {
-                res.json(data);
                 monthIDArray.push(data[0]._id);
                 return monthIDArray;
                 })
@@ -1031,7 +1030,6 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
             .sort({year: 1})
             .sort({monthAsNumber: 1})
             .then(data => {
-                res.json(data);
                 monthIDArray.push(data[0]._id);
                 return monthIDArray;
                 })
@@ -1042,7 +1040,6 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
             .sort({year: 1})
             .sort({monthAsNumber: 1})
             .then(data => {
-                res.json(data);
                 monthIDArray.push(data[0]._id);
                 console.log(monthIDArray);
                 return monthIDArray
