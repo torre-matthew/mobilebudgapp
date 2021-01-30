@@ -988,8 +988,6 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
         stepTwoGetMonthIDsArray = async (monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree) => {
             await db.Month
                     .find({monthAsNumber: monthOne, year: yearOfMonthOne})
-                    .sort({year: 1})
-                    .sort({monthAsNumber: 1})
                     .then(data => {
                         monthIDArray.push(data[0]._id);
                         return monthIDArray;
@@ -998,8 +996,6 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
         
             await  db.Month
                     .find({monthAsNumber: monthTwo, year: yearOfMonthTwo})
-                    .sort({year: 1})
-                    .sort({monthAsNumber: 1})
                     .then(data => {
                         monthIDArray.push(data[0]._id);
                         return monthIDArray;
@@ -1008,8 +1004,6 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
         
             await db.Month
                     .find({monthAsNumber: monthThree, year: yearOfMonthThree})
-                    .sort({year: 1})
-                    .sort({monthAsNumber: 1})
                     .then(data => {
                         monthIDArray.push(data[0]._id);
                         console.log(monthIDArray);
@@ -1025,7 +1019,7 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                 case 2:
                     monthOne = currentMonth - 1;
                     yearOfMonthOne = currentYear;
-                    monthTwo = monthOne - 1,
+                    monthTwo = currentMonth - 2,
                     yearOfMonthTwo = currentYear;
                     monthThree = 11;
                     yearOfMonthThree = currentYear - 1;
@@ -1036,25 +1030,25 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                     yearOfMonthOne = currentYear;
                     monthTwo = 11,
                     yearOfMonthTwo = currentYear - 1;
-                    monthThree = monthTwo - 1;
+                    monthThree = 10;
                     yearOfMonthThree = currentYear - 1;
 
                     this.stepTwoGetMonthIDsArray(monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree);
                 case 0:
                     monthOne = 11;
                     yearOfMonthOne = currentYear - 1;
-                    monthTwo = monthOne - 1,
+                    monthTwo = 10,
                     yearOfMonthTwo = currentYear - 1;
-                    monthThree = monthTwo - 1;
+                    monthThree = 9;
                     yearOfMonthThree = currentYear - 1;
 
                     this.stepTwoGetMonthIDsArray(monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree);
                 default:
-                    monthOne = currentMonth;
+                    monthOne = currentMonth - 1;
                     yearOfMonthOne = currentYear;
-                    monthTwo = currentMonth - 1;
+                    monthTwo = currentMonth - 2;
                     yearOfMonthTwo = currentYear;
-                    monthThree = currentMonth - 2;
+                    monthThree = currentMonth - 3;
                     yearOfMonthThree = currentYear;
 
                     this.stepTwoGetMonthIDsArray(monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree);
