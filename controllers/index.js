@@ -965,57 +965,14 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
     let yearOfMonthThree;
     let monthThreeID;
     let monthIDArray = [];
-    let monthObject;
 
     class ThreeMonths {
-        constructor(userID, currentMonth) {
+        constructor(userID) {
         this.userID = userID;
-        this.currentMonth = currentMonth;
         }
         
-        stepThreeGetPlannedItems = (arrayOfMonthIDs) => {
-                db.Expenses
-                    .find({
-                        userID: this.userID, 
-                        monthID: arrayOfMonthIDs,
-                        isPlanned: true
-                    })
-                    .sort({categoryName: 1, nameOfExpense: 1})
-                    .then(data => res.json(data))
-                    .catch(err => console.log(err));
-        }
-
-        stepTwoGetMonthIDsArray = async (monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree) => {
-            await db.Month
-                    .find({monthAsNumber: monthOne, year: yearOfMonthOne})
-                    .then(data => {
-                        monthIDArray.push(data[0]._id);
-                        return monthIDArray;
-                        })
-                    .catch(err => console.log(err));
-        
-            await  db.Month
-                    .find({monthAsNumber: monthTwo, year: yearOfMonthTwo})
-                    .then(data => {
-                        monthIDArray.push(data[0]._id);
-                        return monthIDArray;
-                        })
-                    .catch(err => console.log(err));
-        
-            await db.Month
-                    .find({monthAsNumber: monthThree, year: yearOfMonthThree})
-                    .then(data => {
-                        monthIDArray.push(data[0]._id);
-                        console.log(monthIDArray);
-                        
-                        this.stepThreeGetPlannedItems(monthIDArray);
-
-                        })
-                    .catch(err => console.log(err));
-        }
-
         stepOneDetermineCorrectMonthsAndYears = () => {
-            switch (this.currentMonth) {
+            switch (currentMonth) {
                 case 2:
                     monthOne = currentMonth - 1;
                     yearOfMonthOne = currentYear;
@@ -1055,10 +1012,55 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                 }
 
         }
+        
+        stepTwoGetMonthIDsArray = async (monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree) => {
+            await db.Month
+                    .find({monthAsNumber: monthOne, year: yearOfMonthOne})
+                    .then(data => {
+                        monthIDArray.push(data[0]._id);
+                        return monthIDArray;
+                        })
+                    .catch(err => console.log(err));
+        
+            await  db.Month
+                    .find({monthAsNumber: monthTwo, year: yearOfMonthTwo})
+                    .then(data => {
+                        monthIDArray.push(data[0]._id);
+                        return monthIDArray;
+                        })
+                    .catch(err => console.log(err));
+        
+            await db.Month
+                    .find({monthAsNumber: monthThree, year: yearOfMonthThree})
+                    .then(data => {
+                        monthIDArray.push(data[0]._id);
+                        console.log(monthIDArray);
+                        
+                        this.stepThreeGetPlannedItems(monthIDArray);
+
+                        })
+                    .catch(err => console.log(err));
+        }
+
+        stepThreeGetPlannedItems = (arrayOfMonthIDs) => {
+                db.Expenses
+                    .find({
+                        userID: this.userID, 
+                        monthID: arrayOfMonthIDs,
+                        isPlanned: true
+                    })
+                    .sort({categoryName: 1, nameOfExpense: 1})
+                    .then(data => res.json(data))
+                    .catch(err => console.log(err));
+        }
+
+        
+
+        
 
     }
 
-    let lastthreeMonthTrend = new ThreeMonths("5e952c83a5ad7500176ad379", currentMonth);
+    let lastthreeMonthTrend = new ThreeMonths("5e952c83a5ad7500176ad379");
     lastthreeMonthTrend.stepOneDetermineCorrectMonthsAndYears();
 
 }
