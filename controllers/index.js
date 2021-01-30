@@ -1067,9 +1067,239 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                 return averageTotal;
         }
     }
-    // "5e9675e001ed360017e9ce4e"
-    // "5e952c83a5ad7500176ad379"
+
     let lastthreeMonthTrend = new ThreeMonths(req.params.userID);
+    lastthreeMonthTrend.stepOneDetermineCorrectMonthsAndYears();
+
+}
+
+let getPlannedItemsForLastSixMonths = (req, res) => {
+
+    let currentMonth = new Date().getMonth(); 
+    let currentYear = new Date().getFullYear();
+    let monthOne;
+    let yearOfMonthOne;
+    let monthTwo;
+    let yearOfMonthTwo;
+    let monthThree;
+    let yearOfMonthThree;
+    let monthFour;
+    let yearOfMonthFour;
+    let monthFive;
+    let yearOfMonthFive;
+    let monthSix;
+    let yearOfMonthSix;
+    let monthIDArray = [];
+
+    class SixMonths {
+        constructor(userID) {
+        this.userID = userID;
+        }
+        
+        stepOneDetermineCorrectMonthsAndYears = () => {
+            switch (currentMonth) {
+                case 5:
+                    monthOne = currentMonth - 1;
+                    yearOfMonthOne = currentYear;
+                    monthTwo = currentMonth - 2,
+                    yearOfMonthTwo = currentYear;
+                    monthThree = currentMonth - 3,
+                    yearOfMonthThree = currentYear;
+                    monthFour = currentMonth - 4,
+                    yearOfMonthFour = currentYear;
+                    monthFive = currentMonth - 5,
+                    yearOfMonthFive = currentYear;
+                    monthSix = 11;
+                    yearOfMonthSix = currentYear - 1;
+
+                    this.stepTwoGetMonthIDsArray(monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree, monthFour, yearOfMonthFour, monthFive, yearOfMonthFive, monthSix, yearOfMonthSix);
+                
+                case 4:
+                    monthOne = currentMonth - 1;
+                    yearOfMonthOne = currentYear;
+                    monthTwo = currentMonth - 2,
+                    yearOfMonthTwo = currentYear;
+                    monthThree = currentMonth - 3,
+                    yearOfMonthThree = currentYear;
+                    monthFour = currentMonth - 4,
+                    yearOfMonthFour = currentYear;
+                    monthFive = 11,
+                    yearOfMonthFive = currentYear - 1;
+                    monthSix = 10;
+                    yearOfMonthSix = currentYear - 1;
+
+                    this.stepTwoGetMonthIDsArray(monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree, monthFour, yearOfMonthFour, monthFive, yearOfMonthFive, monthSix, yearOfMonthSix);
+                
+                case 3:
+                    monthOne = currentMonth - 1;
+                    yearOfMonthOne = currentYear;
+                    monthTwo = currentMonth - 2,
+                    yearOfMonthTwo = currentYear;
+                    monthThree = currentMonth - 3,
+                    yearOfMonthThree = currentYear;
+                    monthFour = 11,
+                    yearOfMonthFour = currentYear - 1;
+                    monthFive = 10,
+                    yearOfMonthFive = currentYear - 1;
+                    monthSix = 9;
+                    yearOfMonthSix = currentYear - 1;
+
+                    this.stepTwoGetMonthIDsArray(monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree, monthFour, yearOfMonthFour, monthFive, yearOfMonthFive, monthSix, yearOfMonthSix);
+            
+
+                case 2:
+                    monthOne = currentMonth - 1;
+                    yearOfMonthOne = currentYear;
+                    monthTwo = currentMonth - 2,
+                    yearOfMonthTwo = currentYear;
+                    monthThree = 11,
+                    yearOfMonthThree = currentYear - 1;
+                    monthFour = 10,
+                    yearOfMonthFour = currentYear - 1;
+                    monthFive = 9,
+                    yearOfMonthFive = currentYear - 1;
+                    monthSix = 8;
+                    yearOfMonthSix = currentYear - 1;
+
+                    this.stepTwoGetMonthIDsArray(monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree, monthFour, yearOfMonthFour, monthFive, yearOfMonthFive, monthSix, yearOfMonthSix);
+
+                case 1:
+                    monthOne = currentMonth - 1;
+                    yearOfMonthOne = currentYear;
+                    monthTwo = 11,
+                    yearOfMonthTwo = currentYear - 1;
+                    monthThree = 10,
+                    yearOfMonthThree = currentYear - 1;
+                    monthFour = 9,
+                    yearOfMonthFour = currentYear - 1;
+                    monthFive = 8,
+                    yearOfMonthFive = currentYear - 1;
+                    monthSix = 7;
+                    yearOfMonthSix = currentYear - 1;
+
+                    this.stepTwoGetMonthIDsArray(monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree, monthFour, yearOfMonthFour, monthFive, yearOfMonthFive, monthSix, yearOfMonthSix);
+                case 0:
+                    monthOne = 11;
+                    yearOfMonthOne = currentYear - 1;
+                    monthTwo = 10,
+                    yearOfMonthTwo = currentYear - 1;
+                    monthThree = 9,
+                    yearOfMonthThree = currentYear - 1;
+                    monthFour = 8,
+                    yearOfMonthFour = currentYear - 1;
+                    monthFive = 7,
+                    yearOfMonthFive = currentYear - 1;
+                    monthSix = 6;
+                    yearOfMonthSix = currentYear - 1;
+
+                    this.stepTwoGetMonthIDsArray(monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree, monthFour, yearOfMonthFour, monthFive, yearOfMonthFive, monthSix, yearOfMonthSix);
+                default:
+                    monthOne = currentMonth - 1;
+                    yearOfMonthOne = currentYear;
+                    monthTwo = currentMonth - 2,
+                    yearOfMonthTwo = currentYear;
+                    monthThree = currentMonth - 3,
+                    yearOfMonthThree = currentYear;
+                    monthFour = currentMonth - 4,
+                    yearOfMonthFour = currentYear;
+                    monthFive = currentMonth - 5,
+                    yearOfMonthFive = currentYear;
+                    monthSix = currentMonth - 6;
+                    yearOfMonthSix = currentYear;
+
+                    this.stepTwoGetMonthIDsArray(monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree, monthFour, yearOfMonthFour, monthFive, yearOfMonthFive, monthSix, yearOfMonthSix);
+                }
+
+        }
+        
+        stepTwoGetMonthIDsArray = async (monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree, monthFour, yearOfMonthFour, monthFive, yearOfMonthFive, monthSix, yearOfMonthSix) => {
+            await db.Month
+                    .find({monthAsNumber: monthOne, year: yearOfMonthOne})
+                    .then(data => {
+                        monthIDArray.push(data[0]._id);
+                        return monthIDArray;
+                        })
+                    .catch(err => console.log(err));
+        
+            await  db.Month
+                    .find({monthAsNumber: monthTwo, year: yearOfMonthTwo})
+                    .then(data => {
+                        monthIDArray.push(data[0]._id);
+                        return monthIDArray;
+                        })
+                    .catch(err => console.log(err));
+
+            await  db.Month
+                    .find({monthAsNumber: monthTwo, year: yearOfMonthTwo})
+                    .then(data => {
+                        monthIDArray.push(data[0]._id);
+                        return monthIDArray;
+                        })
+                    .catch(err => console.log(err));
+
+            await  db.Month
+                    .find({monthAsNumber: monthThree, year: yearOfMonthThree})
+                    .then(data => {
+                        monthIDArray.push(data[0]._id);
+                        return monthIDArray;
+                        })
+                    .catch(err => console.log(err));
+
+            await  db.Month
+                    .find({monthAsNumber: monthFour, year: yearOfMonthFour})
+                    .then(data => {
+                        monthIDArray.push(data[0]._id);
+                        return monthIDArray;
+                        })
+                    .catch(err => console.log(err));
+            
+            await  db.Month
+                    .find({monthAsNumber: monthFive, year: yearOfMonthFive})
+                    .then(data => {
+                        monthIDArray.push(data[0]._id);
+                        return monthIDArray;
+                        })
+                    .catch(err => console.log(err));
+
+            await db.Month
+                    .find({monthAsNumber: monthSix, year: yearOfMonthSix})
+                    .then(data => {
+                        monthIDArray.push(data[0]._id);
+                        console.log(monthIDArray);
+                        
+                        this.stepThreeGetPlannedItems(monthIDArray);
+
+                        })
+                    .catch(err => console.log(err));
+        }
+
+        stepThreeGetPlannedItems = (arrayOfMonthIDs) => {
+                db.Expenses
+                    .find({
+                        userID: this.userID, 
+                        monthID: arrayOfMonthIDs,
+                        isPlanned: true
+                    })
+                    .sort({categoryName: 1, nameOfExpense: 1})
+                    .then(arrayOfItems => {
+                        this.stepFourCalculateTotal(arrayOfItems);
+                    })
+                    .catch(err => console.log(err));
+        }
+
+        stepFourCalculateTotal = (arrayOfItems) => {
+            let itemTotal = 0;
+                arrayOfItems.forEach(itemRecords => {
+                    itemTotal += parseFloat(itemRecords.amountOfExpense)
+                })
+                
+                let averageTotal = (itemTotal/6).toFixed(2);
+                res.json(averageTotal);
+                return averageTotal;
+        }
+    }
+    
+    let lastthreeMonthTrend = new SixMonths(req.params.userID);
     lastthreeMonthTrend.stepOneDetermineCorrectMonthsAndYears();
 
 }
@@ -1098,6 +1328,7 @@ module.exports = {
     getAfterSpendingAmount: getAfterSpendingAmount,
     getCurrentMonth: getCurrentMonth,
     getPlannedItemsForLastThreeMonths: getPlannedItemsForLastThreeMonths,
+    getPlannedItemsForLastSixMonths: getPlannedItemsForLastSixMonths,
     deleteExpense: deleteExpenseByID,
     deleteIncome: deleteIncomeByID,
     deleteAllMonthData: deleteAllMonthData,
