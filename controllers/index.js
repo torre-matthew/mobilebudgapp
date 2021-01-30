@@ -967,8 +967,6 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
     let monthIDArray = [];
     let monthObject;
 
-    new ThreeMonths.stepOneDetermineCorrectMonthsAndYears("5e952c83a5ad7500176ad379", currentMonth);
-
     let ThreeMonths = (userID, currentMonth) => {
         this.userID = userID;
         this.currentMonth = currentMonth;
@@ -1063,7 +1061,7 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
 
     }
 
-    
+    new ThreeMonths.stepOneDetermineCorrectMonthsAndYears("5e952c83a5ad7500176ad379", currentMonth);
 
 }
 
