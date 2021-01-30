@@ -1050,8 +1050,20 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                         isPlanned: true
                     })
                     .sort({categoryName: 1, nameOfExpense: 1})
-                    .then(data => res.json(data))
+                    .then(arrayOfItems => {
+                        this.stepFourCalculateTotal(arrayOfItems);
+                    })
                     .catch(err => console.log(err));
+        }
+
+        stepFourCalculateTotal = (arrayOfItems) => {
+            let itemTotal = 0;
+                arrayOfItems.forEach(itemRecords => {
+                    itemTotal += parseFloat(itemRecords.amountOfExpense)
+                
+                let total = itemTotal.toFixed(2);
+                res.json(total);
+                return total;
         }
 
         
