@@ -1069,7 +1069,7 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
     }
     // "5e9675e001ed360017e9ce4e"
     // "5e952c83a5ad7500176ad379"
-    let lastthreeMonthTrend = new ThreeMonths("5e9675e001ed360017e9ce4e");
+    let lastthreeMonthTrend = new ThreeMonths(req.params.userID);
     lastthreeMonthTrend.stepOneDetermineCorrectMonthsAndYears();
 
 }
