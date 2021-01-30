@@ -1067,8 +1067,9 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                 return averageTotal;
         }
     }
-
-    let lastthreeMonthTrend = new ThreeMonths("5e952c83a5ad7500176ad379");
+    // "5e9675e001ed360017e9ce4e"
+    // "5e952c83a5ad7500176ad379"
+    let lastthreeMonthTrend = new ThreeMonths("5e9675e001ed360017e9ce4e");
     lastthreeMonthTrend.stepOneDetermineCorrectMonthsAndYears();
 
 }
