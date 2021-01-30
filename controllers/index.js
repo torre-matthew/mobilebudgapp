@@ -955,7 +955,14 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
 
 
     db.Expenses
-    .find({userID: "5e952c83a5ad7500176ad379", monthID: ["5ebf4e6ffb3cdb0017c1efaf", "5eaf625fe7b5c60017267771", "5eaf6254e7b5c60017267770"], isPlanned: true})
+    .find({
+        userID: "5e952c83a5ad7500176ad379", 
+        // monthID: ["5ebf4e6ffb3cdb0017c1efaf", "5eaf625fe7b5c60017267771", "5eaf6254e7b5c60017267770"],
+        monthID: "5ebf4e6ffb3cdb0017c1efaf",
+        monthID: "5eaf625fe7b5c60017267771",
+        monthID: "5eaf6254e7b5c60017267770", 
+        isPlanned: true
+    })
     .sort({categoryName: 1, nameOfExpense: 1})
     .then(data => res.json(data))
     .catch(err => console.log(err));
@@ -975,6 +982,8 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
     let monthThree;
     let yearOfMonthThree;
     let monthThreeID;
+    let monthIDArray = [];
+    let monthObject;
 
     switch (currentMonth) {
         case 2:
@@ -984,7 +993,6 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
             yearOfMonthTwo = currentYear;
             monthThree = 11;
             yearOfMonthThree = currentYear - 1;
-    
         case 1:
             monthOne = currentMonth - 1;
             yearOfMonthOne = currentYear;
@@ -1000,12 +1008,14 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
             monthThree = monthTwo - 1;
             yearOfMonthThree = currentYear - 1;
         default:
-            monthOne = currentMonth - 1;
-            yearOfMonthOne = currentYear;
-            monthTwo = monthOne - 1,
-            yearOfMonthTwo = currentYear;
-            monthThree = monthTwo - 1;
-            yearOfMonthThree = currentYear;
+            monthObject = {
+                monthOne: currentMonth - 1,
+                yearOfMonthOne: currentYear,
+                monthTwo: monthOne - 1,
+                yearOfMonthTwo: currentYear,
+                monthThree: monthTwo - 1,
+                yearOfMonthThree: currentYear,
+            }
         }
 
 }
