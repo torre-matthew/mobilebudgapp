@@ -855,9 +855,9 @@ let updateAfterSpendingAmount = (req, res) => {
                 totalOfExpenses += parseFloat(element.amountOfExpense); // set set total of expenses to that number
             });
         }        
-            db.Income.find({_id: req.params.incomeID})
+            db.Income.find({_id: req.params.incomeID}) //then find that income record
             .then(data => {
-                    availableIncomeAmount = (parseFloat(data[0].amount) - totalOfExpenses).toFixed(2);
+                    availableIncomeAmount = (parseFloat(data[0].amount) - totalOfExpenses).toFixed(2); //subtract the total expenses from the total for that expense.
                 
                     db.Income.updateOne({_id: req.params.incomeID},
                         {$set: {
@@ -951,6 +951,65 @@ let calculateCategoryTotalsPerMonth = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let getPlannedItemsForLastThreeMonths = (req, res) => {
+
+
+    db.Expenses
+    .find({userID: "5e952c83a5ad7500176ad379", monthID: ["5ebf4e6ffb3cdb0017c1efaf", "5eaf625fe7b5c60017267771", "5eaf6254e7b5c60017267770"], isPlanned: true})
+    .sort({categoryName: 1, nameOfExpense: 1})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+
+
+
+
+
+    let currentMonth = new Date().getMonth(); 
+    let currentYear = new Date().getFullYear();
+    let monthOne;
+    let yearOfMonthOne;
+    let monthOneID;
+    let monthTwo;
+    let yearOfMonthTwo;
+    let monthTwoID;
+    let monthThree;
+    let yearOfMonthThree;
+    let monthThreeID;
+
+    switch (currentMonth) {
+        case 2:
+            monthOne = currentMonth - 1;
+            yearOfMonthOne = currentYear;
+            monthTwo = monthOne - 1,
+            yearOfMonthTwo = currentYear;
+            monthThree = 11;
+            yearOfMonthThree = currentYear - 1;
+    
+        case 1:
+            monthOne = currentMonth - 1;
+            yearOfMonthOne = currentYear;
+            monthTwo = 11,
+            yearOfMonthTwo = currentYear - 1;
+            monthThree = monthTwo - 1;
+            yearOfMonthThree = currentYear - 1;
+        case 0:
+            monthOne = 11;
+            yearOfMonthOne = currentYear - 1;
+            monthTwo = monthOne - 1,
+            yearOfMonthTwo = currentYear - 1;
+            monthThree = monthTwo - 1;
+            yearOfMonthThree = currentYear - 1;
+        default:
+            monthOne = currentMonth - 1;
+            yearOfMonthOne = currentYear;
+            monthTwo = monthOne - 1,
+            yearOfMonthTwo = currentYear;
+            monthThree = monthTwo - 1;
+            yearOfMonthThree = currentYear;
+        }
+
+}
+
 module.exports = {
     addIncome: addIncomeToDb,
     addExpense: addExpenseToDb,
@@ -974,6 +1033,7 @@ module.exports = {
     getBillTrackerItems: getBillTrackerItems,
     getAfterSpendingAmount: getAfterSpendingAmount,
     getCurrentMonth: getCurrentMonth,
+    getPlannedItemsForLastThreeMonths: getPlannedItemsForLastThreeMonths,
     deleteExpense: deleteExpenseByID,
     deleteIncome: deleteIncomeByID,
     deleteAllMonthData: deleteAllMonthData,

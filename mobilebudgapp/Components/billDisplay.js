@@ -31,17 +31,9 @@ class UnplannedBillDisplay extends Component {
   };
 
   componentDidMount() {
-
-    if (this.props.updateComponent) {
-      this.props.refresh();
       this.getFundingSourceInfo(this.props.billID);
       this.changeDisplayWhenMarkedAsPaid();
       this.setCategoryDisplay();  
-    } else {
-      this.getFundingSourceInfo(this.props.billID);
-      this.changeDisplayWhenMarkedAsPaid();
-      this.setCategoryDisplay();
-    }
   }
 
   updateBillDisplayComponent = () => {

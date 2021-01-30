@@ -29,13 +29,13 @@ class SelectFundingSourceScreen extends Component {
               {this.props.route.params.incomeDataFromDB.map(income => 
                 income._id === this.props.route.params.fundingSourceID
                 ?  
-              <View onTouchEnd={() => {alert('This is your current funding source. Please choose another source.')}} style={{ width: '75%', height: '25%', alignSelf: 'center', justifyContent: 'center', backgroundColor: '#F5F5F5', margin: 10, borderRadius: 15, elevation: 5, borderWidth: 1, borderStyle: 'solid', borderColor: '#4A0784'}}> 
+              <View onTouchEnd={() => {alert('This is your current funding source. Please choose another source.')}} style={{ width: '75%', height: '30%', alignSelf: 'center', justifyContent: 'center', backgroundColor: '#F5F5F5', margin: 10, borderRadius: 15, elevation: 5, borderWidth: 1, borderStyle: 'solid', borderColor: '#4A0784'}}> 
                 <Text style={{fontSize: 18, textAlign: 'center', fontFamily: 'Laila-SemiBold'}}> {income.name} </Text>
                 <Text style={{fontSize: 18, textAlign: 'center', fontFamily: 'Laila-SemiBold'}}> ${income.afterSpendingAmount + ' remaining of ' + ' $' + income.amount} </Text>
                 <Text style={{fontSize: 13, textAlign: 'center', fontFamily: 'Laila-SemiBold', color: '#40DBCE'}}> Current Funding Source </Text>
               </View>
                 :
-              <View onTouchEnd={() => {this.props.route.params.selectFundingSource(income._id)}} style={{ width: '75%', height: '25%', alignSelf: 'center', justifyContent: 'center', backgroundColor: '#F5F5F5', margin: 10, borderRadius: 15, elevation: 5, borderWidth: 1, borderStyle: 'solid', borderColor: '#4A0784'}}> 
+              <View onTouchEnd={() => {this.props.route.params.selectFundingSource(income._id)}} style={{ width: '75%', height: '30%', alignSelf: 'center', justifyContent: 'center', backgroundColor: '#F5F5F5', margin: 10, borderRadius: 15, elevation: 5, borderWidth: 1, borderStyle: 'solid', borderColor: '#4A0784'}}> 
                 <Text style={{fontSize: 18, textAlign: 'center', fontFamily: 'Laila-SemiBold'}}> {income.name} </Text>
                 <Text style={{fontSize: 18, textAlign: 'center', fontFamily: 'Laila-SemiBold'}}> ${income.afterSpendingAmount + ' remaining of ' + ' $' + income.amount} </Text>
               </View>

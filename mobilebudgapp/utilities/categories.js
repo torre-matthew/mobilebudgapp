@@ -75,6 +75,10 @@ let lahriCategories = {
       icon: "chart-line",
       iconColor: iconColors[11]
     },
+    autoTransportation: {
+      icon: "car",
+      iconColor: iconColors[12]
+    },
     default: {
       icon: "question-circle",
       iconColor: '#454545'
@@ -105,6 +109,8 @@ let lahriCategories = {
             return lahriCategories.insurance
           case "Investment":
             return lahriCategories.investment
+          case "Auto & Transportation":
+          return lahriCategories.autoTransportation
           default:
             return lahriCategories.default
           }

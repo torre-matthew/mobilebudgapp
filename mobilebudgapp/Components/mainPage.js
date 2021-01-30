@@ -82,16 +82,11 @@ export default class MainPage extends Component {
     whatsBeingEdited: "",
     fontSize: 0,
     componentUpdateSwitch: false,
-    updateChildren: false
   };
 
   componentDidMount(){
-    // this.getLoggedInUserIdByEmail(this.state.loggedInUsersEmail);
     this.fetchData();
-  //   this.setState({
-  //     currentUnPlannedExpensesFromDB: this.props.currentUnPlannedExpensesFromDB,
-  //     currentPlannedExpensesFromDB: this.props.currentPlannedExpensesFromDB}) 
-}
+  }
 
   fetchData = () => {
     this.props.fetchData(this.props.currentUserID, this.props.currentMonthID);
@@ -113,38 +108,8 @@ export default class MainPage extends Component {
     this.setState({state: this.state});
   }
 
-  selectNewMonth = async (month, monthID) => {
-// Check to see if there are any unplanned expenses in this month
-    await ApiMethods.getAllUnPlannedExpenses(this.state.loggedInUserID, monthID)
-            .then(expenses => {
-              if (expenses.data.length === 0) {
-                this.setState({doesCurrentMonthNeedData: true})
-              }
-            })
-            .catch(err => console.log(err));
-// Check to see if there are any planned expenses in this month
-    await  ApiMethods.getAllPlannedExpenses(this.state.loggedInUserID, monthID)
-            .then(expenses => {
-              if (expenses.data.length === 0) {
-                this.setState({doesCurrentMonthNeedData: true})
-              }
-            })
-            .catch(err => console.log(err));
-// Check to see if there are is any income in this month
-    await  ApiMethods.getIncomeByUserID(this.state.loggedInUserID, monthID)
-              .then(income => {
-                if (income.data.length === 0) { // previousMonthID, userID, targetMonthID
-                      this.props.navigation.navigate('Create New Budget', {previousMonthName: this.props.currentMonth, previousMonthID: this.props.currentMonthID, userID: this.state.loggedInUserID, targetMonthID: monthID, targetMonthName: month, fetchData: this.fetchData});
-                      this.setState({currentMonth: month, currentMonthID: monthID, doesCurrentMonthNeedData: true},() => {this.fetchData()});                  
-                } else {
-                      this.setState({currentMonth: month, currentMonthID: monthID, doesCurrentMonthNeedData: false},() => {this.fetchData()});
-                }
-              })
-              .catch(err => console.log(err));
-  }
-
   updateExpensesOnUserRecord = () => {
-    ApiMethods.updateExpensesOnUserRecord(this.state.loggedInUserID).then(data => res.json(data)).catch(err => console.log(err));
+    ApiMethods.updateExpensesOnUserRecord(this.props.currentUserID).then(data => res.json(data)).catch(err => console.log(err));
   }
 
   getTotalIncome = () => {
@@ -181,26 +146,6 @@ export default class MainPage extends Component {
       });
       return afterSpendingIncomeTotal;
     }
-  }
-
-  handleFormSubmit = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault();
-    ApiMethods
-    .addExpense(this.state.bill_name, this.state.due_date, this.state.amount_due, this.state.loggedInUserID, this.state.currentMonthID)
-    .then(data => res.json(data))
-    .catch(err => console.log(err))
-  };
-
-  handleAddIncomeFormSubmit = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault();
-
-    ApiMethods.addIncome(this.state.income_name, this.state.income_date, this.state.income_amount, this.state.loggedInUserID, this.state.currentMonthID)
-    .then(data => res.json(data))
-    .catch(err => console.log(err));
-
-    this.getTotalIncome();
   }
 
   switcherLogic = (switcher) => {
@@ -316,7 +261,7 @@ export default class MainPage extends Component {
       [ 
         {text: 'Nevermind', style: 'cancel'},
         {text: 'Ok', onPress: () => {
-          ApiMethods.editExpense(this.state.selectedBillID, this.state.selectedBillName, this.state.selectedBillDueDate, this.state.selectedBillAmount, true, fundingSourceID, this.state.loggedInUserID)
+          ApiMethods.editExpense(this.state.selectedBillID, this.state.selectedBillName, this.state.selectedBillDueDate, this.state.selectedBillAmount, true, fundingSourceID, this.props.currentUserID)
               .then(res => {
                   if (res.data.nModified === 0) {
                       alert('Sorry, there was a problem. Please try again');
@@ -376,7 +321,7 @@ export default class MainPage extends Component {
         [ 
           {text: 'Nevermind', style: 'cancel'},
           {text: 'Ok', onPress: () => {
-            ApiMethods.editExpense(this.state.selectedBillID, this.state.selectedBillName, this.state.selectedBillDueDate, this.state.selectedBillAmount, false, "", this.state.loggedInUserID)
+            ApiMethods.editExpense(this.state.selectedBillID, this.state.selectedBillName, this.state.selectedBillDueDate, this.state.selectedBillAmount, false, "", this.props.currentUserID)
               .then(res => {
                   if (res.data.nModified === 0) {
                       alert('Sorry, there was a problem. Please try again');
@@ -398,8 +343,6 @@ export default class MainPage extends Component {
       ApiMethods.addToBillTracker(billID)
         .then(res => {
             alert(this.state.selectedBillName + ' has been added to your payment tracker.')
-            this.onRefresh();
-            this.setState({updateChildren: true});
             this.showDrawerAndOverLayLogic(this.state.selectedBillID, this.state.selectedBillName, this.state.selectedBillAmount, this.state.selectedBillCategoryName, this.state.selectedBillCategoryID, this.state.selectedBillCategoryIconName, this.state.selectedBillCategoryIconColor, this.state.selectedBillDueDate, this.state.selectedFundingSourceID, this.state.selectedFundingSourceName, this.state.selectedFundingSourceAmount, this.state.selectedBillIsPaid, this.state.selectedBillIsPlanned, "bill", true);
           })
         .catch(err => console.log(err));
@@ -440,7 +383,7 @@ export default class MainPage extends Component {
               .updateAfterSpendingAmount(this.state.selectedFundingSourceID)
               .then(data => {
                 ApiMethods
-                  .updateIncomeOnUserRecord(this.state.loggedInUserID)
+                  .updateIncomeOnUserRecord(this.props.currentUserID)
                   .then(data => {
                     this.fetchData();
                     })
@@ -454,7 +397,7 @@ export default class MainPage extends Component {
         } else {
           alert('You have successfully deleted ' + this.state.selectedBillName);
           
-          ApiMethods.updateIncomeOnUserRecord(this.state.loggedInUserID)
+          ApiMethods.updateIncomeOnUserRecord(this.props.currentUserID)
           .then(data => {
             this.fetchData();
           })
@@ -485,7 +428,7 @@ export default class MainPage extends Component {
         incomeDataFromDB: this.props.currentIncomeFromDB,
         whatsBeingEdited: this.state.whatsBeingEdited,
         updateWrapperComponent: this.fetchData,
-        loggedInUserID: this.state.loggedInUserID,
+        loggedInUserID: this.props.currentUserID,
         currentMonthID: this.state.currentMonthID,
         deleteExpense: this.deleteExpense,
         hideDrawerAndOverLayLogic: this.hideDrawerAndOverLayLogic,
@@ -498,18 +441,14 @@ export default class MainPage extends Component {
     }
 
     addCategory = (expenseID, categoryID, categoryName) => {
-      ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
-        .then(data => {
-          this.onRefresh();
-          this.setState({updateChildren: true, selectedBillCategoryID: categoryID, selectedBillCategoryName: categoryName});
-          this.hideDrawerAndOverLayLogic("categorySlideOut");
-          this.hideDrawerAndOverLayLogic("quickActionDrawer", 
-          () => {
-            this.showDrawerAndOverLayLogic(this.state.selectedBillID, this.state.selectedBillName, this.state.selectedBillAmount, this.state.selectedBillCategoryName, this.state.selectedBillCategoryID, this.state.selectedBillCategoryIconName, this.state.selectedBillCategoryIconColor, this.state.selectedBillDueDate, this.state.selectedFundingSourceID, this.state.selectedFundingSourceName, this.state.selectedFundingSourceAmount, this.state.selectedBillIsPaid, this.state.selectedBillIsPlanned, "bill", this.state.selectedBillIsForBillTracker);
-              }
-            );
-          })
-        .catch(err => console.log(err));
+            ApiMethods.addCategoryToEntry(expenseID, categoryID, categoryName)
+              .then(data => {
+                this.onRefresh();
+                this.setState({selectedBillCategoryID: categoryID, selectedBillCategoryName: categoryName});
+                this.hideDrawerAndOverLayLogic("categorySlideOut");
+                this.hideDrawerAndOverLayLogic("quickActionDrawer");
+                })
+              .catch(err => console.log(err));
     }
 
     getAllCategories = () => {
@@ -565,7 +504,7 @@ export default class MainPage extends Component {
                 switcherClicked={this.state.afterSpendingClicked}
                 switcherStyle={this.state.switcherClickedStyle}
                 incomeDataFromDB={this.props.currentIncomeFromDB}
-                loggedInUserID={this.state.loggedInUserID}
+                loggedInUserID={this.props.currentUserID}
                 fetchData={this.fetchData}
                 spinnerSize={this.state.spinnerSize}
                 spinnerOpacity={this.state.spinnerOpacity}
@@ -573,7 +512,6 @@ export default class MainPage extends Component {
                 monthData={this.props.monthData}
                 currentMonth={this.state.currentMonth}
                 currentMonthID={this.state.currentMonthID}
-                selectNewMonth={this.selectNewMonth}
                 navigation={this.props.navigation} />
               <UnplannedBillWrapper
                 expenseDataFromDB={!this.state.plannedClicked ? this.props.currentUnPlannedExpensesFromDB : this.props.currentPlannedExpensesFromDB}
@@ -586,7 +524,7 @@ export default class MainPage extends Component {
                 updateExpensesOnUserRecord={this.updateExpensesOnUserRecord}
                 handleBillName={this.handleBillName} 
                 handleFormSubmit={this.handleFormSubmit}
-                loggedInUserID={this.state.loggedInUserID}
+                loggedInUserID={this.props.currentUserID}
                 fetchData={this.fetchData}
                 refresh={this.onRefresh}
                 spinnerSize={this.state.spinnerSize}
@@ -597,8 +535,7 @@ export default class MainPage extends Component {
                 navigation={this.props.navigation}
                 showDrawerAndOverLayLogic={this.showDrawerAndOverLayLogic}
                 hide={this.hideDrawerAndOverLayLogic}
-                componentUpdateSwitch={this.state.componentUpdateSwitch}
-                updateComponent={this.state.updateChildren} />
+                componentUpdateSwitch={this.state.componentUpdateSwitch} />
             </View>
           </ScrollView>
           <QuickActionDrawer2 
@@ -634,7 +571,7 @@ export default class MainPage extends Component {
             arrayOfCategories={this.state.arrayOfCategories} 
             addCategory={this.addCategory} 
             billID={this.state.selectedBillID}
-            loggedInUserID={this.state.loggedInUserID}
+            loggedInUserID={this.props.currentUserID}
             currentCategoryID={this.state.selectedBillCategoryID} 
             currentMonthID={this.state.currentMonthID} 
             />

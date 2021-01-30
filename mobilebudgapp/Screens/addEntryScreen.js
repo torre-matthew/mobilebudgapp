@@ -192,7 +192,7 @@ class AddEntryScreen extends Component {
                 <TouchableOpacity
                   onPress={() => {this.setState({showBillExpenseForm: true, showIncomeForm: false})}}
                   style={this.state.showBillExpenseForm ? addEntryScreenStyles.billExpense_button_active : addEntryScreenStyles.billExpense_button_inactive}>
-                    <Text style={{fontSize: 15, fontFamily: 'Laila-SemiBold', color: this.state.showBillExpenseForm ? '#F5F5F5' : 'red'}}> Bill/Expense </Text>
+                    <Text style={{fontSize: 15, fontFamily: 'Laila-SemiBold', color: this.state.showBillExpenseForm ? '#F5F5F5' : 'red'}}> Budget Item </Text>
                 </TouchableOpacity>
               </View>
             </View>

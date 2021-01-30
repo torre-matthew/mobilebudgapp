@@ -62,17 +62,6 @@ class SummaryWrapper extends Component {
                     />
                     )
                 }
-                    {/* <AddEntryModal
-                    handleIncomeAmount={this.props.handleIncomeAmount}
-                    handleIncomeDate={this.props.handleIncomeDate}
-                    handleIncomeName={this.props.handleIncomeName}
-                    handleAddIncomeFormSubmit={this.props.handleAddIncomeFormSubmit}
-                    updateWrapperComponent={this.updateSummaryWrapperComponent}
-                    loggedInUserID={this.props.loggedInUserID}
-                    fetchData={this.props.fetchData}
-                    currentMonthID={this.props.currentMonthID}
-                    /> */}
-                    {/* <SummaryWrapperEmptyState /> */}
                 </Content>
         );
     }

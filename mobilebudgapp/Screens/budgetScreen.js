@@ -108,12 +108,6 @@ class BudgetScreen extends Component {
                   .catch(err => console.log(err));
       }
 
-
-
-
-
-
-
     render(){
         const {navigation} = this.props;
     
@@ -133,6 +127,7 @@ class BudgetScreen extends Component {
               currentMonthID={this.state.currentMonthID}
               currentPlannedExpensesFromDB={this.state.currentPlannedExpensesFromDB}
               currentUnPlannedExpensesFromDB={this.state.currentUnPlannedExpensesFromDB}
+              getUnPlannedExpenseDataFromDB={this.getUnPlannedExpenseDataFromDB}
               currentIncomeFromDB={this.state.currentIncomeFromDB}
               monthData={this.state.monthData}
               fetchData={this.fetchData}

@@ -15,7 +15,7 @@ function AddBillFormDisplay (props) {
                             handleDueDate={props.handleDueDate} />
                     </Item>
                     <Item>
-                        <Input placeholder='Bill/Expense' onChangeText={props.handleBillName} />
+                        <Input placeholder='Budget Item' onChangeText={props.handleBillName} />
                     </Item>
                     <Item>
                         <Input keyboardType='decimal-pad' placeholder="Amount" onChangeText={props.handleBillAmount} />
