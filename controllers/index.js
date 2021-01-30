@@ -954,15 +954,15 @@ let calculateCategoryTotalsPerMonth = (req, res) => {
 let getPlannedItemsForLastThreeMonths = (req, res) => {
 
 
-    db.Expenses
-    .find({
-        userID: "5e952c83a5ad7500176ad379", 
-        monthID: ["5ebf4e6ffb3cdb0017c1efaf", "5eaf625fe7b5c60017267771", "5eaf6254e7b5c60017267770"],
-        isPlanned: true
-    })
-    .sort({categoryName: 1, nameOfExpense: 1})
-    .then(data => res.json(data))
-    .catch(err => console.log(err));
+    // db.Expenses
+    // .find({
+    //     userID: "5e952c83a5ad7500176ad379", 
+    //     monthID: ["5ebf4e6ffb3cdb0017c1efaf", "5eaf625fe7b5c60017267771", "5eaf6254e7b5c60017267770"],
+    //     isPlanned: true
+    // })
+    // .sort({categoryName: 1, nameOfExpense: 1})
+    // .then(data => res.json(data))
+    // .catch(err => console.log(err));
 
 
 
@@ -1013,6 +1013,36 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                 monthThree: monthTwo - 1,
                 yearOfMonthThree: currentYear,
             }
+
+            db.Month
+            .find({monthAsNumber: monthObject.monthOne, year: monthObject.yearOfMonthOne})
+            .sort({year: 1})
+            .sort({monthAsNumber: 1})
+            .then(data => {
+                monthIDArray.push(data[0]._id)
+                })
+            .catch(err => console.log(err));
+
+            db.Month
+            .find({monthAsNumber: monthObject.monthTwo, year: monthObject.yearOfMonthTwo})
+            .sort({year: 1})
+            .sort({monthAsNumber: 1})
+            .then(data => {
+                monthIDArray.push(data[0]._id)
+                })
+            .catch(err => console.log(err));
+
+            db.Month
+            .find({monthAsNumber: monthObject.monthThree, year: monthObject.yearOfMonthThree})
+            .sort({year: 1})
+            .sort({monthAsNumber: 1})
+            .then(data => {
+                monthIDArray.push(data[0]._id)
+                })
+            .catch(err => console.log(err));
+
+            console.log(monthIDArray);
+            return monthIDArray;
         }
 
 }
