@@ -951,7 +951,7 @@ let calculateCategoryTotalsPerMonth = (req, res) => {
     .catch(err => console.log(err));
 }
 
-let getPlannedItemsForLastThreeMonths = (req, res) => {
+let getPlannedItemsTotalForLastThreeMonths = (req, res) => {
 
     let currentMonth = new Date().getMonth(); 
     let currentYear = new Date().getFullYear();
@@ -1073,7 +1073,7 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
 
 }
 
-let getPlannedItemsForLastSixMonths = (req, res) => {
+let getPlannedItemsTotalForLastSixMonths = (req, res) => {
 
     let currentMonth = new Date().getMonth(); 
     let currentYear = new Date().getFullYear();
@@ -1319,8 +1319,8 @@ module.exports = {
     getBillTrackerItems: getBillTrackerItems,
     getAfterSpendingAmount: getAfterSpendingAmount,
     getCurrentMonth: getCurrentMonth,
-    getPlannedItemsForLastThreeMonths: getPlannedItemsForLastThreeMonths,
-    getPlannedItemsForLastSixMonths: getPlannedItemsForLastSixMonths,
+    getPlannedItemsTotalForLastThreeMonths: getPlannedItemsTotalForLastThreeMonths,
+    getPlannedItemsTotalForLastSixMonths: getPlannedItemsTotalForLastSixMonths,
     deleteExpense: deleteExpenseByID,
     deleteIncome: deleteIncomeByID,
     deleteAllMonthData: deleteAllMonthData,
