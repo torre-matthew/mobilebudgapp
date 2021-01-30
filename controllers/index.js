@@ -985,8 +985,8 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                     .catch(err => console.log(err));
         }
 
-        stepTwoGetMonthIDsArray = (monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree) => {
-            db.Month
+        stepTwoGetMonthIDsArray = async (monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree) => {
+            await db.Month
                     .find({monthAsNumber: monthOne, year: yearOfMonthOne})
                     .sort({year: 1})
                     .sort({monthAsNumber: 1})
@@ -996,7 +996,7 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                         })
                     .catch(err => console.log(err));
         
-                    db.Month
+            await  db.Month
                     .find({monthAsNumber: monthTwo, year: yearOfMonthTwo})
                     .sort({year: 1})
                     .sort({monthAsNumber: 1})
@@ -1006,7 +1006,7 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                         })
                     .catch(err => console.log(err));
         
-                    db.Month
+            await db.Month
                     .find({monthAsNumber: monthThree, year: yearOfMonthThree})
                     .sort({year: 1})
                     .sort({monthAsNumber: 1})
@@ -1019,7 +1019,7 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                         })
                     .catch(err => console.log(err));
         }
-        
+
         stepOneDetermineCorrectMonthsAndYears = () => {
             switch (this.currentMonth) {
                 case 2:
