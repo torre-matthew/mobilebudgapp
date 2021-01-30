@@ -957,10 +957,7 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
     db.Expenses
     .find({
         userID: "5e952c83a5ad7500176ad379", 
-        // monthID: ["5ebf4e6ffb3cdb0017c1efaf", "5eaf625fe7b5c60017267771", "5eaf6254e7b5c60017267770"],
-        monthID: "5ebf4e6ffb3cdb0017c1efaf",
-        monthID: "5eaf625fe7b5c60017267771",
-        monthID: "5eaf6254e7b5c60017267770", 
+        monthID: ["5ebf4e6ffb3cdb0017c1efaf", "5eaf625fe7b5c60017267771", "5eaf6254e7b5c60017267770"],
         isPlanned: true
     })
     .sort({categoryName: 1, nameOfExpense: 1})
