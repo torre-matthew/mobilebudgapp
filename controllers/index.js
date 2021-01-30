@@ -1016,47 +1016,36 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
             }
 
             db.Month
-            .aggregate( 
-                    [{ $match:
-                        {
-                        $and: [
-                        {monthAsNumber: monthObject.monthOne, year: monthObject.yearOfMonthOne},
-                        {monthAsNumber: monthObject.monthTwo, year: monthObject.yearOfMonthTwo},
-                        {monthAsNumber: monthObject.monthThree, year: monthObject.yearOfMonthThree},
-                        ]
-                    }
-                    }
-                    ]
-                )
-            // .sort({year: 1})
-            // .sort({monthAsNumber: 1})
+            .find({monthAsNumber: monthObject.monthOne, year: monthObject.yearOfMonthOne})
+            .sort({year: 1})
+            .sort({monthAsNumber: 1})
             .then(data => {
                 res.json(data);
-                // monthIDArray.push(data[0]._id);
-                // return monthIDArray;
+                monthIDArray.push(data[0]._id);
+                return monthIDArray;
                 })
             .catch(err => console.log(err));
 
-            // db.Month
-            // .find({monthAsNumber: monthObject.monthTwo, year: monthObject.yearOfMonthTwo})
-            // .sort({year: 1})
-            // .sort({monthAsNumber: 1})
-            // .then(data => {
-            //     monthIDArray.push(data[0]._id);
-            //     return monthIDArray;
-            //     })
-            // .catch(err => console.log(err));
+            db.Month
+            .find({monthAsNumber: monthObject.monthTwo, year: monthObject.yearOfMonthTwo})
+            .sort({year: 1})
+            .sort({monthAsNumber: 1})
+            .then(data => {
+                monthIDArray.push(data[0]._id);
+                return monthIDArray;
+                })
+            .catch(err => console.log(err));
 
-            // db.Month
-            // .find({monthAsNumber: monthObject.monthThree, year: monthObject.yearOfMonthThree})
-            // .sort({year: 1})
-            // .sort({monthAsNumber: 1})
-            // .then(data => {
-            //     monthIDArray.push(data[0]._id);
-            //     console.log(monthIDArray);
-            //     return monthIDArray;
-            //     })
-            // .catch(err => console.log(err));
+            db.Month
+            .find({monthAsNumber: monthObject.monthThree, year: monthObject.yearOfMonthThree})
+            .sort({year: 1})
+            .sort({monthAsNumber: 1})
+            .then(data => {
+                monthIDArray.push(data[0]._id);
+                console.log(monthIDArray);
+                return monthIDArray
+                })
+            .catch(err => console.log(err));
         }
 
 }
