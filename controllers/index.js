@@ -1062,9 +1062,9 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                     itemTotal += parseFloat(itemRecords.amountOfExpense)
                 })
                 
-                let total = itemTotal.toFixed(2);
-                res.json(total);
-                return total;
+                let averageTotal = (itemTotal/3).toFixed(2);
+                res.json(averageTotal);
+                return averageTotal;
         }
     }
 
