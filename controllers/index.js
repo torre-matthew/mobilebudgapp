@@ -968,7 +968,8 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
 
 
 
-    let currentMonth = new Date().getMonth(); 
+    // let currentMonth = new Date().getMonth();
+    let currentMonth = 3; 
     let currentYear = new Date().getFullYear();
     let monthOne;
     let yearOfMonthOne;
