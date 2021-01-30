@@ -1017,8 +1017,8 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                         })
                     .catch(err => console.log(err));
         }
-        this.stepOneDetermineCorrectMonthsAndYears = (currentMonth) => {
-            switch (currentMonth) {
+        this.stepOneDetermineCorrectMonthsAndYears = () => {
+            switch (this.currentMonth) {
                 case 2:
                     monthOne = currentMonth - 1;
                     yearOfMonthOne = currentYear;
@@ -1061,7 +1061,8 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
 
     }
 
-    new ThreeMonths.stepOneDetermineCorrectMonthsAndYears("5e952c83a5ad7500176ad379", currentMonth);
+    let lastthreeMonthTrend = new ThreeMonths("5e952c83a5ad7500176ad379", currentMonth);
+    lastthreeMonthTrend.stepOneDetermineCorrectMonthsAndYears();
 
 }
 
