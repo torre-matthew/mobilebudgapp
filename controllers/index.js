@@ -1265,12 +1265,14 @@ let getPlannedItemsTotalForLastSixMonths = (req, res) => {
                     .catch(err => console.log(err));
         }
 
+        // , "5eee735cd0da5700175fd6ad", "5fc07d71df69b9001704ccb1"
+
         stepThreeGetPlannedItems = (arrayOfMonthIDs) => {
                 db.Expenses
                     .find({
                         userID: this.userID, 
                         monthID: arrayOfMonthIDs,
-                        categoryID: {$ne: ["5eee765ec9306a0017b70fed", "5eee735cd0da5700175fd6ad", "5fc07d71df69b9001704ccb1"]},
+                        categoryID: {$ne: "5eee765ec9306a0017b70fed"},
                         isPlanned: true
                     })
                     .sort({categoryName: 1, nameOfExpense: 1})
