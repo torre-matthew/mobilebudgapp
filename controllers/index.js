@@ -1007,11 +1007,11 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
             yearOfMonthThree = currentYear - 1;
         default:
             monthObject = {
-                monthOne: currentMonth - 1,
+                monthOne: currentMonth,
                 yearOfMonthOne: currentYear,
-                monthTwo: currentMonth - 2,
+                monthTwo: currentMonth - 1,
                 yearOfMonthTwo: currentYear,
-                monthThree: currentMonth - 3,
+                monthThree: currentMonth - 2,
                 yearOfMonthThree: currentYear,
             }
 
