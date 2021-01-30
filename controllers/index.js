@@ -1020,7 +1020,9 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
             .sort({year: 1})
             .sort({monthAsNumber: 1})
             .then(data => {
-                monthIDArray.push(data[0]._id)
+                monthIDArray.push(data[0]._id);
+                console.log(monthIDArray);
+                return monthIDArray;
                 })
             .catch(err => console.log(err));
 
@@ -1042,8 +1044,6 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
             //     })
             // .catch(err => console.log(err));
 
-            console.log(monthIDArray);
-            return monthIDArray;
         }
 
 }
