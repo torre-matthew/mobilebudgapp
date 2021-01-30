@@ -967,11 +967,13 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
     let monthIDArray = [];
     let monthObject;
 
-    let ThreeMonths = (userID, currentMonth) => {
+    class ThreeMonths {
+        constructor(userID, currentMonth) {
         this.userID = userID;
         this.currentMonth = currentMonth;
+        }
         
-        this.stepThreeGetPlannedItems = (arrayOfMonthIDs) => {
+        stepThreeGetPlannedItems = (arrayOfMonthIDs) => {
                 db.Expenses
                     .find({
                         userID: this.userID, 
@@ -981,9 +983,9 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                     .sort({categoryName: 1, nameOfExpense: 1})
                     .then(data => res.json(data))
                     .catch(err => console.log(err));
-
         }
-        this.stepTwoGetMonthIDsArray = (monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree) => {
+
+        stepTwoGetMonthIDsArray = (monthOne, yearOfMonthOne, monthTwo, yearOfMonthTwo, monthThree, yearOfMonthThree) => {
             db.Month
                     .find({monthAsNumber: monthOne, year: yearOfMonthOne})
                     .sort({year: 1})
@@ -1017,7 +1019,8 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
                         })
                     .catch(err => console.log(err));
         }
-        this.stepOneDetermineCorrectMonthsAndYears = () => {
+        
+        stepOneDetermineCorrectMonthsAndYears = () => {
             switch (this.currentMonth) {
                 case 2:
                     monthOne = currentMonth - 1;
