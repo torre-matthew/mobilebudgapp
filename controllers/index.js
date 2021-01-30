@@ -1060,16 +1060,12 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
             let itemTotal = 0;
                 arrayOfItems.forEach(itemRecords => {
                     itemTotal += parseFloat(itemRecords.amountOfExpense)
+                })
                 
                 let total = itemTotal.toFixed(2);
                 res.json(total);
                 return total;
         }
-
-        
-
-        
-
     }
 
     let lastthreeMonthTrend = new ThreeMonths("5e952c83a5ad7500176ad379");
