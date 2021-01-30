@@ -1272,7 +1272,7 @@ let getPlannedItemsTotalForLastSixMonths = (req, res) => {
                     .find({
                         userID: this.userID, 
                         monthID: arrayOfMonthIDs,
-                        categoryID: {$ne: "5eee765ec9306a0017b70fed"},
+                        "categoryID": {$ne: "5eee765ec9306a0017b70fed"},
                         isPlanned: true
                     })
                     .sort({categoryName: 1, nameOfExpense: 1})
