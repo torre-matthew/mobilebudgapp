@@ -1017,9 +1017,13 @@ let getPlannedItemsForLastThreeMonths = (req, res) => {
 
             db.Month
             .find(
-                {monthAsNumber: monthObject.monthOne, year: monthObject.yearOfMonthOne},
-                {monthAsNumber: monthObject.monthTwo, year: monthObject.yearOfMonthTwo},
-                {monthAsNumber: monthObject.monthThree, year: monthObject.yearOfMonthThree},
+                { $and:
+                    [
+                        {monthAsNumber: monthObject.monthOne, year: monthObject.yearOfMonthOne},
+                        {monthAsNumber: monthObject.monthTwo, year: monthObject.yearOfMonthTwo},
+                        {monthAsNumber: monthObject.monthThree, year: monthObject.yearOfMonthThree},
+                    ]
+                }
                 )
             .sort({year: 1})
             .sort({monthAsNumber: 1})
