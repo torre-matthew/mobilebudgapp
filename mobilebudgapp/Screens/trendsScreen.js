@@ -11,7 +11,30 @@ import CatBreakdownWrapper from '../Components/Trends/catBreakdownWrapper';
 class TrendsScreen extends Component {
 
   state = {
-    
+    threeMonthAveragePerMonth: "",
+    sixMonthAveragePerMonth: ""
+  }
+
+  componentDidMount() {
+    this.getAverages(this.props.route.params.currentUserID);
+  }
+
+  getAverages = (userID) => {
+    ApiMethods.getAveragePlannedItemsTotalForLastThreeMonths(userID)
+              .then(threeMonthAverage => {
+                this.setState({
+                  threeMonthAveragePerMonth: threeMonthAverage.data
+                })
+              })
+              .catch(err => console.log(err))
+
+    ApiMethods.getAveragePlannedItemsTotalForLastSixMonths(userID)
+    .then(sixMonthAverage => {
+      this.setState({
+        sixMonthAveragePerMonth: sixMonthAverage.data
+      })
+    })
+    .catch(err => console.log(err))              
   }
 
  render() {
@@ -27,7 +50,10 @@ class TrendsScreen extends Component {
             photoURL={this.state.photoUrl}
             navigation={this.props.navigation}
             signOut={this.props.signOut} /> 
-          <CatBreakdownWrapper />
+          <CatBreakdownWrapper
+            threeMonthAveragePerMonth={this.state.threeMonthAveragePerMonth}
+            sixMonthAveragePerMonth={this.state.sixMonthAveragePerMonth} 
+          />
           <AppFooter 
               navigation={this.props.navigation}
               screen={"trends"} />

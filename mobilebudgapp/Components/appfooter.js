@@ -92,10 +92,12 @@ class AppFooter extends Component {
             <FontAwesome5 name="list-alt" size={25} color="#F5F5F5" />
             <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Payment Tracker </Text>
           </View>
-          {/* <View onTouchEnd={() => {this.props.navigation.navigate('Trends')}} style={{flex:1, alignItems: 'center', opacity: this.state.trendsClicked ? 1.0 : 0.7}}>
+          <View onTouchEnd={() => {this.props.navigation.navigate('Trends', {
+            currentUserID: this.props.currentUserID,
+          })}} style={{flex:1, alignItems: 'center', opacity: this.state.trendsClicked ? 1.0 : 0.7}}>
             <FontAwesome5 name="chart-line" size={25} color="#F5F5F5" />
             <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Trends </Text>
-          </View> */}
+          </View>
         </View>
        </Container>
     );

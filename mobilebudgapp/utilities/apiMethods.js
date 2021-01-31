@@ -85,6 +85,18 @@ let getCategoryTotalByMonth = (userID, monthID, categoryID) => {
     });
 }
 
+let getAveragePlannedItemsTotalForLastThreeMonths = (userID) => {
+    return axios.get(URL + "api/getPlannedItemsTotalForLastThreeMonths/" + userID, {
+      params:  { userID: userID}
+    });
+}
+
+let getAveragePlannedItemsTotalForLastSixMonths = (userID) => {
+    return axios.get(URL + "api/getPlannedItemsTotalForLastSixMonths/" + userID, {
+      params:  { userID: userID}
+    });
+}
+
 
 
 /////////////Post Methods////////////////////
@@ -244,6 +256,8 @@ export default {
     getPlaidAccessToken: getPlaidAccessToken,
     getCategoryTotalByMonth: getCategoryTotalByMonth,
     getBillTrackerItems: getBillTrackerItems,
+    getAveragePlannedItemsTotalForLastThreeMonths: getAveragePlannedItemsTotalForLastThreeMonths,
+    getAveragePlannedItemsTotalForLastSixMonths: getAveragePlannedItemsTotalForLastSixMonths,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
     updateExpensesOnUserRecord, updateExpensesOnUserRecord,
     updateIncomeOnUserRecord: updateIncomeOnUserRecord,
