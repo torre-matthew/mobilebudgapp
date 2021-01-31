@@ -1275,9 +1275,9 @@ let getPlannedItemsTotalForLastSixMonths = (req, res) => {
                         categoryID: {$ne: "5eee765ec9306a0017b70fed"},
                         isPlanned: true
                     })
-                    .sort({categoryName: 1, nameOfExpense: 1})
                     .then(arrayOfItems => {
-                        this.stepFourCalculateTotal(arrayOfItems);
+                        res.json(arrayOfItems);
+                        // this.stepFourCalculateTotal(arrayOfItems);
                     })
                     .catch(err => console.log(err));
         }
