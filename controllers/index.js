@@ -1272,11 +1272,11 @@ let getPlannedItemsTotalForLastSixMonths = (req, res) => {
                     .find({
                         userID: this.userID, 
                         monthID: arrayOfMonthIDs,
-                        categoryID: {$ne: "5eee765ec9306a0017b70fed"},
+                        categoryID: {$nin: ["5eee765ec9306a0017b70fed", "5eee735cd0da5700175fd6ad", "5fc07d71df69b9001704ccb1"]},
                         isPlanned: true
                     })
                     .then(arrayOfItems => {
-                        res.json(arrayOfItems);
+                        console.log(arrayOfItems);
                         this.stepFourCalculateTotal(arrayOfItems);
                     })
                     .catch(err => console.log(err));
