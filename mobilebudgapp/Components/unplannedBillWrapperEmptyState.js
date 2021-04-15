@@ -25,18 +25,9 @@ import ApiMethods from '../utilities/apiMethods';
         return (
           <View>
             <View style={{alignItems: 'center', paddingLeft: 5, paddingRight: 5, paddingTop: 5, paddingBottom: 5, margin: 5 }}> 
-                <Text style={{fontSize: 15 }}> 2 </Text>
-              </View>
-              <View style={{alignItems: 'center', paddingLeft: 5, paddingRight: 5, paddingTop: 5, paddingBottom: 5, margin: 5 }}> 
-                <Text style={{fontSize: 15 }}> Then add your monthly bills and expenses here.</Text>
-              </View>
-              <View style={{alignItems: 'center', paddingLeft: 5, paddingRight: 5, paddingTop: 5 }}> 
-                <Text style={{fontSize: 15 }}> Plan your month by funding each item with</Text>
-              </View>
-              <View style={{alignItems: 'center', paddingLeft: 5, paddingRight: 5, paddingTop: 1 }}> 
-                <Text style={{fontSize: 15 }}> income from above.</Text>
-              </View>
-            </View>    
+              <Text style={{fontSize: 15, fontFamily: 'Laila-SemiBold'}}> No Planned bills. </Text>
+            </View>
+          </View>    
         )
       }
     }

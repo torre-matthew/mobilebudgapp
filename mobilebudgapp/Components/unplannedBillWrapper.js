@@ -64,16 +64,6 @@ class UnplannedBillWrapper extends Component {
             )
           }
             {/* <EmptyStateDisplay /> */}
-            {/* <AddBillModal
-              handleBillAmount={this.props.handleBillAmount}
-              handleDueDate={this.props.handleDueDate}
-              handleBillName={this.props.handleBillName}
-              handleFormSubmit={this.props.handleFormSubmit}
-              fetchData={this.props.fetchData}
-              getUnPlannedExpenseDataFromDB={this.props.getUnPlannedExpenseDataFromDB}
-              updateWrapperComponent={this.updateUnplannedBillWrapperComponent}
-              updateExpensesOnUserRecord={this.props.updateExpensesOnUserRecord}
-            /> */}
           </Content>
       );
     }

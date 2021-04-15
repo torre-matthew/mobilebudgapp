@@ -12,11 +12,11 @@ class CatBreakDownWrapper extends Component {
           <Content padder style={ style.unplanned_section }>
               <View style={{marginTop: 6, marginBottom: 1, marginLeft: 7}}> 
                 <Text style={{fontSize: 15, color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> Average Per Month Last 3 Months: </Text>
-                <Text style={{fontSize: 15, color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> {this.props.threeMonthAveragePerMonth} </Text>
+                <Text style={{fontSize: 15, color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> ${this.props.threeMonthAveragePerMonth.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
               </View>
               <View style={{marginTop: 6, marginBottom: 1, marginLeft: 7}}> 
                 <Text style={{fontSize: 15, color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> Average Per Month Last 6 Months: </Text>
-                <Text style={{fontSize: 15, color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> {this.props.sixMonthAveragePerMonth} </Text>
+                <Text style={{fontSize: 15, color: '#4A0784', fontFamily: 'Laila-SemiBold'}}> ${this.props.sixMonthAveragePerMonth.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
               </View>
           </Content>
       );

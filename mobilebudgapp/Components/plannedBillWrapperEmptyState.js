@@ -24,16 +24,10 @@ import ApiMethods from '../utilities/apiMethods';
     render () {
         return (
             <View>
-            <View style={{alignItems: 'center', paddingLeft: 5, paddingRight: 5, paddingTop: 5 }}> 
-              <Text style={{fontSize: 15 }}> 3  </Text>
-            </View>
-            <View style={{alignItems: 'center', paddingLeft: 5, paddingRight: 5, paddingTop: 5 }}> 
-              <Text style={{fontSize: 15 }}> Finally, planned bills and expenses appear here.  </Text>
-            </View>
-            <View style={{alignItems: 'center', paddingLeft: 5, paddingRight: 5, paddingTop: 1 }}> 
-              <Text style={{fontSize: 15 }}> You can also track bills as you pay them.</Text>
-            </View>
-          </View>    
+              <View style={{alignItems: 'center', paddingLeft: 5, paddingRight: 5, paddingTop: 5 }}> 
+              <Text style={{fontSize: 15, fontFamily: 'Laila-SemiBold'}}> Start adding items to your budget. </Text>
+              </View>
+            </View>    
         )
       }
     }

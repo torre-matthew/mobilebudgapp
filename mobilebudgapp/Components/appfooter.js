@@ -70,7 +70,7 @@ class AppFooter extends Component {
           <FontAwesome5 name="balance-scale" size={25} color="#F5F5F5" />
           <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Plan Budget </Text>
           </View>
-          <View onTouchEnd={() => {this.props.navigation.navigate('Add Entry', {
+          {/* <View onTouchEnd={() => {this.props.navigation.navigate('Add Entry', {
               handleAddIncomeFormSubmit: this.props.handleAddIncomeFormSubmit,
               currentMonth: this.props.currentMonth,
               getUnPlannedExpenseDataFromDB: this.props.getUnPlannedExpenseDataFromDB,
@@ -82,7 +82,7 @@ class AppFooter extends Component {
               navigation: this.props.navigation
             })}} style={{flex: 0, alignItems: 'center', opacity: this.state.spendingClicked ? 1.0 : 1.0, bottom: 5}}>
             <FontAwesome5 name="plus" size={45} color= '#F5F5F5' />
-          </View>
+          </View> */}
           <View onTouchEnd={() => {this.props.navigation.navigate('Bill Pay', {
             loggedInUsersEmail: this.props.loggedInUsersEmail,
             currentMonthID: this.props.currentMonthID,
@@ -94,6 +94,9 @@ class AppFooter extends Component {
           </View>
           <View onTouchEnd={() => {this.props.navigation.navigate('Trends', {
             currentUserID: this.props.currentUserID,
+            currentMonthID: this.props.currentMonthID,
+            currentMonth: this.props.currentMonth,
+            currentYear: this.props.currentYear
           })}} style={{flex:1, alignItems: 'center', opacity: this.state.trendsClicked ? 1.0 : 0.7}}>
             <FontAwesome5 name="chart-line" size={25} color="#F5F5F5" />
             <Text style={{fontSize: 12, color: "#F5F5F5", fontFamily: 'Laila-SemiBold'}}> Trends </Text>

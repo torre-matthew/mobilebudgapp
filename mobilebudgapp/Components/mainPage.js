@@ -8,6 +8,7 @@ import MonthPickerModal from './monthPickerModal';
 import SlideOutDrawer from './slideOutDrawer';
 import QuickActionDrawer2 from "../Components/quickActionDrawer2";
 import OverLay from "../Components/overLay";
+import AddEntryIcon from '../Components/addEntryIcon';
 import CategorySlideOutOverlay from "../Components/overlays/categorySlideOutOverlay";
 import IncomeSummarySwitcher from "./incomeSummarySwitcher";
 import { thisExpression } from '@babel/types';
@@ -485,7 +486,7 @@ export default class MainPage extends Component {
               ?
               <ActivityIndicator style={{ opacity: this.state.spinnerOpacity }} animating={this.state.showSpinner} size={this.state.spinnerSize} color="#40DBCE"/>
               :
-            <MonthPickerModal 
+              <MonthPickerModal 
                 monthData={this.props.monthData} 
                 currentMonth={this.props.currentMonth}
                 currentYear={this.props.currentYear}
@@ -575,6 +576,17 @@ export default class MainPage extends Component {
             currentCategoryID={this.state.selectedBillCategoryID} 
             currentMonthID={this.state.currentMonthID} 
             />
+            <AddEntryIcon 
+              navigation={this.props.navigation}
+              loggedInUsersEmail={this.props.loggedInUsersEmail}
+              currentUserID={this.props.currentUserID}
+              currentMonth={this.state.currentMonth}
+              currentYear={this.props.currentYear}
+              currentMonthID={this.props.currentMonthID}
+              getUnPlannedExpenseDataFromDB={this.props.getUnPlannedExpenseDataFromDB}
+              getIncomeDataFromDB={this.props.getIncomeDataFromDB}
+              screen={"budget"}
+              />
 
           </ImageBackground>
         </Container>

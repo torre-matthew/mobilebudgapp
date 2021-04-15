@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Text, Body, Button } from "native-base";
 import { AppLoading } from 'expo';
 import MainPage from '../Components/mainPage';
-import AppHeader from '../Components/appfooter';
+import AddEntryIcon from '../Components/addEntryIcon';
 import LoadFonts from '../assets/fonts';
 import AppFooter from '../Components/appfooter';
 import ApiMethods from '../utilities/apiMethods';
@@ -148,6 +148,17 @@ class BudgetScreen extends Component {
               navigation={navigation}
               photoURL={"https://lh3.googleusercontent.com/a-/AOh14GiYRuLnlpz-uypUOvbDG_uVR56n6DxLoC5Ubb-Wcg"}
               // signOut={this.props.route.params.signOut}
+              /> */}
+              {/* <AddEntryIcon 
+              navigation={this.props.navigation}
+              loggedInUsersEmail={this.props.route.params.email}
+              currentUserID={this.props.route.params.userID}
+              currentMonth={this.state.currentMonth}
+              currentYear={this.props.route.params.currentYear}
+              currentMonthID={this.state.currentMonthID}
+              getUnPlannedExpenseDataFromDB={this.getUnPlannedExpenseDataFromDB}
+              getIncomeDataFromDB={this.getIncomeDataFromDB}
+              screen={"budget"}
               /> */}
               <AppFooter 
               navigation={this.props.navigation}
