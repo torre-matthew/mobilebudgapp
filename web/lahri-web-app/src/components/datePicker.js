@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import makeStyles from '@mui/styles/makeStyles';
+import AppBar from '@mui/material/AppBar';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,8 +43,9 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
+    width: '50%',
+    backgroundColor: 'white',
+    margin: '10px'
   },
 }));
 
@@ -58,7 +59,7 @@ export default function ScrollableTabsButtonAuto(props) {
 
   
   return (
-    <div className={classes.root}>
+    <div class=" relative w-3/4 m-3 left-1/2 transform -translate-x-1/2">
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -78,16 +79,6 @@ export default function ScrollableTabsButtonAuto(props) {
           }
         </Tabs>
       </AppBar>
-      
-      {props.monthData.map((data, i) => {
-        return (
-          <TabPanel value={value} index={i}>
-            {data.month + ' ' + data.year}
-          </TabPanel>
-                )
-              }  
-            )
-          }
     </div>
   );
 }

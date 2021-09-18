@@ -1,5 +1,5 @@
 import axios from "axios";
-const dev = "http://localhost:3001/";
+// const dev = "http://localhost:3001/";
 const prod = "https://gentle-beyond-46108.herokuapp.com/";
 const URL = prod;
 
@@ -238,7 +238,7 @@ let removeFromBillTracker = (billID) => {
 }
 
 
-export default {
+ const endPoints = {
     getIncome: getIncome,
     getIncomeByUserID: getIncomeByUserID,
     getExpenses: getExpenses,
@@ -275,5 +275,6 @@ export default {
     splitEntry: splitEntry,
     moveToNextMonth: moveToNextMonth,
     removeFromBillTracker: removeFromBillTracker,
-    
 }
+
+export default endPoints;
