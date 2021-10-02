@@ -391,6 +391,14 @@ let getAllPlannedExpenses = (req, res) => {
     .catch(err => console.log(err));
 }
 
+let getAllPlannedExpensesByIncomeID = (req, res) => {
+    db.Expenses
+    .find({userID: req.params.userID, monthID: req.params.monthID, fundingSource: req.params.incomeID, isPlanned: true})
+    .sort({categoryName: 1, nameOfExpense: 1})
+    .then(data => res.json(data))
+    .catch(err => console.log(err));
+}
+
 let getBillTrackerItems = (req, res) => {
     db.Expenses
     .find({userID: req.params.userID, monthID: req.params.monthID, forBillTracker: true})
@@ -1320,6 +1328,7 @@ module.exports = {
     getUserByID: getUserByID,
     getUserByEmail: getUserByEmail,
     getAllPlannedExpenses: getAllPlannedExpenses,
+    getAllPlannedExpensesByIncomeID: getAllPlannedExpensesByIncomeID,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     getBillTrackerItems: getBillTrackerItems,
     getAfterSpendingAmount: getAfterSpendingAmount,

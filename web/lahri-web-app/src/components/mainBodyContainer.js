@@ -1,10 +1,10 @@
 import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import BudgetItemDisplay from './budgetItemDisplay';
-import AddBudgetItemModal from './modals/addbudgetItemModal';
-import AddIncomeModal from './modals/addIncomeModal';
+import AddBudgetItemModal from './modals-menus-pickers-etc/addbudgetItemModal';
+import IncomeDisplay from './incomeDisplay';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,23 +24,52 @@ function MainBodyContainer(props) {
   const classes = useStyles();
 
   return (
-    <div>
-      <Grid container spacing={1}>
-        <Grid item xs={12} md={4} lg={4}>
-            <AddBudgetItemModal
-                modalType={'addIncome'} 
-            />
-            <Paper className={classes.paper}>{props.month + ' ' + props.year}</Paper>
-        </Grid>
-            <Grid item xs={12} md={8} lg={8}>
+      <div class="h-full">
+        <Grid container spacing={1}>
+            <Grid item md={6} lg={7}>
                 <AddBudgetItemModal
-                    modalType={'addBudgetItem'} 
-                />
-                <BudgetItemDisplay />
-                <BudgetItemDisplay />
+                    modalType={'addBudgetItem'}
+                    addingExpense={props.addingExpense} 
+                    submittingExpense={props.submittingExpense}/>
+                {props.unplannedExpenses.map(expenseDataArray =>{
+                    return (
+                        <BudgetItemDisplay 
+                            key={expenseDataArray._id}
+                            id={expenseDataArray._id}
+                            name={expenseDataArray.nameOfExpense}
+                            date={expenseDataArray.dateOfExpense}
+                            amount={expenseDataArray.amountOfExpense}
+                            loggedInUserID={props.loggedInUserID}
+                            deleteExpense={props.deleteExpense} 
+                            incomeData={props.incomeData}
+                            addingFundingSourceToExpense={props.addingFundingSourceToExpense} />
+                                )
+                            }
+                        )
+                    }
             </Grid>
-      </Grid>
-    </div>
+            <Grid item md={6} lg={5}>
+            <AddBudgetItemModal
+                modalType={'addIncome'}
+                addingIncome={props.addingIncome} 
+                submittingIncome={props.submittingIncome} />
+                    {props.incomeData.map(incomeDataArray => {
+                        return (
+                            <IncomeDisplay 
+                                id={incomeDataArray._id}
+                                name={incomeDataArray.name}
+                                date={incomeDataArray.date}
+                                amount={incomeDataArray.amount}
+                                deleteIncome={props.deleteIncome}
+                                loggedInUserID={props.loggedInUserID}
+                                monthID={props.selectedMonthID}
+                                />
+                            )
+                        })
+                    }
+            </Grid>
+        </Grid>
+      </div>
   );
 }
 

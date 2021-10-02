@@ -59,7 +59,7 @@ export default function ScrollableTabsButtonAuto(props) {
 
   
   return (
-    <div class=" relative w-3/4 m-3 left-1/2 transform -translate-x-1/2">
+    <div class=" relative w-3/4 left-1/2 transform -translate-x-1/2">
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -72,7 +72,7 @@ export default function ScrollableTabsButtonAuto(props) {
         > 
           {props.monthData.map((data, i) => {
             return (
-              <Tab label={data.month + ' ' + data.year} {...a11yProps(i)} />
+              <Tab onClick={() => {props.selectMonth(data._id)}} label={data.month + ' ' + data.year} {...a11yProps(i)} />
                 )
               }  
             )

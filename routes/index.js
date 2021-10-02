@@ -18,6 +18,7 @@ router.route("/allBillTrackerItems/:userID/:monthID").get(controllers.getBillTra
 router.route("/allUsers").get(controllers.getAllUsers);
 router.route("/monthData").get(controllers.getMonthData);
 router.route("/allPlannedExpenses/:userID/:monthID").get(controllers.getAllPlannedExpenses);
+router.route("/allPlannedExpensesByIncome/:userID/:monthID/:incomeID").get(controllers.getAllPlannedExpensesByIncomeID);
 router.route("/fetchData/:userID").get(controllers.fetchData);
 router.route("/allUnPlannedExpenses/:userID/:monthID").get(controllers.getAllUnPlannedExpenses);
 router.route("/getExpenseByID/:expenseID").get(controllers.getExpenseByID);

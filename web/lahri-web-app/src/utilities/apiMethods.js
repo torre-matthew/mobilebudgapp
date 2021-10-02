@@ -35,6 +35,10 @@ let getAllPlannedExpenses = (userID, monthID) => {
     return axios.get(URL + "api/allPlannedExpenses/" + userID  + "/" + monthID);
 }
 
+let getAllPlannedExpensesByIncomeID = (userID, monthID, incomeID) => {
+    return axios.get(URL + "api/allPlannedExpensesByIncome/" + userID  + "/" + monthID + "/" + incomeID);
+}
+
 let getAllCategories = () => {
     return axios.get(URL + "api/allCategories");
 }
@@ -246,6 +250,7 @@ let removeFromBillTracker = (billID) => {
     getCurrentMonth: getCurrentMonth,
     fetchData: fetchData,
     getAllPlannedExpenses: getAllPlannedExpenses,
+    getAllPlannedExpensesByIncomeID: getAllPlannedExpensesByIncomeID,
     getAllUnPlannedExpenses: getAllUnPlannedExpenses,
     getAllCategories: getAllCategories,
     getExpenseByID: getExpenseByID,
