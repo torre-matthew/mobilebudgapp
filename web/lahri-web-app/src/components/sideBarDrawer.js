@@ -12,7 +12,7 @@ import MailIcon from '@mui/icons-material/Mail';
 
 const drawerWidth = 240;
 
-export default function sideBarDrawer() {
+export default function SideBarDrawer() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />

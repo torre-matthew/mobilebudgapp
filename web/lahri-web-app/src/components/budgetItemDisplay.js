@@ -1,39 +1,36 @@
 import React from 'react';
-import FundingSourcePopper from './modals-menus-pickers-etc/fundingSourcePopper';
-import makeStyles from '@mui/styles/makeStyles';
+import EditItemModal from './modals-menus-pickers-etc/editItemModal';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import BudgetItemMoreMenu from './modals-menus-pickers-etc/budgetItemMoreMenu'
-import EditIcon from '@mui/icons-material/Edit';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
+import { Table, TableCell, TableRow, Typography } from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: '12px',
-      textAlign: 'left',
-      color: 'black',
-      backgroundColor: 'white',
-      margin: '5px',
-      fontSize: '10px',
-    },
-    gridItem: {
-        border: 'solid',
-        borderColor: 'white',
-        borderWidth: '1px'
-    }
-  }));
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//       flexGrow: 1,
+//     },
+//     paper: {
+//       padding: '12px',
+//       textAlign: 'left',
+//       color: 'black',
+//       backgroundColor: 'white',
+//       margin: '5px',
+//       fontSize: '10px',
+//     },
+//     gridItem: {
+//         border: 'solid',
+//         borderColor: 'white',
+//         borderWidth: '1px'
+//     }
+//   }));
 
 function BudgetItemDisplay (props) {
-    const classes = useStyles();
+    // const classes = useStyles();
     return (
             <div class="py-1">
                 <Accordion>
@@ -56,29 +53,40 @@ function BudgetItemDisplay (props) {
                             </tr>
                         </table>
                     </AccordionSummary>
-                    <AccordionDetails class=" bg-gray-100">
-                                {props.incomeData.map(incomeDataArray => {
-                                    return (
-                
-                                        <FundingSourcePopper 
-                                            incomeID={incomeDataArray._id}
-                                            incomeName={incomeDataArray.name}
-                                            id={props.id}
-                                            name={props.name}
-                                            date={props.date}
-                                            amount={props.amount} 
-                                            loggedInUserID={props.loggedInUserID}
-                                            addingFundingSourceToExpense={props.addingFundingSourceToExpense}/>
-                                    )
-                                    })
-                                }
+                    <AccordionDetails class=" bg-blue-200">
+                        <Typography>Choose Funding Source</Typography>
+                        <Table size='small'>
+                            {props.incomeData.map(incomeDataArray => {
+                                return (
+                                    <TableRow>
+                                        <TableCell>
+                                            {incomeDataArray.name}
+                                        </TableCell>
+                                        <TableCell>
+                                            <Button variant='text' onClick={() => {props.addingFundingSourceToExpense(props.id, props.name, props.date, props.amount, true, incomeDataArray._id, props.loggedInUserID)}}>
+                                                <CheckCircleOutlineIcon />
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                        )
+                                })
+                            }
                                 
+                        </Table>
                             <table class="  w-1/2">
                                 <tr>
                                     <td>
-                                        <MenuItem>
-                                            <EditIcon fontSize="small"/>
-                                        </MenuItem>    
+                                        <EditItemModal 
+                                            modalType={'editingExpense'} 
+                                            id={props.id}
+                                            name={props.name}
+                                            amount={props.amount}
+                                            date={props.date}
+                                            isPlanned={props.isPlanned}
+                                            fundingSource={props.fundingSource}
+                                            loggedInUserID={props.loggedInUserID}
+                                            editingExpense={props.editingExpense}
+                                            submittingExpenseUpdate={props.submittingExpenseUpdate} />    
                                     </td>
                                     <td>
                                         <MenuItem>

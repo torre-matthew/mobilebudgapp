@@ -1,17 +1,12 @@
 import React from 'react';
-import FundingSourcePopper from './modals-menus-pickers-etc/fundingSourcePopper';
 import EditItemModal from './modals-menus-pickers-etc/editItemModal';
-import makeStyles from '@mui/styles/makeStyles';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import TextField from '@mui/material/TextField';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import BudgetItemMoreMenu from './modals-menus-pickers-etc/budgetItemMoreMenu'
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import UndoIcon from '@mui/icons-material/Undo';
 import Card from '@mui/material/Card';
@@ -22,20 +17,42 @@ import API from '../utilities/apiMethods';
 class IncomeDisplay extends React.Component {
     state = {
        plannedExpensesForThisIncome: [], 
+       afterSpendingAmount: "",
+       totalOfExpenses: ""
     }
 
     componentDidMount() {
-        this.getAllPlannedExpensesByIncomeID(this.props.loggedInUserID, this.props.selectedMonthID, this.props.id);
+        this.getAllPlannedExpensesByIncomeID(this.props.loggedInUserID, this.props.monthID, this.props.id);
     }
 
     getAllPlannedExpensesByIncomeID = (userID, monthID, incomeID) => {
-        API.getAllUnPlannedExpensesByIncomeID(userID, monthID, incomeID)
+        API.getAllPlannedExpensesByIncomeID(userID, monthID, incomeID)
         .then(expenseDataArray => {
           this.setState({plannedExpensesForThisIncome: expenseDataArray.data})
-          console.log(this.state.plannedExpensesForThisIncome);
-        }
-        ).catch(err => console.log(err));
+          this.calculateTotalOfExpenses();
+            })
+        .catch(err => console.log(err));
     }
+
+    unplanExpense = (id, name, date, amount, isPlanned, fundingSource, loggedInUserID) => {
+        API.editExpense(id, name, date, amount, isPlanned, fundingSource, loggedInUserID)
+        .then(response => {
+            this.getAllPlannedExpensesByIncomeID(this.props.loggedInUserID, this.props.monthID, this.props.id);
+            this.props.getAllUnplannedExpenses(loggedInUserID, this.props.monthID);
+        })
+        .catch(err => console.log(err));
+      }
+
+      calculateTotalOfExpenses = () => {
+          let total = 0;
+          let afterSpendingAmount = 0;
+
+          this.state.plannedExpensesForThisIncome.forEach(arrayOfExpenses => {
+              total += parseFloat(arrayOfExpenses.amountOfExpense)
+              afterSpendingAmount = this.props.amount - total
+              this.setState({totalOfExpenses: total, afterSpendingAmount: afterSpendingAmount});
+          })
+      }
 
     render() {
         return (
@@ -57,10 +74,10 @@ class IncomeDisplay extends React.Component {
                                 <td class="text-left">
                                 </td>
                                 <td class="text-right text-xs">
-                                    # expenses paid
+                                    {this.state.plannedExpensesForThisIncome.length} expenses paid
                                 </td>
                                 <td class="text-right text-xs">
-                                    $$$
+                                    ${this.state.totalOfExpenses}
                                 </td>
                             </tr>
                             <tr>
@@ -70,30 +87,43 @@ class IncomeDisplay extends React.Component {
                                     Remaining
                                 </td>
                                 <td class="text-right text-xs">
-                                    $$$
+                                    ${this.state.afterSpendingAmount}
                                 </td>
                             </tr>
                         </table>
                         <Divider variant='middle' />
                     </CardContent>
                 <container>
-                    <Accordion sx={{background: 'grey'}}>
+                    <Accordion expanded sx={{background: 'white'}}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <p class="text-sm"> # of Expenses Paid</p>
+                            <p class="text-sm"> {this.state.plannedExpensesForThisIncome.length} expenses paid with this income</p>
                         </AccordionSummary>
                         <AccordionDetails>
+                            <form id="expenseForm">
+                                <TextField required  onChange={(event) => {this.props.addingExpense(event, "Date")}} id="outlined-basic" label="Date" variant="outlined" />
+                                <TextField required  onChange={(event) => {this.props.addingExpense(event, "Name")}} id="outlined-basic" label="Name" variant="outlined" />
+                                <TextField required  onChange={(event) => {this.props.addingExpense(event, "Amount")}} id="outlined-basic" label="Amount Due" variant="outlined" />
+                                <Button onClick={() => {this.props.submittingExpense(this.props.id); document.getElementById("expenseForm").reset()}} variant="text">Add Item</Button>
+                            </form>
                             <table class="table-fixed w-full">
-                                <tr>
-                                    <td class="text-left text-xs">
-                                        Expense Name
-                                    </td>
-                                    <td class="text-right text-xs">
-                                        Amount
-                                    </td>
-                                    <td class="text-right">
-                                        <UndoIcon />
-                                    </td>
-                                </tr>
+                                {this.state.plannedExpensesForThisIncome.map(expenseDataArray => {
+                                    return (
+                                        <tr key={expenseDataArray._id}>
+                                            <td class="text-left text-xs">
+                                                {expenseDataArray.nameOfExpense}
+                                            </td>
+                                            <td class="text-right text-xs">
+                                                {expenseDataArray.amountOfExpense}
+                                            </td>
+                                            <td class="text-right">
+                                                <Button onClick={() => {this.unplanExpense(expenseDataArray._id, expenseDataArray.nameOfExpense, expenseDataArray.dateOfExpense, expenseDataArray.amountOfExpense, false, "", this.props.loggedInUserID)}}>
+                                                    <UndoIcon />
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                        )
+                                    })
+                                }
                             </table>
                         </AccordionDetails>
                     </Accordion>
@@ -113,9 +143,9 @@ class IncomeDisplay extends React.Component {
                                         />
                                 </td>
                                 <td>
-                                    <MenuItem onClick={() => {this.props.deleteIncome(this.props.id)}}>
+                                    <Button onClick={() => {this.props.deleteIncome(this.props.id)}}>
                                         <DeleteIcon fontSize="small" />
-                                    </MenuItem>
+                                    </Button>
                                 </td>
                             </tr>
                         </table>

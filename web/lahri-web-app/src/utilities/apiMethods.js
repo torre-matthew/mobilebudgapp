@@ -115,14 +115,15 @@ let addIncome = (name, date, amount, userID, monthID) => {
     });
 }
 
-let addExpense = (name, date, amount, userID, monthID, forBillTracker) => {
+let addExpense = (name, date, amount, userID, monthID, forBillTracker, fundingSource) => {
     return axios.post(URL + "api/addingExpense", {
         nameOfExpense: name,
         dateOfExpense: date,
         amountOfExpense: amount,
         userID: userID,
         monthID: monthID,
-        forBillTracker: forBillTracker
+        forBillTracker: forBillTracker,
+        fundingSource: fundingSource
     });
 }
 
@@ -264,7 +265,7 @@ let removeFromBillTracker = (billID) => {
     getAveragePlannedItemsTotalForLastThreeMonths: getAveragePlannedItemsTotalForLastThreeMonths,
     getAveragePlannedItemsTotalForLastSixMonths: getAveragePlannedItemsTotalForLastSixMonths,
     updateAfterSpendingAmount: updateAfterSpendingAmount,
-    updateExpensesOnUserRecord, updateExpensesOnUserRecord,
+    updateExpensesOnUserRecord: updateExpensesOnUserRecord,
     updateIncomeOnUserRecord: updateIncomeOnUserRecord,
     addIncome: addIncome,
     addExpense: addExpense,
