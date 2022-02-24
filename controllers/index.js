@@ -84,10 +84,11 @@ let addExpenseToDb = async (req, res) => {
                 nameOfExpense: req.body.nameOfExpense,
                 amountOfExpense: req.body.amountOfExpense,
                 userID: req.body.userID, 
-                isPlanned: false,
                 isPaid: false,
                 monthID: req.body.monthID,
-                forBillTracker: req.body.forBillTracker
+                forBillTracker: req.body.forBillTracker,
+                fundingSource: req.body.fundingSource,
+                isPlanned: req.body.isPlanned
                 })
             .then(data => res.json(data))
             .catch(err => console.log(err));
@@ -98,7 +99,7 @@ let addExpenseToDb = async (req, res) => {
                     .then(data => res.json(data))
                     .catch(err => console.log(err))
 
-//then find all the unplannend expenses from the expense table and push them to the arrays above.
+//then find all the plannend expenses from the expense table and push them to the arrays above.
     await db.Expenses
             .find({userID: req.body.userID, isPlanned: true})
             .then(arrayOfPlannedExpenses => 
@@ -109,7 +110,7 @@ let addExpenseToDb = async (req, res) => {
                 })
             .catch(err => console.log(err))
 
-//then find all the plannend expenses from the expense table and push them to the arrays above.
+//then find all the unplannend expenses from the expense table and push them to the arrays above.
     await db.Expenses
             .find({userID: req.body.userID, isPlanned: false})
             .then(arrayOfUnPlannedExpenses => 
