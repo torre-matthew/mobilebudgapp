@@ -203,7 +203,7 @@ class Home extends React.Component {
     
 
       submittingExpense = (fundingSource) => {
-        API.addExpense(this.state.nameOfExpenseBeingAdded, this.state.dateOfExpenseBeingAdded, this.state.amountOfExpenseBeingAdded, this.state.currentUserID, this.state.selectedMonthID, false, fundingSource)
+        API.addExpense(this.state.nameOfExpenseBeingAdded, this.state.dateOfExpenseBeingAdded, this.state.amountOfExpenseBeingAdded, this.state.currentUserID, this.state.selectedMonthID, false, fundingSource, true)
         .then(response => {this.getAllUnplannedExpenses(this.state.currentUserID, this.state.selectedMonthID);})
         .catch(err => console.log(err));
       }
