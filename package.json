@@ -2,7 +2,7 @@
   "name": "lahri-web-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://torre-matthew.github.io/mobilebudgapp/",
+  "homepage": "https://gentle-beyond-46108.herokuapp.com/",
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@emotion/react": "^11.4.1",
