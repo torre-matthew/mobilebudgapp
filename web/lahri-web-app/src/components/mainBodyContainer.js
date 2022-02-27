@@ -3,7 +3,9 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import BudgetItemDisplay from './budgetItemDisplay';
 import AddBudgetItemModal from './modals-menus-pickers-etc/addbudgetItemModal';
+import AddBudgetItemInLine from './addBudgetItemInLine';
 import IncomeDisplay from './incomeDisplay';
+import { Typography } from '@mui/material';
 
 
 // const useStyles = makeStyles((theme) => ({
@@ -26,59 +28,72 @@ function MainBodyContainer(props) {
   return (
       <div class="h-full">
         <Grid container spacing={1}>
-            <Grid item md={6} lg={7}>
-                <AddBudgetItemModal
-                    modalType={'addBudgetItem'}
-                    addingExpense={props.addingExpense} 
-                    submittingExpense={props.submittingExpense}/>
+            <Grid item xs={12} md={6} lg={4}>
+                <Grid item xs={12}>
+                    <AddBudgetItemInLine 
+                    addingExpense={props.addingExpense}
+                    submittingUnPlannedExpense={props.submittingUnPlannedExpense} />
+                </Grid>    
                 {props.unplannedExpenses.map(expenseDataArray =>{
                     return (
-                        <BudgetItemDisplay 
-                            key={expenseDataArray._id}
-                            id={expenseDataArray._id}
-                            name={expenseDataArray.nameOfExpense}
-                            date={expenseDataArray.dateOfExpense}
-                            amount={expenseDataArray.amountOfExpense}
-                            isPlanned={expenseDataArray.isPlanned}
-                            fundingSource={expenseDataArray.fundingSource}
-                            loggedInUserID={props.loggedInUserID}
-                            deleteExpense={props.deleteExpense} 
-                            incomeData={props.incomeData}
-                            addingFundingSourceToExpense={props.addingFundingSourceToExpense}
-                            editingExpense={props.editingExpense}
-                            submittingExpenseUpdate={props.submittingExpenseUpdate} />
-                                )
-                            }
-                        )
-                    }
-            </Grid>
-            
+                        <Grid item xs={12}>
+                            <BudgetItemDisplay 
+                                key={expenseDataArray._id}
+                                id={expenseDataArray._id}
+                                name={expenseDataArray.nameOfExpense}
+                                date={expenseDataArray.dateOfExpense}
+                                amount={expenseDataArray.amountOfExpense}
+                                isPlanned={expenseDataArray.isPlanned}
+                                fundingSource={expenseDataArray.fundingSource}
+                                loggedInUserID={props.loggedInUserID}
+                                deleteExpense={props.deleteExpense} 
+                                incomeData={props.incomeData}
+                                addingFundingSourceToExpense={props.addingFundingSourceToExpense}
+                                editingExpense={props.editingExpense}
+                                submittingExpenseUpdate={props.submittingExpenseUpdate} />
+                        </Grid>                                
+                            )
+                        }
+                    )
+                }
+        </Grid>
+        <Grid item xs={12} md={6} lg={8}>
             <AddBudgetItemModal
                 modalType={'addIncome'}
                 addingIncome={props.addingIncome} 
                 submittingIncome={props.submittingIncome} />
-                    {props.incomeData.map(incomeDataArray => {
-                        return (
-                            <Grid item xs={6}>
-                                <IncomeDisplay 
-                                    key={incomeDataArray._id}
-                                    id={incomeDataArray._id}
-                                    name={incomeDataArray.name}
-                                    date={incomeDataArray.date}
-                                    amount={incomeDataArray.amount}
-                                    deleteIncome={props.deleteIncome}
-                                    loggedInUserID={incomeDataArray.userID}
-                                    monthID={incomeDataArray.monthID}
-                                    editingIncome={props.editingIncome}
-                                    submittingIncomeUpdate={props.submittingIncomeUpdate}
-                                    getAllUnplannedExpenses={props.getAllUnplannedExpenses}
-                                    addingExpense={props.addingExpense} 
-                                    submittingExpense={props.submittingExpense}
-                                    />
-                            </Grid>
-                            )
-                        })
-                    }
+                   <Grid container spacing={1}>
+                     
+                        {props.incomeData.map(incomeDataArray => {
+                            
+                            return (
+                                <Grid item xs={12} md={12} lg={6}>
+                                    <IncomeDisplay 
+                                        addingExpense={props.addingExpense}
+                                        allPlannedExpenses={props.allPlannedExpenses}
+                                        amount={incomeDataArray.amount}
+                                        calculateTotalOfExpensesAndAfterSpendingAmountPerIncome={props.calculateTotalOfExpensesAndAfterSpendingAmountPerIncome}
+                                        date={incomeDataArray.date}
+                                        deleteIncome={props.deleteIncome}
+                                        editingIncome={props.editingIncome}
+                                        getAllUnplannedExpenses={props.getAllUnplannedExpenses}
+                                        getAllPlannedExpensesByIncomeID={props.getAllPlannedExpensesByIncomeID}
+                                        id={incomeDataArray._id}
+                                        key={incomeDataArray._id}
+                                        loggedInUserID={incomeDataArray.userID}
+                                        monthID={incomeDataArray.monthID}
+                                        name={incomeDataArray.name}
+                                        submittingIncomeUpdate={props.submittingIncomeUpdate}
+                                        submittingExpense={props.submittingExpense}
+                                        unplanExpense={props.unplanExpense}
+                                        />
+                                </Grid>
+                                    )
+                                })  
+                        }
+                    
+                </Grid>
+            </Grid>
         </Grid>
       </div>
   );

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import { Container } from '@mui/material';
 
 // const style = {
@@ -16,49 +17,42 @@ import { Container } from '@mui/material';
 //   p: 4,
 // };
 
-const listOfMonths = (month, year) => {
+const months = (month, year, monthID) => {
   return (
-    
-        <ListItem>
-          <ListItemButton>
-              {month + ' ' + year}
-          </ListItemButton>
-        </ListItem>
-    
+    <MenuItem value={monthID}>{month + ' ' + year}</MenuItem>
   );
 };
 
 export default function DatePickerModal(props) {
-  const[open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [date, setMonth] = React.useState('');
+
+  const handleChange = (event) => {
+    setMonth(event.target.value);
+  };
 
   return (
     <Container>
-      <div class=" text-left">
-        <Button onClick={handleOpen}>
-            Current Date
-        </Button>
-      </div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        sx={{overflow: 'scroll'}}
-      >
-        <Container class="bg-gray-100 w-2/6 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl">
-          <List>
+      <Box>
+      <FormControl fullWidth>
+        <InputLabel>Month</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          value={date}
+          label="Date"      
+          onChange={handleChange}
+          autoWidth>
+          
             {props.monthData.map(monthData => {
-              return(
-                listOfMonths(monthData.month, monthData.year)
-              )
-            })
-              
+                return(
+                  
+                  <MenuItem onClick={() => {props.selectMonth(monthData._id)}} value={monthData._id}>{monthData.month + ' ' + monthData.year}</MenuItem>
+                
+                )
+              }) 
             }
-          </List>
-        </Container>
-      </Modal>
+        </Select>
+      </FormControl>
+    </Box>
     </Container>
   );
 }
