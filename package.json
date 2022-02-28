@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://gentle-beyond-46108.herokuapp.com/",
+  "engines": {"node": "14.17.2"},
   "dependencies": {
     "@craco/craco": "^6.4.3",
     "@emotion/react": "^11.8.1",
