@@ -74,36 +74,38 @@ function BudgetItemDisplay (props) {
                                 
                         </Table>
                             <table class="  w-1/2">
-                                <tr>
-                                    <td>
-                                        <EditItemModal 
-                                            modalType={'editingExpense'} 
-                                            id={props.id}
-                                            name={props.name}
-                                            amount={props.amount}
-                                            date={props.date}
-                                            isPlanned={props.isPlanned}
-                                            fundingSource={props.fundingSource}
-                                            loggedInUserID={props.loggedInUserID}
-                                            editingExpense={props.editingExpense}
-                                            submittingExpenseUpdate={props.submittingExpenseUpdate} />    
-                                    </td>
-                                    <td>
-                                        <MenuItem>
-                                            <ArrowRightAltIcon fontSize="medium" />
-                                        </MenuItem>
-                                    </td>
-                                    <td>
-                                        <MenuItem>
-                                            Split
-                                        </MenuItem>
-                                    </td>
-                                    <td>
-                                        <MenuItem onClick={() => {props.deleteExpense(props.id)}}>
-                                            <DeleteIcon fontSize="small" />
-                                        </MenuItem>
-                                    </td>
-                                </tr>
+                            <tbody>
+                                    <tr>
+                                        <td>
+                                            <EditItemModal 
+                                                modalType={'editingExpense'} 
+                                                id={props.id}
+                                                name={props.name}
+                                                amount={props.amount}
+                                                date={props.date}
+                                                isPlanned={props.isPlanned}
+                                                fundingSource={props.fundingSource}
+                                                loggedInUserID={props.loggedInUserID}
+                                                editingExpense={props.editingExpense}
+                                                submittingExpenseUpdate={props.submittingExpenseUpdate} />    
+                                        </td>
+                                        <td>
+                                            <MenuItem>
+                                                <ArrowRightAltIcon fontSize="medium" />
+                                            </MenuItem>
+                                        </td>
+                                        <td>
+                                            <MenuItem>
+                                                Split
+                                            </MenuItem>
+                                        </td>
+                                        <td>
+                                            <MenuItem onClick={() => {props.deleteExpense(props.id)}}>
+                                                <DeleteIcon fontSize="small" />
+                                            </MenuItem>
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </AccordionDetails>
                 </Accordion>

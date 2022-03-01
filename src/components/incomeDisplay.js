@@ -21,6 +21,7 @@ class IncomeDisplay extends React.Component {
                 <Card class="bg-blue-400 rounded-2xl m-1">
                     <CardContent>
                         <table class="table-fixed w-full">
+                            <tbody>
                             <tr>
                                 <td class="text-left text-xl">
                                     {this.props.name}
@@ -51,10 +52,11 @@ class IncomeDisplay extends React.Component {
                                     ${this.props.calculateTotalOfExpensesAndAfterSpendingAmountPerIncome(this.props.id).afterSpendingAmount}
                                 </td>
                             </tr>
+                            </tbody>
                         </table>
                         <Divider variant='middle' />
                     </CardContent>
-                <container>
+                <div>
                     <Accordion sx={{background: 'white'}}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                             <p class="text-sm"> {this.props.getAllPlannedExpensesByIncomeID(this.props.id).length} expenses paid with this income</p>
@@ -69,19 +71,21 @@ class IncomeDisplay extends React.Component {
                             <table class="table-fixed w-full">
                                 {this.props.getAllPlannedExpensesByIncomeID(this.props.id).map(expenseDataArray => {
                                     return (
-                                        <tr key={expenseDataArray._id}>
-                                            <td class="text-left text-xs">
-                                                {expenseDataArray.nameOfExpense}
-                                            </td>
-                                            <td class="text-right text-xs">
-                                                {expenseDataArray.amountOfExpense}
-                                            </td>
-                                            <td class="text-right">
-                                                <Button onClick={() => {this.props.unplanExpense(expenseDataArray._id, expenseDataArray.nameOfExpense, expenseDataArray.dateOfExpense, expenseDataArray.amountOfExpense, false, "", this.props.loggedInUserID)}}>
-                                                    <UndoIcon />
-                                                </Button>
-                                            </td>
-                                        </tr>
+                                        <tbody>
+                                            <tr key={expenseDataArray._id}>
+                                                <td class="text-left text-xs">
+                                                    {expenseDataArray.nameOfExpense}
+                                                </td>
+                                                <td class="text-right text-xs">
+                                                    {expenseDataArray.amountOfExpense}
+                                                </td>
+                                                <td class="text-right">
+                                                    <Button onClick={() => {this.props.unplanExpense(expenseDataArray._id, expenseDataArray.nameOfExpense, expenseDataArray.dateOfExpense, expenseDataArray.amountOfExpense, false, "", this.props.loggedInUserID)}}>
+                                                        <UndoIcon />
+                                                    </Button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                         )
                                     })
                                 }
@@ -90,28 +94,30 @@ class IncomeDisplay extends React.Component {
                     </Accordion>
                     <div class="flex justify-center">
                         <table class="table-fixed w-1/4">
-                            <tr>
-                                <td> 
-                                    <EditItemModal
-                                        modalType={'editingIncome'}
-                                        addingIncome={this.props.addingIncome} 
-                                        editingIncome={this.props.editingIncome}
-                                        submittingIncomeUpdate={this.props.submittingIncomeUpdate}
-                                        id={this.props.id}
-                                        name={this.props.name}
-                                        amount={this.props.amount}
-                                        date={this.props.date}
-                                        />
-                                </td>
-                                <td>
-                                    <Button onClick={() => {this.props.deleteIncome(this.props.id)}}>
-                                        <DeleteIcon fontSize="small" />
-                                    </Button>
-                                </td>
-                            </tr>
+                        <tbody>
+                                <tr>
+                                    <td> 
+                                        <EditItemModal
+                                            modalType={'editingIncome'}
+                                            addingIncome={this.props.addingIncome} 
+                                            editingIncome={this.props.editingIncome}
+                                            submittingIncomeUpdate={this.props.submittingIncomeUpdate}
+                                            id={this.props.id}
+                                            name={this.props.name}
+                                            amount={this.props.amount}
+                                            date={this.props.date}
+                                            />
+                                    </td>
+                                    <td>
+                                        <Button onClick={() => {this.props.deleteIncome(this.props.id)}}>
+                                            <DeleteIcon fontSize="small" />
+                                        </Button>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
-                </container>
+                </div>
             </Card>
         </div>
             
