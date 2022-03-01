@@ -58,7 +58,7 @@ function BudgetItemDisplay (props) {
                         <Table size='small'>
                             {props.incomeData.map(incomeDataArray => {
                                 return (
-                                    <TableRow>
+                                    <TableRow key={incomeDataArray._id}>
                                         <TableCell>
                                             {incomeDataArray.name}
                                         </TableCell>

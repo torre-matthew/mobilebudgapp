@@ -35,7 +35,7 @@ function MainBodyContainer(props) {
                 </Grid>    
                 {props.unplannedExpenses.map(expenseDataArray =>{
                     return (
-                        <Grid item xs={12}>
+                        <Grid key={expenseDataArray._id} item xs={12}>
                             <BudgetItemDisplay 
                                 key={expenseDataArray._id}
                                 id={expenseDataArray._id}
@@ -66,7 +66,7 @@ function MainBodyContainer(props) {
                         {props.incomeData.map(incomeDataArray => {
                             
                             return (
-                                <Grid item xs={12} md={12} lg={6}>
+                                <Grid key={incomeDataArray._id} item xs={12} md={12} lg={6}>
                                     <IncomeDisplay 
                                         addingExpense={props.addingExpense}
                                         allPlannedExpenses={props.allPlannedExpenses}
