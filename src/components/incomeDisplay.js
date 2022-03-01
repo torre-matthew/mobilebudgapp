@@ -2,7 +2,6 @@ import React from 'react';
 import EditItemModal from './modals-menus-pickers-etc/editItemModal';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import TextField from '@mui/material/TextField';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -11,7 +10,6 @@ import UndoIcon from '@mui/icons-material/Undo';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
-import API from '../utilities/apiMethods';
 
 class IncomeDisplay extends React.Component {
     state = {
