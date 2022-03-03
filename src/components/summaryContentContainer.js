@@ -2,13 +2,14 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
-import { TableRow, Table, TableCell } from '@mui/material';
+import { TableRow, Table, TableCell, TableBody } from '@mui/material';
 
 function SummaryContentContainer(props) {
 
   return (
     <div>
       <Table>
+        <TableBody>
           <TableRow>
               <TableCell>
                   <Card>
@@ -32,6 +33,7 @@ function SummaryContentContainer(props) {
                     </Card>
               </TableCell>
           </TableRow>
+        </TableBody>
       </Table>
     </div>
   );

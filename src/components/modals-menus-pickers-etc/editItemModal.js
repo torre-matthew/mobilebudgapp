@@ -7,21 +7,21 @@ import { Container } from '@mui/material';
 
 const editBudgetItemForm = (id, editingExpense, submittingExpenseUpdate, name, amount, date, isPlanned, fundingSource, loggedInUserID, closeModal) => {
   return (
-    <Container class="bg-gray-100 w-2/6 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl">
-            <div class="text-center m-5">
+    <Container className="bg-gray-100 w-2/6 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl">
+            <div className="text-center m-5">
               <p>Edit Budget Item</p>
             </div>
             <form>
-              <div class=" m-6">
+              <div className=" m-6">
                 <TextField onChange={(event) => {editingExpense(event, "Name", name, amount, date)}} defaultValue={name} fullWidth id="standard-basic" label="Name" variant="standard" />
               </div>
-              <div class=" m-6">
+              <div className=" m-6">
                 <TextField onChange={(event) => {editingExpense(event, "Date", name, amount, date)}} defaultValue={date} fullWidth id="standard-basic" label="Due Date" variant="standard" />
               </div>
-              <div class=" m-6">
+              <div className=" m-6">
                 <TextField onChange={(event) => {editingExpense(event, "Amount", name, amount, date)}} defaultValue={amount} fullWidth id="standard-basic" label="Amount" variant="standard" inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
               </div>
-              <div class="text-center m-3">
+              <div className="text-center m-3">
                 <Button onClick={() => {submittingExpenseUpdate(id, name, amount, date, isPlanned, fundingSource, loggedInUserID); closeModal()}} variant="outlined" size="medium">
                   Submit
                 </Button>
@@ -33,21 +33,21 @@ const editBudgetItemForm = (id, editingExpense, submittingExpenseUpdate, name, a
 
 const editIncomeForm = (id, editingIncome, submittingIncomeUpdate, name, amount, date, closeModal) => {
   return (
-    <Container class="bg-gray-100 w-2/6 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl">
-            <div class="text-center m-5">
+    <Container className="bg-gray-100 w-2/6 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl">
+            <div className="text-center m-5">
               <p>Edit Income</p>
             </div>
             <form>
-              <div class=" m-6">
+              <div className=" m-6">
                 <TextField onChange={(event) => {editingIncome(event, "Name", name, amount, date)}} defaultValue={name} fullWidth id="standard-basic" label="Name" variant="standard" />
               </div>
-              <div class=" m-6">
+              <div className=" m-6">
                 <TextField onChange={(event) => {editingIncome(event, "Date", name, amount, date)}} defaultValue={date} fullWidth id="standard-basic" label="Date Recieved" variant="standard" />
               </div>
-              <div class=" m-6">
+              <div className=" m-6">
                 <TextField onChange={(event) => {editingIncome(event, "Amount", name, amount, date)}} defaultValue={amount} fullWidth id="standard-basic" label="Amount" variant="standard" inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
               </div>
-              <div class="text-center m-3">
+              <div className="text-center m-3">
                 <Button onClick={() => {submittingIncomeUpdate(id, name, date, amount); closeModal()}} variant="outlined" size="medium">
                   Submit
                 </Button>
@@ -64,7 +64,7 @@ export default function EditItemModal(props) {
 
   return (
     <Container>
-      <div class=" text-left">
+      <div className=" text-left">
         <Button onClick={handleOpen}>
             <EditIcon fontSize="small" />
         </Button>

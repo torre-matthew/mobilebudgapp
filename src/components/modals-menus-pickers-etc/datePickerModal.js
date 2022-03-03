@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -16,12 +15,6 @@ import { Container } from '@mui/material';
 //   boxShadow: 12,
 //   p: 4,
 // };
-
-const months = (month, year, monthID) => {
-  return (
-    <MenuItem value={monthID}>{month + ' ' + year}</MenuItem>
-  );
-};
 
 export default function DatePickerModal(props) {
   const [date, setMonth] = React.useState('');
@@ -45,7 +38,7 @@ export default function DatePickerModal(props) {
             {props.monthData.map(monthData => {
                 return(
                   
-                  <MenuItem onClick={() => {props.selectMonth(monthData._id)}} value={monthData._id}>{monthData.month + ' ' + monthData.year}</MenuItem>
+                  <MenuItem key={monthData._id} onClick={() => {props.selectMonth(monthData._id)}} value={monthData._id}>{monthData.month + ' ' + monthData.year}</MenuItem>
                 
                 )
               }) 

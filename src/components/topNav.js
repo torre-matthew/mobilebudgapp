@@ -26,18 +26,18 @@ class TopNav extends React.Component {
   }
   render () {
       return (
-        <div class=" flex-grow">
+        <div className=" flex-grow">
           <AppBar position="static">
             <Toolbar>
               <IconButton
                 edge="start"
-                class=" mr-2"
+                className=" mr-2"
                 color="inherit"
                 aria-label="menu"
                 size="large">
                 <MenuIcon />
               </IconButton>
-              <Typography variant="h6" class=" flex-grow">
+              <Typography variant="h6" className=" flex-grow">
               <Link to="/">Lahri</Link>
               </Typography>
               <BasicMenu 

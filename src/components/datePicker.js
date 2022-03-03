@@ -50,7 +50,7 @@ function a11yProps(index) {
 // }));
 
 export default function ScrollableTabsButtonAuto(props) {
-  // const classes = useStyles();
+  // const classNamees = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -59,7 +59,7 @@ export default function ScrollableTabsButtonAuto(props) {
 
   
   return (
-    <div class=" relative w-3/4 left-1/2 transform -translate-x-1/2">
+    <div className=" relative w-3/4 left-1/2 transform -translate-x-1/2">
       <AppBar position="static" color="default">
         <Tabs
           value={value}

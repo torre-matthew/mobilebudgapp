@@ -5,7 +5,6 @@ import BudgetItemDisplay from './budgetItemDisplay';
 import AddBudgetItemModal from './modals-menus-pickers-etc/addbudgetItemModal';
 import AddBudgetItemInLine from './addBudgetItemInLine';
 import IncomeDisplay from './incomeDisplay';
-import { Typography } from '@mui/material';
 
 
 // const useStyles = makeStyles((theme) => ({
@@ -23,10 +22,10 @@ import { Typography } from '@mui/material';
 // }));
 
 function MainBodyContainer(props) {
-//   const classes = useStyles();
+//   const class = useStyles();
 
   return (
-      <div class="h-full">
+      <div className="h-full">
         <Grid container spacing={1}>
             <Grid item xs={12} md={6} lg={4}>
                 <Grid item xs={12}>
@@ -36,7 +35,7 @@ function MainBodyContainer(props) {
                 </Grid>    
                 {props.unplannedExpenses.map(expenseDataArray =>{
                     return (
-                        <Grid item xs={12}>
+                        <Grid key={expenseDataArray._id} item xs={12}>
                             <BudgetItemDisplay 
                                 key={expenseDataArray._id}
                                 id={expenseDataArray._id}
@@ -67,7 +66,7 @@ function MainBodyContainer(props) {
                         {props.incomeData.map(incomeDataArray => {
                             
                             return (
-                                <Grid item xs={12} md={12} lg={6}>
+                                <Grid key={incomeDataArray._id} item xs={12} md={12} lg={6}>
                                     <IncomeDisplay 
                                         addingExpense={props.addingExpense}
                                         allPlannedExpenses={props.allPlannedExpenses}

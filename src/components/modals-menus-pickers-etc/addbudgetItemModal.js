@@ -17,21 +17,21 @@ import { Container } from '@mui/material';
 
 const addBudgetItemForm = (addingExpense, submittingExpense, closeModal) => {
   return (
-    <Container class="bg-gray-100 w-2/6 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl">
-            <div class="text-center m-5">
+    <Container className="bg-gray-100 w-2/6 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl">
+            <div className="text-center m-5">
               <p>Add Budget Item</p>
             </div>
             <form>
-              <div class=" m-6">
+              <div className=" m-6">
                 <TextField onChange={(event) => {addingExpense(event, "Name")}} fullWidth id="standard-basic" label="Name" variant="standard" />
               </div>
-              <div class=" m-6">
+              <div className=" m-6">
                 <TextField onChange={(event) => {addingExpense(event, "Date")}} fullWidth id="standard-basic" label="Due Date" variant="standard" />
               </div>
-              <div class=" m-6">
+              <div className=" m-6">
                 <TextField onChange={(event) => {addingExpense(event, "Amount")}} fullWidth id="standard-basic" label="Amount" variant="standard" inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
               </div>
-              <div class="text-center m-3">
+              <div className="text-center m-3">
                 <Button onClick={() => {submittingExpense(); closeModal()}} variant="outlined" size="medium">
                   Submit
                 </Button>
@@ -43,21 +43,21 @@ const addBudgetItemForm = (addingExpense, submittingExpense, closeModal) => {
 
 const addIncomeForm = (addingIncome, submittingIncome, closeModal) => {
   return (
-    <Container class="bg-gray-100 w-2/6 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl">
-            <div class="text-center m-5">
+    <Container className="bg-gray-100 w-2/6 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl">
+            <div className="text-center m-5">
               <p>Add Income</p>
             </div>
             <form>
-              <div class=" m-6">
+              <div className=" m-6">
                 <TextField onChange={(event) => {addingIncome(event, "Name")}} fullWidth id="standard-basic" label="Name" variant="standard" />
               </div>
-              <div class=" m-6">
+              <div className=" m-6">
                 <TextField onChange={(event) => {addingIncome(event, "Date")}} fullWidth id="standard-basic" label="Date Recieved" variant="standard" />
               </div>
-              <div class=" m-6">
+              <div className=" m-6">
                 <TextField onChange={(event) => {addingIncome(event, "Amount")}} fullWidth id="standard-basic" label="Amount" variant="standard" inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
               </div>
-              <div class="text-center m-3">
+              <div className="text-center m-3">
                 <Button onClick={() => {submittingIncome(); closeModal()}} variant="outlined" size="medium">
                   Submit
                 </Button>
@@ -74,9 +74,9 @@ export default function AddBudgetItemModal(props) {
 
   return (
     <Container>
-      <div class=" text-left">
+      <div className=" text-left">
         <Button onClick={handleOpen} variant="text">
-            {props.modalType === 'addIncome' ? <Typography class=" text-xs"> Add Income</Typography> : <Typography class=" text-xs"> Add New Budget Item</Typography>}
+            {props.modalType === 'addIncome' ? <Typography className=" text-xs"> Add Income</Typography> : <Typography className=" text-xs"> Add New Budget Item</Typography>}
         </Button>
       </div>
       <Modal
