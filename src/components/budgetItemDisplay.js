@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
-import { Table, TableCell, TableRow, Typography } from '@mui/material';
+import { Table, TableCell, TableRow, Typography, TableBody } from '@mui/material';
 
 // const useStyles = makeStyles((theme) => ({
 //     root: {
@@ -30,35 +30,38 @@ import { Table, TableCell, TableRow, Typography } from '@mui/material';
 //   }));
 
 function BudgetItemDisplay (props) {
-    // const classes = useStyles();
+    // const classNamees = useStyles();
     return (
-            <div class="py-1">
+            <div className="py-1">
                 <Accordion>
                     <AccordionSummary
                         aria-controls="panel1a-content"
                         id="panel1a-header">
-                        <table class="table-fixed w-full">
+                        <table className="table-fixed w-full">
+                            <tbody>
                             <tr>
-                                <td class="text-left text-sm table-row md:table-cell">
+                                <td className="text-left text-sm table-row md:table-cell">
                                     {props.name}  
                                 </td>
-                                <td class="text-right text-sm table-row md:table-cell">
+                                <td className="text-right text-sm table-row md:table-cell">
                                     ${props.amount}  
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-left text-xs">
+                                <td className="text-left text-xs">
                                     {props.date}
                                 </td>
                             </tr>
+                            </tbody>
                         </table>
                     </AccordionSummary>
-                    <AccordionDetails class=" bg-blue-200">
+                    <AccordionDetails className=" bg-blue-200">
                         <Typography>Choose Funding Source</Typography>
                         <Table size='small'>
                             {props.incomeData.map(incomeDataArray => {
                                 return (
-                                    <TableRow key={incomeDataArray._id}>
+                                    <TableBody key={incomeDataArray._id}>
+                                    <TableRow>
                                         <TableCell>
                                             {incomeDataArray.name}
                                         </TableCell>
@@ -68,12 +71,13 @@ function BudgetItemDisplay (props) {
                                             </Button>
                                         </TableCell>
                                     </TableRow>
+                                    </TableBody>
                                         )
                                 })
                             }
                                 
                         </Table>
-                            <table class="  w-1/2">
+                            <table className="  w-1/2">
                             <tbody>
                                     <tr>
                                         <td>

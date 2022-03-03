@@ -18,37 +18,37 @@ class IncomeDisplay extends React.Component {
     render() {
         return (
             <div>
-                <Card class="bg-blue-400 rounded-2xl m-1">
+                <Card className="bg-blue-400 rounded-2xl m-1">
                     <CardContent>
-                        <table class="table-fixed w-full">
+                        <table className="table-fixed w-full">
                             <tbody>
                             <tr>
-                                <td class="text-left text-xl">
+                                <td className="text-left text-xl">
                                     {this.props.name}
                                 </td>
-                                <td class="text-left text-xl">
+                                <td className="text-left text-xl">
                                 </td>
-                                <td class="text-right text-xl">
+                                <td className="text-right text-xl">
                                     ${this.props.amount}
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-left">
+                                <td className="text-left">
                                 </td>
-                                <td class="text-right text-xs">
+                                <td className="text-right text-xs">
                                     {this.props.getAllPlannedExpensesByIncomeID(this.props.id).length} expenses paid
                                 </td>
-                                <td class="text-right text-xs">
+                                <td className="text-right text-xs">
                                     ${this.props.calculateTotalOfExpensesAndAfterSpendingAmountPerIncome(this.props.id).total}
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-left">
+                                <td className="text-left">
                                 </td>
-                                <td class="text-right text-xs">
+                                <td className="text-right text-xs">
                                     Remaining
                                 </td>
-                                <td class="text-right text-xs">
+                                <td className="text-right text-xs">
                                     ${this.props.calculateTotalOfExpensesAndAfterSpendingAmountPerIncome(this.props.id).afterSpendingAmount}
                                 </td>
                             </tr>
@@ -59,7 +59,7 @@ class IncomeDisplay extends React.Component {
                 <div>
                     <Accordion sx={{background: 'white'}}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <p class="text-sm"> {this.props.getAllPlannedExpensesByIncomeID(this.props.id).length} expenses paid with this income</p>
+                            <p className="text-sm"> {this.props.getAllPlannedExpensesByIncomeID(this.props.id).length} expenses paid with this income</p>
                         </AccordionSummary>
                         <AccordionDetails>
                             {/* <form id="expenseForm">
@@ -68,18 +68,18 @@ class IncomeDisplay extends React.Component {
                                 <TextField required  onChange={(event) => {this.props.addingExpense(event, "Amount")}} id="outlined-basic" label="Amount Due" variant="outlined" />
                                 <Button onClick={() => {this.props.submittingExpense(this.props.id); document.getElementById("expenseForm").reset()}} variant="text">Add Item</Button>
                             </form> */}
-                            <table class="table-fixed w-full">
+                            <table className="table-fixed w-full">
                                 {this.props.getAllPlannedExpensesByIncomeID(this.props.id).map(expenseDataArray => {
                                     return (
-                                        <tbody>
-                                            <tr key={expenseDataArray._id}>
-                                                <td class="text-left text-xs">
+                                        <tbody key={expenseDataArray._id}>
+                                            <tr>
+                                                <td className="text-left text-xs">
                                                     {expenseDataArray.nameOfExpense}
                                                 </td>
-                                                <td class="text-right text-xs">
+                                                <td className="text-right text-xs">
                                                     {expenseDataArray.amountOfExpense}
                                                 </td>
-                                                <td class="text-right">
+                                                <td className="text-right">
                                                     <Button onClick={() => {this.props.unplanExpense(expenseDataArray._id, expenseDataArray.nameOfExpense, expenseDataArray.dateOfExpense, expenseDataArray.amountOfExpense, false, "", this.props.loggedInUserID)}}>
                                                         <UndoIcon />
                                                     </Button>
@@ -92,8 +92,8 @@ class IncomeDisplay extends React.Component {
                             </table>
                         </AccordionDetails>
                     </Accordion>
-                    <div class="flex justify-center">
-                        <table class="table-fixed w-1/4">
+                    <div className="flex justify-center">
+                        <table className="table-fixed w-1/4">
                         <tbody>
                                 <tr>
                                     <td> 

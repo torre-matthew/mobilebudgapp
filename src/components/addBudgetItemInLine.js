@@ -14,7 +14,7 @@ export default function addBudgetItemInLine(props) {
             <TextField required  onChange={(event) => {props.addingExpense(event, "Date")}} id="outlined-basic" label="Date" variant="outlined" />
           </Grid>
            <Grid item xs={5}>
-            <TextField required  onChange={(event) => {props.addingExpense(event, "Name")}} id="outlined-basic" label="Name" var ant="outlined" />
+            <TextField required  onChange={(event) => {props.addingExpense(event, "Name")}} id="outlined-basic" label="Name" variant="outlined" />
           </Grid>
            <Grid item xs={3}>
             <TextField required  onChange={(event) => {props.addingExpense(event, "Amount")}} id="outlined-basic" label="Amount Due" variant="outlined" />

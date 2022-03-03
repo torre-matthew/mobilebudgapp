@@ -22,10 +22,10 @@ import IncomeDisplay from './incomeDisplay';
 // }));
 
 function MainBodyContainer(props) {
-//   const classes = useStyles();
+//   const class = useStyles();
 
   return (
-      <div class="h-full">
+      <div className="h-full">
         <Grid container spacing={1}>
             <Grid item xs={12} md={6} lg={4}>
                 <Grid item xs={12}>
