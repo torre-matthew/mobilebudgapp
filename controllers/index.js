@@ -1,5 +1,4 @@
 const db = require("../db/models");
-const plaid = require('plaid');
 require('dotenv').config();
 
 ////////// Add Data Controllers //////////////////
@@ -915,35 +914,6 @@ let updateAfterSpendingAmountDuringExpenseORIncomeEdit = (fundingSource) => {
 ///////////////////////////////////////////////////////////// Plaid ///////////////////////////////////////////////////////////////////////////////////////
 
 
-
-let acceptPublicTokenSentByLink = (req, res, next) => {
-    
-    const plaidClient = new plaid.Client(
-        process.env.PLAID_CLIENT_ID,
-        process.env.PLAID_SECRET,
-        process.env.PUBLIC_KEY,
-        plaid.environments.sandbox,
-        {version: '2019-05-29'} // '2019-05-29' | '2018-05-22' | '2017-03-08'
-      );
-    
-    let PUBLIC_TOKEN = req.body;
-
-    console.log(PUBLIC_TOKEN);
-
-    //     plaidClient.exchangePublicToken(PUBLIC_TOKEN, function(error, tokenResponse) {
-    //     if (error != null) {
-    //     console.log('Could not exchange public_token!' + '\n' + error);
-    //     return res.json({error: msg});
-    //     }
-
-    // let ACCESS_TOKEN = tokenResponse.access_token;
-    //     ITEM_ID = tokenResponse.item_id;
-    //     console.log('Access Token: ' + ACCESS_TOKEN);
-    //     console.log('Item ID: ' + ITEM_ID);
-    //     res.json({'error': false});
-    // });
-}
-
 let calculateCategoryTotalsPerMonth = (req, res) => {
     let categoryTotal = 0;
 
@@ -1352,7 +1322,6 @@ module.exports = {
     copyPreviousMonthsData: copyPreviousMonthsData,
     splitEntry: splitEntry,
     moveToNextMonth: moveToNextMonth,
-    acceptPublicTokenSentByLink: acceptPublicTokenSentByLink,
     calculateCategoryTotalsPerMonth: calculateCategoryTotalsPerMonth
 
 }
