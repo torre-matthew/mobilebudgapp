@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 const mongoose = require("mongoose");
 const path = require("path");
 const axios = require("axios");
+var cors = require('cors')
 const app = express();
 // const port = 3001;
 const PORT = process.env.PORT || 3001;
@@ -32,6 +33,7 @@ db.once('open', function() {
 
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
