@@ -11,28 +11,6 @@ const routes = require("./routes");
 
 require('dotenv').config();
 
-
-// let ACCESS_TOKEN = null;
-// let PUBLIC_TOKEN = null;
-
-// // Accept the public_token sent from Link
-// app.post('/get_access_token', function(request, response, next) {
-//   PUBLIC_TOKEN = request.body.public_token;
-//   plaidClient.exchangePublicToken(PUBLIC_TOKEN, function(error, tokenResponse) {
-//     if (error != null) {
-//       console.log('Could not exchange public_token!' + '\n' + error);
-//       return response.json({error: msg});
-//     }
-//     ACCESS_TOKEN = tokenResponse.access_token;
-//     ITEM_ID = tokenResponse.item_id;
-//     console.log('Access Token: ' + ACCESS_TOKEN);
-//     console.log('Item ID: ' + ITEM_ID);
-//     response.json({'error': false});
-//   });
-// });
-
-
-
 let databaseUri = "mongodb://localhost/budgetAppDB"; 
 
 if (process.env.DB_URI) {
@@ -69,6 +47,7 @@ app.use((req, res, next) => {
 
 app.use(routes);
 
-app.get('/', (req, res) => res.send(`If you see this, then things are working!!! Good job!`));
+app.get('/', (req, res) => res.send(`If you see this, then things are working!!! Good job!!!!!!`));
+// app.get("*", (req, res) => {res.sendFile(path.join(__dirname, "./web/lahri-web-app/public/index.html")); });
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
