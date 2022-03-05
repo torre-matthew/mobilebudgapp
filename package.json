@@ -2,7 +2,7 @@
   "name": "lahri-web-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gentle-beyond-46108.herokuapp.com/",
+  "homepage": "https://github.com/torre-matthew/mobilebudgapp",
   "engines": {
     "node": "14.17.2"
   },
