@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3001;
 const routes = require("./routes");
 
 require('dotenv').config();
+app.use(cors());
 
 let databaseUri = "mongodb://localhost/budgetAppDB"; 
 
@@ -33,7 +34,7 @@ db.once('open', function() {
 
 
 app.use(bodyParser.json());
-app.use(cors());
+
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
