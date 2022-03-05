@@ -7,7 +7,6 @@ const app = express();
 // const port = 3001;
 const PORT = process.env.PORT || 3001;
 const routes = require("./routes");
-// const plaid = require('plaid');
 
 require('dotenv').config();
 
@@ -36,7 +35,7 @@ app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001/");
   res.setHeader("Access-Control-Allow-Headers", "X-Requested-With, Access-Control-Allow-Headers, Content-Type, Authorization, Origin, Accept");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.setHeader('Access-Control-Allow-Credentials', true)

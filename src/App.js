@@ -23,7 +23,6 @@ class App extends React.Component {
     sessionStorage.removeItem("uid");
     sessionStorage.removeItem("profilePic");
     this.setState({profilePic: ""});
-    window.location.href = "http://localhost:3000/"
   }
 
   checkThatUserExists = (email) => {
@@ -33,7 +32,6 @@ class App extends React.Component {
               sessionStorage.setItem("uid", userRecord.data[0]._id);
               sessionStorage.setItem("profilePic", userRecord.data[0].profilePic);
               this.setState({profilePic: userRecord.data[0].profilePic});
-              window.location.href = "http://localhost:3000/home"
             }else {
             alert("You need to create an account")
             }  
