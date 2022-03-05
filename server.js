@@ -36,17 +36,17 @@ db.once('open', function() {
 app.use(bodyParser.json());
 
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001/");
-  res.setHeader("Access-Control-Allow-Headers", "X-Requested-With, Access-Control-Allow-Headers, Content-Type, Authorization, Origin, Accept");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.setHeader('Access-Control-Allow-Credentials', true)
-  // res.append('Access-Control-Allow-Origin', '*');
-  // res.append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  // res.append('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001/");
+//   res.setHeader("Access-Control-Allow-Headers", "X-Requested-With, Access-Control-Allow-Headers, Content-Type, Authorization, Origin, Accept");
+//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//   res.setHeader('Access-Control-Allow-Credentials', true)
+//   // res.append('Access-Control-Allow-Origin', '*');
+//   // res.append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+//   // res.append('Access-Control-Allow-Headers', 'Content-Type');
+//   next();
+// });
 
 app.use(routes);
 // app.get('/', (req, res) => res.send(`If you see this, then things are working!!! Good job!!!!!!`));
