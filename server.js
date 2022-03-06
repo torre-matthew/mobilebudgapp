@@ -5,7 +5,7 @@ const path = require("path");
 const axios = require("axios");
 var cors = require('cors')
 const app = express();
-// app.use(cors());
+app.use(cors());
 // const port = 3001;
 const PORT = process.env.PORT || 3001;
 const routes = require("./routes");
