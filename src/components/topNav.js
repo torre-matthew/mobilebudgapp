@@ -81,7 +81,7 @@ function BasicMenu(props) {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={() => {handleClose(); props.logOut()}}>Logout</MenuItem>
+        <MenuItem onClick={() => {handleClose(); props.logOut()}}>Logout WTF</MenuItem>
       </Menu>
     </div>
   );

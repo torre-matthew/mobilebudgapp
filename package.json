@@ -2,7 +2,7 @@
   "name": "lahri-web-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gentle-beyond-46108.herokuapp.com/",
+  "homepage": "https://github.com/torre-matthew/mobilebudgapp",
   "engines": {
     "node": "14.17.2"
   },
@@ -18,14 +18,17 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "autoprefixer": "^9.8.8",
     "axios": "^0.26.0",
     "gh-pages": "^3.2.3",
     "mongoose": "^6.2.4",
+    "postcss": "^7.0.39",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-google-login": "^5.2.2",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -55,9 +58,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "autoprefixer": "^9.8.8",
-    "postcss": "^7.0.39",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
-  }
+  "devDependencies": {}
 }
