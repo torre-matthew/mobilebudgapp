@@ -5,7 +5,7 @@ const path = require("path");
 const axios = require("axios");
 var cors = require('cors')
 const app = express();
-app.use(cors());
+// app.use(cors());
 // const port = 3001;
 const PORT = process.env.PORT || 3001;
 const routes = require("./routes");
@@ -36,6 +36,12 @@ db.once('open', function() {
 
 app.use(bodyParser.json());
 
+const corsOptions ={
+  origin:'http://localhost:3000', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "*");
